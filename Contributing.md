@@ -27,7 +27,7 @@ Doxygen comment blocks must be in /** ... */
 		
 	This file is part of Enhance.
 
-	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+	Copyright 
 
 	License 
 
@@ -99,19 +99,37 @@ Doxygen comment blocks must be in /** ... */
 
 ## Example :
 
-A function should be documented so :
+A sample documentation:	
 
-* description                          			: \brief  description
-* template parameters     	`<h3></h3>` 		: `<code>class ...</code>` : description
-* Overloads		     	`<h3></h3>`
-* Return		     	`<h3></h3>`     	: description
-* Exceptions		     	`<h3></h3>`
-* Complexity (Alg)	     	`<h3></h3>`
-* average run time	   	`<h3></h3>`
-* run time vs input table  	`<h3></h3>` 
-* parameters	
-
+sample_doc.enh.h (does not exist)
 <code>
+	
+	/** 
+	\file sample_doc.enh.h
+
+	\brief File for demonstrating documentation.
+
+	Created 10 May 2020
+
+	This file is part of Enhance.
+
+	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+
+	Enhance is free software : you can redistribute it and /or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	Enhance is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with Enhance. If not, see < https://www.gnu.org/licenses/>.
+
+
+	*/
 	
 	/**
 		\brief Function to add two numbers
