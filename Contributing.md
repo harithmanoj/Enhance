@@ -11,87 +11,121 @@ Your pull requests are welcome; however, they may not be accepted for various re
 
 For typo corrections, open an issue.
 
-## Documentation (for doxygen always in /** */):
+## Documentation 
 
 Doxygen documentation will only be built when code is ready to be released.
+Doxygen comment blocks must be in /** ... */
 
 ### Files
 
 
-* \file [ filename ]
+* \file `[filename]`
 
-* \brief [ description ]
+* \brief  `[description]`
 
-* Created [ date ]
+* Created  date `[dd Month yyyy]`
 		
-* This file is part of Enhance.
+	This file is part of Enhance.
 
-* Copyright 2020 Harith Manoj <harithpub@gmail.com>
+	Copyright 2020 Harith Manoj <harithpub@gmail.com>
 
-* License 
-<p>
-Enhance is free software : you can redistribute itand /or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-</p>
-<p>
-Enhance is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
-GNU General Public License for more details.
-</p>
-<p>
-You should have received a copy of the GNU General Public License
-along with Enhance.If not, see < https://www.gnu.org/licenses/ >.
-</p>
+	License 
+
+	Enhance is free software : you can redistribute it and /or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	Enhance is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with Enhance.If not, see < https://www.gnu.org/licenses/ >.
+
 
 
 ### pre-processor definitions
 
-* description                          : \brief []
+* description                          			: \brief description
 
 ### namespaces
 
-* description                          : \brief []
+* description                          			: \brief description 
 
 ### functions
 
-* description                          : \brief []
-* [ template parameters      <h3></h3> ]
-* Overloads		     <h3></h3>
-* Return		     <h3> </h3>     : "" description
-* Exceptions		     <h3></h3>
-* [ Complexity (Alg)	     <h3></h3> ]
-* [ average run time	     <h3></h3>]
-* [ run time vs input table  <h3></h3> ]
-* [ parameters		    : <i>inout</i> : desc .  ]
+* description                          			: \brief  description
+* template parameters     	`<h3></h3>` 		: `<code>class ...</code>` : description
+* Overloads		     	`<h3></h3>`
+* Return		     	`<h3></h3>`     	: description
+* Exceptions		     	`<h3></h3>`
+* Complexity (Alg)	     	`<h3></h3>`
+* average run time	   	`<h3></h3>`
+* run time vs input table  	`<h3></h3>` 
+* parameters		    				: `<i>[inout]</i>` : desc .  
 
 ### Variables
 
-* description                          : \brief []
+* description                          			: \brief  description
 * Possible Values                      
 
 ### Classes
 
-* description                          : \brief []
-* hasErrorHandlers                     : true / false
+* description                          			: \brief  description
+* hasErrorHandlers                     			: true / false
 * prefered prefix/suffix 
-* [ template parameters      <h3></h3> ]
-* [ Examples <h3></h3>				  ]
+* template parameters      	`<h3></h3> `
+* Examples <h3></h3>				  
 
 ### Structures / Unions
 
-* description                          : \brief []
-* [ template parameters      <h3></h3> ]
+* description                          			: \brief  description
+* template parameters      	`<h3></h3>`
 * prefered prefix/suffix           
 
 ### Enumeration
 
-* description                          : \brief []
-* Element                              : <i>[slNo]</i> : desc.. 
+* description                          			: \brief  description
+* Element                              			: `<i>[value]</i>` : desc.. 
 
 ### Typedefs
 
-* description                          : \brief []
+* description                          			: \brief  description
 
+
+`<h3></h3>` displayed means that, the field must be under a header like so `<h3>[field]</h3>` 
+
+## Example :
+
+A function should be documented so :
+
+* description                          			: \brief  description
+* template parameters     	`<h3></h3>` 		: `<code>class ...</code>` : description
+* Overloads		     	`<h3></h3>`
+* Return		     	`<h3></h3>`     	: description
+* Exceptions		     	`<h3></h3>`
+* Complexity (Alg)	     	`<h3></h3>`
+* average run time	   	`<h3></h3>`
+* run time vs input table  	`<h3></h3>` 
+* parameters	
+
+<code>
+	
+	/**
+		\brief Function to add two numbers
+		
+		<h3>template</h3>
+		<code>class arithmetic</code> : The type of numbers to be added, must be arithmetic type.
+		
+		<h3>Return</h3>
+		The sum of the two arguments.
+		
+	*/
+	template< class arithmetic>
+	arithmetic add(arithmetic lhs, arithmetic rhs)
+	{
+		return lhs + rhs;
+	}
+</code>
