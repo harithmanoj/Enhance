@@ -1706,7 +1706,7 @@
   </compound>
   <compound kind="page">
     <name>index</name>
-    <title>ENHANCE</title>
+    <title></title>
     <filename>index</filename>
   </compound>
 </tagfile>

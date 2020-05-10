@@ -1,8 +1,16 @@
+[//]: # (\mainpage Enhance Main Page)
+
 ## ENHANCE ##
 
 Enhance is a collection of multiple `C++` libraries that cater to many needs.
 
-It is released under [GPL License](License.md)
+It is released under [GPL License](https://github.com/harithmanoj/Enhance/blob/master/License.md)
+
+Source code is Hosted in [GitHub](https://github.com/harithmanoj/Enhance)
+
+Stable Releases can be found [here](https://github.com/harithmanoj/Enhance/releases)
+
+Code Documentation is Hosted by GitHub Pages [here](https://harithmanoj.github.io/Enhance/index.html)
 
 Including but not limited to :
 
@@ -150,7 +158,7 @@ project.
 ## Contribution
 
 
-Code contribution is welcome. Refer [Contributing.md](Contributing.md) for ways to contribute.
+Code contribution is welcome. Refer [Contributing.md](https://github.com/harithmanoj/Enhance/blob/master/Contributing.md) for ways to contribute.
 
 
 

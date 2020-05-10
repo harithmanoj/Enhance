@@ -7,6 +7,5 @@ var searchData=
   ['error_5fbase_20',['error_base',['../classenh_1_1error__base.html',1,'enh::error_base&lt; type &gt;'],['../classenh_1_1error__base.html#a9e5c40d11351522caafea384ca51c6e2',1,'enh::error_base::error_base()']]],
   ['error_5fbase_3c_20unsigned_20char_20_3e_21',['error_base&lt; unsigned char &gt;',['../classenh_1_1error__base.html',1,'enh']]],
   ['error_5fflag_5flog_22',['ERROR_FLAG_LOG',['../common_8enh_8h.html#afa6247e0a8d6ff59ab3bffd8ff71c64e',1,'common.enh.h']]],
-  ['error_5fflag_5flogp_23',['ERROR_FLAG_LOGP',['../common_8enh_8h.html#a053e0da58b8b08ea7ec5d443538a92df',1,'common.enh.h']]],
-  ['enhance_24',['ENHANCE',['../index.html',1,'']]]
+  ['error_5fflag_5flogp_23',['ERROR_FLAG_LOGP',['../common_8enh_8h.html#a053e0da58b8b08ea7ec5d443538a92df',1,'common.enh.h']]]
 ];

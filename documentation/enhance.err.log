@@ -10,7 +10,3 @@ F:/source/Enhance/src/Header/logger.enh.h:895: warning: explicit link request to
 F:/source/Enhance/src/Header/logger.enh.h:754: warning: explicit link request to 'x' could not be resolved
 F:/source/Enhance/src/Header/logger.enh.h:864: warning: explicit link request to 'x' could not be resolved
 F:/source/Enhance/src/Header/logger.enh.h:727: warning: explicit link request to 'x' could not be resolved
-F:/source/Enhance/README.md:5: warning: unable to resolve reference to 'License.md' for \ref command
-F:/source/Enhance/README.md:165: warning: unable to resolve reference to 'Contributing.md' for \ref command
-F:/source/Enhance/README.md:5: warning: unable to resolve reference to 'License.md' for \ref command
-F:/source/Enhance/README.md:165: warning: unable to resolve reference to 'Contributing.md' for \ref command
