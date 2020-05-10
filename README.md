@@ -143,10 +143,12 @@ project.
 
 * %Timer - `timer.enh.h`
 
-### Depandencies
+### Dependencies
 
-| Header / dependencies | Framework |  Common | Debug | Queued_Process  | Counter | Timer |
-| --------------------- |  :----:   |  :---:  | :---: |      :---:      |  :---:  | :---: |
+Here the coulumn means depends on.
+
+| Header                | Framework |  Common | Debug | Queued_Process  | Counter | Timer |
+|         :----:        |  :----:   |  :---:  | :---: |      :---:      |  :---:  | :---: |
 | Framework             | O         | X       | X     | X               | X       | X     |
 | Common                | Y         | O       | Y     | X               | X       | X     |
 | Debug                 | Y         | X       | O     | X               | X       | X     |
@@ -154,6 +156,9 @@ project.
 | Counter               | Y         | X       | X     | X               | O       | X     |
 | Timer                 | Y         | X       | Y     | X               | X       | O     |
 
+Row Debug, coloumn Framework is Y, this means Debug module headers includes headers in Framework module.
+
+O means same module, X means no dependency.
 
 ## Contribution
 
