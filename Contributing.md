@@ -13,6 +13,8 @@ For typo corrections, open an issue.
 
 ## Documentation (for doxygen always in /** */):
 
+Doxygen documentation will only be built when code is ready to be released.
+
 ### Files
 
 
