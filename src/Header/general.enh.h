@@ -14,7 +14,7 @@
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
 
-	Enhance is distributed in the hope that it will be useful,
+	Enhance is distributed base the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
 	GNU General Public License for more details.
@@ -38,12 +38,11 @@
 namespace enh
 {
 	/**
-		\brief Check if all the bits high in parameter 'field' are high in
-		parameter 'in'.\n
+		\brief Check if all the bits high in parameter 'toCheckFor' are high in
+		parameter 'base'.\n
 
 		<h3>Return</h3>
-		Returns true if all bits on in 'field' are on in
-		'in'.\n
+		Returns true if all bits high in 'toCheckFor' are high in 'base'.\n
 
 		<h3>Template</h3>
 		-#  <code>enumT</code> : The enumeration type (preffered) that is to
@@ -51,12 +50,12 @@ namespace enh
 
 	*/
 	template<class enumT>
-	inline bool checkField(
-		enumT in /**< : <i>in</i> : The field to check.*/,
-		enumT field /**< : <i>in</i> : The fields to check for.*/
+	inline constexpr bool checkField(
+		enumT base /**< : <i>base</i> : The toCheckFor to check.*/,
+		enumT toCheckFor /**< : <i>base</i> : The fields to check for.*/
 	) noexcept
 	{
-		return ((in | field) == in);
+		return ((base | toCheckFor) == base);
 	}
 
 	/**
@@ -116,13 +115,74 @@ namespace enh
 	*/
 	template<class integral>
 	constexpr integral incl_ratio(
-		integral num /*< : <i>in</i> : The numerator of fraction.*/,
-		integral denom /*< : <i>in</i> : The denominator of fraction.*/
+		integral num /*< : <i>base</i> : The numerator of fraction.*/,
+		integral denom /*< : <i>base</i> : The denominator of fraction.*/
 	)
 	{
-		static_assert(std::is_integral_v<integral> &&
-			std::is_unsigned_v < integral>, "inclusive ratio is for integral types");
+		static_assert(std::is_integral_v<integral>, "inclusive ratio is for integral types");
 		return (num / denom) + signum_fn(num % denom);
+	}
+
+	/**
+		\brief Checks if the value is within bounds.
+
+		<h3>Template</h3>
+		<code>class type</code> : Any type that can be compared using <, >, ==.
+
+		<h3>Return</h3>
+		Returns if unChecked is within interval :
+
+		<table>
+			<tr>
+				<th> lInclusive </th>
+				<th> uInclusive </th>
+				<th> Interval </th>
+			</tr>
+			<tr>
+				<th> false </th>
+				<th> false </th>
+				<th> Non-inclusive (lBounds, uBounds) </th>
+			</tr>
+			<tr>
+				<th> false </th>
+				<th> true </th>
+				<th> Upper Bound inclusive (lBounds, uBounds] </th>
+			</tr>
+			<tr>
+				<th> true </th>
+				<th> false </th>
+				<th> Lower Bound inclusive [lBounds, uBounds) </th>
+			</tr>
+			<tr>
+				<th> true </th>
+				<th> true </th>
+				<th> Inclusive [lBounds, uBounds] </th>
+			</tr>
+		</table>
+
+	*/
+	template<class type>
+	constexpr bool isConfined(
+		type unChecked /*< : <i>in</i> : The value to check.*/,
+		type lBounds /*< : <i>in</i> : The Lower bound of the interval.*/,
+		type uBounds /*< : <i>in</i> : The Upper bound of the interval.*/,
+		bool lInclusive = false /*< : <i>in</i> : inclusive lower bound?.*/,
+		bool uInclusive = false /*< : <i>in</i> : inclusive upper bound?.*/
+	)
+	{
+		bool lCheck(false), uCheck(false);
+
+		if (unChecked < uBounds)
+			uCheck = true;
+		else if ((unChecked == uBounds) && uInclusive)
+			uCheck = true;
+
+		if (unChecked > lBounds)
+			lCheck = true;
+		else if ((unChecked == lBounds) && lInclusive)
+			lCheck = true;
+
+		return lCheck && uCheck;
 	}
 
 }
