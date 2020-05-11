@@ -32,7 +32,7 @@
 
 #include <atomic>
 #include "framework.enh.h"
-
+#include "general.enh.h"
 #include "logger.enh.h"
 
 
@@ -71,28 +71,6 @@ namespace enh
 		) noexcept
 	{
 		return (e != tristate::GOOD);
-	}
-
-	/**
-		\brief Check if all the bits high in parameter 'field' are high in 
-		parameter 'in'.\n
-		
-		<h3>Return</h3>
-		Returns true if all bits on in 'field' are on in
-		'in'.\n
-
-		<h3>Template</h3>
-		-#  <code>enumT</code> : The enumeration type (preffered) that is to
-		be compared.\n
-
-	*/
-	template<class enumT>
-	inline bool checkField(
-		enumT in /**< : <i>in</i> : The field to check.*/,
-		enumT field /**< : <i>in</i> : The fields to check for.*/
-	) noexcept
-	{
-		return ((in | field) == in);
 	}
 
 	/**
@@ -296,22 +274,7 @@ namespace enh
 #endif
 	};
 
-	/**
-		\brief the signum function, value is 0 if val is 0, 1 if val > 0, 
-		-1 if  val < 0.
-	*/
-	template<long long val>
-	constexpr short signum = (val > 0) ? 1 : -1;
-
-	template<>
-	constexpr short signum<0> = 0;
-
-	/**
-		\brief The rounded up value of the ratio num / denom.
-	*/
-	template<unsigned long long num, unsigned long long denom>
-	constexpr unsigned long long inclusive_ratio = num / denom +
-		signum<num % denom>;
+	
 
 }
 
