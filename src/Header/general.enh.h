@@ -31,6 +31,7 @@
 #define GENERAL_ENH_H				general.enh.h
 
 #include <atomic>
+#include <type_traits>
 #include "framework.enh.h"
 
 
@@ -59,8 +60,10 @@ namespace enh
 	}
 
 	/**
-		\brief the signum function, value is 0 if val is 0, 1 if val > 0,
+		\brief [[deprecated]] The signum function, value is 0 if val is 0, 1 if val > 0,
 		-1 if  val < 0.
+
+		<b> DEPRECATED </b> : Use constexpr function signum_fn.
 	*/
 	template<long long val>
 	constexpr short signum = (val > 0) ? 1 : -1;
@@ -69,10 +72,59 @@ namespace enh
 	constexpr short signum<0> = 0;
 
 	/**
-		\brief The rounded up value of the ratio num / denom.
+		\brief [[deprecated]] The rounded up value of the ratio num / denom.
+
+		<b> DEPRECATED </b> : Use constexpr function incl_ratio.
 	*/
 	template<unsigned long long num, unsigned long long denom>
 	constexpr unsigned long long inclusive_ratio = num / denom +
 		signum<num %denom>;
 
+
+	/**
+		\brief The mathematical signum function to extract sign.
+
+		<h3>Template</h3>
+		<code>class arithmetic</code> : The arithmetic type of the argument.
+
+		<h3>Return</h3>
+		The sign : -1 if argument is negative, +1 if argument is postive, 0 
+		if argument is 0
+	*/
+	template<class arithmetic>
+	constexpr short signum_fn(arithmetic arg)
+	{
+		static_assert(std::is_arithmetic_v<arithmetic>, "signum function takes an arithmetic type");
+		if (arg > 0)
+			return 1;
+		else if (arg < 0)
+			return -1;
+		else
+			return 0;
+	}
+
+	/**
+		\brief The inclusive ratio (ratio rounded up while deviding).
+
+		<h3>Template</h3>
+		<code>class integral</code> : The integral type of the argument.
+
+		<h3>Return</h3>
+		The rounded up value, returns num / denom rounded up.
+
+		eg : incl_ratio(25,3) == 9
+	*/
+	template<class integral>
+	constexpr integral incl_ratio(
+		integral num /*< : <i>in</i> : The numerator of fraction.*/,
+		integral denom /*< : <i>in</i> : The denominator of fraction.*/
+	)
+	{
+		static_assert(std::is_integral_v<integral> &&
+			std::is_unsigned_v < integral>, "inclusive ratio is for integral types");
+		return (num / denom) + signum_fn(num % denom);
+	}
+
 }
+
+#endif
