@@ -1,4 +1,4 @@
-#include <common.enh.h>
+#include <error_base.enh.h>
 #include <iostream>
 
 enh::tristate foo(std::string len)
