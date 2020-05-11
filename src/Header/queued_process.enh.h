@@ -80,7 +80,7 @@ namespace enh
 		including debug calls.
 
 
-		hasErrorHandlers        = true;\n
+		hasErrorHandlers        = false;\n
 
 		The function RegisterProc must be called to setup the processing function
 		before starting the queue process.\n\n
@@ -121,19 +121,9 @@ namespace enh
 
 	*/
 	template< class instruct>
-	class queued_process : public error_base<unsigned char>
+	class queued_process 
 	{
 	public:
-
-		/**
-			\brief <i>0x04</i> : No execution Procedure defined. 
-		*/
-		static constexpr error NO_PROC = 0x04;
-		
-		/**
-			 \brief <i>0x08</i> : Queue Already running. 
-		*/
-		static constexpr error QUEUE_RUNNING = 0x08;
 
 		/**
 			\brief The type of object to be processed
@@ -146,41 +136,6 @@ namespace enh
 		using processing_method = std::function<tristate(info_type)>;
 
 	private:
-
-#ifdef ERROR_BASE_LOG
-
-
-		/*
-			\brief The name of derived class.
-
-			<h3>Return</h3>
-			The name of the class.\n
-		*/
-		virtual std::string derived_class() const noexcept
-		{
-			return "enh::queued_process";
-		}
-
-		/*
-			\brief All error flag(s) set.
-
-			<h3>Return</h3>
-			All error flag(s) set.\n
-		*/
-		virtual std::string error_string() const
-		{
-			std::string ret = "";
-			ret = error_base<unsigned char>::error_string();
-			if (ret == "SAFE")
-				return ret;
-			if (checkFlag(NO_PROC))
-				ret += "+ NO_PROC";
-			if (checkFlag(QUEUE_RUNNING))
-				ret += "+ QUEUE_RUNNING";
-			return ret;
-		}
-
-#endif
 
 		/**
 			\brief The synchronising mutex for Queue.
@@ -240,11 +195,8 @@ namespace enh
 		tristate queue_exec_process() noexcept
 		{
 			O1_LIB_LOG_LINE;
-			if (!isSafe())
-				return (tristate::PREV_ERR);
-
 			if (!msgProc)
-				return (setFlag(NO_PROC));
+				return tristate::ERROR;
 			O1_LIB_LOG_LINE;
 			while (!(QueueStop.load()))
 			{
@@ -341,12 +293,10 @@ namespace enh
 		tristate start_queue_process() noexcept
 		{
 			O3_LIB_LOG_LINE;
-			if (!isSafe())
-				return (tristate::PREV_ERR);
 			if (!msgProc)
-				return (setFlag(NO_PROC));
+				return tristate::ERROR;
 			if (isQueueRunning())
-				return (setFlag(QUEUE_RUNNING));
+				return tristate::ERROR;
 			O2_LIB_LOG_LINE;
 			QueueStop = false;
 			queue_thread = std::thread(
@@ -375,14 +325,12 @@ namespace enh
 			info_type Message /**< : <i>in</i> : Message need to be pushed.*/
 		)
 		{
-			LIB_ERROR_FLAG_LOGP(this);
 			{
 				std::lock_guard<std::mutex> lock(mtxQueue);
 				QueuedMessage.push(Message);
 				isUpdated = true;
 			}
 			cvQueue.notify_all();
-			LIB_ERROR_FLAG_LOGP(this);
 			return;
 		}
 
@@ -412,7 +360,6 @@ namespace enh
 		*/
 		inline void WaitForQueueStop() noexcept
 		{
-			LIB_ERROR_FLAG_LOGP(this);
 			if (queue_thread.joinable())
 			{
 				O3_LIB_LOG_LINE;
@@ -433,7 +380,6 @@ namespace enh
 		{
 			while (true)
 			{
-				LIB_ERROR_FLAG_LOGP(this);
 				O3_LIB_LOG_LINE;
 				std::this_thread::sleep_for(ns);
 				bool ret = false;
