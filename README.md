@@ -4,14 +4,6 @@
 
 Enhance is a collection of multiple `C++` libraries that cater to many needs.
 
-It is released under [GPL License](https://github.com/harithmanoj/Enhance/blob/master/License.md)
-
-Source code is Hosted in [GitHub](https://github.com/harithmanoj/Enhance)
-
-Stable Releases can be found [here](https://github.com/harithmanoj/Enhance/releases)
-
-Code Documentation is Hosted by GitHub Pages [here](https://harithmanoj.github.io/Enhance/index.html)
-
 Including but not limited to :
 
 * Diagnostics.
@@ -21,6 +13,16 @@ Including but not limited to :
 * Concurrent execution.
 
 The Library requires `C++ standard 17` to compile.
+
+The Library is released under [GPL License](https://github.com/harithmanoj/Enhance/blob/master/License.md)
+
+Source code is Hosted in [GitHub](https://github.com/harithmanoj/Enhance)
+
+Stable Releases can be found [here](https://github.com/harithmanoj/Enhance/releases)
+
+Code Documentation is Hosted by GitHub Pages [here](https://harithmanoj.github.io/Enhance/index.html)
+
+The branch master contains last stable release code. For latest features, bugfixes etc, see develop branch.
 
 _______________________________________________________________________________
 ## Framework
