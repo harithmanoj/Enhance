@@ -43,6 +43,25 @@ Exists in `namespace enh`.
 
 * Version of the Enhance library
 
+
+_______________________________________________________________________________
+## General
+_______________________________________________________________________________
+
+General is a library of functions for general use.
+
+Exists in `namespace enh`.
+
+### Headers :
+
+`general.enh.h`
+
+### The Library 
+
+* Check if bits are high in a variable (also constexpr).
+* Check if value is within bounds (also constexpr).
+* Signum function and inclusive_ration (also constexpr).
+
 _______________________________________________________________________________
 ## Diagnose
 _______________________________________________________________________________
@@ -68,8 +87,8 @@ _______________________________________________________________________________
 ## Error Handling
 _______________________________________________________________________________
 
-Common is a library that contains functions and classes for various error
- handling uses.
+Error Handling Library is a library that contains functions and classes for 
+various error handling uses.
 
 Exists in `namespace enh`.
 
@@ -83,9 +102,6 @@ Exists in `namespace enh`.
 
 * Enumeration to provide 3 possible outcomes (good, error, blocked due to 
 previous error) for functions.
-
-* `constexpr` constants signum and inclusive ratio, which rounds up in integer 
-division.
 
 _______________________________________________________________________________
 ## Concurrent
@@ -135,6 +151,8 @@ project.
 
 * %Framework - `framework.enh.h`
 
+* %General - `general.enh.h`
+
 * %Error_Base - `error_base.enh.h`
 
 * %Debug - `logger.enh.h, logger.cpp`
@@ -149,14 +167,15 @@ project.
 
 Here the coulumn means depends on.
 
-| Header                | Framework |  Error_Base | Debug | Queued_Process  | Counter | Timer |
-|         :----:        |  :----:   |    :---:    | :---: |      :---:      |  :---:  | :---: |
-| Framework             | O         | X           | X     | X               | X       | X     |
-| Error_Base            | Y         | O           | Y     | X               | X       | X     |
-| Debug                 | Y         | X           | O     | X               | X       | X     |
-| Queued_Process        | Y         | Y           | Y     | O               | X       | X     |
-| Counter               | Y         | X           | X     | X               | O       | X     |
-| Timer                 | Y         | X           | Y     | X               | X       | O     |
+| Header                | Framework |  General  |  Error_Base | Debug | Queued_Process  | Counter | Timer |
+|         :----:        |  :----:   |  :----:   |   :---:     | :---: |      :---:      |  :---:  | :---: |
+| Framework             | O         | X         | X           | X     | X               | X       | X     |
+| General               | Y         | O         | X           | X     | X               | X       | X     |
+| Error_Base            | Y         | Y         | O           | Y     | X               | X       | X     |
+| Debug                 | Y         | X         | X           | O     | X               | X       | X     |
+| Queued_Process        | Y         | Y         | Y           | Y     | O               | X       | X     |
+| Counter               | Y         | X         | X           | X     | X               | O       | X     |
+| Timer                 | Y         | X         | X           | Y     | X               | X       | O     |
 
 Row Debug, coloumn Framework is Y, this means Debug module headers includes headers in Framework module.
 
