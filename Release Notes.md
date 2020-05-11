@@ -6,6 +6,22 @@
 
 # Version 1.0
 
+## Version 1.1.0.2.fin
+
+* Renamed `common.enh.h` -> `error_base.enh.h`
+
+* Added Library General.
+	* moved	`CheckField`, `signum`, `inclusive_ratio` from (now) 
+	`error_base.enh.h` to `general.enh.h`
+	* Added `signum_fn`, `incl_ratio`, `isConfined`, made `signum` and 
+	`inclusive_ratio` deprecated.
+
+* Removed class queued_process inheritance of error_base class.
+
+* Timer class bugFix : start_timer returned true all time, no it returns 
+false if timer is already running.
+
+
 ## Version 1.0.0.1.fin
 
 * All functionalities :- 
