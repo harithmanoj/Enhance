@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Enhance
-   &#160;<span id="projectnumber">1.0.0.1</span>
+   &#160;<span id="projectnumber">1.1.0.2</span>
    </div>
    <div id="projectbrief">Enhance is a collection of C++ libraries for different uses</div>
   </td>
@@ -153,14 +153,6 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a812420b64dc76bb983d6b627c9e433a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a812420b64dc76bb983d6b627c9e433a2">operator!</a> (<a class="el" href="namespaceenh.html#a61067ccf704a6ec6d8a407f8394b004b">tristate</a> e) noexcept</td></tr>
-<tr class="memdesc:a812420b64dc76bb983d6b627c9e433a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if input is not safe (not GOOD).  <a href="namespaceenh.html#a812420b64dc76bb983d6b627c9e433a2">More...</a><br /></td></tr>
-<tr class="separator:a812420b64dc76bb983d6b627c9e433a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5084827e591e0425d76b9752ae751794"><td class="memTemplParams" colspan="2">template&lt;class enumT &gt; </td></tr>
-<tr class="memitem:a5084827e591e0425d76b9752ae751794"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a5084827e591e0425d76b9752ae751794">checkField</a> (enumT in, enumT field) noexcept</td></tr>
-<tr class="memdesc:a5084827e591e0425d76b9752ae751794"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if all the bits high in parameter 'field' are high in parameter 'in'.<br  />
-.  <a href="namespaceenh.html#a5084827e591e0425d76b9752ae751794">More...</a><br /></td></tr>
-<tr class="separator:a5084827e591e0425d76b9752ae751794"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f461456cf52f5d925004b085dd84761"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classenh_1_1counter.html">counter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a5f461456cf52f5d925004b085dd84761">max</a> (const <a class="el" href="classenh_1_1counter.html">counter</a> a, const <a class="el" href="classenh_1_1counter.html">counter</a> b) noexcept</td></tr>
 <tr class="memdesc:a5f461456cf52f5d925004b085dd84761"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the greater value of the two  <a href="namespaceenh.html#a5f461456cf52f5d925004b085dd84761">More...</a><br /></td></tr>
 <tr class="separator:a5f461456cf52f5d925004b085dd84761"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,23 +162,41 @@ Functions</h2></td></tr>
 <tr class="memitem:a51d3bfd96daf7772870f6390df3a1d00"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a51d3bfd96daf7772870f6390df3a1d00">operator&lt;&lt;</a> (std::ostream &amp;out, <a class="el" href="classenh_1_1counter.html">counter</a> ct) noexcept</td></tr>
 <tr class="memdesc:a51d3bfd96daf7772870f6390df3a1d00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream insertion operator overloaded for the class counter.  <a href="namespaceenh.html#a51d3bfd96daf7772870f6390df3a1d00">More...</a><br /></td></tr>
 <tr class="separator:a51d3bfd96daf7772870f6390df3a1d00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a812420b64dc76bb983d6b627c9e433a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a812420b64dc76bb983d6b627c9e433a2">operator!</a> (<a class="el" href="namespaceenh.html#a61067ccf704a6ec6d8a407f8394b004b">tristate</a> e) noexcept</td></tr>
+<tr class="memdesc:a812420b64dc76bb983d6b627c9e433a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if input is not safe (not GOOD).  <a href="namespaceenh.html#a812420b64dc76bb983d6b627c9e433a2">More...</a><br /></td></tr>
+<tr class="separator:a812420b64dc76bb983d6b627c9e433a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5e1d1db1967b40d6a90ae13486f3897"><td class="memTemplParams" colspan="2">template&lt;class enumT &gt; </td></tr>
+<tr class="memitem:ad5e1d1db1967b40d6a90ae13486f3897"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#ad5e1d1db1967b40d6a90ae13486f3897">checkField</a> (enumT base, enumT toCheckFor) noexcept</td></tr>
+<tr class="memdesc:ad5e1d1db1967b40d6a90ae13486f3897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if all the bits high in parameter 'toCheckFor' are high in parameter 'base'.<br  />
+.  <a href="namespaceenh.html#ad5e1d1db1967b40d6a90ae13486f3897">More...</a><br /></td></tr>
+<tr class="separator:ad5e1d1db1967b40d6a90ae13486f3897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb2efaef3cc35aca10bc18ecc5d211ec"><td class="memTemplParams" colspan="2">template&lt;class arithmetic &gt; </td></tr>
+<tr class="memitem:abb2efaef3cc35aca10bc18ecc5d211ec"><td class="memTemplItemLeft" align="right" valign="top">constexpr short&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#abb2efaef3cc35aca10bc18ecc5d211ec">signum_fn</a> (arithmetic arg)</td></tr>
+<tr class="memdesc:abb2efaef3cc35aca10bc18ecc5d211ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">The mathematical signum function to extract sign.  <a href="namespaceenh.html#abb2efaef3cc35aca10bc18ecc5d211ec">More...</a><br /></td></tr>
+<tr class="separator:abb2efaef3cc35aca10bc18ecc5d211ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4954924445dff55ac9f4292c65453a2"><td class="memTemplParams" colspan="2">template&lt;class integral &gt; </td></tr>
+<tr class="memitem:ae4954924445dff55ac9f4292c65453a2"><td class="memTemplItemLeft" align="right" valign="top">constexpr integral&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#ae4954924445dff55ac9f4292c65453a2">incl_ratio</a> (integral num, integral denom)</td></tr>
+<tr class="memdesc:ae4954924445dff55ac9f4292c65453a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The inclusive ratio (ratio rounded up while deviding).  <a href="namespaceenh.html#ae4954924445dff55ac9f4292c65453a2">More...</a><br /></td></tr>
+<tr class="separator:ae4954924445dff55ac9f4292c65453a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0b942f0661d5b926d2206b886cc7162"><td class="memTemplParams" colspan="2">template&lt;class type &gt; </td></tr>
+<tr class="memitem:ad0b942f0661d5b926d2206b886cc7162"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#ad0b942f0661d5b926d2206b886cc7162">isConfined</a> (type unChecked, type lBounds, type uBounds, bool lInclusive=false, bool uInclusive=false)</td></tr>
+<tr class="memdesc:ad0b942f0661d5b926d2206b886cc7162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the value is within bounds.  <a href="namespaceenh.html#ad0b942f0661d5b926d2206b886cc7162">More...</a><br /></td></tr>
+<tr class="separator:ad0b942f0661d5b926d2206b886cc7162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a1373aa9e1df59df05a38e668bd25402b"><td class="memTemplParams" colspan="2"><a id="a1373aa9e1df59df05a38e668bd25402b"></a>
-template&lt;long long val&gt; </td></tr>
-<tr class="memitem:a1373aa9e1df59df05a38e668bd25402b"><td class="memTemplItemLeft" align="right" valign="top">constexpr short&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a1373aa9e1df59df05a38e668bd25402b">signum</a> = (val &gt; 0) ? 1 : -1</td></tr>
-<tr class="memdesc:a1373aa9e1df59df05a38e668bd25402b"><td class="mdescLeft">&#160;</td><td class="mdescRight">the signum function, value is 0 if val is 0, 1 if val &gt; 0, -1 if val &lt; 0. <br /></td></tr>
-<tr class="separator:a1373aa9e1df59df05a38e668bd25402b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3749434e1f10c025f00032a51f2aba25"><td class="memTemplParams" colspan="2"><a id="a3749434e1f10c025f00032a51f2aba25"></a>
-template&lt;unsigned long long num, unsigned long long denom&gt; </td></tr>
-<tr class="memitem:a3749434e1f10c025f00032a51f2aba25"><td class="memTemplItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a3749434e1f10c025f00032a51f2aba25">inclusive_ratio</a></td></tr>
-<tr class="memdesc:a3749434e1f10c025f00032a51f2aba25"><td class="mdescLeft">&#160;</td><td class="mdescRight">The rounded up value of the ratio num / denom. <br /></td></tr>
-<tr class="separator:a3749434e1f10c025f00032a51f2aba25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dbd8c46a7fbad18f9f73298a9b9b88a"><td class="memItemLeft" align="right" valign="top"><a id="a0dbd8c46a7fbad18f9f73298a9b9b88a"></a>
-constexpr <a class="el" href="classenh_1_1version__info.html">version_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a0dbd8c46a7fbad18f9f73298a9b9b88a">enhance_version</a> = <a class="el" href="classenh_1_1version__info.html">version_info</a>(<a class="el" href="framework_8enh_8h.html#a76f8696dffccd48706b74844e9de764c">VERSION_INFO_FIN</a>(1,0,0,1))</td></tr>
+constexpr <a class="el" href="classenh_1_1version__info.html">version_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a0dbd8c46a7fbad18f9f73298a9b9b88a">enhance_version</a> = <a class="el" href="classenh_1_1version__info.html">version_info</a>(<a class="el" href="framework_8enh_8h.html#a76f8696dffccd48706b74844e9de764c">VERSION_INFO_FIN</a>(1,1,0,2))</td></tr>
 <tr class="memdesc:a0dbd8c46a7fbad18f9f73298a9b9b88a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version of enhance library. <br /></td></tr>
 <tr class="separator:a0dbd8c46a7fbad18f9f73298a9b9b88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1373aa9e1df59df05a38e668bd25402b"><td class="memTemplParams" colspan="2">template&lt;long long val&gt; </td></tr>
+<tr class="memitem:a1373aa9e1df59df05a38e668bd25402b"><td class="memTemplItemLeft" align="right" valign="top">constexpr short&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a1373aa9e1df59df05a38e668bd25402b">signum</a> = (val &gt; 0) ? 1 : -1</td></tr>
+<tr class="memdesc:a1373aa9e1df59df05a38e668bd25402b"><td class="mdescLeft">&#160;</td><td class="mdescRight">[[deprecated]] The signum function, value is 0 if val is 0, 1 if val &gt; 0, -1 if val &lt; 0.  <a href="namespaceenh.html#a1373aa9e1df59df05a38e668bd25402b">More...</a><br /></td></tr>
+<tr class="separator:a1373aa9e1df59df05a38e668bd25402b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3749434e1f10c025f00032a51f2aba25"><td class="memTemplParams" colspan="2">template&lt;unsigned long long num, unsigned long long denom&gt; </td></tr>
+<tr class="memitem:a3749434e1f10c025f00032a51f2aba25"><td class="memTemplItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a3749434e1f10c025f00032a51f2aba25">inclusive_ratio</a></td></tr>
+<tr class="memdesc:a3749434e1f10c025f00032a51f2aba25"><td class="mdescLeft">&#160;</td><td class="mdescRight">[[deprecated]] The rounded up value of the ratio num / denom.  <a href="namespaceenh.html#a3749434e1f10c025f00032a51f2aba25">More...</a><br /></td></tr>
+<tr class="separator:a3749434e1f10c025f00032a51f2aba25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d766edc467ea3fb7b3978e55129c445"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a2d766edc467ea3fb7b3978e55129c445"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a2d766edc467ea3fb7b3978e55129c445">isGoodTimer_v</a> = false</td></tr>
 <tr class="memdesc:a2d766edc467ea3fb7b3978e55129c445"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template type to assertian whether a type can be used to instanciate the class <a class="el" href="classenh_1_1timer.html">enh::timer</a>.  <a href="namespaceenh.html#a2d766edc467ea3fb7b3978e55129c445">More...</a><br /></td></tr>
@@ -373,7 +383,7 @@ template&lt;unsigned period = 50U&gt; </div>
 
 <p>A byte long type that takes 3 values, true (1), error(0), previous_error(-1). </p>
 <h3>Examples</h3>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="common_8enh_8h.html">common.enh.h</a>&gt;</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="error__base_8enh_8h.html">error_base.enh.h</a>&gt;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<a class="code" href="namespaceenh.html#a61067ccf704a6ec6d8a407f8394b004b">enh::tristate</a> foo(std::string len)</div>
@@ -423,8 +433,8 @@ template&lt;unsigned period = 50U&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a5084827e591e0425d76b9752ae751794"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5084827e591e0425d76b9752ae751794">&#9670;&nbsp;</a></span>checkField()</h2>
+<a id="ad5e1d1db1967b40d6a90ae13486f3897"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5e1d1db1967b40d6a90ae13486f3897">&#9670;&nbsp;</a></span>checkField()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -435,16 +445,16 @@ template&lt;class enumT &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool enh::checkField </td>
+          <td class="memname">constexpr bool enh::checkField </td>
           <td>(</td>
           <td class="paramtype">enumT&#160;</td>
-          <td class="paramname"><em>in</em>, </td>
+          <td class="paramname"><em>base</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">enumT&#160;</td>
-          <td class="paramname"><em>field</em>&#160;</td>
+          <td class="paramname"><em>toCheckFor</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -454,15 +464,15 @@ template&lt;class enumT &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Check if all the bits high in parameter 'field' are high in parameter 'in'.<br  />
+<p>Check if all the bits high in parameter 'toCheckFor' are high in parameter 'base'.<br  />
 . </p>
 <h3>Return</h3>
-<p>Returns true if all bits on in 'field' are on in 'in'.<br  />
+<p>Returns true if all bits high in 'toCheckFor' are high in 'base'.<br  />
  </p><h3>Template</h3>
 <ol type="1">
 <li><code>enumT</code> : The enumeration type (preffered) that is to be compared.<br  />
@@ -470,11 +480,132 @@ template&lt;class enumT &gt; </div>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">in</td><td>: <em>in</em> : The field to check. </td></tr>
-    <tr><td class="paramname">field</td><td>: <em>in</em> : The fields to check for. </td></tr>
+    <tr><td class="paramname">base</td><td>: <em>base</em> : The toCheckFor to check. </td></tr>
+    <tr><td class="paramname">toCheckFor</td><td>: <em>base</em> : The fields to check for. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ae4954924445dff55ac9f4292c65453a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4954924445dff55ac9f4292c65453a2">&#9670;&nbsp;</a></span>incl_ratio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class integral &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr integral enh::incl_ratio </td>
+          <td>(</td>
+          <td class="paramtype">integral&#160;</td>
+          <td class="paramname"><em>num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integral&#160;</td>
+          <td class="paramname"><em>denom</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The inclusive ratio (ratio rounded up while deviding). </p>
+<h3>Template</h3>
+<p><code>class integral</code> : The integral type of the argument.</p>
+<h3>Return</h3>
+<p>The rounded up value, returns num / denom rounded up.</p>
+<p>eg : incl_ratio(25,3) == 9 </p>
+
+<p class="reference">References <a class="el" href="namespaceenh.html#abb2efaef3cc35aca10bc18ecc5d211ec">signum_fn()</a>.</p>
+
+</div>
+</div>
+<a id="ad0b942f0661d5b926d2206b886cc7162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0b942f0661d5b926d2206b886cc7162">&#9670;&nbsp;</a></span>isConfined()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class type &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool enh::isConfined </td>
+          <td>(</td>
+          <td class="paramtype">type&#160;</td>
+          <td class="paramname"><em>unChecked</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type&#160;</td>
+          <td class="paramname"><em>lBounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type&#160;</td>
+          <td class="paramname"><em>uBounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>lInclusive</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>uInclusive</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if the value is within bounds. </p>
+<h3>Template</h3>
+<p><code>class type</code> : Any type that can be compared using &lt;, &gt;, ==.</p>
+<h3>Return</h3>
+<p>Returns if unChecked is within interval :</p>
+<table class="doxtable">
+<tr>
+<th>lInclusive  </th><th>uInclusive  </th><th>Interval   </th></tr>
+<tr>
+<th>false  </th><th>false  </th><th>Non-inclusive (lBounds, uBounds)   </th></tr>
+<tr>
+<th>false  </th><th>true  </th><th>Upper Bound inclusive (lBounds, uBounds]   </th></tr>
+<tr>
+<th>true  </th><th>false  </th><th>Lower Bound inclusive [lBounds, uBounds)   </th></tr>
+<tr>
+<th>true  </th><th>true  </th><th>Inclusive [lBounds, uBounds]   </th></tr>
+</table>
 
 </div>
 </div>
@@ -661,7 +792,70 @@ template&lt;class enumT &gt; </div>
 
 </div>
 </div>
+<a id="abb2efaef3cc35aca10bc18ecc5d211ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb2efaef3cc35aca10bc18ecc5d211ec">&#9670;&nbsp;</a></span>signum_fn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class arithmetic &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr short enh::signum_fn </td>
+          <td>(</td>
+          <td class="paramtype">arithmetic&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The mathematical signum function to extract sign. </p>
+<h3>Template</h3>
+<p><code>class arithmetic</code> : The arithmetic type of the argument.</p>
+<h3>Return</h3>
+<p>The sign : -1 if argument is negative, +1 if argument is postive, 0 if argument is 0 </p>
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a3749434e1f10c025f00032a51f2aba25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3749434e1f10c025f00032a51f2aba25">&#9670;&nbsp;</a></span>inclusive_ratio</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned long long num, unsigned long long denom&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr unsigned long long enh::inclusive_ratio</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= num / denom +</div>
+<div class="line">        signum&lt;num %denom&gt;</div>
+</div><!-- fragment -->
+<p>[[deprecated]] The rounded up value of the ratio num / denom. </p>
+<p><b> DEPRECATED </b> : Use constexpr function incl_ratio. </p>
+
+</div>
+</div>
 <a id="a2d766edc467ea3fb7b3978e55129c445"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2d766edc467ea3fb7b3978e55129c445">&#9670;&nbsp;</a></span>isGoodTimer_v</h2>
 
@@ -731,11 +925,38 @@ false for all else.<br  />
 
 </div>
 </div>
+<a id="a1373aa9e1df59df05a38e668bd25402b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1373aa9e1df59df05a38e668bd25402b">&#9670;&nbsp;</a></span>signum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;long long val&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr short enh::signum = (val &gt; 0) ? 1 : -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[[deprecated]] The signum function, value is 0 if val is 0, 1 if val &gt; 0, -1 if val &lt; 0. </p>
+<p><b> DEPRECATED </b> : Use constexpr function signum_fn. </p>
+
+</div>
+</div>
 </div><!-- contents -->
+<div class="ttc" id="aerror__base_8enh_8h_html"><div class="ttname"><a href="error__base_8enh_8h.html">error_base.enh.h</a></div><div class="ttdoc">The file to declare Error Handling classes and functions.</div></div>
 <div class="ttc" id="anamespaceenh_html_a61067ccf704a6ec6d8a407f8394b004ba0205fe53d2d6958c15ab0aaee27b060f"><div class="ttname"><a href="namespaceenh.html#a61067ccf704a6ec6d8a407f8394b004ba0205fe53d2d6958c15ab0aaee27b060f">enh::tristate::PREV_ERR</a></div><div class="ttdeci">@ PREV_ERR</div></div>
-<div class="ttc" id="acommon_8enh_8h_html"><div class="ttname"><a href="common_8enh_8h.html">common.enh.h</a></div><div class="ttdoc">The file to declare common items.</div></div>
 <div class="ttc" id="anamespaceenh_html_a61067ccf704a6ec6d8a407f8394b004ba45802158e78dd9584161629098018fe8"><div class="ttname"><a href="namespaceenh.html#a61067ccf704a6ec6d8a407f8394b004ba45802158e78dd9584161629098018fe8">enh::tristate::GOOD</a></div><div class="ttdeci">@ GOOD</div></div>
-<div class="ttc" id="anamespaceenh_html_a61067ccf704a6ec6d8a407f8394b004b"><div class="ttname"><a href="namespaceenh.html#a61067ccf704a6ec6d8a407f8394b004b">enh::tristate</a></div><div class="ttdeci">tristate</div><div class="ttdoc">A byte long type that takes 3 values, true (1), error(0), previous_error(-1).</div><div class="ttdef"><b>Definition:</b> common.enh.h:57</div></div>
+<div class="ttc" id="anamespaceenh_html_a61067ccf704a6ec6d8a407f8394b004b"><div class="ttname"><a href="namespaceenh.html#a61067ccf704a6ec6d8a407f8394b004b">enh::tristate</a></div><div class="ttdeci">tristate</div><div class="ttdoc">A byte long type that takes 3 values, true (1), error(0), previous_error(-1).</div><div class="ttdef"><b>Definition:</b> error_base.enh.h:54</div></div>
 <div class="ttc" id="anamespaceenh_html_a61067ccf704a6ec6d8a407f8394b004babb1ca97ec761fc37101737ba0aa2e7c5"><div class="ttname"><a href="namespaceenh.html#a61067ccf704a6ec6d8a407f8394b004babb1ca97ec761fc37101737ba0aa2e7c5">enh::tristate::ERROR</a></div><div class="ttdeci">@ ERROR</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
