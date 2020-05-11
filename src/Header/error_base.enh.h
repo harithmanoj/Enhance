@@ -1,5 +1,5 @@
 /** ***************************************************************************
-	\file common.enh.h
+	\file error_base.enh.h
 	
 	\brief The file to declare common items
  

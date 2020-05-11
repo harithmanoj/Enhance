@@ -75,7 +75,7 @@ Exists in `namespace enh`.
 
 ### Headers :
 
-`common.enh.h`
+`error_base.enh.h`
 
 ### The Library 
 
@@ -135,7 +135,7 @@ project.
 
 * %Framework - `framework.enh.h`
 
-* %Common - `common.enh.h`
+* %Error_Base - `error_base.enh.h`
 
 * %Debug - `logger.enh.h, logger.cpp`
 
@@ -149,14 +149,14 @@ project.
 
 Here the coulumn means depends on.
 
-| Header                | Framework |  Common | Debug | Queued_Process  | Counter | Timer |
-|         :----:        |  :----:   |  :---:  | :---: |      :---:      |  :---:  | :---: |
-| Framework             | O         | X       | X     | X               | X       | X     |
-| Common                | Y         | O       | Y     | X               | X       | X     |
-| Debug                 | Y         | X       | O     | X               | X       | X     |
-| Queued_Process        | Y         | Y       | Y     | O               | X       | X     |
-| Counter               | Y         | X       | X     | X               | O       | X     |
-| Timer                 | Y         | X       | Y     | X               | X       | O     |
+| Header                | Framework |  Error_Base | Debug | Queued_Process  | Counter | Timer |
+|         :----:        |  :----:   |    :---:    | :---: |      :---:      |  :---:  | :---: |
+| Framework             | O         | X           | X     | X               | X       | X     |
+| Error_Base            | Y         | O           | Y     | X               | X       | X     |
+| Debug                 | Y         | X           | O     | X               | X       | X     |
+| Queued_Process        | Y         | Y           | Y     | O               | X       | X     |
+| Counter               | Y         | X           | X     | X               | O       | X     |
+| Timer                 | Y         | X           | Y     | X               | X       | O     |
 
 Row Debug, coloumn Framework is Y, this means Debug module headers includes headers in Framework module.
 
