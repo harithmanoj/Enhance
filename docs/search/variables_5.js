@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['queue_5frunning_293',['QUEUE_RUNNING',['../classenh_1_1queued__process.html#abd22ce8f0f7d0ce300995c24075264f2',1,'enh::queued_process']]]
+  ['unknown_298',['UNKNOWN',['../classenh_1_1error__base.html#a96758f902259dabe544309442e6de195',1,'enh::error_base']]]
 ];

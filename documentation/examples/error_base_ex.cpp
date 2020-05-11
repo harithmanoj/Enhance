@@ -1,4 +1,4 @@
-#include <common.enh.h>
+#include <error_base.enh.h>
 #include <iostream>
 
 class derived_type : public enh::error_base<unsigned char>
