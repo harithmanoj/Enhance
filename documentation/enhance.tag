@@ -1,81 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <tagfile>
   <compound kind="file">
-    <name>common.enh.h</name>
-    <path>F:/source/Enhance/src/Header/</path>
-    <filename>common_8enh_8h.html</filename>
-    <includes id="framework_8enh_8h" name="framework.enh.h" local="yes" imported="no">framework.enh.h</includes>
-    <includes id="logger_8enh_8h" name="logger.enh.h" local="yes" imported="no">logger.enh.h</includes>
-    <class kind="class">enh::error_base</class>
-    <namespace>enh</namespace>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIB_ERROR_FLAG_LOG</name>
-      <anchorfile>common_8enh_8h.html</anchorfile>
-      <anchor>ac1173d82ebbeb190649ef1a93fafd95c</anchor>
-      <arglist>(x)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>ERROR_FLAG_LOG</name>
-      <anchorfile>common_8enh_8h.html</anchorfile>
-      <anchor>afa6247e0a8d6ff59ab3bffd8ff71c64e</anchor>
-      <arglist>(x)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIB_ERROR_FLAG_LOGP</name>
-      <anchorfile>common_8enh_8h.html</anchorfile>
-      <anchor>a15482f7ba898ea83b2b9707774404fe7</anchor>
-      <arglist>(x)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>ERROR_FLAG_LOGP</name>
-      <anchorfile>common_8enh_8h.html</anchorfile>
-      <anchor>a053e0da58b8b08ea7ec5d443538a92df</anchor>
-      <arglist>(x)</arglist>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>tristate</name>
-      <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>a61067ccf704a6ec6d8a407f8394b004b</anchor>
-      <arglist></arglist>
-      <enumvalue file="namespaceenh.html" anchor="a61067ccf704a6ec6d8a407f8394b004ba45802158e78dd9584161629098018fe8">GOOD</enumvalue>
-      <enumvalue file="namespaceenh.html" anchor="a61067ccf704a6ec6d8a407f8394b004babb1ca97ec761fc37101737ba0aa2e7c5">ERROR</enumvalue>
-      <enumvalue file="namespaceenh.html" anchor="a61067ccf704a6ec6d8a407f8394b004ba0205fe53d2d6958c15ab0aaee27b060f">PREV_ERR</enumvalue>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator!</name>
-      <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>a812420b64dc76bb983d6b627c9e433a2</anchor>
-      <arglist>(tristate e) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>checkField</name>
-      <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>a5084827e591e0425d76b9752ae751794</anchor>
-      <arglist>(enumT in, enumT field) noexcept</arglist>
-    </member>
-    <member kind="variable">
-      <type>constexpr short</type>
-      <name>signum</name>
-      <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>a1373aa9e1df59df05a38e668bd25402b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>constexpr unsigned long long</type>
-      <name>inclusive_ratio</name>
-      <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>a3749434e1f10c025f00032a51f2aba25</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
     <name>counter.enh.h</name>
     <path>F:/source/Enhance/src/Header/</path>
     <filename>counter_8enh_8h.html</filename>
@@ -102,6 +27,61 @@
       <anchorfile>namespaceenh.html</anchorfile>
       <anchor>a51d3bfd96daf7772870f6390df3a1d00</anchor>
       <arglist>(std::ostream &amp;out, counter ct) noexcept</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>error_base.enh.h</name>
+    <path>F:/source/Enhance/src/Header/</path>
+    <filename>error__base_8enh_8h.html</filename>
+    <includes id="framework_8enh_8h" name="framework.enh.h" local="yes" imported="no">framework.enh.h</includes>
+    <includes id="general_8enh_8h" name="general.enh.h" local="yes" imported="no">general.enh.h</includes>
+    <includes id="logger_8enh_8h" name="logger.enh.h" local="yes" imported="no">logger.enh.h</includes>
+    <class kind="class">enh::error_base</class>
+    <namespace>enh</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIB_ERROR_FLAG_LOG</name>
+      <anchorfile>error__base_8enh_8h.html</anchorfile>
+      <anchor>ac1173d82ebbeb190649ef1a93fafd95c</anchor>
+      <arglist>(x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ERROR_FLAG_LOG</name>
+      <anchorfile>error__base_8enh_8h.html</anchorfile>
+      <anchor>afa6247e0a8d6ff59ab3bffd8ff71c64e</anchor>
+      <arglist>(x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIB_ERROR_FLAG_LOGP</name>
+      <anchorfile>error__base_8enh_8h.html</anchorfile>
+      <anchor>a15482f7ba898ea83b2b9707774404fe7</anchor>
+      <arglist>(x)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>ERROR_FLAG_LOGP</name>
+      <anchorfile>error__base_8enh_8h.html</anchorfile>
+      <anchor>a053e0da58b8b08ea7ec5d443538a92df</anchor>
+      <arglist>(x)</arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>tristate</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a61067ccf704a6ec6d8a407f8394b004b</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespaceenh.html" anchor="a61067ccf704a6ec6d8a407f8394b004ba45802158e78dd9584161629098018fe8">GOOD</enumvalue>
+      <enumvalue file="namespaceenh.html" anchor="a61067ccf704a6ec6d8a407f8394b004babb1ca97ec761fc37101737ba0aa2e7c5">ERROR</enumvalue>
+      <enumvalue file="namespaceenh.html" anchor="a61067ccf704a6ec6d8a407f8394b004ba0205fe53d2d6958c15ab0aaee27b060f">PREV_ERR</enumvalue>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a812420b64dc76bb983d6b627c9e433a2</anchor>
+      <arglist>(tristate e) noexcept</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -138,6 +118,55 @@
       <name>enhance_version</name>
       <anchorfile>namespaceenh.html</anchorfile>
       <anchor>a0dbd8c46a7fbad18f9f73298a9b9b88a</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>general.enh.h</name>
+    <path>F:/source/Enhance/src/Header/</path>
+    <filename>general_8enh_8h.html</filename>
+    <includes id="framework_8enh_8h" name="framework.enh.h" local="yes" imported="no">framework.enh.h</includes>
+    <namespace>enh</namespace>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>checkField</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ad5e1d1db1967b40d6a90ae13486f3897</anchor>
+      <arglist>(enumT base, enumT toCheckFor) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr short</type>
+      <name>signum_fn</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>abb2efaef3cc35aca10bc18ecc5d211ec</anchor>
+      <arglist>(arithmetic arg)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr integral</type>
+      <name>incl_ratio</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ae4954924445dff55ac9f4292c65453a2</anchor>
+      <arglist>(integral num, integral denom)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isConfined</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ad0b942f0661d5b926d2206b886cc7162</anchor>
+      <arglist>(type unChecked, type lBounds, type uBounds, bool lInclusive=false, bool uInclusive=false)</arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr short</type>
+      <name>signum</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a1373aa9e1df59df05a38e668bd25402b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr unsigned long long</type>
+      <name>inclusive_ratio</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a3749434e1f10c025f00032a51f2aba25</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -629,7 +658,7 @@
     <path>F:/source/Enhance/src/Header/</path>
     <filename>queued__process_8enh_8h.html</filename>
     <includes id="logger_8enh_8h" name="logger.enh.h" local="yes" imported="no">logger.enh.h</includes>
-    <includes id="common_8enh_8h" name="common.enh.h" local="yes" imported="no">common.enh.h</includes>
+    <includes id="error__base_8enh_8h" name="error_base.enh.h" local="yes" imported="no">error_base.enh.h</includes>
     <class kind="struct">enh::gen_instruct</class>
     <class kind="struct">enh::quad_instruct</class>
     <class kind="class">enh::blank_t</class>
@@ -1083,101 +1112,6 @@
       <arglist></arglist>
     </member>
   </compound>
-  <compound kind="class">
-    <name>error_base&lt; unsigned char &gt;</name>
-    <filename>classenh_1_1error__base.html</filename>
-    <member kind="typedef">
-      <type>unsigned char</type>
-      <name>error</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>a47deb7a12772f468c46e511debc6e077</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>error_base</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>a9e5c40d11351522caafea384ca51c6e2</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>clear</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>a98fbeb022ce4c2357c5fd09f7b510d03</anchor>
-      <arglist>() noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>error</type>
-      <name>getError</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>ad441d16a1574e85baa29b00ff8540fac</anchor>
-      <arglist>() const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>checkFlag</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>a42f2ac7fd83a7b9e2d5ad88211bbde3e</anchor>
-      <arglist>(error check_flag) const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>isSafe</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>a0abef11da38020a8358cfa381b9d876d</anchor>
-      <arglist>() const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Log</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>a2921e99de5c1eb5f0b493159ffd04ab5</anchor>
-      <arglist>(std::string file, std::string function, unsigned long line, std::string variable) const noexcept</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static constexpr error</type>
-      <name>SAFE</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>a53737218f4ba4028cb4c5261386581e8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static constexpr error</type>
-      <name>UNKNOWN</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>a96758f902259dabe544309442e6de195</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static constexpr error</type>
-      <name>INVALID_ARG</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>aa5fbeaaecc285fe80636fb36f2b81bed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>tristate</type>
-      <name>setFlag</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>acae84344086ae45978078942867eeeae</anchor>
-      <arglist>(error set) noexcept</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>tristate</type>
-      <name>clearFlag</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>ab8b7ad24b3354441f7b7c9493d6d5add</anchor>
-      <arglist>(error bitClear) noexcept</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>std::atomic&lt; error &gt;</type>
-      <name>flag</name>
-      <anchorfile>classenh_1_1error__base.html</anchorfile>
-      <anchor>a8f3b11b961414c6de399471481285cac</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
   <compound kind="struct">
     <name>enh::gen_instruct</name>
     <filename>structenh_1_1gen__instruct.html</filename>
@@ -1197,7 +1131,6 @@
     <name>enh::queued_process</name>
     <filename>classenh_1_1queued__process.html</filename>
     <templarg></templarg>
-    <base>error_base&lt; unsigned char &gt;</base>
     <member kind="typedef">
       <type>instruct</type>
       <name>info_type</name>
@@ -1288,20 +1221,6 @@
       <anchorfile>classenh_1_1queued__process.html</anchorfile>
       <anchor>a322a0acb2e069b7961d34e58751a06ee</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static constexpr error</type>
-      <name>NO_PROC</name>
-      <anchorfile>classenh_1_1queued__process.html</anchorfile>
-      <anchor>a16d88a2520417026bdbab73c858b01a3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static constexpr error</type>
-      <name>QUEUE_RUNNING</name>
-      <anchorfile>classenh_1_1queued__process.html</anchorfile>
-      <anchor>abd22ce8f0f7d0ce300995c24075264f2</anchor>
-      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1629,20 +1548,6 @@
       <enumvalue file="namespaceenh.html" anchor="a0b0e871be4713899208ceba5d9b14172a7d649ef069df9885e382417c79f3d5cd">RELEASE</enumvalue>
     </member>
     <member kind="function">
-      <type>bool</type>
-      <name>operator!</name>
-      <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>a812420b64dc76bb983d6b627c9e433a2</anchor>
-      <arglist>(tristate e) noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>checkField</name>
-      <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>a5084827e591e0425d76b9752ae751794</anchor>
-      <arglist>(enumT in, enumT field) noexcept</arglist>
-    </member>
-    <member kind="function">
       <type>counter</type>
       <name>max</name>
       <anchorfile>namespaceenh.html</anchorfile>
@@ -1663,6 +1568,48 @@
       <anchor>a51d3bfd96daf7772870f6390df3a1d00</anchor>
       <arglist>(std::ostream &amp;out, counter ct) noexcept</arglist>
     </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a812420b64dc76bb983d6b627c9e433a2</anchor>
+      <arglist>(tristate e) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>checkField</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ad5e1d1db1967b40d6a90ae13486f3897</anchor>
+      <arglist>(enumT base, enumT toCheckFor) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr short</type>
+      <name>signum_fn</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>abb2efaef3cc35aca10bc18ecc5d211ec</anchor>
+      <arglist>(arithmetic arg)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr integral</type>
+      <name>incl_ratio</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ae4954924445dff55ac9f4292c65453a2</anchor>
+      <arglist>(integral num, integral denom)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isConfined</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ad0b942f0661d5b926d2206b886cc7162</anchor>
+      <arglist>(type unChecked, type lBounds, type uBounds, bool lInclusive=false, bool uInclusive=false)</arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr version_info</type>
+      <name>enhance_version</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a0dbd8c46a7fbad18f9f73298a9b9b88a</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable">
       <type>constexpr short</type>
       <name>signum</name>
@@ -1675,13 +1622,6 @@
       <name>inclusive_ratio</name>
       <anchorfile>namespaceenh.html</anchorfile>
       <anchor>a3749434e1f10c025f00032a51f2aba25</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>constexpr version_info</type>
-      <name>enhance_version</name>
-      <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>a0dbd8c46a7fbad18f9f73298a9b9b88a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
