@@ -1,7 +1,7 @@
 /** ***************************************************************************
 	\file error_base.enh.h
 	
-	\brief The file to declare common items
+	\brief The file to declare Error Handling classes and functions
  
 	Created 24 March 2020	
 		
@@ -26,9 +26,9 @@
 
 
 
-#ifndef COMMON_ENH_H
+#ifndef ERROR_BASE_ENH_H
 
-#define COMMON_ENH_H				common.enh.h
+#define ERROR_BASE_ENH_H				error_base.enh.h
 
 #include <atomic>
 #include "framework.enh.h"
