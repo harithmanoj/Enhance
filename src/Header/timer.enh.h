@@ -439,7 +439,7 @@ namespace enh
 		inline bool start_timer() noexcept
 		{
 			if (isTimerCounting())
-				return true;
+				return false;
 			O3_LIB_LOG_LINE;
 			clear_stop();
 			elapsed_cycles = 0;
