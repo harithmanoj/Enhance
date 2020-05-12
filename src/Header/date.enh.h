@@ -210,14 +210,14 @@ namespace enh
 						 of that year [1,year_limit).*/
 		)
 		{
-			if (!isConfined(week, 0, 7, true, false))
+			if (!isConfined<unsigned short>(week, 0, 7, true, false))
 				throw std::invalid_argument("Week day should be in range [0,6]");
-			if (!isConfined(mnth, 0, 12, true, false))
+			if (!isConfined<unsigned short>(mnth, 0, 12, true, false))
 				throw std::invalid_argument("Month should be in range [0,11]");
-			if (!isConfined(dy, 1, month_limit(mnth, yr), true, true))
+			if (!isConfined<unsigned short>(dy, 1, month_limit(mnth, yr), true, true))
 				throw std::invalid_argument("day should be within the monthly "
 						"maximum (28,29,30 or 31 according to month).");
-			if (!isConfined(ydy, 0, year_limit(yr), true, false))
+			if (!isConfined(ydy, 0u, year_limit(yr), true, false))
 				throw std::invalid_argument("year day should be less than "
 					"that for that year (365,366).");
 			day = dy;
@@ -228,6 +228,16 @@ namespace enh
 		}
 
 		/**
+			\brief wrapper over unsafe localtime function.
+
+			The Microsoft version localtime_s is called. Please Edit if not working.
+		*/
+		static void localtime(tm* str_tm, time_t* arith_tm)
+		{
+			localtime_s(str_tm, arith_tm);
+		}
+
+		/**
 			\brief Sets the date to the date indicated by argument.
 		*/
 		inline void set(
@@ -235,8 +245,9 @@ namespace enh
 							 contains the date.*/
 		)
 		{
-			auto temp = std::localtime(&timeStamp);
-			set(temp->tm_mday, temp->tm_mon, temp->tm_year, temp->tm_wday, temp->tm_yday);
+			tm temp;
+			localtime(&temp, &timeStamp);
+			set(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, temp.tm_wday, temp.tm_yday);
 		}
 
 		/**
