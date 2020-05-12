@@ -1,7 +1,7 @@
 /** ***************************************************************************
-	\file time_stamp.enh.h
+	\file date.enh.h
 
-	\brief File for date-time class.
+	\brief File for date class.
 
 	Created 12 May 2020
 
@@ -38,6 +38,16 @@
 
 namespace enh
 {
+	/**
+			\brief wrapper over unsafe localtime function.
+
+			The Microsoft version localtime_s is called. Please Edit if not working.
+		*/
+	void localtime(tm *str_tm, time_t *arith_tm)
+	{
+		localtime_s(str_tm, arith_tm);
+	}
+
 	/**
 		\brief Class to represent date.
 	*/
@@ -228,16 +238,6 @@ namespace enh
 		}
 
 		/**
-			\brief wrapper over unsafe localtime function.
-
-			The Microsoft version localtime_s is called. Please Edit if not working.
-		*/
-		static void localtime(tm* str_tm, time_t* arith_tm)
-		{
-			localtime_s(str_tm, arith_tm);
-		}
-
-		/**
 			\brief Sets the date to the date indicated by argument.
 		*/
 		inline void set(
@@ -246,7 +246,7 @@ namespace enh
 		)
 		{
 			tm temp;
-			localtime(&temp, &timeStamp);
+			enh::localtime(&temp, &timeStamp);
 			set(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, temp.tm_wday, temp.tm_yday);
 		}
 
