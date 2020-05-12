@@ -57,35 +57,7 @@ namespace enh
 		unsigned short hours;
 	};
 
-	/**	
-		\brief Structure to encapsulate calender parameters, date, month, year
-	*/
-	struct date_
-	{
-		/**
-			\brief The day of the month. [1,31]
-		*/
-		unsigned short day;
-
-		/**
-			\brief The month since january. [0,11]
-		*/
-		unsigned short month;
-
-		/**
-			\brief The Year.
-
-			AD is positive.
-			BC is negative.
-		*/
-		long year;
-
-		/**
-			\brief Days after Sunday. [0,6]
-		*/
-		unsigned short wkday;
-	};
-
+	
 
 	/**
 		\brief Class that uniquely identifies date-time
