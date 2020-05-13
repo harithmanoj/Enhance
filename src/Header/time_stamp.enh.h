@@ -59,7 +59,7 @@ namespace enh
 			Throws <code>std::invalid_argument</code> if sec, min, hr is
 			not within bounds. [0,60], [0,59], [0,23] respectively.
 		*/
-		inline void set(
+		inline void setTime(
 			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
 			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
 			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
@@ -83,21 +83,21 @@ namespace enh
 		/**
 			\brief Sets the time to the time indicated by argument.
 		*/
-		inline void set(
+		inline void setTime(
 			time_t timeStamp /**< : <i>in</i> : The time to set.*/
 		)
 		{
 			tm tm_str;
 			enh::localtime(&tm_str, &timeStamp);
-			set(tm_str.tm_sec, tm_str.tm_min, tm_str.tm_hour);
+			setTime(tm_str.tm_sec, tm_str.tm_min, tm_str.tm_hour);
 		}
 
 		/**
 			\brief Sets the time to the current time.
 		*/
-		inline void set()
+		inline void setTime()
 		{
-			set(std::time(nullptr));
+			setTime(std::time(nullptr));
 		}
 
 		/**
@@ -113,7 +113,7 @@ namespace enh
 			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
 		)
 		{
-			set(sec, min, hr);
+			setTime(sec, min, hr);
 		}
 
 		/**
@@ -123,7 +123,7 @@ namespace enh
 			time_t timeStamp /**< : <i>in</i> : The time to set.*/
 		)
 		{
-			set(timeStamp);
+			setTime(timeStamp);
 		}
 
 		/**
@@ -131,7 +131,7 @@ namespace enh
 		*/
 		inline time_stamp()
 		{
-			set();
+			setTime();
 		}
 
 		/**
