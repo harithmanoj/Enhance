@@ -54,6 +54,91 @@ namespace enh
 	}
 
 	/**
+			\brief The maximum date for that month.
+	*/
+	inline constexpr unsigned short month_limit(
+		unsigned short mnth /**< : <i>in</i> : The month count.*/,
+		long yr /**< : <i>in</i> : The year count.*/
+	) noexcept
+	{
+		switch (mnth)
+		{
+
+		case 0:
+			return 31;
+
+		case 1:
+		{
+			if ((yr % 4) == 0)
+				return 29;
+			else
+				return 28;
+		}
+
+		case 2:
+			return 31;
+
+		case 3:
+			return 30;
+
+		case 4:
+			return 31;
+
+		case 5:
+			return 30;
+
+		case 6:
+			return 31;
+
+		case 7:
+			return 31;
+
+		case 8:
+			return 30;
+
+		case 9:
+			return 31;
+
+		case 10:
+			return 30;
+
+		case 11:
+			return 31;
+
+		default:
+			return 165;
+			break;
+		}
+	}
+
+	/**
+		\brief The maximum date for that year.
+	*/
+	inline constexpr unsigned year_limit(
+		long yr /**< : <i>in</i> : The year count.*/
+	) noexcept
+	{
+		if (yr % 4 == 0)
+			return 366;
+		else
+			return 365;
+	}
+
+	/**
+		\brief The week day after day_count number of days from week.
+	*/
+	inline constexpr unsigned short week_day_increments(
+		unsigned short week /*< : <i>in</i> : The current week day.*/,
+		unsigned long day_count /*< : <i>in</i> : The number of days to
+								add.*/
+	) noexcept
+	{
+		unsigned long long tmp = day_count;
+		tmp += week;
+		return tmp % 7;
+	}
+
+	/**
 		\brief Class to represent date.
 	*/
 	class date
@@ -101,91 +186,6 @@ namespace enh
 		}
 
 	public:
-
-		/**
-			\brief The maximum date for that month.
-		*/
-		static constexpr unsigned short month_limit(
-			unsigned short mnth /**< : <i>in</i> : The month count.*/,
-			long yr /**< : <i>in</i> : The year count.*/
-		) noexcept
-		{
-			switch (mnth)
-			{
-
-			case 0:
-				return 31;
-
-			case 1:
-			{
-				if ((yr % 4) == 0)
-					return 29;
-				else
-					return 28;
-			}
-
-			case 2:
-				return 31;
-
-			case 3:
-				return 30;
-
-			case 4:
-				return 31;
-
-			case 5:
-				return 30;
-
-			case 6:
-				return 31;
-
-			case 7:
-				return 31;
-
-			case 8:
-				return 30;
-
-			case 9:
-				return 31;
-
-			case 10:
-				return 30;
-
-			case 11:
-				return 31;
-
-			default:
-				return 165;
-				break;
-			}
-		}
-
-		/**
-			\brief The maximum date for that year.
-		*/
-		static constexpr unsigned year_limit(
-			long yr /**< : <i>in</i> : The year count.*/
-		) noexcept
-		{
-			if (yr % 4 == 0)
-				return 366;
-			else
-				return 365;
-		}
-
-		/**
-			\brief The week day after day_count number of days from week.
-		*/
-		static constexpr unsigned short week_day_increments(
-			unsigned short week /*< : <i>in</i> : The current week day.*/,
-			unsigned long day_count /*< : <i>in</i> : The number of days to 
-									add.*/
-		) noexcept
-		{
-			unsigned long long tmp = day_count;
-			tmp += week;
-			return tmp % 7;
-		}
 
 		/**
 			\brief Add one day to date.
@@ -467,7 +467,9 @@ namespace enh
 			<h3>Overload</h3>
 			-# <code>inline std::string getStringDate() const;<code>\n
 		*/
-		inline std::string getStringDate(std::string format) const
+		inline std::string getStringDate(
+			std::string format /**< : <i>in</i> : The format of date.*/
+		) const
 		{
 			std::size_t pDay, pshDay, pdd, pddth, pMonth, pmm, pshMonth, 
 				pyyyy;
