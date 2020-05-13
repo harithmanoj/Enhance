@@ -174,7 +174,21 @@ project.
 * `time_stamp.enh.h` depends on `date.enh.h`, `general.enh.h`, `framework.enh.h`
 * `date_time.enh.h` depends on `time_stamp.enh.h`, `date.enh.h`, `general.enh.h`, `framework.enh.h`
 
+### Dependency Graph
 
+                                                  framework.enh.h
+                                                        |
+                  +-------------------------------------+--------------------------------------------------+
+                  |                                     |                                                  |
+             general.enh.h                        logger.enh.h                                       counter.enh.h
+                  |                                   (logger.cpp)
+          +-------+-------------+                       |
+          |                     |     +-----------------+------------------+
+      date.enh.h                |     |                                    |
+          |                 error_base.enh.h                          timer.enh.h
+    time_stamp.enh.h               |
+          |                queued_process.enh.h
+    date_time.enh.h
 
 ## Contribution
 
