@@ -185,6 +185,39 @@ namespace enh
 		return lCheck && uCheck;
 	}
 
+
+	/**
+		\brief Prepend 0's to the value according to the number passed.
+
+		<code>signExtend("25",4)</code> returns <code>"0025"</code>
+	*/
+	inline std::string signExtend(
+		std::string value /**< : <i>in</i> : The value to sign extend.*/,
+		unsigned length /**< : <i>in</i> : The minimum number of digits.*/
+		)
+	{
+		if (value.size() < length)
+			return std::string(length - value.size(), '0') + value;
+		else
+			return value;
+	}
+
+	/**
+		\brief Prepend 0's to the value according to the number passed.
+
+		<code>signExtend(25,4)</code> returns <code>"0025"</code>
+	*/
+	template<class arithmetic>
+	inline std::string signExtendValue(
+		arithmetic value /**< : <i>in</i> : The value to sign extend.*/,
+		unsigned length /**< : <i>in</i> : The minimum number of digits.*/
+	)
+	{
+		static_assert(std::is_arithmetic_v<arithmetic>, "Type should be "
+			"arithmetic type.");
+		return signExtend(std::to_string(value), length);
+	}
+
 }
 
 #endif
