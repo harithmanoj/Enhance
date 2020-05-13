@@ -28,6 +28,7 @@ int main()
 	prc.WaitForQueueEmpty(std::chrono::milliseconds(1));
 	prc.stopQueue();
 	prc.WaitForQueueStop();
+	return 0;
 }
 
 /* ****************************************************************************
