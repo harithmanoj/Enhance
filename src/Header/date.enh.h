@@ -140,6 +140,10 @@ namespace enh
 
 	/**
 		\brief Class to represent date.
+
+		<h3>Example</h3>
+		
+		\include{lineno} date_ex.cpp
 	*/
 	class date
 	{
