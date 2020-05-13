@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['elapsed_220',['elapsed',['../classenh_1_1timer.html#a919d51a7d1c80ac7f3b2fce93fe372d4',1,'enh::timer']]],
-  ['error_5fbase_221',['error_base',['../classenh_1_1error__base.html#a9e5c40d11351522caafea384ca51c6e2',1,'enh::error_base']]]
+  ['date_265',['date',['../classenh_1_1date.html#a6e60fc914bd54d438a7f409b09c7a76d',1,'enh::date::date(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned ydy)'],['../classenh_1_1date.html#a492f6d75efb3e3023620aead68bfacfc',1,'enh::date::date(time_t timeStamp)'],['../classenh_1_1date.html#a97d21e49b1d6f4f319b08abcacf9e9aa',1,'enh::date::date()']]],
+  ['datetime_266',['DateTime',['../classenh_1_1_date_time.html#a5b92b2c904b7f10cc6a27db64dff29e2',1,'enh::DateTime::DateTime(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned short ydy, unsigned short sec, unsigned short min, unsigned short hr)'],['../classenh_1_1_date_time.html#a75f138481a8ce294d4bac081d56a8774',1,'enh::DateTime::DateTime(time_t stamp)'],['../classenh_1_1_date_time.html#acf7b3c9ea8ca7a7305634b33235918e7',1,'enh::DateTime::DateTime()']]]
 ];
