@@ -33,6 +33,13 @@
 
 namespace enh
 {
+	/**
+		\brief Class for time manipulation.
+
+		<h3> Examples </h3>
+
+		\include{lineno} time_stamp_ex.cpp
+	*/
 	class time_stamp
 	{
 		/**
@@ -59,7 +66,7 @@ namespace enh
 			Throws <code>std::invalid_argument</code> if sec, min, hr is
 			not within bounds. [0,60], [0,59], [0,23] respectively.
 		*/
-		inline void set(
+		inline void setTime(
 			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
 			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
 			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
@@ -83,21 +90,21 @@ namespace enh
 		/**
 			\brief Sets the time to the time indicated by argument.
 		*/
-		inline void set(
+		inline void setTime(
 			time_t timeStamp /**< : <i>in</i> : The time to set.*/
 		)
 		{
 			tm tm_str;
 			enh::localtime(&tm_str, &timeStamp);
-			set(tm_str.tm_sec, tm_str.tm_min, tm_str.tm_hour);
+			setTime(tm_str.tm_sec, tm_str.tm_min, tm_str.tm_hour);
 		}
 
 		/**
 			\brief Sets the time to the current time.
 		*/
-		inline void set()
+		inline void setTime()
 		{
-			set(std::time(nullptr));
+			setTime(std::time(nullptr));
 		}
 
 		/**
@@ -113,7 +120,7 @@ namespace enh
 			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
 		)
 		{
-			set(sec, min, hr);
+			setTime(sec, min, hr);
 		}
 
 		/**
@@ -123,7 +130,7 @@ namespace enh
 			time_t timeStamp /**< : <i>in</i> : The time to set.*/
 		)
 		{
-			set(timeStamp);
+			setTime(timeStamp);
 		}
 
 		/**
@@ -131,7 +138,7 @@ namespace enh
 		*/
 		inline time_stamp()
 		{
-			set();
+			setTime();
 		}
 
 		/**
@@ -150,6 +157,7 @@ namespace enh
 			}
 			else
 				++hours;
+			return false;
 		}
 
 		/**
@@ -168,6 +176,7 @@ namespace enh
 			}
 			else
 				++minutes;
+			return false;
 		}
 
 		/**
@@ -186,6 +195,7 @@ namespace enh
 			}
 			else
 				++seconds;
+			return false;
 		}
 
 		/**
@@ -204,20 +214,13 @@ namespace enh
 		inline unsigned short getHours() const noexcept { return hours; }
 
 		/**
-			\brief Get The time as a string in custom format.
+			\brief Get The time as a string in default format.
 
-			Pass Argument as a string containing any of the following
-			components.
-
-			<b>sec</b> : The seconds.\n
-			<b>min</b> : The minutes.\n
-			<b>hour</b> : The hours.\n
-
-			Example : <code>"secs minm hourhr"</code> : <code>"25s 25m 10hr"
-				</code>\n
+			hour:min:sec\n\n
 
 			<h3>Overload</h3>
-			-# <code>inline std::string getStringTime() const;<code>\n
+			-# <code>inline std::string getStringTime(std::string format)
+			const;<code>\n
 		*/
 		inline std::string getStringTime() const
 		{
