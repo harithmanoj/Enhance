@@ -424,16 +424,7 @@ namespace enh
 		*/
 		inline std::string getDaySuperScript() const
 		{
-			if ((day / 10) % 10 == 1)
-				return "th";
-			if (day % 10 == 1)
-				return "st";
-			else if (day % 10 == 2)
-				return "nd";
-			else if (day % 10 == 3)
-				return "rd";
-			else
-				return "th";
+			return getOrdinalIndicator(day);
 		}
 
 		/**

@@ -218,6 +218,21 @@ namespace enh
 		return signExtend(std::to_string(value), length);
 	}
 
+	template<class integral>
+	std::string getOrdinalIndicator(integral value)
+	{
+		if ((value / 10) % 10 == 1)
+			return "th";
+		if (value % 10 == 1)
+			return "st";
+		else if (value % 10 == 2)
+			return "nd";
+		else if (value % 10 == 3)
+			return "rd";
+		else
+			return "th";
+	}
+
 }
 
 #endif
