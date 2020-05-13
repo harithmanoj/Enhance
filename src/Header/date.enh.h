@@ -43,7 +43,12 @@ namespace enh
 
 			The Microsoft version localtime_s is called. Please Edit if not working.
 		*/
-	void localtime(tm *str_tm, time_t *arith_tm)
+	inline void localtime(
+		tm *str_tm /**< : <i>in</i> : The pointer to tm structure to 
+				   assign time values.*/,
+		time_t *arith_tm /**< : <i>in</i> : The pointer to tm structure to 
+				   assign time values.*/
+	)
 	{
 		localtime_s(str_tm, arith_tm);
 	}
@@ -478,13 +483,13 @@ namespace enh
 
 			pddth = format.find("ddth");
 			if (pddth != std::string::npos)
-				format.replace(pddth, 4, std::to_string(day) + 
+				format.replace(pddth, 4, signExtendValue(day,2) + 
 					getDaySuperScript());
 			else
 			{
 				pdd = format.find("dd");
 				if (pdd != std::string::npos)
-					format.replace(pdd, 2, std::to_string(day));
+					format.replace(pdd, 2, signExtendValue(day, 2));
 			}
 
 			pshMonth = format.find("shMonth");
@@ -499,13 +504,14 @@ namespace enh
 				{
 					pmm = format.find("mm");
 					if (pmm != std::string::npos)
-						format.replace(pmm, 2, std::to_string(month + 1));
+						format.replace(pmm, 2, signExtendValue(month 
+							+ 1, 2));
 				}
 			}
 
 			pyyyy = format.find("yyyy");
 			if (pyyyy != std::string::npos)
-				format.replace(pyyyy, 4, std::to_string(year));
+				format.replace(pyyyy, 4, signExtendValue(year, 4));
 			return format;
 		}
 
