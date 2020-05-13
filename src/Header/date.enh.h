@@ -217,7 +217,7 @@ namespace enh
 			not within bounds. [0,month_limit], [0,11], [0,6], [0,year_limit)
 			respectively.
 		*/
-		inline void set(
+		inline void setDate(
 			unsigned short dy /**< : <i>in</i> : The day of the month 
 							  [1,month_limit].*/,
 			unsigned short mnth /**< : <i>in</i> : The number of months after
@@ -249,22 +249,22 @@ namespace enh
 		/**
 			\brief Sets the date to the date indicated by argument.
 		*/
-		inline void set(
+		inline void setDate(
 			time_t timeStamp /**< : <i>in</i> : The time stamp which 
 							 contains the date.*/
 		)
 		{
 			tm temp;
 			enh::localtime(&temp, &timeStamp);
-			set(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, temp.tm_wday, temp.tm_yday);
+			setDate(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, temp.tm_wday, temp.tm_yday);
 		}
 
 		/**
 			\brief Sets the date to the date current date.
 		*/
-		inline void set()
+		inline void setDate()
 		{
-			set(std::time(nullptr));
+			setDate(std::time(nullptr));
 		}
 
 		/**
@@ -287,7 +287,7 @@ namespace enh
 						 of that year [1,year_limit).*/
 		)
 		{
-			set(dy, mnth, yr, week, ydy);
+			setDate(dy, mnth, yr, week, ydy);
 		}
 
 		/**
@@ -298,7 +298,7 @@ namespace enh
 							 contains the date.*/
 		)
 		{
-			set(timeStamp);
+			setDate(timeStamp);
 		}
 
 		/**
@@ -306,7 +306,7 @@ namespace enh
 		*/
 		inline date()
 		{
-			set();
+			setDate();
 		}
 
 		/**
