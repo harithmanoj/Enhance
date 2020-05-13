@@ -132,7 +132,7 @@ namespace enh
 
 			<h3>Overload</h3>
 			-# <code>inline std::string getStringDateTime(std::string format)
-			const;<code>\n
+			const;</code>\n
 		*/
 		inline std::string getStringDateTime()
 		{
@@ -153,13 +153,13 @@ namespace enh
 			<b>Month</b> : The name of Month (January) OR <b>mm</b> : The
 			numerical month (01 for January) OR <b>shMonth</b> : The name of
 			month shortened (Jan).\n
-			<b>yyyy<b> : Year (2020).\n
+			<b>yyyy</b> : Year (2020).\n
 			<b>sec</b> : The seconds.\n
 			<b>min</b> : The minutes.\n
 			<b>hour</b> : The hours.\n
 
 			<h3>Overload</h3>
-			-# <code>inline std::string getStringDateTime() const;<code>\n
+			-# <code>inline std::string getStringDateTime() const;</code>\n
 		*/
 		inline std::string getStringDateTime(
 			std::string format /**< : <i>in</i> : The format of date.*/
