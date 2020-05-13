@@ -36,6 +36,10 @@ namespace enh
 {
 	/**
 		\brief Class for date and time joint manipulation.
+
+		<h3> Examples </h3>
+
+		\include{lineno} DateTime_ex.cpp
 	*/
 	class DateTime : public date, public time_stamp
 	{

@@ -33,6 +33,13 @@
 
 namespace enh
 {
+	/**
+		\brief Class for time manipulation.
+
+		<h3> Examples </h3>
+
+		\include{lineno} time_stamp_ex.cpp
+	*/
 	class time_stamp
 	{
 		/**
