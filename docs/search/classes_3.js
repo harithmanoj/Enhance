@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gen_5finstruct_194',['gen_instruct',['../structenh_1_1gen__instruct.html',1,'enh']]]
+  ['error_5fbase_230',['error_base',['../classenh_1_1error__base.html',1,'enh']]]
 ];

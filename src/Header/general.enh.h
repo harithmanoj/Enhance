@@ -185,6 +185,69 @@ namespace enh
 		return lCheck && uCheck;
 	}
 
+
+	/**
+		\brief Prepend 0's to the value according to the number passed.
+
+		<code>signExtend("25",4)</code> returns <code>"0025"</code>
+	*/
+	inline std::string signExtend(
+		std::string value /**< : <i>in</i> : The value to sign extend.*/,
+		unsigned length /**< : <i>in</i> : The minimum number of digits.*/
+		)
+	{
+		if (value.size() < length)
+			return std::string(length - value.size(), '0') + value;
+		else
+			return value;
+	}
+
+	/**
+		\brief Prepend 0's to the value according to the number passed.
+
+		<code>signExtend(25,4)</code> returns <code>"0025"</code>
+	*/
+	template<class arithmetic>
+	inline std::string signExtendValue(
+		arithmetic value /**< : <i>in</i> : The value to sign extend.*/,
+		unsigned length /**< : <i>in</i> : The minimum number of digits.*/
+	)
+	{
+		static_assert(std::is_arithmetic_v<arithmetic>, "Type should be "
+			"arithmetic type.");
+		return signExtend(std::to_string(value), length);
+	}
+
+	/**
+		\brief The Ordinal for the value.
+
+		<h3>Template</h3>
+		<code>class integral</code> : The integral type of the argument.
+
+		<h3>Return</h3>
+		The ordinal indicator used for this value.
+
+		eg : \n
+		getOrdinalIndicator(25) == "th"\n
+		getOrdinalIndicator(21) == "st"
+				
+	*/
+	template<class integral>
+	std::string getOrdinalIndicator(integral value)
+	{
+		static_assert(std::is_integral_v<integral>, "Ordinal Indicator is for integral types");
+		if ((value / 10) % 10 == 1)
+			return "th";
+		if (value % 10 == 1)
+			return "st";
+		else if (value % 10 == 2)
+			return "nd";
+		else if (value % 10 == 3)
+			return "rd";
+		else
+			return "th";
+	}
+
 }
 
 #endif

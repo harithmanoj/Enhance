@@ -6,6 +6,14 @@
 
 # Version 1.0
 
+## Version 1.2.0.3.fin
+
+* Added class date
+* Added class time_stamp
+* Added class DateTime
+
+* Added functions signExtend, signExtendValue, getordinalIndicator
+
 ## Version 1.1.0.2.fin
 
 * Renamed `common.enh.h` -> `error_base.enh.h`
