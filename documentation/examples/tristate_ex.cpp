@@ -22,7 +22,7 @@ int main()
 	std::cout << std::boolalpha << !!foo("first") << "\n";
 	std::cout << (foo({}) == enh::tristate::ERROR) << "\n";
 	std::cout << (foo("kk") == enh::tristate::PREV_ERR) << "\n";
-	
+	return 0;
 }
 
 
