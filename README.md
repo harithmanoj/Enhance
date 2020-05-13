@@ -61,7 +61,9 @@ Exists in `namespace enh`.
 * Check if bits are high in a variable (also constexpr).
 * Check if value is within bounds (also constexpr).
 * Signum function and inclusive_ration (also constexpr).
-
+* getOrdinalIndicator returns "th", "st", "nd" "rd" according to argument passed.
+* signExtend extends the string format of a numeral by prepending '0' s
+ 
 _______________________________________________________________________________
 ## Diagnose
 _______________________________________________________________________________
@@ -132,6 +134,12 @@ Exists in `namespace enh`.
 
 `counter.enh.h`
 
+`time_stamp.enh.h`
+
+`date.enh.h`
+
+`DateTime.enh.h`
+
 ### The Library 
 
 * Tracking time in a sec : min : hr : day manner(representation).
@@ -140,6 +148,12 @@ Exists in `namespace enh`.
 
 * Block execution of a thread for a period of time accurately.
 
+* Store and manipulate time.
+
+* Store and manipulate date.
+
+* Store and manipulate date and time simultaneously.
+
 ## HOW TO INSTALL 
 
 * Download all required headers and source files, and add them to dependancy 
@@ -147,39 +161,34 @@ project.
 
 * Make sure to compile in `C++17`.
 
-### Modules
-
-* %Framework - `framework.enh.h`
-
-* %General - `general.enh.h`
-
-* %Error_Base - `error_base.enh.h`
-
-* %Debug - `logger.enh.h, logger.cpp`
-
-* %Queued_Process - `queued_process.enh.h`
-
-* %Counter - `counter.enh.h`
-
-* %Timer - `timer.enh.h`
-
 ### Dependencies
 
-Here the coulumn means depends on.
+* `framework.enh.h` depends only on standard c++ headers.
+* `general.enh.h` depends on `framework.enh.h`
+* `logger.enh.h` depends on `framework.enh.h` but requires compilation of `logger.cpp`
+* `error_base.enh.h` depends on `framework.enh.h`, `general.enh.h`, `logger.enh.h`
+* `queued_process.enh.h` depends on `error_base.enh.h`, `framework.enh.h`, `general.enh.h`, `logger.enh.h`
+* `counter.enh.h` depends on `framework.enh.h`
+* `timer.enh.h` depends on `framework.enh.h`, `logger.enh.h`
+* `date.enh.h` depends on `general.enh.h`, `framework.enh.h`
+* `time_stamp.enh.h` depends on `date.enh.h`, `general.enh.h`, `framework.enh.h`
+* `date_time.enh.h` depends on `time_stamp.enh.h`, `date.enh.h`, `general.enh.h`, `framework.enh.h`
 
-| Header                | Framework |  General  |  Error_Base | Debug | Queued_Process  | Counter | Timer |
-|         :----:        |  :----:   |  :----:   |   :---:     | :---: |      :---:      |  :---:  | :---: |
-| Framework             | O         | X         | X           | X     | X               | X       | X     |
-| General               | Y         | O         | X           | X     | X               | X       | X     |
-| Error_Base            | Y         | Y         | O           | Y     | X               | X       | X     |
-| Debug                 | Y         | X         | X           | O     | X               | X       | X     |
-| Queued_Process        | Y         | Y         | Y           | Y     | O               | X       | X     |
-| Counter               | Y         | X         | X           | X     | X               | O       | X     |
-| Timer                 | Y         | X         | X           | Y     | X               | X       | O     |
+### Dependency Graph
 
-Row Debug, coloumn Framework is Y, this means Debug module headers includes headers in Framework module.
-
-O means same module, X means no dependency.
+                                                  framework.enh.h
+                                                        |
+                  +-------------------------------------+--------------------------------------------------+
+                  |                                     |                                                  |
+             general.enh.h                        logger.enh.h                                       counter.enh.h
+                  |                                   (logger.cpp)
+          +-------+-------------+                       |
+          |                     |     +-----------------+------------------+
+      date.enh.h                |     |                                    |
+          |                 error_base.enh.h                          timer.enh.h
+    time_stamp.enh.h               |
+          |                queued_process.enh.h
+    date_time.enh.h
 
 ## Contribution
 

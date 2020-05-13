@@ -30,6 +30,50 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>date.enh.h</name>
+    <path>F:/source/Enhance/src/Header/</path>
+    <filename>date_8enh_8h.html</filename>
+    <includes id="general_8enh_8h" name="general.enh.h" local="yes" imported="no">general.enh.h</includes>
+    <class kind="class">enh::date</class>
+    <namespace>enh</namespace>
+    <member kind="function">
+      <type>void</type>
+      <name>localtime</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a4dcc172e289b03b0295ea140d68a274b</anchor>
+      <arglist>(tm *str_tm, time_t *arith_tm)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned short</type>
+      <name>month_limit</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a3a89d6dc1f27d7423607ffe07f6bb3c0</anchor>
+      <arglist>(unsigned short mnth, long yr) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned</type>
+      <name>year_limit</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>afd8eedb8bd3b3548af8f4ecdd1afec12</anchor>
+      <arglist>(long yr) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned short</type>
+      <name>week_day_increments</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a2ad12d5acd9f98c7a028dbcaea95019c</anchor>
+      <arglist>(unsigned short week, unsigned long day_count) noexcept</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>date_time.enh.h</name>
+    <path>F:/source/Enhance/src/Header/</path>
+    <filename>date__time_8enh_8h.html</filename>
+    <includes id="time__stamp_8enh_8h" name="time_stamp.enh.h" local="yes" imported="no">time_stamp.enh.h</includes>
+    <class kind="class">enh::DateTime</class>
+    <namespace>enh</namespace>
+  </compound>
+  <compound kind="file">
     <name>error_base.enh.h</name>
     <path>F:/source/Enhance/src/Header/</path>
     <filename>error__base_8enh_8h.html</filename>
@@ -154,6 +198,27 @@
       <anchorfile>namespaceenh.html</anchorfile>
       <anchor>ad0b942f0661d5b926d2206b886cc7162</anchor>
       <arglist>(type unChecked, type lBounds, type uBounds, bool lInclusive=false, bool uInclusive=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>signExtend</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a525a9551f46dd04c4284cfeb0aa54ee5</anchor>
+      <arglist>(std::string value, unsigned length)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>signExtendValue</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a9d9628ceeec503473fc7acf9eb6519b6</anchor>
+      <arglist>(arithmetic value, unsigned length)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getOrdinalIndicator</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>af497c3ace8c354a276830475fe416315</anchor>
+      <arglist>(integral value)</arglist>
     </member>
     <member kind="variable">
       <type>constexpr short</type>
@@ -666,6 +731,14 @@
     <namespace>enh</namespace>
   </compound>
   <compound kind="file">
+    <name>time_stamp.enh.h</name>
+    <path>F:/source/Enhance/src/Header/</path>
+    <filename>time__stamp_8enh_8h.html</filename>
+    <includes id="date_8enh_8h" name="date.enh.h" local="yes" imported="no">date.enh.h</includes>
+    <class kind="class">enh::time_stamp</class>
+    <namespace>enh</namespace>
+  </compound>
+  <compound kind="file">
     <name>timer.enh.h</name>
     <path>F:/source/Enhance/src/Header/</path>
     <filename>timer_8enh_8h.html</filename>
@@ -1017,6 +1090,226 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>enh::date</name>
+    <filename>classenh_1_1date.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>add_day</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a6dd5cbe4e4d21120b0b21b2102f32f2d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDate</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a5e9f3d324e7539bad951858ffd684748</anchor>
+      <arglist>(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned ydy)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDate</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a20ed25c17a7e67cf5295ff0aa4e07650</anchor>
+      <arglist>(time_t timeStamp)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDate</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>aaad30168b7bb62e0feda6113906632ee</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>date</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a6e60fc914bd54d438a7f409b09c7a76d</anchor>
+      <arglist>(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned ydy)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>date</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a492f6d75efb3e3023620aead68bfacfc</anchor>
+      <arglist>(time_t timeStamp)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>date</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a97d21e49b1d6f4f319b08abcacf9e9aa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned short</type>
+      <name>getDayOfMonth</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>ace2ebd6432adb659bdda2832af8ca82b</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned short</type>
+      <name>getMonth</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>ab6f76c742913df12695ca74442748878</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getMonthString</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>adb91bcde7c15d6726cbebabe091ea397</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getShortMonthString</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>ad02736aa79b2169cbeb2ebbe9b3346a6</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>long</type>
+      <name>getYear</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a1e895cbb5cf21285943de9a40681fe33</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned short</type>
+      <name>getDayOfWeek</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a8a872e2d2b6e6a03f443e0661551c136</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned</type>
+      <name>getDayOfYear</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a18dd56a5aa44161c44da3deaa12d6a8d</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getDayOfWeekString</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>ad8916144151b3368a867d3ea92b3b739</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getShortDayOfWeekString</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>adf3c44fafcec705b374cbf1844edffb9</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getDaySuperScript</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a194d05e9f8566cead869b3a9f04b80b1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getStringDate</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a4d6be6c3f1138a3af8afe170995c16b3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getStringDate</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a496782e446b40a9fc9c5992c06be3fca</anchor>
+      <arglist>(std::string format) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>enh::DateTime</name>
+    <filename>classenh_1_1_date_time.html</filename>
+    <base>enh::date</base>
+    <base>enh::time_stamp</base>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a7971052810d18c4cb25fe1b69fa76057</anchor>
+      <arglist>(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned short ydy, unsigned short sec, unsigned short min, unsigned short hr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>aacd7fcc680fd526507a61eb61598c238</anchor>
+      <arglist>(time_t stamp)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>affdc2ebe402e93fac4b07317e2d3fbde</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DateTime</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a5b92b2c904b7f10cc6a27db64dff29e2</anchor>
+      <arglist>(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned short ydy, unsigned short sec, unsigned short min, unsigned short hr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DateTime</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a75f138481a8ce294d4bac081d56a8774</anchor>
+      <arglist>(time_t stamp)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DateTime</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>acf7b3c9ea8ca7a7305634b33235918e7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getStringDateTime</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a174c6dd293ab6c8117eb13915eaa657c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getStringDateTime</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a53425a3da2cccd9235aa8d63b5996397</anchor>
+      <arglist>(std::string format)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>addSeconds</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a06e6812c11b8adbdde3bea6565c3005f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>addMinutes</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a9dd0c3a56bdd09b3f3cf1f480ca7906b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>addHour</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a38e8c9d0255abc16ba41f03dfb989558</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>enh::error_base</name>
     <filename>classenh_1_1error__base.html</filename>
     <templarg></templarg>
@@ -1221,6 +1514,108 @@
       <anchorfile>classenh_1_1queued__process.html</anchorfile>
       <anchor>a322a0acb2e069b7961d34e58751a06ee</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>enh::time_stamp</name>
+    <filename>classenh_1_1time__stamp.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>setTime</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a45ddc13733dd2a99a267500b1199a880</anchor>
+      <arglist>(unsigned short sec, unsigned short min, unsigned short hr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTime</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>ad911557fd27daac0401a712728e5a73e</anchor>
+      <arglist>(time_t timeStamp)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTime</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a0828a1cb34e325d605fdc6b5df5586be</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>time_stamp</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>affd30be9a1dc9c1e38a897cc8c567a21</anchor>
+      <arglist>(unsigned short sec, unsigned short min, unsigned short hr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>time_stamp</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a21486be746a32a0c6da17223bae6452b</anchor>
+      <arglist>(time_t timeStamp)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>time_stamp</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>ae3d5cabfeefa4ed165f49349fc5b40d7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>addHour</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a1f33d2b868a933d220666c5e5db9c04b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>addMinutes</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>ac001362dd2e55c2e53b224c2121a0d96</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>addSeconds</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>ade79bd88ff03223975a410a8c6b35f70</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned short</type>
+      <name>getSeconds</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a1b146c87e57d1e3ff2096239144e4dcb</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned short</type>
+      <name>getMinutes</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>ae0c901fe35f7a25d4735e29acad8d09b</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned short</type>
+      <name>getHours</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a14481f5855da0d2f5f34e637219232b9</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getStringTime</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>aad6b220a638c598bd12fba0fba9534ea</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getStringTime</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>ab3b510feef3ad1de9af9b3f1eda8d2d1</anchor>
+      <arglist>(std::string format) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1466,10 +1861,13 @@
     <filename>namespaceenh.html</filename>
     <class kind="class">enh::blank_t</class>
     <class kind="class">enh::counter</class>
+    <class kind="class">enh::date</class>
+    <class kind="class">enh::DateTime</class>
     <class kind="class">enh::error_base</class>
     <class kind="struct">enh::gen_instruct</class>
     <class kind="struct">enh::quad_instruct</class>
     <class kind="class">enh::queued_process</class>
+    <class kind="class">enh::time_stamp</class>
     <class kind="class">enh::timer</class>
     <class kind="class">enh::version_info</class>
     <member kind="typedef">
@@ -1569,6 +1967,34 @@
       <arglist>(std::ostream &amp;out, counter ct) noexcept</arglist>
     </member>
     <member kind="function">
+      <type>void</type>
+      <name>localtime</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a4dcc172e289b03b0295ea140d68a274b</anchor>
+      <arglist>(tm *str_tm, time_t *arith_tm)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned short</type>
+      <name>month_limit</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a3a89d6dc1f27d7423607ffe07f6bb3c0</anchor>
+      <arglist>(unsigned short mnth, long yr) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned</type>
+      <name>year_limit</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>afd8eedb8bd3b3548af8f4ecdd1afec12</anchor>
+      <arglist>(long yr) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned short</type>
+      <name>week_day_increments</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a2ad12d5acd9f98c7a028dbcaea95019c</anchor>
+      <arglist>(unsigned short week, unsigned long day_count) noexcept</arglist>
+    </member>
+    <member kind="function">
       <type>bool</type>
       <name>operator!</name>
       <anchorfile>namespaceenh.html</anchorfile>
@@ -1602,6 +2028,27 @@
       <anchorfile>namespaceenh.html</anchorfile>
       <anchor>ad0b942f0661d5b926d2206b886cc7162</anchor>
       <arglist>(type unChecked, type lBounds, type uBounds, bool lInclusive=false, bool uInclusive=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>signExtend</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a525a9551f46dd04c4284cfeb0aa54ee5</anchor>
+      <arglist>(std::string value, unsigned length)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>signExtendValue</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a9d9628ceeec503473fc7acf9eb6519b6</anchor>
+      <arglist>(arithmetic value, unsigned length)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getOrdinalIndicator</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>af497c3ace8c354a276830475fe416315</anchor>
+      <arglist>(integral value)</arglist>
     </member>
     <member kind="variable">
       <type>constexpr version_info</type>

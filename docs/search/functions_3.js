@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['force_5fjoin_222',['force_join',['../classenh_1_1timer.html#a2b6b981072b85d7a70c46f4767d3fc90',1,'enh::timer']]]
+  ['elapsed_267',['elapsed',['../classenh_1_1timer.html#a919d51a7d1c80ac7f3b2fce93fe372d4',1,'enh::timer']]],
+  ['error_5fbase_268',['error_base',['../classenh_1_1error__base.html#a9e5c40d11351522caafea384ca51c6e2',1,'enh::error_base']]]
 ];
