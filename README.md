@@ -61,7 +61,9 @@ Exists in `namespace enh`.
 * Check if bits are high in a variable (also constexpr).
 * Check if value is within bounds (also constexpr).
 * Signum function and inclusive_ration (also constexpr).
-
+* getOrdinalIndicator returns "th", "st", "nd" "rd" according to argument passed.
+* signExtend extends the string format of a numeral by prepending '0' s
+ 
 _______________________________________________________________________________
 ## Diagnose
 _______________________________________________________________________________
@@ -132,6 +134,12 @@ Exists in `namespace enh`.
 
 `counter.enh.h`
 
+`time_stamp.enh.h`
+
+`date.enh.h`
+
+`DateTime.enh.h`
+
 ### The Library 
 
 * Tracking time in a sec : min : hr : day manner(representation).
@@ -139,6 +147,12 @@ Exists in `namespace enh`.
 * Tracking time elapsed and providing clients to the class periodical signals.
 
 * Block execution of a thread for a period of time accurately.
+
+* Store and manipulate time.
+
+* Store and manipulate date.
+
+* Store and manipulate date and time simultaneously.
 
 ## HOW TO INSTALL 
 
