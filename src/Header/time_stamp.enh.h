@@ -204,20 +204,13 @@ namespace enh
 		inline unsigned short getHours() const noexcept { return hours; }
 
 		/**
-			\brief Get The time as a string in custom format.
+			\brief Get The time as a string in default format.
 
-			Pass Argument as a string containing any of the following
-			components.
-
-			<b>sec</b> : The seconds.\n
-			<b>min</b> : The minutes.\n
-			<b>hour</b> : The hours.\n
-
-			Example : <code>"secs minm hourhr"</code> : <code>"25s 25m 10hr"
-				</code>\n
+			hour:min:sec\n\n
 
 			<h3>Overload</h3>
-			-# <code>inline std::string getStringTime() const;<code>\n
+			-# <code>inline std::string getStringTime(std::string format)
+			const;<code>\n
 		*/
 		inline std::string getStringTime() const
 		{
