@@ -161,39 +161,20 @@ project.
 
 * Make sure to compile in `C++17`.
 
-### Modules
-
-* %Framework - `framework.enh.h`
-
-* %General - `general.enh.h`
-
-* %Error_Base - `error_base.enh.h`
-
-* %Debug - `logger.enh.h, logger.cpp`
-
-* %Queued_Process - `queued_process.enh.h`
-
-* %Counter - `counter.enh.h`
-
-* %Timer - `timer.enh.h`
-
 ### Dependencies
 
-Here the coulumn means depends on.
+* `framework.enh.h` depends only on standard c++ headers.
+* `general.enh.h` depends on `framework.enh.h`
+* `logger.enh.h` depends on `framework.enh.h` but requires compilation of `logger.cpp`
+* `error_base.enh.h` depends on `framework.enh.h`, `general.enh.h`, `logger.enh.h`
+* `queued_process.enh.h` depends on `error_base.enh.h`, `framework.enh.h`, `general.enh.h`, `logger.enh.h`
+* `counter.enh.h` depends on `framework.enh.h`
+* `timer.enh.h` depends on `framework.enh.h`, `logger.enh.h`
+* `date.enh.h` depends on `general.enh.h`, `framework.enh.h`
+* `time_stamp.enh.h` depends on `date.enh.h`, `general.enh.h`, `framework.enh.h`
+* `date_time.enh.h` depends on `time_stamp.enh.h`, `date.enh.h`, `general.enh.h`, `framework.enh.h`
 
-| Header                | Framework |  General  |  Error_Base | Debug | Queued_Process  | Counter | Timer |
-|         :----:        |  :----:   |  :----:   |   :---:     | :---: |      :---:      |  :---:  | :---: |
-| Framework             | O         | X         | X           | X     | X               | X       | X     |
-| General               | Y         | O         | X           | X     | X               | X       | X     |
-| Error_Base            | Y         | Y         | O           | Y     | X               | X       | X     |
-| Debug                 | Y         | X         | X           | O     | X               | X       | X     |
-| Queued_Process        | Y         | Y         | Y           | Y     | O               | X       | X     |
-| Counter               | Y         | X         | X           | X     | X               | O       | X     |
-| Timer                 | Y         | X         | X           | Y     | X               | X       | O     |
 
-Row Debug, coloumn Framework is Y, this means Debug module headers includes headers in Framework module.
-
-O means same module, X means no dependency.
 
 ## Contribution
 
