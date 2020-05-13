@@ -1,7 +1,7 @@
 /** ***************************************************************************
-	\file time_stamp.enh.h
+	\file date.enh.h
 
-	\brief File for date-time class.
+	\brief File for date class.
 
 	Created 12 May 2020
 
@@ -39,7 +39,111 @@
 namespace enh
 {
 	/**
+			\brief wrapper over unsafe localtime function.
+
+			The Microsoft version localtime_s is called. Please Edit if not working.
+		*/
+	inline void localtime(
+		tm *str_tm /**< : <i>in</i> : The pointer to tm structure to 
+				   assign time values.*/,
+		time_t *arith_tm /**< : <i>in</i> : The pointer to tm structure to 
+				   assign time values.*/
+	)
+	{
+		localtime_s(str_tm, arith_tm);
+	}
+
+	/**
+			\brief The maximum date for that month.
+	*/
+	inline constexpr unsigned short month_limit(
+		unsigned short mnth /**< : <i>in</i> : The month count.*/,
+		long yr /**< : <i>in</i> : The year count.*/
+	) noexcept
+	{
+		switch (mnth)
+		{
+
+		case 0:
+			return 31;
+
+		case 1:
+		{
+			if ((yr % 4) == 0)
+				return 29;
+			else
+				return 28;
+		}
+
+		case 2:
+			return 31;
+
+		case 3:
+			return 30;
+
+		case 4:
+			return 31;
+
+		case 5:
+			return 30;
+
+		case 6:
+			return 31;
+
+		case 7:
+			return 31;
+
+		case 8:
+			return 30;
+
+		case 9:
+			return 31;
+
+		case 10:
+			return 30;
+
+		case 11:
+			return 31;
+
+		default:
+			return 165;
+			break;
+		}
+	}
+
+	/**
+		\brief The maximum date for that year.
+	*/
+	inline constexpr unsigned year_limit(
+		long yr /**< : <i>in</i> : The year count.*/
+	) noexcept
+	{
+		if (yr % 4 == 0)
+			return 366;
+		else
+			return 365;
+	}
+
+	/**
+		\brief The week day after day_count number of days from week.
+	*/
+	inline constexpr unsigned short week_day_increments(
+		unsigned short week /*< : <i>in</i> : The current week day.*/,
+		unsigned long day_count /*< : <i>in</i> : The number of days to
+								add.*/
+	) noexcept
+	{
+		unsigned long long tmp = day_count;
+		tmp += week;
+		return tmp % 7;
+	}
+
+	/**
 		\brief Class to represent date.
+
+		<h3>Example</h3>
+		
+		\include{lineno} date_ex.cpp
 	*/
 	class date
 	{
@@ -86,91 +190,6 @@ namespace enh
 		}
 
 	public:
-
-		/**
-			\brief The maximum date for that month.
-		*/
-		static constexpr unsigned short month_limit(
-			unsigned short mnth /**< : <i>in</i> : The month count.*/,
-			long yr /**< : <i>in</i> : The year count.*/
-		) noexcept
-		{
-			switch (mnth)
-			{
-
-			case 0:
-				return 31;
-
-			case 1:
-			{
-				if ((yr % 4) == 0)
-					return 29;
-				else
-					return 28;
-			}
-
-			case 2:
-				return 31;
-
-			case 3:
-				return 30;
-
-			case 4:
-				return 31;
-
-			case 5:
-				return 30;
-
-			case 6:
-				return 31;
-
-			case 7:
-				return 31;
-
-			case 8:
-				return 30;
-
-			case 9:
-				return 31;
-
-			case 10:
-				return 30;
-
-			case 11:
-				return 31;
-
-			default:
-				return 165;
-				break;
-			}
-		}
-
-		/**
-			\brief The maximum date for that year.
-		*/
-		static constexpr unsigned year_limit(
-			long yr /**< : <i>in</i> : The year count.*/
-		) noexcept
-		{
-			if (yr % 4 == 0)
-				return 366;
-			else
-				return 365;
-		}
-
-		/**
-			\brief The week day after day_count number of days from week.
-		*/
-		static constexpr unsigned short week_day_increments(
-			unsigned short week /*< : <i>in</i> : The current week day.*/,
-			unsigned long day_count /*< : <i>in</i> : The number of days to 
-									add.*/
-		) noexcept
-		{
-			unsigned long long tmp = day_count;
-			tmp += week;
-			return tmp % 7;
-		}
 
 		/**
 			\brief Add one day to date.
@@ -228,16 +247,6 @@ namespace enh
 		}
 
 		/**
-			\brief wrapper over unsafe localtime function.
-
-			The Microsoft version localtime_s is called. Please Edit if not working.
-		*/
-		static void localtime(tm* str_tm, time_t* arith_tm)
-		{
-			localtime_s(str_tm, arith_tm);
-		}
-
-		/**
 			\brief Sets the date to the date indicated by argument.
 		*/
 		inline void set(
@@ -246,7 +255,7 @@ namespace enh
 		)
 		{
 			tm temp;
-			localtime(&temp, &timeStamp);
+			enh::localtime(&temp, &timeStamp);
 			set(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, temp.tm_wday, temp.tm_yday);
 		}
 
@@ -462,7 +471,9 @@ namespace enh
 			<h3>Overload</h3>
 			-# <code>inline std::string getStringDate() const;<code>\n
 		*/
-		inline std::string getStringDate(std::string format) const
+		inline std::string getStringDate(
+			std::string format /**< : <i>in</i> : The format of date.*/
+		) const
 		{
 			std::size_t pDay, pshDay, pdd, pddth, pMonth, pmm, pshMonth, 
 				pyyyy;
@@ -478,13 +489,13 @@ namespace enh
 
 			pddth = format.find("ddth");
 			if (pddth != std::string::npos)
-				format.replace(pddth, 4, std::to_string(day) + 
+				format.replace(pddth, 4, signExtendValue(day,2) + 
 					getDaySuperScript());
 			else
 			{
 				pdd = format.find("dd");
 				if (pdd != std::string::npos)
-					format.replace(pdd, 2, std::to_string(day));
+					format.replace(pdd, 2, signExtendValue(day, 2));
 			}
 
 			pshMonth = format.find("shMonth");
@@ -499,13 +510,14 @@ namespace enh
 				{
 					pmm = format.find("mm");
 					if (pmm != std::string::npos)
-						format.replace(pmm, 2, std::to_string(month + 1));
+						format.replace(pmm, 2, signExtendValue(month 
+							+ 1, 2));
 				}
 			}
 
 			pyyyy = format.find("yyyy");
 			if (pyyyy != std::string::npos)
-				format.replace(pyyyy, 4, std::to_string(year));
+				format.replace(pyyyy, 4, signExtendValue(year, 4));
 			return format;
 		}
 
