@@ -220,7 +220,7 @@ namespace enh
 
 			<h3>Overload</h3>
 			-# <code>inline std::string getStringTime(std::string format)
-			const;<code>\n
+			const;</code>\n
 		*/
 		inline std::string getStringTime() const
 		{
@@ -243,7 +243,7 @@ namespace enh
 				</code>\n
 
 			<h3>Overload</h3>
-			-# <code>inline std::string getStringTime() const;<code>\n
+			-# <code>inline std::string getStringTime() const;</code>\n
 		*/
 		inline std::string getStringTime(
 			std::string format /**< : <i>in</i> : The format of date.*/
