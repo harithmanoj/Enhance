@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['version_5finfo_281',['version_info',['../classenh_1_1version__info.html#a16c073bdc25b91acfb5e7d8f1b751aaf',1,'enh::version_info::version_info() noexcept'],['../classenh_1_1version__info.html#a89adefd30b10328224b16dcc4fecba73',1,'enh::version_info::version_info(unsigned mj, unsigned mn, unsigned rv, unsigned long bld, rel_type tp) noexcept'],['../classenh_1_1version__info.html#a6e34f4b25b00be1d37908f1d2c63d58d',1,'enh::version_info::version_info(unsigned mj, unsigned mn, unsigned rv, unsigned long bld, rel_type tp, std::string_view rep) noexcept']]]
+  ['time_5fstamp_350',['time_stamp',['../classenh_1_1time__stamp.html#affd30be9a1dc9c1e38a897cc8c567a21',1,'enh::time_stamp::time_stamp(unsigned short sec, unsigned short min, unsigned short hr)'],['../classenh_1_1time__stamp.html#a21486be746a32a0c6da17223bae6452b',1,'enh::time_stamp::time_stamp(time_t timeStamp)'],['../classenh_1_1time__stamp.html#ae3d5cabfeefa4ed165f49349fc5b40d7',1,'enh::time_stamp::time_stamp()']]],
+  ['timer_351',['timer',['../classenh_1_1timer.html#a239fa7d01dad0fb814fac5e32c6ecdce',1,'enh::timer']]]
 ];

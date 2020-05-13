@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Enhance
-   &#160;<span id="projectnumber">1.1.0.2</span>
+   &#160;<span id="projectnumber">1.2.0.3</span>
    </div>
    <div id="projectbrief">Enhance is a collection of C++ libraries for different uses</div>
   </td>
@@ -85,6 +85,12 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1counter.html">counter</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class for counter functionality.  <a href="classenh_1_1counter.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html">date</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to represent date.  <a href="classenh_1_1date.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html">DateTime</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for date and time joint manipulation.  <a href="classenh_1_1_date_time.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1error__base.html">error_base</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class for inheriting error tracking Functionality.  <a href="classenh_1_1error__base.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -96,6 +102,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1queued__process.html">queued_process</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class to implement a structure which executes instructions concurently after fetching them through a queue for final use including debug calls.  <a href="classenh_1_1queued__process.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html">time_stamp</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for time manipulation.  <a href="classenh_1_1time__stamp.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1timer.html">timer</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class to create a timer that notifies all clients periodically.  <a href="classenh_1_1timer.html#details">More...</a><br /></td></tr>
@@ -162,6 +171,19 @@ Functions</h2></td></tr>
 <tr class="memitem:a51d3bfd96daf7772870f6390df3a1d00"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a51d3bfd96daf7772870f6390df3a1d00">operator&lt;&lt;</a> (std::ostream &amp;out, <a class="el" href="classenh_1_1counter.html">counter</a> ct) noexcept</td></tr>
 <tr class="memdesc:a51d3bfd96daf7772870f6390df3a1d00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream insertion operator overloaded for the class counter.  <a href="namespaceenh.html#a51d3bfd96daf7772870f6390df3a1d00">More...</a><br /></td></tr>
 <tr class="separator:a51d3bfd96daf7772870f6390df3a1d00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dcc172e289b03b0295ea140d68a274b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a4dcc172e289b03b0295ea140d68a274b">localtime</a> (tm *str_tm, time_t *arith_tm)</td></tr>
+<tr class="memdesc:a4dcc172e289b03b0295ea140d68a274b"><td class="mdescLeft">&#160;</td><td class="mdescRight">wrapper over unsafe localtime function.  <a href="namespaceenh.html#a4dcc172e289b03b0295ea140d68a274b">More...</a><br /></td></tr>
+<tr class="separator:a4dcc172e289b03b0295ea140d68a274b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a89d6dc1f27d7423607ffe07f6bb3c0"><td class="memItemLeft" align="right" valign="top">constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a3a89d6dc1f27d7423607ffe07f6bb3c0">month_limit</a> (unsigned short mnth, long yr) noexcept</td></tr>
+<tr class="memdesc:a3a89d6dc1f27d7423607ffe07f6bb3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum date for that month.  <a href="namespaceenh.html#a3a89d6dc1f27d7423607ffe07f6bb3c0">More...</a><br /></td></tr>
+<tr class="separator:a3a89d6dc1f27d7423607ffe07f6bb3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd8eedb8bd3b3548af8f4ecdd1afec12"><td class="memItemLeft" align="right" valign="top">constexpr unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#afd8eedb8bd3b3548af8f4ecdd1afec12">year_limit</a> (long yr) noexcept</td></tr>
+<tr class="memdesc:afd8eedb8bd3b3548af8f4ecdd1afec12"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum date for that year.  <a href="namespaceenh.html#afd8eedb8bd3b3548af8f4ecdd1afec12">More...</a><br /></td></tr>
+<tr class="separator:afd8eedb8bd3b3548af8f4ecdd1afec12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ad12d5acd9f98c7a028dbcaea95019c"><td class="memItemLeft" align="right" valign="top"><a id="a2ad12d5acd9f98c7a028dbcaea95019c"></a>
+constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a2ad12d5acd9f98c7a028dbcaea95019c">week_day_increments</a> (unsigned short week, unsigned long day_count) noexcept</td></tr>
+<tr class="memdesc:a2ad12d5acd9f98c7a028dbcaea95019c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The week day after day_count number of days from week. <br /></td></tr>
+<tr class="separator:a2ad12d5acd9f98c7a028dbcaea95019c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a812420b64dc76bb983d6b627c9e433a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a812420b64dc76bb983d6b627c9e433a2">operator!</a> (<a class="el" href="namespaceenh.html#a61067ccf704a6ec6d8a407f8394b004b">tristate</a> e) noexcept</td></tr>
 <tr class="memdesc:a812420b64dc76bb983d6b627c9e433a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if input is not safe (not GOOD).  <a href="namespaceenh.html#a812420b64dc76bb983d6b627c9e433a2">More...</a><br /></td></tr>
 <tr class="separator:a812420b64dc76bb983d6b627c9e433a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,11 +204,22 @@ Functions</h2></td></tr>
 <tr class="memitem:ad0b942f0661d5b926d2206b886cc7162"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#ad0b942f0661d5b926d2206b886cc7162">isConfined</a> (type unChecked, type lBounds, type uBounds, bool lInclusive=false, bool uInclusive=false)</td></tr>
 <tr class="memdesc:ad0b942f0661d5b926d2206b886cc7162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the value is within bounds.  <a href="namespaceenh.html#ad0b942f0661d5b926d2206b886cc7162">More...</a><br /></td></tr>
 <tr class="separator:ad0b942f0661d5b926d2206b886cc7162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a525a9551f46dd04c4284cfeb0aa54ee5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a525a9551f46dd04c4284cfeb0aa54ee5">signExtend</a> (std::string value, unsigned length)</td></tr>
+<tr class="memdesc:a525a9551f46dd04c4284cfeb0aa54ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepend 0's to the value according to the number passed.  <a href="namespaceenh.html#a525a9551f46dd04c4284cfeb0aa54ee5">More...</a><br /></td></tr>
+<tr class="separator:a525a9551f46dd04c4284cfeb0aa54ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d9628ceeec503473fc7acf9eb6519b6"><td class="memTemplParams" colspan="2">template&lt;class arithmetic &gt; </td></tr>
+<tr class="memitem:a9d9628ceeec503473fc7acf9eb6519b6"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a9d9628ceeec503473fc7acf9eb6519b6">signExtendValue</a> (arithmetic value, unsigned length)</td></tr>
+<tr class="memdesc:a9d9628ceeec503473fc7acf9eb6519b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepend 0's to the value according to the number passed.  <a href="namespaceenh.html#a9d9628ceeec503473fc7acf9eb6519b6">More...</a><br /></td></tr>
+<tr class="separator:a9d9628ceeec503473fc7acf9eb6519b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af497c3ace8c354a276830475fe416315"><td class="memTemplParams" colspan="2">template&lt;class integral &gt; </td></tr>
+<tr class="memitem:af497c3ace8c354a276830475fe416315"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenh.html#af497c3ace8c354a276830475fe416315">getOrdinalIndicator</a> (integral value)</td></tr>
+<tr class="memdesc:af497c3ace8c354a276830475fe416315"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Ordinal for the value.  <a href="namespaceenh.html#af497c3ace8c354a276830475fe416315">More...</a><br /></td></tr>
+<tr class="separator:af497c3ace8c354a276830475fe416315"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a0dbd8c46a7fbad18f9f73298a9b9b88a"><td class="memItemLeft" align="right" valign="top"><a id="a0dbd8c46a7fbad18f9f73298a9b9b88a"></a>
-constexpr <a class="el" href="classenh_1_1version__info.html">version_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a0dbd8c46a7fbad18f9f73298a9b9b88a">enhance_version</a> = <a class="el" href="classenh_1_1version__info.html">version_info</a>(<a class="el" href="framework_8enh_8h.html#a76f8696dffccd48706b74844e9de764c">VERSION_INFO_FIN</a>(1,1,0,2))</td></tr>
+constexpr <a class="el" href="classenh_1_1version__info.html">version_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a0dbd8c46a7fbad18f9f73298a9b9b88a">enhance_version</a> = <a class="el" href="classenh_1_1version__info.html">version_info</a>(<a class="el" href="framework_8enh_8h.html#a76f8696dffccd48706b74844e9de764c">VERSION_INFO_FIN</a>(1,2,0,3))</td></tr>
 <tr class="memdesc:a0dbd8c46a7fbad18f9f73298a9b9b88a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version of enhance library. <br /></td></tr>
 <tr class="separator:a0dbd8c46a7fbad18f9f73298a9b9b88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1373aa9e1df59df05a38e668bd25402b"><td class="memTemplParams" colspan="2">template&lt;long long val&gt; </td></tr>
@@ -407,7 +440,7 @@ template&lt;unsigned period = 50U&gt; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::cout &lt;&lt; std::boolalpha &lt;&lt; !!foo(<span class="stringliteral">&quot;first&quot;</span>) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::cout &lt;&lt; (foo({}) == <a class="code" href="namespaceenh.html#a61067ccf704a6ec6d8a407f8394b004babb1ca97ec761fc37101737ba0aa2e7c5">enh::tristate::ERROR</a>) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::cout &lt;&lt; (foo(<span class="stringliteral">&quot;kk&quot;</span>) == <a class="code" href="namespaceenh.html#a61067ccf704a6ec6d8a407f8394b004ba0205fe53d2d6958c15ab0aaee27b060f">enh::tristate::PREV_ERR</a>) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
@@ -485,6 +518,35 @@ template&lt;class enumT &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="af497c3ace8c354a276830475fe416315"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af497c3ace8c354a276830475fe416315">&#9670;&nbsp;</a></span>getOrdinalIndicator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class integral &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string enh::getOrdinalIndicator </td>
+          <td>(</td>
+          <td class="paramtype">integral&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The Ordinal for the value. </p>
+<h3>Template</h3>
+<p><code>class integral</code> : The integral type of the argument.</p>
+<h3>Return</h3>
+<p>The ordinal indicator used for this value.</p>
+<p>eg : <br  />
+getOrdinalIndicator(25) == "th"<br  />
+getOrdinalIndicator(21) == "st" </p>
 
 </div>
 </div>
@@ -609,6 +671,52 @@ template&lt;class type &gt; </div>
 
 </div>
 </div>
+<a id="a4dcc172e289b03b0295ea140d68a274b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dcc172e289b03b0295ea140d68a274b">&#9670;&nbsp;</a></span>localtime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void enh::localtime </td>
+          <td>(</td>
+          <td class="paramtype">tm *&#160;</td>
+          <td class="paramname"><em>str_tm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">time_t *&#160;</td>
+          <td class="paramname"><em>arith_tm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>wrapper over unsafe localtime function. </p>
+<p>The Microsoft version localtime_s is called. Please Edit if not working. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str_tm</td><td>: <em>in</em> : The pointer to tm structure to assign time values. </td></tr>
+    <tr><td class="paramname">arith_tm</td><td>: <em>in</em> : The pointer to tm structure to assign time values. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a5f461456cf52f5d925004b085dd84761"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5f461456cf52f5d925004b085dd84761">&#9670;&nbsp;</a></span>max()</h2>
 
@@ -705,6 +813,51 @@ template&lt;class type &gt; </div>
 
 </div>
 </div>
+<a id="a3a89d6dc1f27d7423607ffe07f6bb3c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a89d6dc1f27d7423607ffe07f6bb3c0">&#9670;&nbsp;</a></span>month_limit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr unsigned short enh::month_limit </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>mnth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>yr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The maximum date for that month. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mnth</td><td>: <em>in</em> : The month count. </td></tr>
+    <tr><td class="paramname">yr</td><td>: <em>in</em> : The year count. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a812420b64dc76bb983d6b627c9e433a2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a812420b64dc76bb983d6b627c9e433a2">&#9670;&nbsp;</a></span>operator!()</h2>
 
@@ -792,6 +945,102 @@ template&lt;class type &gt; </div>
 
 </div>
 </div>
+<a id="a525a9551f46dd04c4284cfeb0aa54ee5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a525a9551f46dd04c4284cfeb0aa54ee5">&#9670;&nbsp;</a></span>signExtend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string enh::signExtend </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prepend 0's to the value according to the number passed. </p>
+<p><code>signExtend("25",4)</code> returns <code>"0025"</code> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>: <em>in</em> : The value to sign extend. </td></tr>
+    <tr><td class="paramname">length</td><td>: <em>in</em> : The minimum number of digits. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9d9628ceeec503473fc7acf9eb6519b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d9628ceeec503473fc7acf9eb6519b6">&#9670;&nbsp;</a></span>signExtendValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class arithmetic &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string enh::signExtendValue </td>
+          <td>(</td>
+          <td class="paramtype">arithmetic&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prepend 0's to the value according to the number passed. </p>
+<p><code>signExtend(25,4)</code> returns <code>"0025"</code> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>: <em>in</em> : The value to sign extend. </td></tr>
+    <tr><td class="paramname">length</td><td>: <em>in</em> : The minimum number of digits. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="namespaceenh.html#a525a9551f46dd04c4284cfeb0aa54ee5">signExtend()</a>.</p>
+
+</div>
+</div>
 <a id="abb2efaef3cc35aca10bc18ecc5d211ec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abb2efaef3cc35aca10bc18ecc5d211ec">&#9670;&nbsp;</a></span>signum_fn()</h2>
 
@@ -823,6 +1072,40 @@ template&lt;class arithmetic &gt; </div>
 <p><code>class arithmetic</code> : The arithmetic type of the argument.</p>
 <h3>Return</h3>
 <p>The sign : -1 if argument is negative, +1 if argument is postive, 0 if argument is 0 </p>
+
+</div>
+</div>
+<a id="afd8eedb8bd3b3548af8f4ecdd1afec12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd8eedb8bd3b3548af8f4ecdd1afec12">&#9670;&nbsp;</a></span>year_limit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr unsigned enh::year_limit </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>yr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The maximum date for that year. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">yr</td><td>: <em>in</em> : The year count. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

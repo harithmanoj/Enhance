@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Enhance
-   &#160;<span id="projectnumber">1.1.0.2</span>
+   &#160;<span id="projectnumber">1.2.0.3</span>
    </div>
    <div id="projectbrief">Enhance is a collection of C++ libraries for different uses</div>
   </td>
@@ -114,6 +114,8 @@ The Library</h3>
 <li>Check if bits are high in a variable (also constexpr).</li>
 <li>Check if value is within bounds (also constexpr).</li>
 <li>Signum function and inclusive_ration (also constexpr).</li>
+<li>getOrdinalIndicator returns "th", "st", "nd" "rd" according to argument passed.</li>
+<li>signExtend extends the string format of a numeral by prepending '0' s</li>
 </ul>
 <hr  />
  <h2><a class="anchor" id="autotoc_md7"></a>
@@ -170,12 +172,18 @@ Time</h2>
 Header:</h3>
 <p><code><a class="el" href="timer_8enh_8h.html" title="File to declare functions and classes related to timer functionality.">timer.enh.h</a></code></p>
 <p><code><a class="el" href="counter_8enh_8h.html" title="The file to declare counter class.">counter.enh.h</a></code></p>
+<p><code><a class="el" href="time__stamp_8enh_8h.html" title="File for time class.">time_stamp.enh.h</a></code></p>
+<p><code><a class="el" href="date_8enh_8h.html" title="File for date class.">date.enh.h</a></code></p>
+<p><code>DateTime.enh.h</code></p>
 <h3><a class="anchor" id="autotoc_md18"></a>
 The Library</h3>
 <ul>
 <li>Tracking time in a sec : min : hr : day manner(representation).</li>
 <li>Tracking time elapsed and providing clients to the class periodical signals.</li>
 <li>Block execution of a thread for a period of time accurately.</li>
+<li>Store and manipulate time.</li>
+<li>Store and manipulate date.</li>
+<li>Store and manipulate date and time simultaneously.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md19"></a>
 HOW TO INSTALL</h2>
@@ -184,40 +192,35 @@ HOW TO INSTALL</h2>
 <li>Make sure to compile in <code>C++17</code>.</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md20"></a>
-Modules</h3>
+Dependencies</h3>
 <ul>
-<li>Framework - <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
-<li>General - <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code></li>
-<li>Error_Base - <code><a class="el" href="error__base_8enh_8h.html" title="The file to declare Error Handling classes and functions.">error_base.enh.h</a></code></li>
-<li>Debug - <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a>, <a class="el" href="logger_8cpp.html" title="The file to define logger functions.">logger.cpp</a></code></li>
-<li>Queued_Process - <code><a class="el" href="queued__process_8enh_8h.html" title="The file to declare class queued_process.">queued_process.enh.h</a></code></li>
-<li>Counter - <code><a class="el" href="counter_8enh_8h.html" title="The file to declare counter class.">counter.enh.h</a></code></li>
-<li>Timer - <code><a class="el" href="timer_8enh_8h.html" title="File to declare functions and classes related to timer functionality.">timer.enh.h</a></code></li>
+<li><code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code> depends only on standard c++ headers.</li>
+<li><code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code> depends on <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
+<li><code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code> depends on <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code> but requires compilation of <code><a class="el" href="logger_8cpp.html" title="The file to define logger functions.">logger.cpp</a></code></li>
+<li><code><a class="el" href="error__base_8enh_8h.html" title="The file to declare Error Handling classes and functions.">error_base.enh.h</a></code> depends on <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code>, <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code></li>
+<li><code><a class="el" href="queued__process_8enh_8h.html" title="The file to declare class queued_process.">queued_process.enh.h</a></code> depends on <code><a class="el" href="error__base_8enh_8h.html" title="The file to declare Error Handling classes and functions.">error_base.enh.h</a></code>, <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code>, <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code></li>
+<li><code><a class="el" href="counter_8enh_8h.html" title="The file to declare counter class.">counter.enh.h</a></code> depends on <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
+<li><code><a class="el" href="timer_8enh_8h.html" title="File to declare functions and classes related to timer functionality.">timer.enh.h</a></code> depends on <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code>, <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code></li>
+<li><code><a class="el" href="date_8enh_8h.html" title="File for date class.">date.enh.h</a></code> depends on <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
+<li><code><a class="el" href="time__stamp_8enh_8h.html" title="File for time class.">time_stamp.enh.h</a></code> depends on <code><a class="el" href="date_8enh_8h.html" title="File for date class.">date.enh.h</a></code>, <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
+<li><code><a class="el" href="date__time_8enh_8h.html" title="File for combined date time class.">date_time.enh.h</a></code> depends on <code><a class="el" href="time__stamp_8enh_8h.html" title="File for time class.">time_stamp.enh.h</a></code>, <code><a class="el" href="date_8enh_8h.html" title="File for date class.">date.enh.h</a></code>, <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
 </ul>
 <h3><a class="anchor" id="autotoc_md21"></a>
-Dependencies</h3>
-<p>Here the coulumn means depends on.</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadCenter">Header </th><th class="markdownTableHeadCenter">Framework </th><th class="markdownTableHeadCenter">General </th><th class="markdownTableHeadCenter">Error_Base </th><th class="markdownTableHeadCenter">Debug </th><th class="markdownTableHeadCenter">Queued_Process </th><th class="markdownTableHeadCenter">Counter </th><th class="markdownTableHeadCenter">Timer  </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">Framework </td><td class="markdownTableBodyCenter">O </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">General </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">O </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X  </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">Error_Base </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">O </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">Debug </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">O </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X  </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">Queued_Process </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">O </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">Counter </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">O </td><td class="markdownTableBodyCenter">X  </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">Timer </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">Y </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">X </td><td class="markdownTableBodyCenter">O  </td></tr>
-</table>
-<p>Row Debug, coloumn Framework is Y, this means Debug module headers includes headers in Framework module.</p>
-<p>O means same module, X means no dependency.</p>
-<h2><a class="anchor" id="autotoc_md22"></a>
+Dependency Graph</h3>
+<pre class="fragment">                                              framework.enh.h
+                                                    |
+              +-------------------------------------+--------------------------------------------------+
+              |                                     |                                                  |
+         general.enh.h                        logger.enh.h                                       counter.enh.h
+              |                                   (logger.cpp)
+      +-------+-------------+                       |
+      |                     |     +-----------------+------------------+
+  date.enh.h                |     |                                    |
+      |                 error_base.enh.h                          timer.enh.h
+time_stamp.enh.h               |
+      |                queued_process.enh.h
+date_time.enh.h
+</pre><h2><a class="anchor" id="autotoc_md22"></a>
 Contribution</h2>
 <p>Code contribution is welcome. Refer <a href="https://github.com/harithmanoj/Enhance/blob/master/Contributing.md">Contributing.md</a> for ways to contribute.</p>
 <h2><a class="anchor" id="autotoc_md23"></a>
