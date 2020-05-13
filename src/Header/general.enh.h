@@ -218,9 +218,24 @@ namespace enh
 		return signExtend(std::to_string(value), length);
 	}
 
+	/**
+		\brief The Ordinal for the value.
+
+		<h3>Template</h3>
+		<code>class integral</code> : The integral type of the argument.
+
+		<h3>Return</h3>
+		The ordinal indicator used for this value.
+
+		eg : \n
+		getOrdinalIndicator(25) == "th"\n
+		getOrdinalIndicator(21) == "st"
+				
+	*/
 	template<class integral>
 	std::string getOrdinalIndicator(integral value)
 	{
+		static_assert(std::is_integral_v<integral>, "Ordinal Indicator is for integral types");
 		if ((value / 10) % 10 == 1)
 			return "th";
 		if (value % 10 == 1)
