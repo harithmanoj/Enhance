@@ -150,6 +150,7 @@ namespace enh
 			}
 			else
 				++hours;
+			return false;
 		}
 
 		/**
@@ -168,6 +169,7 @@ namespace enh
 			}
 			else
 				++minutes;
+			return false;
 		}
 
 		/**
@@ -186,6 +188,7 @@ namespace enh
 			}
 			else
 				++seconds;
+			return false;
 		}
 
 		/**
