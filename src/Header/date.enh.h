@@ -275,7 +275,7 @@ namespace enh
 			not within bounds. [0,month_limit], [0,11], [0,6], [0,year_limit)
 			respectively.
 		*/
-		inline date(
+		constexpr inline date(
 			unsigned short dy /**< : <i>in</i> : The day of the month
 							  [1,month_limit].*/,
 			unsigned short mnth /**< : <i>in</i> : The number of months after
@@ -285,9 +285,18 @@ namespace enh
 								Sunday [0,6].*/,
 			unsigned ydy /**< : <i>in</i> : The number of day after 01 January
 						 of that year [1,year_limit).*/
-		)
+		) : day(dy), month(mnth), year(yr), wkday(week), yrday(ydy)
 		{
-			setDate(dy, mnth, yr, week, ydy);
+			if (!isConfined<unsigned short>(week, 0, 7, true, false))
+				throw std::invalid_argument("Week day should be in range [0,6]");
+			if (!isConfined<unsigned short>(mnth, 0, 12, true, false))
+				throw std::invalid_argument("Month should be in range [0,11]");
+			if (!isConfined<unsigned short>(dy, 1, month_limit(mnth, yr), true, true))
+				throw std::invalid_argument("day should be within the monthly "
+					"maximum (28,29,30 or 31 according to month).");
+			if (!isConfined(ydy, 0u, year_limit(yr), true, false))
+				throw std::invalid_argument("year day should be less than "
+					"that for that year (365,366).");
 		}
 
 		/**
@@ -312,12 +321,12 @@ namespace enh
 		/**
 			\brief The day of this month.
 		*/
-		inline unsigned short getDayOfMonth() const noexcept { return day; }
+		constexpr inline unsigned short getDayOfMonth() const noexcept { return day; }
 
 		/**
 			\brief The number of months after January of this year.
 		*/
-		inline unsigned short getMonth() const noexcept { return month; }
+		constexpr inline unsigned short getMonth() const noexcept { return month; }
 
 		/**
 			\brief The name of the month.
@@ -368,18 +377,18 @@ namespace enh
 		/**
 			\brief The Year.
 		*/
-		inline long getYear() const noexcept { return year; }
+		constexpr inline long getYear() const noexcept { return year; }
 
 		/**
 			\brief The number of days after last Sunday.
 		*/
-		inline unsigned short getDayOfWeek() const noexcept { return wkday; }
+		constexpr inline unsigned short getDayOfWeek() const noexcept { return wkday; }
 
 
 		/**
 			\brief The number of days after 1st of January this year.
 		*/
-		inline unsigned getDayOfYear() const noexcept { return yrday; }
+		constexpr inline unsigned getDayOfYear() const noexcept { return yrday; }
 
 		/**
 			\brief The name of the day.
