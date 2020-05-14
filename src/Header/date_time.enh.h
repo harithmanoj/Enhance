@@ -96,7 +96,7 @@ namespace enh
 			\brief Sets the time and date to the time and date indicated by
 			argument.
 		*/
-		inline DateTime(
+		constexpr inline DateTime(
 			unsigned short dy /**< : <i>in</i> : The day of the month
 							  [1,month_limit].*/,
 			unsigned short mnth /**< : <i>in</i> : The number of months after
@@ -118,12 +118,18 @@ namespace enh
 		inline DateTime(
 			time_t stamp /**< : <i>in</i> : The time stamp which
 							 contains the date and time.*/
-		) : date(stamp), time_stamp(stamp) {}
+		) : date(0,0,0,0,0), time_stamp(0,0,0) 
+		{
+			set(stamp);
+		}
 
 		/**
 			\brief Sets the time and date to the current time and date.
 		*/
-		inline DateTime() : date(), time_stamp() {}
+		inline DateTime() : date(0, 0, 0, 0, 0), time_stamp(0, 0, 0) 
+		{
+			set();
+		}
 
 		/**
 			\brief Get The date and time as a string in default format.
