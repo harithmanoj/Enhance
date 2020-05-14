@@ -114,13 +114,21 @@ namespace enh
 			Throws <code>std::invalid_argument</code> if sec, min, hr is
 			not within bounds. [0,60], [0,59], [0,23] respectively.
 		*/
-		inline time_stamp(
+		constexpr inline time_stamp(
 			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
 			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
 			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
-		)
+		) : seconds(sec), minutes(min), hours(hr)
 		{
-			setTime(sec, min, hr);
+			if (!isConfined<unsigned short>(sec, 0, 60, true, true))
+				throw std::invalid_argument("Seconds should be in range"
+					" [0,60]");
+			if (!isConfined<unsigned short>(min, 0, 59, true, true))
+				throw std::invalid_argument("Minutes should be in range"
+					" [0,59]");
+			if (!isConfined<unsigned short>(hr, 0, 23, true, true))
+				throw std::invalid_argument("Hours should be in range"
+					" [0,23]");
 		}
 
 		/**
@@ -201,17 +209,17 @@ namespace enh
 		/**
 			\brief Get Seconds field.
 		*/
-		inline unsigned short getSeconds() const noexcept { return seconds; }
+		constexpr inline unsigned short getSeconds() const noexcept { return seconds; }
 
 		/**
 			\brief Get Minutes field.
 		*/
-		inline unsigned short getMinutes() const noexcept { return minutes; }
+		constexpr inline unsigned short getMinutes() const noexcept { return minutes; }
 
 		/**
 			\brief Get Hours field.
 		*/
-		inline unsigned short getHours() const noexcept { return hours; }
+		constexpr inline unsigned short getHours() const noexcept { return hours; }
 
 		/**
 			\brief Get The time as a string in default format.
