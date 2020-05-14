@@ -178,7 +178,7 @@ namespace enh
 		/**
 			\brief Adds One Month to current date.
 		*/
-		inline void add_month()
+		constexpr inline void add_month()
 		{
 			if (month == 11)
 			{
@@ -194,7 +194,7 @@ namespace enh
 		/**
 			\brief Add one day to date.
 		*/
-		inline void add_day()
+		constexpr inline void add_day()
 		{
 			++day;
 			auto limit = month_limit(month, year);
@@ -217,7 +217,7 @@ namespace enh
 			not within bounds. [0,month_limit], [0,11], [0,6], [0,year_limit)
 			respectively.
 		*/
-		inline void setDate(
+		constexpr inline void setDate(
 			unsigned short dy /**< : <i>in</i> : The day of the month 
 							  [1,month_limit].*/,
 			unsigned short mnth /**< : <i>in</i> : The number of months after

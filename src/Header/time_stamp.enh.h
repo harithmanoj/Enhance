@@ -66,7 +66,7 @@ namespace enh
 			Throws <code>std::invalid_argument</code> if sec, min, hr is
 			not within bounds. [0,60], [0,59], [0,23] respectively.
 		*/
-		inline void setTime(
+		constexpr inline void setTime(
 			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
 			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
 			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
@@ -156,7 +156,7 @@ namespace enh
 			<h3>Return</h3>
 			Returns true if Hour is reset to 0.
 		*/
-		inline bool addHour()
+		constexpr inline bool addHour()
 		{
 			if (hours >= 23)
 			{
@@ -175,7 +175,7 @@ namespace enh
 			<h3>Return</h3>
 			Returns true if Hour is reset to 0.
 		*/
-		inline bool addMinutes()
+		constexpr inline bool addMinutes()
 		{
 			if (minutes >= 59)
 			{
@@ -194,7 +194,7 @@ namespace enh
 			<h3>Return</h3>
 			Returns true if Hour is reset to 0.
 		*/
-		inline bool addSeconds()
+		constexpr inline bool addSeconds()
 		{
 			if (seconds >= 59)
 			{

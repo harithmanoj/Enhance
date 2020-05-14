@@ -50,7 +50,7 @@ namespace enh
 			\brief Sets the time and date to the time and date indicated by 
 			argument.
 		*/
-		inline void set(
+		constexpr inline void set(
 			unsigned short dy /**< : <i>in</i> : The day of the month 
 							  [1,month_limit].*/,
 			unsigned short mnth /**< : <i>in</i> : The number of months after
@@ -181,7 +181,7 @@ namespace enh
 			<h3>Return</h3>
 			Returns true if Hour is reset to 0.
 		*/
-		bool addSeconds()
+		constexpr bool addSeconds()
 		{
 			auto t = time_stamp::addSeconds();
 			if (t)
@@ -196,7 +196,7 @@ namespace enh
 			<h3>Return</h3>
 			Returns true if Hour is reset to 0.
 		*/
-		bool addMinutes()
+		constexpr bool addMinutes()
 		{
 			auto t = time_stamp::addMinutes();
 			if (t)
@@ -211,7 +211,7 @@ namespace enh
 			<h3>Return</h3>
 			Returns true if Hour is reset to 0.
 		*/
-		bool addHour()
+		constexpr bool addHour()
 		{
 			auto t = time_stamp::addHour();
 			if (t)
