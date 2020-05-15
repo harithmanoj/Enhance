@@ -244,7 +244,7 @@ namespace enh
 
 
 		/**
-			\brief keeps on executing single_period untill the time when 
+			\brief keeps on executing single_period until the time when 
 			stopTimer is set.
 		*/
 		void loop() noexcept
@@ -282,11 +282,11 @@ namespace enh
 		/**
 			\brief destructor of the class.
 
-			invokes enh::timer::join, waits till the timer Thread joins.
+			invokes enh::timer::force_join, waits till the timer Thread joins.
 		*/
 		inline ~timer() noexcept
 		{
-			join();
+			force_join();
 		}
 
 		/**

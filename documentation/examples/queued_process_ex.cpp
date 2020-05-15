@@ -25,9 +25,7 @@ int main()
 	prc.postMessage({ 1,"1this only","not this" });
 	prc.postMessage({ 2,"not this ","2this only" });
 	prc.postMessage({ 4,"","" });
-	prc.WaitForQueueEmpty(std::chrono::milliseconds(1));
-	prc.stopQueue();
-	prc.WaitForQueueStop();
+	prc.safe_join(std::chrono::milliseconds(1));
 	return 0;
 }
 
