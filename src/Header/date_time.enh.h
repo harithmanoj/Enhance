@@ -118,7 +118,7 @@ namespace enh
 		inline DateTime(
 			time_t stamp /**< : <i>in</i> : The time stamp which
 							 contains the date and time.*/
-		) : date(0,0,0,0,0), time_stamp(0,0,0) 
+		) : date(1,0,0,0,0), time_stamp(0,0,0) 
 		{
 			set(stamp);
 		}
@@ -126,7 +126,7 @@ namespace enh
 		/**
 			\brief Sets the time and date to the current time and date.
 		*/
-		inline DateTime() : date(0, 0, 0, 0, 0), time_stamp(0, 0, 0) 
+		inline DateTime() : date(1, 0, 0, 0, 0), time_stamp(0, 0, 0) 
 		{
 			set();
 		}
@@ -218,7 +218,165 @@ namespace enh
 				add_day();
 			return t;
 		}
+
+		/**
+			\brief Checks if argument is equal to this object.
+
+			<h3>Return</h3>
+			Returns true if year, month and day of argument is equal to
+			current object.
+		*/
+		constexpr inline bool isEqualTo(
+			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
+		) const noexcept
+		{
+			return date::isEqualTo(dt) && time_stamp::isEqualTo(dt);
+		}
+
+		/**
+			\brief Checks if argument is not equal to this object.
+
+			<h3>Return</h3>
+			Returns true if year, month and day of argument is not equal to
+			current object.
+		*/
+		constexpr inline bool isNotEqualTo(
+			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
+		) const noexcept
+		{
+			return !isEqualTo(dt);
+		}
+
+		/**
+			\brief Checks if current DateTime is lesser than argument.
+
+			<h3>Return</h3>
+			Returns true if current DateTime is lesser than argument.
+		*/
+		constexpr inline bool isLesserThan(
+			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
+		) const noexcept
+		{
+			return date::isLesserThan(dt) && time_stamp::isLesserThan(dt);
+		}
+
+		/**
+			\brief Checks if current DateTime is lesser than or equal to argument.
+
+			<h3>Return</h3>
+			Returns true if current DateTime is lesser than or equal to argument.
+		*/
+		constexpr inline bool isLesserThanEq(
+			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
+		) const noexcept
+		{
+			return date::isLesserThanEq(dt) && time_stamp::isLesserThanEq(dt);
+		}
+
+		/**
+			\brief Checks if current DateTime is greater than argument.
+
+			<h3>Return</h3>
+			Returns true if current DateTime is greater than argument.
+		*/
+		constexpr inline bool isGreaterThan(
+			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
+		) const noexcept
+		{
+			return !isLesserThanEq(dt);
+		}
+
+		/**
+			\brief Checks if current DateTime is greater than or equal to argument.
+
+			<h3>Return</h3>
+			Returns true if current DateTime is greater than or equal to argument.
+		*/
+		constexpr inline bool isGreaterThanEq(
+			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
+		) const noexcept
+		{
+			return !isLesserThan(dt);
+		}
 	};
+
+	/**
+		\brief Checks if lhs is equal to rhs.
+	*/
+	constexpr inline bool operator == (
+		const DateTime &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const DateTime &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isEqualTo(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is not equal to rhs.
+	*/
+	constexpr inline bool operator != (
+		const DateTime &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const DateTime &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isNotEqualTo(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than rhs.
+	*/
+	constexpr inline bool operator > (
+		const DateTime &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const DateTime &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return rhs.isLesserThan(lhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than or equal to rhs.
+	*/
+	constexpr inline bool operator >= (
+		const DateTime &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const DateTime &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return rhs.isLesserThanEq(lhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than rhs.
+	*/
+	constexpr inline bool operator < (
+		const DateTime &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const DateTime &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isLesserThan(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than or equal to rhs.
+	*/
+	constexpr inline bool operator <= (
+		const DateTime &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const DateTime &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isLesserThanEq(rhs);
+	}
 
 }
 
