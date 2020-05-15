@@ -394,7 +394,83 @@ namespace enh
 		}
 	};
 
+	/**
+		\brief Checks if lhs is equal to rhs.
+	*/
+	constexpr inline bool operator == (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isEqualTo(rhs);
+	}
 
+	/**
+		\brief Checks if lhs is not equal to rhs.
+	*/
+	constexpr inline bool operator != (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isNotEqualTo(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than rhs.
+	*/
+	constexpr inline bool operator > (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return rhs.isLesserThan(lhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than or equal to rhs.
+	*/
+	constexpr inline bool operator >= (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return rhs.isLesserThanEq(lhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than rhs.
+	*/
+	constexpr inline bool operator < (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isLesserThan(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than or equal to rhs.
+	*/
+	constexpr inline bool operator <= (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isLesserThanEq(rhs);
+	}
 }
 
 #endif
