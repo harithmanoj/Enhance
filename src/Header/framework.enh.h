@@ -249,7 +249,7 @@ namespace enh
 	/**
 		\brief The version of enhance library.
 	*/
-	constexpr version_info enhance_version = version_info(VERSION_INFO_FIN(1,2,0,3));
+	constexpr version_info enhance_version = version_info(VERSION_INFO_FIN(1,3,0,4));
 }
 
 
