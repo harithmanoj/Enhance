@@ -124,7 +124,7 @@ namespace enh
 			-# <code>inline version_info(unsigned, unsigned, unsigned, unsigned,
 			enh::rel_type, std::string_view) noexcept;</code>\n
 		*/
-		inline version_info() noexcept :major(0), minor(0), revision(0),
+		constexpr inline version_info() noexcept :major(0), minor(0), revision(0),
 			build(0), type(rel_type::BETA) { }
 
 		/**
@@ -249,7 +249,7 @@ namespace enh
 	/**
 		\brief The version of enhance library.
 	*/
-	constexpr version_info enhance_version = version_info(VERSION_INFO_FIN(1,2,0,3));
+	constexpr version_info enhance_version = version_info(VERSION_INFO_FIN(1,3,0,4));
 }
 
 

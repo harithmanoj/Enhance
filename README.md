@@ -138,7 +138,7 @@ Exists in `namespace enh`.
 
 `date.enh.h`
 
-`DateTime.enh.h`
+`date_time.enh.h`
 
 ### The Library 
 
