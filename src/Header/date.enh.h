@@ -178,7 +178,7 @@ namespace enh
 		/**
 			\brief Adds One Month to current date.
 		*/
-		inline void add_month()
+		constexpr inline void add_month()
 		{
 			if (month == 11)
 			{
@@ -194,7 +194,7 @@ namespace enh
 		/**
 			\brief Add one day to date.
 		*/
-		inline void add_day()
+		constexpr inline void add_day()
 		{
 			++day;
 			auto limit = month_limit(month, year);
@@ -217,7 +217,7 @@ namespace enh
 			not within bounds. [0,month_limit], [0,11], [0,6], [0,year_limit)
 			respectively.
 		*/
-		inline void setDate(
+		constexpr inline void setDate(
 			unsigned short dy /**< : <i>in</i> : The day of the month 
 							  [1,month_limit].*/,
 			unsigned short mnth /**< : <i>in</i> : The number of months after
@@ -275,7 +275,7 @@ namespace enh
 			not within bounds. [0,month_limit], [0,11], [0,6], [0,year_limit)
 			respectively.
 		*/
-		inline date(
+		constexpr inline date(
 			unsigned short dy /**< : <i>in</i> : The day of the month
 							  [1,month_limit].*/,
 			unsigned short mnth /**< : <i>in</i> : The number of months after
@@ -285,9 +285,18 @@ namespace enh
 								Sunday [0,6].*/,
 			unsigned ydy /**< : <i>in</i> : The number of day after 01 January
 						 of that year [1,year_limit).*/
-		)
+		) : day(dy), month(mnth), year(yr), wkday(week), yrday(ydy)
 		{
-			setDate(dy, mnth, yr, week, ydy);
+			if (!isConfined<unsigned short>(week, 0, 7, true, false))
+				throw std::invalid_argument("Week day should be in range [0,6]");
+			if (!isConfined<unsigned short>(mnth, 0, 12, true, false))
+				throw std::invalid_argument("Month should be in range [0,11]");
+			if (!isConfined<unsigned short>(dy, 1, month_limit(mnth, yr), true, true))
+				throw std::invalid_argument("day should be within the monthly "
+					"maximum (28,29,30 or 31 according to month).");
+			if (!isConfined(ydy, 0u, year_limit(yr), true, false))
+				throw std::invalid_argument("year day should be less than "
+					"that for that year (365,366).");
 		}
 
 		/**
@@ -312,12 +321,12 @@ namespace enh
 		/**
 			\brief The day of this month.
 		*/
-		inline unsigned short getDayOfMonth() const noexcept { return day; }
+		constexpr inline unsigned short getDayOfMonth() const noexcept { return day; }
 
 		/**
 			\brief The number of months after January of this year.
 		*/
-		inline unsigned short getMonth() const noexcept { return month; }
+		constexpr inline unsigned short getMonth() const noexcept { return month; }
 
 		/**
 			\brief The name of the month.
@@ -368,18 +377,18 @@ namespace enh
 		/**
 			\brief The Year.
 		*/
-		inline long getYear() const noexcept { return year; }
+		constexpr inline long getYear() const noexcept { return year; }
 
 		/**
 			\brief The number of days after last Sunday.
 		*/
-		inline unsigned short getDayOfWeek() const noexcept { return wkday; }
+		constexpr inline unsigned short getDayOfWeek() const noexcept { return wkday; }
 
 
 		/**
 			\brief The number of days after 1st of January this year.
 		*/
-		inline unsigned getDayOfYear() const noexcept { return yrday; }
+		constexpr inline unsigned getDayOfYear() const noexcept { return yrday; }
 
 		/**
 			\brief The name of the day.
@@ -512,7 +521,204 @@ namespace enh
 			return format;
 		}
 
+		/**
+			\brief Checks if argument is equal to this object.
+
+			<h3>Return</h3>
+			Returns true if year, month and day of argument is equal to 
+			current object.
+		*/
+		constexpr inline bool isEqualTo(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			return (year == dt.year) && (month == dt.month) && (day == dt.day);
+		}
+
+		/**
+			\brief Checks if argument is not equal to this object.
+
+			<h3>Return</h3>
+			Returns true if year, month and day of argument is not equal to
+			current object.
+		*/
+		constexpr inline bool isNotEqualTo(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			return !isEqualTo(dt);
+		}
+
+		/**
+			\brief Checks if current date is lesser than argument.
+
+			<h3>Return</h3>
+			Returns true if current date is lesser than argument.
+		*/
+		constexpr inline bool isLesserThan(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			if (year < dt.year)
+				return true;
+			else if (year > dt.year)
+				return false;
+			else
+			{
+				if (month < dt.month)
+					return true;
+				else if (month > dt.month)
+					return false;
+				else
+				{
+					if (day < dt.day)
+						return true;
+					else if (day > dt.day)
+						return false;
+					else
+						return false;
+
+				}
+			}
+		}
+
+		/**
+			\brief Checks if current date is lesser than or equal to argument.
+
+			<h3>Return</h3>
+			Returns true if current date is lesser than or equal to argument.
+		*/
+		constexpr inline bool isLesserThanEq(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			if (year < dt.year)
+				return true;
+			else if (year > dt.year)
+				return false;
+			else
+			{
+				if (month < dt.month)
+					return true;
+				else if (month > dt.month)
+					return false;
+				else
+				{
+					if (day < dt.day)
+						return true;
+					else if (day > dt.day)
+						return false;
+					else
+						return true;
+
+				}
+			}
+		}
+
+		/**
+			\brief Checks if current date is greater than argument.
+
+			<h3>Return</h3>
+			Returns true if current date is greater than argument.
+		*/
+		constexpr inline bool isGreaterThan(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			return !isLesserThanEq(dt);
+		}
+
+		/**
+			\brief Checks if current date is greater than or equal to argument.
+
+			<h3>Return</h3>
+			Returns true if current date is greater than or equal to argument.
+		*/
+		constexpr inline bool isGreaterThanEq(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			return !isLesserThan(dt);
+		}
 	};
+
+	/**
+		\brief Checks if lhs is equal to rhs.
+	*/
+	constexpr inline bool operator == (
+		const date &lhs /**< : <i>in</i> : The left hand side of the 
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the 
+						expression.*/
+	) noexcept
+	{
+		return lhs.isEqualTo(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is not equal to rhs.
+	*/
+	constexpr inline bool operator != (
+		const date &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+	) noexcept
+	{
+		return lhs.isNotEqualTo(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than rhs.
+	*/
+	constexpr inline bool operator > (
+		const date &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+	) noexcept
+	{
+		return rhs.isLesserThan(lhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than or equal to rhs.
+	*/
+	constexpr inline bool operator >= (
+		const date &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+	) noexcept
+	{
+		return rhs.isLesserThanEq(lhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than rhs.
+	*/
+	constexpr inline bool operator < (
+		const date &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+	) noexcept
+	{
+		return lhs.isLesserThan(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than or equal to rhs.
+	*/
+	constexpr inline bool operator <= (
+		const date &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+	) noexcept
+	{
+		return lhs.isLesserThanEq(rhs);
+	}
 }
 
 
