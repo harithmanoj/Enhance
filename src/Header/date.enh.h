@@ -528,7 +528,7 @@ namespace enh
 			Returns true if year, month and day of argument is equal to 
 			current object.
 		*/
-		constexpr inline bool isEqual(
+		constexpr inline bool isEqualTo(
 			const date &dt /**< : <i>in</i> : The date to compare with.*/
 		) const noexcept
 		{
@@ -542,14 +542,104 @@ namespace enh
 			Returns true if year, month and day of argument is not equal to
 			current object.
 		*/
-		constexpr inline bool isNotEqual(
+		constexpr inline bool isNotEqualTo(
 			const date &dt /**< : <i>in</i> : The date to compare with.*/
-		)
+		) const noexcept
 		{
-			return !isEqual(dt);
+			return !isEqualTo(dt);
 		}
 
-		
+		/**
+			\brief Checks if current date is lesser than argument.
+
+			<h3>Return</h3>
+			Returns true if current date is lesser than argument.
+		*/
+		constexpr inline bool isLesserThan(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			if (year < dt.year)
+				return true;
+			else if (year > dt.year)
+				return false;
+			else
+			{
+				if (month < dt.month)
+					return true;
+				else if (month > dt.month)
+					return false;
+				else
+				{
+					if (day < dt.day)
+						return true;
+					else if (day > dt.day)
+						return false;
+					else
+						return false;
+
+				}
+			}
+		}
+
+		/**
+			\brief Checks if current date is greater than argument.
+
+			<h3>Return</h3>
+			Returns true if current date is greater than argument.
+		*/
+		constexpr inline bool isGreaterThan(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			if (year > dt.year)
+				return true;
+			else if (year < dt.year)
+				return false;
+			else
+			{
+				if (month > dt.month)
+					return true;
+				else if (month < dt.month)
+					return false;
+				else
+				{
+					if (day > dt.day)
+						return true;
+					else if (day < dt.day)
+						return false;
+					else
+						return false;
+
+				}
+			}
+		}
+
+		/**
+			\brief Checks if current date is lesser than or equal to argument.
+
+			<h3>Return</h3>
+			Returns true if current date is lesser than or equal to argument.
+		*/
+		constexpr inline bool isLesserThanEq(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			return !isGreaterThan(dt);
+		}
+
+		/**
+			\brief Checks if current date is greater than or equal to argument.
+
+			<h3>Return</h3>
+			Returns true if current date is greater than or equal to argument.
+		*/
+		constexpr inline bool isGreaterThanEq(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			return !isLesserThan(dt);
+		}
 	};
 }
 
