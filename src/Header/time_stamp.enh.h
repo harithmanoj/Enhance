@@ -272,7 +272,205 @@ namespace enh
 
 			return format;
 		}
+
+		/**
+			\brief Checks if argument is equal to this object.
+
+			<h3>Return</h3>
+			Returns true if hours, minutes and seconds of argument is equal to
+			current object.
+		*/
+		constexpr inline bool isEqualTo(
+			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+		) const noexcept
+		{
+			return (hours == dt.hours) && (minutes == dt.minutes) && (seconds == dt.seconds);
+		}
+
+		/**
+			\brief Checks if argument is not equal to this object.
+
+			<h3>Return</h3>
+			Returns true if hours, minutes and seconds of argument is not equal to
+			current object.
+		*/
+		constexpr inline bool isNotEqualTo(
+			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+		) const noexcept
+		{
+			return !isEqualTo(dt);
+		}
+
+		/**
+			\brief Checks if current time_stamp is lesser than argument.
+
+			<h3>Return</h3>
+			Returns true if current time_stamp is lesser than argument.
+		*/
+		constexpr inline bool isLesserThan(
+			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+		) const noexcept
+		{
+			if (hours < dt.hours)
+				return true;
+			else if (hours > dt.hours)
+				return false;
+			else
+			{
+				if (minutes < dt.minutes)
+					return true;
+				else if (minutes > dt.minutes)
+					return false;
+				else
+				{
+					if (seconds < dt.seconds)
+						return true;
+					else if (seconds > dt.seconds)
+						return false;
+					else
+						return false;
+
+				}
+			}
+		}
+
+		/**
+			\brief Checks if current time_stamp is lesser than or equal to argument.
+
+			<h3>Return</h3>
+			Returns true if current time_stamp is lesser than or equal to argument.
+		*/
+		constexpr inline bool isLesserThanEq(
+			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+		) const noexcept
+		{
+			if (hours < dt.hours)
+				return true;
+			else if (hours > dt.hours)
+				return false;
+			else
+			{
+				if (minutes < dt.minutes)
+					return true;
+				else if (minutes > dt.minutes)
+					return false;
+				else
+				{
+					if (seconds < dt.seconds)
+						return true;
+					else if (seconds > dt.seconds)
+						return false;
+					else
+						return true;
+
+				}
+			}
+		}
+
+		/**
+			\brief Checks if current time_stamp is greater than argument.
+
+			<h3>Return</h3>
+			Returns true if current time_stamp is greater than argument.
+		*/
+		constexpr inline bool isGreaterThan(
+			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+		) const noexcept
+		{
+			return !isLesserThanEq(dt);
+		}
+
+		/**
+			\brief Checks if current time_stamp is greater than or equal to argument.
+
+			<h3>Return</h3>
+			Returns true if current time_stamp is greater than or equal to argument.
+		*/
+		constexpr inline bool isGreaterThanEq(
+			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+		) const noexcept
+		{
+			return !isLesserThan(dt);
+		}
 	};
+
+	/**
+		\brief Checks if lhs is equal to rhs.
+	*/
+	constexpr inline bool operator == (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isEqualTo(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is not equal to rhs.
+	*/
+	constexpr inline bool operator != (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isNotEqualTo(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than rhs.
+	*/
+	constexpr inline bool operator > (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return rhs.isLesserThan(lhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than or equal to rhs.
+	*/
+	constexpr inline bool operator >= (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return rhs.isLesserThanEq(lhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than rhs.
+	*/
+	constexpr inline bool operator < (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isLesserThan(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than or equal to rhs.
+	*/
+	constexpr inline bool operator <= (
+		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+		) noexcept
+	{
+		return lhs.isLesserThanEq(rhs);
+	}
 }
 
 #endif
