@@ -583,39 +583,6 @@ namespace enh
 		}
 
 		/**
-			\brief Checks if current date is greater than argument.
-
-			<h3>Return</h3>
-			Returns true if current date is greater than argument.
-		*/
-		constexpr inline bool isGreaterThan(
-			const date &dt /**< : <i>in</i> : The date to compare with.*/
-		) const noexcept
-		{
-			if (year > dt.year)
-				return true;
-			else if (year < dt.year)
-				return false;
-			else
-			{
-				if (month > dt.month)
-					return true;
-				else if (month < dt.month)
-					return false;
-				else
-				{
-					if (day > dt.day)
-						return true;
-					else if (day < dt.day)
-						return false;
-					else
-						return false;
-
-				}
-			}
-		}
-
-		/**
 			\brief Checks if current date is lesser than or equal to argument.
 
 			<h3>Return</h3>
@@ -625,7 +592,40 @@ namespace enh
 			const date &dt /**< : <i>in</i> : The date to compare with.*/
 		) const noexcept
 		{
-			return !isGreaterThan(dt);
+			if (year < dt.year)
+				return true;
+			else if (year > dt.year)
+				return false;
+			else
+			{
+				if (month < dt.month)
+					return true;
+				else if (month > dt.month)
+					return false;
+				else
+				{
+					if (day < dt.day)
+						return true;
+					else if (day > dt.day)
+						return false;
+					else
+						return true;
+
+				}
+			}
+		}
+
+		/**
+			\brief Checks if current date is greater than argument.
+
+			<h3>Return</h3>
+			Returns true if current date is greater than argument.
+		*/
+		constexpr inline bool isGreaterThan(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			return !isLesserThanEq(dt);
 		}
 
 		/**
@@ -641,6 +641,84 @@ namespace enh
 			return !isLesserThan(dt);
 		}
 	};
+
+	/**
+		\brief Checks if lhs is equal to rhs.
+	*/
+	constexpr inline bool operator == (
+		const date &lhs /**< : <i>in</i> : The left hand side of the 
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the 
+						expression.*/
+	) noexcept
+	{
+		return lhs.isEqualTo(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is not equal to rhs.
+	*/
+	constexpr inline bool operator != (
+		const date &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+	) noexcept
+	{
+		return lhs.isNotEqualTo(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than rhs.
+	*/
+	constexpr inline bool operator > (
+		const date &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+	) noexcept
+	{
+		return rhs.isLesserThan(lhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than or equal to rhs.
+	*/
+	constexpr inline bool operator >= (
+		const date &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+	) noexcept
+	{
+		return rhs.isLesserThanEq(lhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than rhs.
+	*/
+	constexpr inline bool operator < (
+		const date &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+	) noexcept
+	{
+		return lhs.isLesserThan(rhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than or equal to rhs.
+	*/
+	constexpr inline bool operator <= (
+		const date &lhs /**< : <i>in</i> : The left hand side of the
+						expression.*/,
+		const date &rhs /**< : <i>in</i> : The right hand side of the
+						expression.*/
+	) noexcept
+	{
+		return lhs.isLesserThanEq(rhs);
+	}
 }
 
 
