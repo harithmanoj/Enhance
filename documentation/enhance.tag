@@ -64,6 +64,48 @@
       <anchor>a2ad12d5acd9f98c7a028dbcaea95019c</anchor>
       <arglist>(unsigned short week, unsigned long day_count) noexcept</arglist>
     </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>acbf42d41b411b1ef4ad3fe7600ef87d1</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a05daf2918d5911803bbad4f2d94906c6</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aec192d04fd764a33498b41a5f86dec84</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a30dd9bbdabbd195860ae56ceb0d36532</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aa010d6ca0639d08df5c6f12f1dc21980</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ae463f9c2ecae7a9c9e3f7607521c12ce</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>date_time.enh.h</name>
@@ -72,6 +114,48 @@
     <includes id="time__stamp_8enh_8h" name="time_stamp.enh.h" local="yes" imported="no">time_stamp.enh.h</includes>
     <class kind="class">enh::DateTime</class>
     <namespace>enh</namespace>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a2d016f398e0cbda2843d5e5aaea6f173</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a28d687f22fce6d3011e9a98646dc4bd7</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a2dd597cacc0127cb7b1b68093e508f06</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a31c7ae6df425ffc694c7346b386dfc83</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a14cfa282d8e601f4c687e076abf86471</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a813778b55145a4a9b53ab26258a25521</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>error_base.enh.h</name>
@@ -737,6 +821,48 @@
     <includes id="date_8enh_8h" name="date.enh.h" local="yes" imported="no">date.enh.h</includes>
     <class kind="class">enh::time_stamp</class>
     <namespace>enh</namespace>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a8a6d18cca8b38e7e8d4468e5f4fe864d</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ac37ec951893f4e23ba3e3d9d6e86fdd7</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a24bf90704517bd933e7efdf0f4f121d2</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ab8d0b09fcf9fe9889b420401fc8225ad</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a43e194153a8f4ae6ed4e823044ac14b7</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ac5dfa369ac945de691e12ac93ef5a8a3</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>timer.enh.h</name>
@@ -1093,17 +1219,17 @@
     <name>enh::date</name>
     <filename>classenh_1_1date.html</filename>
     <member kind="function">
-      <type>void</type>
+      <type>constexpr void</type>
       <name>add_day</name>
       <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a6dd5cbe4e4d21120b0b21b2102f32f2d</anchor>
+      <anchor>a8788f3bb12b9e17b3a60b4c9cdb8b983</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>constexpr void</type>
       <name>setDate</name>
       <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a5e9f3d324e7539bad951858ffd684748</anchor>
+      <anchor>a6e09e3c88495fe4419ad6c5ac8df8d44</anchor>
       <arglist>(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned ydy)</arglist>
     </member>
     <member kind="function">
@@ -1121,10 +1247,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>constexpr</type>
       <name>date</name>
       <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a6e60fc914bd54d438a7f409b09c7a76d</anchor>
+      <anchor>a79f005d7b309290e5f511c920675bc24</anchor>
       <arglist>(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned ydy)</arglist>
     </member>
     <member kind="function">
@@ -1142,17 +1268,17 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>unsigned short</type>
+      <type>constexpr unsigned short</type>
       <name>getDayOfMonth</name>
       <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>ace2ebd6432adb659bdda2832af8ca82b</anchor>
+      <anchor>acd0a26569b3399c55ea0e06525f258fb</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
-      <type>unsigned short</type>
+      <type>constexpr unsigned short</type>
       <name>getMonth</name>
       <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>ab6f76c742913df12695ca74442748878</anchor>
+      <anchor>aa4fd4fd7afe7f17e70360cbc5a9513f1</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
@@ -1170,24 +1296,24 @@
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>long</type>
+      <type>constexpr long</type>
       <name>getYear</name>
       <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a1e895cbb5cf21285943de9a40681fe33</anchor>
+      <anchor>a4bc2430e5922b4e84bc17bf4ff380458</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
-      <type>unsigned short</type>
+      <type>constexpr unsigned short</type>
       <name>getDayOfWeek</name>
       <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a8a872e2d2b6e6a03f443e0661551c136</anchor>
+      <anchor>a854f69e23f5f21d709142608c6d602e6</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
-      <type>unsigned</type>
+      <type>constexpr unsigned</type>
       <name>getDayOfYear</name>
       <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a18dd56a5aa44161c44da3deaa12d6a8d</anchor>
+      <anchor>a83c6cd8468c4e05e9a88bf5af91f9ff3</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
@@ -1225,6 +1351,48 @@
       <anchor>a496782e446b40a9fc9c5992c06be3fca</anchor>
       <arglist>(std::string format) const</arglist>
     </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isEqualTo</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a120fc311cfadeea944a0d5fcf69624fb</anchor>
+      <arglist>(const date &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isNotEqualTo</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a91b45aa4472a34356cd187208f756296</anchor>
+      <arglist>(const date &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isLesserThan</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a6aeb2f09a21d2cb3e3c1ec32c6515289</anchor>
+      <arglist>(const date &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isLesserThanEq</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a46cca5c73ce3cea40b92f09aa8d3a0c4</anchor>
+      <arglist>(const date &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isGreaterThan</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>a297f52dd1ffed3365f2c4e670d3ac710</anchor>
+      <arglist>(const date &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isGreaterThanEq</name>
+      <anchorfile>classenh_1_1date.html</anchorfile>
+      <anchor>aaf319c0e705afcb0490ca169dbe642e4</anchor>
+      <arglist>(const date &amp;dt) const noexcept</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>enh::DateTime</name>
@@ -1232,10 +1400,10 @@
     <base>enh::date</base>
     <base>enh::time_stamp</base>
     <member kind="function">
-      <type>void</type>
+      <type>constexpr void</type>
       <name>set</name>
       <anchorfile>classenh_1_1_date_time.html</anchorfile>
-      <anchor>a7971052810d18c4cb25fe1b69fa76057</anchor>
+      <anchor>a5154f3a07b447af948e47da8f4c9246a</anchor>
       <arglist>(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned short ydy, unsigned short sec, unsigned short min, unsigned short hr)</arglist>
     </member>
     <member kind="function">
@@ -1253,10 +1421,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>constexpr</type>
       <name>DateTime</name>
       <anchorfile>classenh_1_1_date_time.html</anchorfile>
-      <anchor>a5b92b2c904b7f10cc6a27db64dff29e2</anchor>
+      <anchor>ae1d40f82c5b0efe8b8c639dba857c652</anchor>
       <arglist>(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned short ydy, unsigned short sec, unsigned short min, unsigned short hr)</arglist>
     </member>
     <member kind="function">
@@ -1288,25 +1456,67 @@
       <arglist>(std::string format)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>addSeconds</name>
       <anchorfile>classenh_1_1_date_time.html</anchorfile>
-      <anchor>a06e6812c11b8adbdde3bea6565c3005f</anchor>
+      <anchor>a458ea8c092d92e9e01863e4b192ca58f</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>addMinutes</name>
       <anchorfile>classenh_1_1_date_time.html</anchorfile>
-      <anchor>a9dd0c3a56bdd09b3f3cf1f480ca7906b</anchor>
+      <anchor>a87dd90167f09c64ffd972fadf851f18a</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>addHour</name>
       <anchorfile>classenh_1_1_date_time.html</anchorfile>
-      <anchor>a38e8c9d0255abc16ba41f03dfb989558</anchor>
+      <anchor>a451f6ccc07dab1e606e95d55f63d8bbb</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isEqualTo</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a7be34c94cb4c18087ce7788b7e7dc7f6</anchor>
+      <arglist>(const DateTime &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isNotEqualTo</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a5a9c66648cf2faa2978b5e2203e37fa7</anchor>
+      <arglist>(const DateTime &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isLesserThan</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a69e2e9ecefe459adbfee6aa38cec12ec</anchor>
+      <arglist>(const DateTime &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isLesserThanEq</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>ad6a8f586a576951efef9718935412f83</anchor>
+      <arglist>(const DateTime &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isGreaterThan</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a4fb30f3a12dba8ca6b0c9e853cbfa400</anchor>
+      <arglist>(const DateTime &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isGreaterThanEq</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a297c2d86df12aed88eb58e47f0eb9395</anchor>
+      <arglist>(const DateTime &amp;dt) const noexcept</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1503,6 +1713,20 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>safe_join</name>
+      <anchorfile>classenh_1_1queued__process.html</anchorfile>
+      <anchor>a3b8eb24df6899cfbc32901915ade2cb1</anchor>
+      <arglist>(std::chrono::nanoseconds ns)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>force_join</name>
+      <anchorfile>classenh_1_1queued__process.html</anchorfile>
+      <anchor>a81f48410cdcd114e6c755002a1c8417d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>WaitForQueueEmpty</name>
       <anchorfile>classenh_1_1queued__process.html</anchorfile>
       <anchor>aa9e356200016900c12645f460095f1de</anchor>
@@ -1520,10 +1744,10 @@
     <name>enh::time_stamp</name>
     <filename>classenh_1_1time__stamp.html</filename>
     <member kind="function">
-      <type>void</type>
+      <type>constexpr void</type>
       <name>setTime</name>
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
-      <anchor>a45ddc13733dd2a99a267500b1199a880</anchor>
+      <anchor>ade163a73074cb1bf18aab2c4ee85176b</anchor>
       <arglist>(unsigned short sec, unsigned short min, unsigned short hr)</arglist>
     </member>
     <member kind="function">
@@ -1541,10 +1765,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type></type>
+      <type>constexpr</type>
       <name>time_stamp</name>
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
-      <anchor>affd30be9a1dc9c1e38a897cc8c567a21</anchor>
+      <anchor>acc618457169ed847ab171ce9eed26011</anchor>
       <arglist>(unsigned short sec, unsigned short min, unsigned short hr)</arglist>
     </member>
     <member kind="function">
@@ -1562,45 +1786,45 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>addHour</name>
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
-      <anchor>a1f33d2b868a933d220666c5e5db9c04b</anchor>
+      <anchor>acf897da9cebf8723868f86a916d75045</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>addMinutes</name>
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
-      <anchor>ac001362dd2e55c2e53b224c2121a0d96</anchor>
+      <anchor>a36742a19921e9088c1dad4a9ea0c52ac</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
+      <type>constexpr bool</type>
       <name>addSeconds</name>
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
-      <anchor>ade79bd88ff03223975a410a8c6b35f70</anchor>
+      <anchor>a1f9083400c5b161a51a64b481a41a78a</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>unsigned short</type>
+      <type>constexpr unsigned short</type>
       <name>getSeconds</name>
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
-      <anchor>a1b146c87e57d1e3ff2096239144e4dcb</anchor>
+      <anchor>a2aa5df47219c1017da0067748564b5c8</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
-      <type>unsigned short</type>
+      <type>constexpr unsigned short</type>
       <name>getMinutes</name>
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
-      <anchor>ae0c901fe35f7a25d4735e29acad8d09b</anchor>
+      <anchor>a2bc596846753e877c7a9a5525a79ede8</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
-      <type>unsigned short</type>
+      <type>constexpr unsigned short</type>
       <name>getHours</name>
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
-      <anchor>a14481f5855da0d2f5f34e637219232b9</anchor>
+      <anchor>a7813f0d1230be4fb1986adbc8c8bbc20</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
@@ -1616,6 +1840,48 @@
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
       <anchor>ab3b510feef3ad1de9af9b3f1eda8d2d1</anchor>
       <arglist>(std::string format) const</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isEqualTo</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>acee85a5eac640c0ab524c31d2fe90aed</anchor>
+      <arglist>(const time_stamp &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isNotEqualTo</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>ada3bfaf1d08be16bdae938adb8f7bc14</anchor>
+      <arglist>(const time_stamp &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isLesserThan</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a2ad0c96e276e79e9448c60ddff0fb84f</anchor>
+      <arglist>(const time_stamp &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isLesserThanEq</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a8438c8ff7971aef81fac47dae35b1b03</anchor>
+      <arglist>(const time_stamp &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isGreaterThan</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a3f7aa6a7f2881366daeaaca7fda4458c</anchor>
+      <arglist>(const time_stamp &amp;dt) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>isGreaterThanEq</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a5b10d987e02be2a8c455be27127cdba6</anchor>
+      <arglist>(const time_stamp &amp;dt) const noexcept</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1754,10 +2020,10 @@
     <name>enh::version_info</name>
     <filename>classenh_1_1version__info.html</filename>
     <member kind="function">
-      <type></type>
+      <type>constexpr</type>
       <name>version_info</name>
       <anchorfile>classenh_1_1version__info.html</anchorfile>
-      <anchor>a16c073bdc25b91acfb5e7d8f1b751aaf</anchor>
+      <anchor>a47d86857a4d2e03740f6743281cf7e3f</anchor>
       <arglist>() noexcept</arglist>
     </member>
     <member kind="function">
@@ -1995,6 +2261,90 @@
       <arglist>(unsigned short week, unsigned long day_count) noexcept</arglist>
     </member>
     <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>acbf42d41b411b1ef4ad3fe7600ef87d1</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a05daf2918d5911803bbad4f2d94906c6</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aec192d04fd764a33498b41a5f86dec84</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a30dd9bbdabbd195860ae56ceb0d36532</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aa010d6ca0639d08df5c6f12f1dc21980</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ae463f9c2ecae7a9c9e3f7607521c12ce</anchor>
+      <arglist>(const date &amp;lhs, const date &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a2d016f398e0cbda2843d5e5aaea6f173</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a28d687f22fce6d3011e9a98646dc4bd7</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a2dd597cacc0127cb7b1b68093e508f06</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a31c7ae6df425ffc694c7346b386dfc83</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a14cfa282d8e601f4c687e076abf86471</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a813778b55145a4a9b53ab26258a25521</anchor>
+      <arglist>(const DateTime &amp;lhs, const DateTime &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
       <type>bool</type>
       <name>operator!</name>
       <anchorfile>namespaceenh.html</anchorfile>
@@ -2049,6 +2399,48 @@
       <anchorfile>namespaceenh.html</anchorfile>
       <anchor>af497c3ace8c354a276830475fe416315</anchor>
       <arglist>(integral value)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a8a6d18cca8b38e7e8d4468e5f4fe864d</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ac37ec951893f4e23ba3e3d9d6e86fdd7</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a24bf90704517bd933e7efdf0f4f121d2</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ab8d0b09fcf9fe9889b420401fc8225ad</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a43e194153a8f4ae6ed4e823044ac14b7</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ac5dfa369ac945de691e12ac93ef5a8a3</anchor>
+      <arglist>(const time_stamp &amp;lhs, const time_stamp &amp;rhs) noexcept</arglist>
     </member>
     <member kind="variable">
       <type>constexpr version_info</type>
