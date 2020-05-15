@@ -521,6 +521,35 @@ namespace enh
 			return format;
 		}
 
+		/**
+			\brief Checks if argument is equal to this object.
+
+			<h3>Return</h3>
+			Returns true if year, month and day of argument is equal to 
+			current object.
+		*/
+		constexpr inline bool isEqual(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		) const noexcept
+		{
+			return (year == dt.year) && (month == dt.month) && (day == dt.day);
+		}
+
+		/**
+			\brief Checks if argument is not equal to this object.
+
+			<h3>Return</h3>
+			Returns true if year, month and day of argument is not equal to
+			current object.
+		*/
+		constexpr inline bool isNotEqual(
+			const date &dt /**< : <i>in</i> : The date to compare with.*/
+		)
+		{
+			return !isEqual(dt);
+		}
+
+		
 	};
 }
 
