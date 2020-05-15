@@ -215,7 +215,7 @@ namespace enh
 				bool stopNow = false;
 				{
 					std::lock_guard<std::mutex> lock(mtxQueue);
-					stopNow = QueuedMessage.empty();
+					stopNow = QueuedMessage.empty() || QueueStop.load();
 				}
 				while (!stopNow)
 				{
@@ -356,18 +356,50 @@ namespace enh
 		inline bool isQueueRunning() noexcept { return isQueueActive.load(); };
 
 		/**
-			\brief Waits till Queued process stops execution.
+			\brief Waits till Queued process stops execution. Then empties queue.
 		*/
 		inline void WaitForQueueStop() noexcept
 		{
-			if (queue_thread.joinable())
+			if (queue_thread.joinable() || isQueueRunning() )
 			{
 				O3_LIB_LOG_LINE;
 				queue_thread.join();
 				O4_LIB_LOG_LINE;
 				isQueueActive = false;
 				QueueStop = false;
+				std::lock_guard<std::mutex> lock(mtxQueue);
+				QueuedMessage = std::queue<instruct>;
 			}
+
+		}
+
+		/**
+			\brief Waits till Queue is Empty then stops process and joins.
+		*/
+		inline void safe_join(
+			std::chrono::nanoseconds ns /**< : <i>in</i> : The amount of time
+							to wait between each cecks to the queues size.*/
+		)
+		{
+			if (!isQueueRunning())
+				return;
+			WaitForQueueEmpty(ns);
+			stopQueue();
+			WaitForQueueStop();
+		}
+
+		/**
+			\brief Posts stop queue message then waits for thread to join.
+
+			<b>Note</b> : Even if queue has messages left over, it will exit 
+			and messages will be destroyed.
+		*/
+		inline void force_join()
+		{
+			if (!isQueueRunning())
+				return;
+			stopQueue();
+			WaitForQueueStop();
 		}
 
 		/**
@@ -395,19 +427,11 @@ namespace enh
 		}
 
 		/**
-			\brief The destructor. Waits till queue is empty and till it exits.
+			\brief The destructor. Exits without waiting for queue stop.
 		*/
 		~queued_process()
 		{
-			if (isQueueActive.load())
-			{
-				O3_LIB_LOG_LINE;
-				using namespace std::chrono_literals;
-				WaitForQueueEmpty(1000ns);
-				stopQueue();
-				WaitForQueueStop();
-			}
-			
+			force_join()			
 		}
 	};
 
