@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Enhance
-   &#160;<span id="projectnumber">1.2.0.3</span>
+   &#160;<span id="projectnumber">1.3.0.4</span>
    </div>
    <div id="projectbrief">Enhance is a collection of C++ libraries for different uses</div>
   </td>
@@ -122,14 +122,20 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:aa1c0dff80218f91894151034a422b3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d279f828b41dbd3bbdf931f8b86dc70"><td class="memItemLeft" align="right" valign="top"><a id="a2d279f828b41dbd3bbdf931f8b86dc70"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1queued__process.html#a2d279f828b41dbd3bbdf931f8b86dc70">WaitForQueueStop</a> () noexcept</td></tr>
-<tr class="memdesc:a2d279f828b41dbd3bbdf931f8b86dc70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits till Queued process stops execution. <br /></td></tr>
+<tr class="memdesc:a2d279f828b41dbd3bbdf931f8b86dc70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits till Queued process stops execution. Then empties queue. <br /></td></tr>
 <tr class="separator:a2d279f828b41dbd3bbdf931f8b86dc70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b8eb24df6899cfbc32901915ade2cb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1queued__process.html#a3b8eb24df6899cfbc32901915ade2cb1">safe_join</a> (std::chrono::nanoseconds ns)</td></tr>
+<tr class="memdesc:a3b8eb24df6899cfbc32901915ade2cb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits till Queue is Empty then stops process and joins.  <a href="classenh_1_1queued__process.html#a3b8eb24df6899cfbc32901915ade2cb1">More...</a><br /></td></tr>
+<tr class="separator:a3b8eb24df6899cfbc32901915ade2cb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81f48410cdcd114e6c755002a1c8417d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1queued__process.html#a81f48410cdcd114e6c755002a1c8417d">force_join</a> ()</td></tr>
+<tr class="memdesc:a81f48410cdcd114e6c755002a1c8417d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posts stop queue message then waits for thread to join.  <a href="classenh_1_1queued__process.html#a81f48410cdcd114e6c755002a1c8417d">More...</a><br /></td></tr>
+<tr class="separator:a81f48410cdcd114e6c755002a1c8417d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9e356200016900c12645f460095f1de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1queued__process.html#aa9e356200016900c12645f460095f1de">WaitForQueueEmpty</a> (std::chrono::nanoseconds ns) noexcept</td></tr>
 <tr class="memdesc:aa9e356200016900c12645f460095f1de"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function to wait till instruction queue is empty.  <a href="classenh_1_1queued__process.html#aa9e356200016900c12645f460095f1de">More...</a><br /></td></tr>
 <tr class="separator:aa9e356200016900c12645f460095f1de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a322a0acb2e069b7961d34e58751a06ee"><td class="memItemLeft" align="right" valign="top"><a id="a322a0acb2e069b7961d34e58751a06ee"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1queued__process.html#a322a0acb2e069b7961d34e58751a06ee">~queued_process</a> ()</td></tr>
-<tr class="memdesc:a322a0acb2e069b7961d34e58751a06ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor. Waits till queue is empty and till it exits. <br /></td></tr>
+<tr class="memdesc:a322a0acb2e069b7961d34e58751a06ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor. Exits without waiting for queue stop. <br /></td></tr>
 <tr class="separator:a322a0acb2e069b7961d34e58751a06ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -183,21 +189,19 @@ class enh::queued_process&lt; instruct &gt;</h3>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    prc.postMessage({ 1,<span class="stringliteral">&quot;1this only&quot;</span>,<span class="stringliteral">&quot;not this&quot;</span> });</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    prc.postMessage({ 2,<span class="stringliteral">&quot;not this &quot;</span>,<span class="stringliteral">&quot;2this only&quot;</span> });</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    prc.postMessage({ 4,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;&quot;</span> });</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    prc.WaitForQueueEmpty(std::chrono::milliseconds(1));</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    prc.stopQueue();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    prc.WaitForQueueStop();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">/* ****************************************************************************</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">Output:</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">concat</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">1this only</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">2this only</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">error</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">******************************************************************************/</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    prc.safe_join(std::chrono::milliseconds(1));</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">/* ****************************************************************************</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">Output:</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">concat</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">1this only</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">2this only</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">error</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">******************************************************************************/</span></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a92c180be267060ac350fb0d108c54e9f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a92c180be267060ac350fb0d108c54e9f">&#9670;&nbsp;</a></span>queued_process()</h2>
@@ -236,6 +240,38 @@ template&lt;class instruct &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a81f48410cdcd114e6c755002a1c8417d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81f48410cdcd114e6c755002a1c8417d">&#9670;&nbsp;</a></span>force_join()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class instruct &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classenh_1_1queued__process.html">enh::queued_process</a>&lt; instruct &gt;::force_join </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Posts stop queue message then waits for thread to join. </p>
+<p><b>Note</b> : Even if queue has messages left over, it will exit and messages will be destroyed. </p>
+
+<p class="reference">References <a class="el" href="classenh_1_1queued__process.html#aa1c0dff80218f91894151034a422b3ee">enh::queued_process&lt; instruct &gt;::isQueueRunning()</a>, <a class="el" href="classenh_1_1queued__process.html#a8a2673b817a7fd554c9680e994a7d92c">enh::queued_process&lt; instruct &gt;::stopQueue()</a>, and <a class="el" href="classenh_1_1queued__process.html#a2d279f828b41dbd3bbdf931f8b86dc70">enh::queued_process&lt; instruct &gt;::WaitForQueueStop()</a>.</p>
+
+</div>
+</div>
 <a id="aa1c0dff80218f91894151034a422b3ee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1c0dff80218f91894151034a422b3ee">&#9670;&nbsp;</a></span>isQueueRunning()</h2>
 
@@ -369,6 +405,44 @@ template&lt;class instruct &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a3b8eb24df6899cfbc32901915ade2cb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b8eb24df6899cfbc32901915ade2cb1">&#9670;&nbsp;</a></span>safe_join()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class instruct &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classenh_1_1queued__process.html">enh::queued_process</a>&lt; instruct &gt;::safe_join </td>
+          <td>(</td>
+          <td class="paramtype">std::chrono::nanoseconds&#160;</td>
+          <td class="paramname"><em>ns</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Waits till Queue is Empty then stops process and joins. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ns</td><td>: <em>in</em> : The amount of time to wait between each cecks to the queues size. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classenh_1_1queued__process.html#aa1c0dff80218f91894151034a422b3ee">enh::queued_process&lt; instruct &gt;::isQueueRunning()</a>, <a class="el" href="classenh_1_1queued__process.html#a8a2673b817a7fd554c9680e994a7d92c">enh::queued_process&lt; instruct &gt;::stopQueue()</a>, <a class="el" href="classenh_1_1queued__process.html#aa9e356200016900c12645f460095f1de">enh::queued_process&lt; instruct &gt;::WaitForQueueEmpty()</a>, and <a class="el" href="classenh_1_1queued__process.html#a2d279f828b41dbd3bbdf931f8b86dc70">enh::queued_process&lt; instruct &gt;::WaitForQueueStop()</a>.</p>
 
 </div>
 </div>
