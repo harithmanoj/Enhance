@@ -209,6 +209,45 @@ namespace enh
 		}
 
 		/**
+			\brief Adds single unit to the value held.
+
+			<h3>Return</h3>
+			Reference to current object.
+		*/
+		inline constexpr confined_base<value_type> &operator ++() noexcept
+		{
+			add();
+			return *this;
+		}
+
+		/**
+			\brief Adds single unit to the value held.
+
+			<h3>Return</h3>
+			Previous state of object.
+		*/
+		inline constexpr confined_base<value_type> operator ++(int) noexcept
+		{
+			confined_base<value_type> temp = *this;
+			add();
+			return temp;
+		}
+		
+		/**
+			\brief Adds to current object and returns reference to the 
+			current object.
+		*/
+		template<class integral_>
+		inline constexpr confined_base<value_type> &operator += (
+			integral_ val /**< : <i>in</i> : The number of units to
+								  add.*/
+		)
+		{
+			add(val);
+			return *this;
+		}
+
+		/**
 			\brief Subtracts one unit from the value held.
 
 			<h3>Return</h3>
@@ -256,6 +295,45 @@ namespace enh
 		}
 
 		/**
+			\brief Subtracts single unit from the value held.
+
+			<h3>Return</h3>
+			Reference to current object.
+		*/
+		inline constexpr confined_base<value_type> &operator --() noexcept
+		{
+			sub();
+			return *this;
+		}
+
+		/**
+			\brief Subtracts single unit from the value held.
+
+			<h3>Return</h3>
+			Previous state of object.
+		*/
+		inline constexpr confined_base<value_type> operator --(int) noexcept
+		{
+			confined_base<value_type> temp = *this;
+			sub();
+			return temp;
+		}
+
+		/**
+			\brief Subtracts from the current object and returns reference 
+			to the current object.
+		*/
+		template<class integral_>
+		inline constexpr confined_base<value_type> &operator -= (
+			integral_ val /**< : <i>in</i> : The number of units to
+								  subtract.*/
+		)
+		{
+			sub(val);
+			return *this;
+		}
+
+		/**
 			\brief Re-evaluates value according to predicate if anything 
 			changed.
 
@@ -283,7 +361,10 @@ namespace enh
 			}
 			return false;
 		}
+
 	};
+
+
 }
 
 
