@@ -326,6 +326,27 @@ namespace enh
 						 of that year [1,year_limit).*/
 		) : year(yr), month(mnth), day(month, year, dy), wkday(week),
 			yrday(year, ydy) {}
+
+		/**
+			\brief Sets the date to the date indicated by argument.
+		*/
+		inline date(
+			time_t timeStamp /**< : <i>in</i> : The time stamp which
+							 contains the date.*/
+		) : year(2020), month(0), day(month, year, 1), wkday(0),
+			yrday(year, 0)
+		{
+			setDate(timeStamp);
+		}
+
+		/**
+			\brief Sets the date to the date current date.
+		*/
+		inline date() : year(2020), month(0), day(month, year, 1), wkday(0),
+			yrday(year, 0)
+		{
+			setDate();
+		}
 	};
 	
 
