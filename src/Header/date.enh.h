@@ -283,6 +283,28 @@ namespace enh
 			wkday.set(week);
 			yrday.set(ydy);
 		}
+
+		/**
+			\brief Sets the date to the date indicated by argument.
+		*/
+		inline void setDate(
+			time_t timeStamp /**< : <i>in</i> : The time stamp which
+							 contains the date.*/
+		)
+		{
+			tm temp;
+			enh::localtime(&temp, &timeStamp);
+			setDate(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, 
+				temp.tm_wday, temp.tm_yday);
+		}
+
+		/**
+			\brief Sets the date to the date current date.
+		*/
+		inline void setDate()
+		{
+			setDate(std::time(nullptr));
+		}
 	};
 	
 
