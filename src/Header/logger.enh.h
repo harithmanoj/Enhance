@@ -78,8 +78,6 @@
 
 #define LOGGER_ENH_H				logger.enh.h
 
-#include "framework.enh.h"
-
 #include <filesystem>
 #include <thread>
 #include <string>
