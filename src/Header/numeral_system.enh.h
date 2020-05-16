@@ -80,6 +80,19 @@ namespace enh
 		{}
 	};
 
+	/**
+		\brief The namespace for all aliases for 
+		different upper limited systems.
+	*/
+	namespace numeric
+	{
+		using dec = NumericSystem<unsigned short, 10U>;
+		using cent = NumericSystem<unsigned short, 100U>;
+		using kilo = NumericSystem<unsigned short, 1000U>;
+		using mill = NumericSystem<unsigned long, 1000000UL>;
+		using bill = NumericSystem<unsigned long, 1000000000ULL>
+	}
+
 }
 
 
