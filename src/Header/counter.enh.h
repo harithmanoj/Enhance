@@ -28,7 +28,6 @@
 
 #define COUNTER_ENH_H			counter.enh.h
 
-#include "framework.enh.h"
 #include <atomic>
 #include <string>
 #include <exception>
