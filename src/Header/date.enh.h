@@ -199,9 +199,91 @@ namespace enh
 			{}
 		};
 
+
+		/**
+			\brief Neumerical type that is confined to interval
+			[1,year_limit].
+
+			<b>NOTE</b> : The argument references lifetime must be longer or
+			equal to the lifetime of this object. This is used to get the
+			upper limit for date.
+
+		*/
+		class yearday_t : public confined_base<unsigned short>
+		{
+
+		public:
+
+			/**
+				\brief Constructor for the yearday_t.
+
+				<b>NOTE</b> : References must last atleast until this object
+				destructs.
+			*/
+			constexpr inline yearday_t(
+				const long long &yr /**< : <i>in</i> : The value of year.*/,
+				unsigned short yrdy /**< : <i>in</i> : The value of year 
+									day.*/
+			) : confined_base(
+				[&](long long a)
+				{
+					return (a <= year_limit(yr));
+				},
+				[&](long long a)
+				{
+					return (a >= 0);
+				},
+					[&]()
+				{
+					return year_limit(yr);
+				},
+					[&]()
+				{
+					return 0;
+				},
+					yrdy)
+			{}
+		};
 	}
 
 
+	class date
+	{
+		date_types::day_t day;
+		date_types::month_t month;
+		long long year;
+		date_types::weekday_t wkday;
+		date_types::yearday_t yrday;
+
+	public:
+
+		/**
+			\brief Sets the date to the date indicated by arguments.
+			
+			<h3>Exception</h3>
+			Throws <code>std::invalid_argument</code> if dy, mnth, week, ydy is
+			not within bounds. [0,month_limit], [0,11], [0,6], [0,year_limit)
+			respectively.
+		*/
+		constexpr inline void setDate(
+			unsigned short dy /**< : <i>in</i> : The day of the month
+							  [1,month_limit].*/,
+			unsigned short mnth /**< : <i>in</i> : The number of months after
+								January [0,11].*/,
+			long yr /**< : <i>in</i> : The Year.*/,
+			unsigned short week /**< : <i>in</i> : The day of the week after
+								Sunday [0,6].*/,
+			unsigned ydy /**< : <i>in</i> : The number of day after 01 January
+						 of that year [1,year_limit).*/
+		)
+		{
+			year = yr;
+			month.set(mnth);
+			day.set(dy);			
+			wkday.set(week);
+			yrday.set(ydy);
+		}
+	};
 	
 
 	/**
