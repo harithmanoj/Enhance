@@ -685,6 +685,31 @@ namespace enh
 			
 			year += month.add(day.add(additional));			
 		}
+
+		/**
+			\brief subtract number of days to the current date.
+		*/
+		constexpr inline void subDay(
+			unsigned long long dy /**< : <i>in</i> : The days to subtract.*/
+		) noexcept
+		{
+			unsigned long long difference = dy % (365 + 365 + 365 + 366);
+			unsigned long long yr_sub = 4 * (dy / (365 + 365 + 365 + 366));
+			year -= yr_sub;
+
+			auto current_step = month_limit(month.get(), year) - 1;
+			while (difference > current_step)
+			{
+				year -= month.sub(day.sub(current_step));
+
+				difference -= current_step;
+				current_step = month_limit(month.get(), year) - 1;
+			}
+
+			year -= month.sub(day.sub(difference));
+		}
+
+
 	};
 	
 
