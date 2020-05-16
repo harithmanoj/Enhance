@@ -83,13 +83,45 @@ namespace enh
 			\brief The upper limit.
 		*/
 		limit_t uLimit;
-		
+
 		/**
 			\brief The lower limit.
 		*/
 		limit_t lLimit;
 	public:
+
+		/**
+			\brief Returns upper limit.
+		*/
+		constexpr inline value_type getUpperLimit() const noexcept
+		{
+			return uLimit();
+		}
+
+		/**
+			\brief Returns lower limit.
+		*/
+		constexpr inline value_type getLowerLimit() const noexcept
+		{
+			return lLimit();
+		}
+
+		/**
+			\brief Returns upper checking function.
+		*/
+		constexpr inline pred_t getUpperPredicate() const noexcept
+		{
+			return uLimit_pred;
+		}
 		
+		/**
+			\brief Returns lower checking function.
+		*/
+		constexpr inline pred_t getLowerPredicate() const noexcept
+		{
+			return lLimit_pred;
+		}
+
 		/**
 			\brief Construct the object.
 
