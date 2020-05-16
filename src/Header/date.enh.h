@@ -469,7 +469,85 @@ namespace enh
 			}
 		}
 
-		
+		/**
+			\brief Get The date as a string.
+			Format : Day, ddth Month yyyy\n
+			eg : Tuesday, 12th May 2020
+			<h3>Overload</h3>
+			-# <code>inline std::string getStringDate(std::string format)
+			const;</code>\n
+		*/
+		inline std::string getStringDate() const
+		{
+			return getDayOfWeekString() + ", " + std::to_string(day.get()) 
+				+ getOrdinalIndicator(day.get()).data() + " " 
+				+ getMonthString().data() + " " + std::to_string(year);
+		}
+
+		/**
+			\brief Get The date as a string in custom format.
+			Pass Argument as a string containing any of the following
+			components.
+			<b>Day</b> : Name of day (Sunday) OR <b>shDay</b> : shortened
+			name (Sun).\n
+			<b>dd</b> : The date (20) OR <b>ddth</b> : date with
+			superscript (21st).\n
+			<b>Month</b> : The name of Month (January) OR <b>mm</b> : The
+			numerical month (01 for January) OR <b>shMonth</b> : The name of
+			month shortened (Jan).\n
+			<b>yyyy</b> : Year (2020).\n
+			<h3>Overload</h3>
+			-# <code>inline std::string getStringDate() const;</code>\n
+		*/
+		inline std::string getStringDate(
+			std::string format /**< : <i>in</i> : The format of date.*/
+		) const
+		{
+			std::size_t pDay, pshDay, pdd, pddth, pMonth, pmm, pshMonth,
+				pyyyy;
+			pshDay = format.find("shDay");
+			if (pshDay != std::string::npos)
+				format.replace(pshDay, 5, getShortDayOfWeekString());
+			else
+			{
+				pDay = format.find("Day");
+				if (pDay != std::string::npos)
+					format.replace(pDay, 3, getDayOfWeekString());
+			}
+
+			pddth = format.find("ddth");
+			if (pddth != std::string::npos)
+				format.replace(pddth, 4, signExtendValue(day, 2) +
+					getOrdinalIndicator(day.get()).data());
+			else
+			{
+				pdd = format.find("dd");
+				if (pdd != std::string::npos)
+					format.replace(pdd, 2, signExtendValue(day, 2));
+			}
+
+			pshMonth = format.find("shMonth");
+			if (pshMonth != std::string::npos)
+				format.replace(pshMonth, 7, getShortMonthString());
+			else
+			{
+				pMonth = format.find("Month");
+				if (pMonth != std::string::npos)
+					format.replace(pMonth, 5, getMonthString());
+				else
+				{
+					pmm = format.find("mm");
+					if (pmm != std::string::npos)
+						format.replace(pmm, 2, signExtendValue(month
+							+ 1, 2));
+				}
+			}
+
+			pyyyy = format.find("yyyy");
+			if (pyyyy != std::string::npos)
+				format.replace(pyyyy, 4, signExtendValue(year, 4));
+			return format;
+		}
 	};
 	
 
