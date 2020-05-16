@@ -98,15 +98,15 @@ namespace enh
 			upper and lower predicate.
 			Throws <code>std::invalid_argument</h3> if ulimit is less than llimit.
 		*/
-		inline constexpr confined_base(
-			const pred_t &upper_p /**< : <i>in</i> : The upper bounds 
+		constexpr inline confined_base(
+			pred_t upper_p /**< : <i>in</i> : The upper bounds 
 								  checker.*/,
-			const pred_t &lower_p /**< : <i>in</i> : The lower bounds
+			pred_t lower_p /**< : <i>in</i> : The lower bounds
 								  checker.*/,
-			const limit_t& upper_l /**< : <i>in</i> : Get the upper bounds.*/,
-			const limit_t& lower_l /**< : <i>in</i> : Get the lower bounds.*/,
-			const value_type &val /**< : <i>in</i> : The value to be set.*/
-		) : uLimit_pred(upper_p), lLimit_pred(lower_p), value(val),
+			limit_t upper_l /**< : <i>in</i> : Get the upper bounds.*/,
+			limit_t lower_l /**< : <i>in</i> : Get the lower bounds.*/,
+			value_type val /**< : <i>in</i> : The value to be set.*/
+		) :uLimit_pred(upper_p), lLimit_pred(lower_p), value(val),
 			uLimit(upper_l), lLimit(lower_l)
 		{
 			if (uLimit() < lLimit())
@@ -124,15 +124,15 @@ namespace enh
 			<h3>Exceptions</h3>
 			Throws <code>std::invalid_argument</h3> if ulimit is less than llimit.
 		*/
-		inline constexpr confined_base(
-			const pred_t &upper_p /**< : <i>in</i> : The upper bounds
+		constexpr inline confined_base(
+			pred_t upper_p /**< : <i>in</i> : The upper bounds
 								  checker.*/,
-			const pred_t &lower_p /**< : <i>in</i> : The lower bounds
+			pred_t lower_p /**< : <i>in</i> : The lower bounds
 								  checker.*/,
-			const limit_t &upper_l /**< : <i>in</i> : Get the upper bounds.*/,
-			const limit_t &lower_l /**< : <i>in</i> : Get the lower bounds.*/,
-		) : uLimit_pred(upper_p), lLimit_pred(lower_p),
-			uLimit(upper_l), lLimit(lower_l)
+			limit_t upper_l /**< : <i>in</i> : Get the upper bounds.*/,
+			limit_t lower_l /**< : <i>in</i> : Get the lower bounds.*/
+		) :uLimit_pred(upper_p), lLimit_pred(lower_p),
+			uLimit(upper_l), lLimit(lower_l), value(0)
 		{
 			if (uLimit() < lLimit())
 				throw std::invalid_argument("upper limit should be greater than lower");
@@ -146,7 +146,7 @@ namespace enh
 			Throws <code>std::invalid_argument</code> if value is not within
 			limits.
 		*/
-		inline constexpr set(
+		constexpr inline void set(
 			const value_type &val /**< : <i>in</i> : The value to be set.*/
 		)
 		{
@@ -160,7 +160,7 @@ namespace enh
 		/**
 			\brief Returns the value held.
 		*/
-		inline constexpr value_type get() const noexcept { return value; }
+		constexpr inline value_type get() const noexcept { return value; }
 
 		/**
 			\brief Adds single unit to the value held.
@@ -169,7 +169,7 @@ namespace enh
 			Returns 1 if value goes above upper limit and value is set to 
 			lower limit.
 		*/
-		inline constexpr unsigned add() noexcept
+		constexpr inline unsigned add() noexcept
 		{
 			++value;
 			if (!uLimit_pred(value))
@@ -190,21 +190,21 @@ namespace enh
 			for confining between 2 and 9 (inclusive),
 			from  value 6, add(20) will return 3 and sets value to 5.
 		*/
-		template<class integral_>
-		inline constexpr unsigned add(
-			integral_ additional /**< : <i>in</i> : The number of units to
+		constexpr inline unsigned add(
+			unsigned long long additional /**< : <i>in</i> : The number of units to
 								  add.*/
 		) noexcept
 		{
-			integral_ rem = additional % (uLimit() - lLimit());
+			unsigned long long rem = additional % (uLimit() - lLimit());
 			unsigned ret = additional / (uLimit() - lLimit());
 
-			if (!uLimit_pred(value + rem))
+			if (!uLimit_pred((unsigned long long)(value) + rem))
 			{
 				value = value + rem + lLimit() - uLimit();
 				++ret;
 			}
-			value += rem;
+			else
+				value += rem;
 			return ret;
 		}
 
@@ -214,7 +214,7 @@ namespace enh
 			<h3>Return</h3>
 			Reference to current object.
 		*/
-		inline constexpr confined_base<value_type> &operator ++() noexcept
+		constexpr inline confined_base<value_type> &operator ++() noexcept
 		{
 			add();
 			return *this;
@@ -226,7 +226,7 @@ namespace enh
 			<h3>Return</h3>
 			Previous state of object.
 		*/
-		inline constexpr confined_base<value_type> operator ++(int) noexcept
+		constexpr inline confined_base<value_type> operator ++(int) noexcept
 		{
 			confined_base<value_type> temp = *this;
 			add();
@@ -237,9 +237,8 @@ namespace enh
 			\brief Adds to current object and returns reference to the 
 			current object.
 		*/
-		template<class integral_>
-		inline constexpr confined_base<value_type> &operator += (
-			integral_ val /**< : <i>in</i> : The number of units to
+		constexpr inline confined_base<value_type> &operator += (
+			unsigned long long val /**< : <i>in</i> : The number of units to
 								  add.*/
 		)
 		{
@@ -254,7 +253,7 @@ namespace enh
 			Returns 1 if value goes below lower limit and value is set to
 			upper limit.
 		*/
-		inline constexpr unsigned sub() noexcept
+		constexpr inline unsigned sub() noexcept
 		{
 			--value;
 			if (!lLimit_pred(value))
@@ -275,13 +274,12 @@ namespace enh
 			for confining between 2 and 9 (inclusive),
 			from  value 6, sub(20) will return 3 and set value to 7.
 		*/
-		template<class integral_>
-		inline constexpr unsigned sub(
-			integral_ difference /**< : <i>in</i> : The number of units to 
+		constexpr inline unsigned sub(
+			unsigned long long difference /**< : <i>in</i> : The number of units to
 								 subtract.*/
 		) noexcept
 		{
-			integral_ rem = difference % (uLimit() - lLimit());
+			unsigned long long rem = difference % (uLimit() - lLimit());
 			unsigned ret = difference / (uLimit() - lLimit());
 
 			rem = value - rem;
@@ -290,7 +288,8 @@ namespace enh
 				value = rem + uLimit() - lLimit();
 				++ret;
 			}
-			value = rem;
+			else
+				value = rem;
 			return ret;
 		}
 
@@ -300,7 +299,7 @@ namespace enh
 			<h3>Return</h3>
 			Reference to current object.
 		*/
-		inline constexpr confined_base<value_type> &operator --() noexcept
+		constexpr inline confined_base<value_type> &operator --() noexcept
 		{
 			sub();
 			return *this;
@@ -312,7 +311,7 @@ namespace enh
 			<h3>Return</h3>
 			Previous state of object.
 		*/
-		inline constexpr confined_base<value_type> operator --(int) noexcept
+		constexpr inline confined_base<value_type> operator --(int) noexcept
 		{
 			confined_base<value_type> temp = *this;
 			sub();
@@ -323,9 +322,8 @@ namespace enh
 			\brief Subtracts from the current object and returns reference 
 			to the current object.
 		*/
-		template<class integral_>
-		inline constexpr confined_base<value_type> &operator -= (
-			integral_ val /**< : <i>in</i> : The number of units to
+		constexpr inline confined_base<value_type> &operator -= (
+			unsigned long long val /**< : <i>in</i> : The number of units to
 								  subtract.*/
 		)
 		{
@@ -347,7 +345,7 @@ namespace enh
 			<h3>Return</h3>
 			Returns true if any change happend.
 		*/
-		inline constexpr bool re_eval() noexcept
+		constexpr inline bool re_eval() noexcept
 		{
 			if (!uLimit_pred(value))
 			{
@@ -368,10 +366,10 @@ namespace enh
 		\brief Adds rhs to a copy of lhs then returns the sum. 
 	*/
 	template<class integral>
-	inline constexpr confined_base<integral> operator +(
+	constexpr inline confined_base<integral> operator +(
 		const confined_base<integral> &lhs /**< : <i>in</i> : LHS argument 
 										   of operator.*/,
-		const integral &rhs /**< : <i>in</i> : RHS argument of operator.*/
+		const unsigned long long &rhs /**< : <i>in</i> : RHS argument of operator.*/
 	) noexcept
 	{
 		return confined_base<integral>(lhs).add(rhs);
@@ -381,8 +379,8 @@ namespace enh
 		\brief Adds lhs to a copy of rhs then returns the sum.
 	*/
 	template<class integral>
-	inline constexpr confined_base<integral> operator +(
-		const integral &lhs  /**< : <i>in</i> : LHS argument of operator.*/,
+	constexpr inline confined_base<integral> operator +(
+		const unsigned long long &lhs  /**< : <i>in</i> : LHS argument of operator.*/,
 		const confined_base<integral> &rhs /**< : <i>in</i> : RHS argument
 										   of operator.*/
 	) noexcept
@@ -394,10 +392,10 @@ namespace enh
 		\brief Subtracts rhs to a copy of lhs then returns the difference.
 	*/
 	template<class integral>
-	inline constexpr confined_base<integral> operator -(
+	constexpr inline confined_base<integral> operator -(
 		const confined_base<integral> &lhs /**< : <i>in</i> : LHS argument
 										   of operator.*/,
-		const integral &rhs /**< : <i>in</i> : RHS argument of operator.*/
+		const unsigned long long &rhs /**< : <i>in</i> : RHS argument of operator.*/
 		) noexcept
 	{
 		return confined_base<integral>(lhs).sub(rhs);
@@ -407,8 +405,8 @@ namespace enh
 		\brief Subtracts lhs to a copy of rhs then returns the difference.
 	*/
 	template<class integral>
-	inline constexpr confined_base<integral> operator -(
-		const integral &lhs  /**< : <i>in</i> : LHS argument of operator.*/,
+	constexpr inline confined_base<integral> operator -(
+		const unsigned long long &lhs  /**< : <i>in</i> : LHS argument of operator.*/,
 		const confined_base<integral> &rhs /**< : <i>in</i> : RHS argument
 										   of operator.*/
 		) noexcept
