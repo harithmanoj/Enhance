@@ -233,9 +233,10 @@ namespace enh
 				
 	*/
 	template<class integral>
-	std::string getOrdinalIndicator(integral value)
+	constexpr inline std::string_view getOrdinalIndicator(integral value)
 	{
-		static_assert(std::is_integral_v<integral>, "Ordinal Indicator is for integral types");
+		static_assert(std::is_integral_v<integral>, "Ordinal Indicator is \
+										for integral types");
 		if ((value / 10) % 10 == 1)
 			return "th";
 		if (value % 10 == 1)
