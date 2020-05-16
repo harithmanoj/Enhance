@@ -364,7 +364,57 @@ namespace enh
 
 	};
 
+	/**
+		\brief Adds rhs to a copy of lhs then returns the sum. 
+	*/
+	template<class integral>
+	inline constexpr confined_base<integral> operator +(
+		const confined_base<integral> &lhs /**< : <i>in</i> : LHS argument 
+										   of operator.*/,
+		const integral &rhs /**< : <i>in</i> : RHS argument of operator.*/
+	) noexcept
+	{
+		return confined_base<integral>(lhs).add(rhs);
+	}
 
+	/**
+		\brief Adds lhs to a copy of rhs then returns the sum.
+	*/
+	template<class integral>
+	inline constexpr confined_base<integral> operator +(
+		const integral &lhs  /**< : <i>in</i> : LHS argument of operator.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : RHS argument
+										   of operator.*/
+	) noexcept
+	{
+		return confined_base<integral>(rhs).add(lhs);
+	}
+
+	/**
+		\brief Subtracts rhs to a copy of lhs then returns the difference.
+	*/
+	template<class integral>
+	inline constexpr confined_base<integral> operator -(
+		const confined_base<integral> &lhs /**< : <i>in</i> : LHS argument
+										   of operator.*/,
+		const integral &rhs /**< : <i>in</i> : RHS argument of operator.*/
+		) noexcept
+	{
+		return confined_base<integral>(lhs).sub(rhs);
+	}
+
+	/**
+		\brief Subtracts lhs to a copy of rhs then returns the difference.
+	*/
+	template<class integral>
+	inline constexpr confined_base<integral> operator -(
+		const integral &lhs  /**< : <i>in</i> : LHS argument of operator.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : RHS argument
+										   of operator.*/
+		) noexcept
+	{
+		return confined_base<integral>(rhs).sub(lhs);
+	}
 }
 
 
