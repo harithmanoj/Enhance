@@ -31,6 +31,7 @@
 
 #include "general.enh.h"
 #include "numeral_system.enh.h"
+#include <string_view>
 #include <ctime>
 #include <exception>
 #include <stdexcept>
@@ -347,6 +348,93 @@ namespace enh
 		{
 			setDate();
 		}
+
+		/**
+			\brief The day of this month.
+		*/
+		constexpr inline unsigned short getDayOfMonth() const noexcept 
+		{
+			return day.get(); 
+		}
+
+		/**
+			\brief The number of months after January of this year.
+		*/
+		constexpr inline unsigned short getMonth() const noexcept 
+		{ 
+			return month.get(); 
+		}
+
+		/**
+			\brief The name of the month.
+		*/
+		constexpr inline std::string_view getMonthString() const noexcept
+		{
+			switch (month.get())
+			{
+			case 0: return "January";
+			case 1: return "February";
+			case 2: return "March";
+			case 3: return "April";
+			case 4: return "May";
+			case 5: return "June";
+			case 6: return "July";
+			case 7: return "August";
+			case 8: return "September";
+			case 9: return "October";
+			case 10: return "November";
+			case 11: return "December";
+			default: return "Error";
+			}
+		}
+
+		/**
+			\brief The name of the month (shortened).
+		*/
+		constexpr inline std::string_view getShortMonthString() const noexcept
+		{
+			switch (month.get())
+			{
+			case 0: return "Jan";
+			case 1: return "Feb";
+			case 2: return "Mar";
+			case 3: return "Apr";
+			case 4: return "May";
+			case 5: return "Jun";
+			case 6: return "Jul";
+			case 7: return "Aug";
+			case 8: return "Sep";
+			case 9: return "Oct";
+			case 10: return "Nov";
+			case 11: return "Dec";
+			default: return "Error";
+			}
+		}
+
+		/**
+			\brief The Year.
+		*/
+		constexpr inline long getYear() const noexcept { return year; }
+
+		/**
+			\brief The number of days after last Sunday.
+		*/
+		constexpr inline unsigned short getDayOfWeek() const noexcept 
+		{ 
+			return wkday.get();
+		}
+
+
+		/**
+			\brief The number of days after 1st of January this year.
+		*/
+		constexpr inline unsigned getDayOfYear() const noexcept 
+		{ 
+			return yrday.get();
+		}
+
+
+
 	};
 	
 
