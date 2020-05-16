@@ -30,6 +30,7 @@
 #define DATE_ENH_H							date.enh.h
 
 #include "general.enh.h"
+#include "numeral_system.enh.h"
 #include <ctime>
 #include <exception>
 #include <stdexcept>
@@ -137,6 +138,69 @@ namespace enh
 		tmp += week;
 		return tmp % 7;
 	}
+
+
+	namespace date_types
+	{
+		/**
+			\brief Numerical value confined to ones that month can take 
+			[0,11].
+		*/
+		using month_t = NumericSystem<unsigned short, 12>;
+
+		/**
+			\brief Numerical value confined to ones that week day can take
+			[0,6].
+		*/
+		using weekday_t = NumericSystem<unsigned short, 7>;
+
+		/**
+			\brief Neumerical type that is confined to interval 
+			[1,month_limit].
+
+			<b>NOTE</b> : The argument references lifetime must be longer or 
+			equal to the lifetime of this object. This is used to get the 
+			upper limit for date.
+
+		*/
+		class day_t : public confined_base<unsigned short>
+		{
+			
+		public:
+
+			/**
+				\brief Constructor for the day_t.
+
+				<b>NOTE</b> : References must last atleast until this object 
+				destructs.
+			*/
+			constexpr inline day_t(
+				const month_t &mnth /**< : <i>in</i> : The value of month.*/,
+				const long long &yr /**< : <i>in</i> : The value of year.*/,
+				unsigned short dy /**< : <i>in</i> : The value of day.*/
+			) : confined_base(
+					[&](long long a) 
+					{
+						return (a <= month_limit(mnth.get(), yr));
+					},
+					[&](long long a)
+					{
+						return (a >= 1);
+					},
+					[&]()
+					{
+						return month_limit(mnth.get(), yr);
+					},
+					[&]()
+					{
+						return 1;
+					},
+					dy)
+			{}
+		};
+
+	}
+
 
 	/**
 		\brief Class to represent date.
