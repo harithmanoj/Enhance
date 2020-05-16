@@ -227,6 +227,8 @@ namespace enh
 								  add.*/
 		) noexcept
 		{
+			if (additional == 0)
+				return 0;
 			unsigned long long rem = additional % (uLimit() - lLimit());
 			unsigned ret = additional / (uLimit() - lLimit());
 
@@ -311,6 +313,8 @@ namespace enh
 								 subtract.*/
 		) noexcept
 		{
+			if (difference == 0)
+				return 0;
 			unsigned long long rem = difference % (uLimit() - lLimit());
 			unsigned ret = difference / (uLimit() - lLimit());
 
