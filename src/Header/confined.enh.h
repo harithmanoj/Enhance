@@ -26,7 +26,7 @@
 
 #ifndef CONFINED_ENH_H
 
-#define CONFINED_ENH_H
+#define CONFINED_ENH_H							confined.enh.h
 
 #include <functional>
 #include <stdexcept>
