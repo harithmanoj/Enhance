@@ -30,7 +30,6 @@
 
 #include <functional>
 #include <stdexcept>
-#include "framework.enh.h"
 
 
 namespace enh
@@ -92,10 +91,11 @@ namespace enh
 			return 0;
 		}
 
-		inline constexpr unsigned add(value_type additional) noexcept
+		template<class integral_>
+		inline constexpr unsigned add(integral_ additional) noexcept
 		{
-			value_type rem = additional % (uLimit() - lLimit());
-			value_type ret = additional / (uLimit() - lLimit());
+			integral_ rem = additional % (uLimit() - lLimit());
+			unsigned ret = additional / (uLimit() - lLimit());
 
 			value += rem;
 			if (!uLimit_pred(value))
@@ -105,6 +105,47 @@ namespace enh
 			}
 
 			return ret;
+		}
+
+		inline constexpr unsigned sub() noexcept
+		{
+			--value;
+			if (!lLimit_pred(value))
+			{
+				value = uLimit();
+				return 1;
+			}
+			return 0;
+		}
+
+		template<class integral_>
+		inline constexpr unsigned sub(integral_ difference) noexcept
+		{
+			integral_ rem = difference % (uLimit() - lLimit());
+			unsigned ret = difference / (uLimit() - lLimit());
+
+			value -= rem;
+			if (!lLimit_pred(value))
+			{
+				value = value + uLimit() - lLimit();
+				++ret;
+			}
+			return ret;
+		}
+
+		inline constexpr bool re_eval() noexcept
+		{
+			if (!uLimit_pred(value))
+			{
+				value = uLimit();
+				return true;
+			}
+			if (!lLimit_pred(value))
+			{
+				value = lLimit();
+				return true;
+			}
+			return false;
 		}
 	};
 }
