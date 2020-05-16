@@ -662,6 +662,29 @@ namespace enh
 		{
 			return !isLesserThan(dt);
 		}
+
+		/**
+			\brief Add number of days to the current date.
+		*/
+		constexpr inline void addDay(
+			unsigned long long dy /**< : <i>in</i> : The days to add.*/
+		) noexcept
+		{
+			unsigned long long additional = dy % (365 + 365 + 365 + 366);
+			unsigned long long yr_add = 4 * (dy / (365 + 365 + 365 + 366));
+			year += yr_add;
+
+			auto current_step = month_limit(month.get(), year) - 1;
+			while (additional > current_step)
+			{
+				year += month.add(day.add(current_step));
+				
+				additional -= current_step;
+				current_step = month_limit(month.get(), year) - 1;
+			}
+			
+			year += month.add(day.add(additional));			
+		}
 	};
 	
 
