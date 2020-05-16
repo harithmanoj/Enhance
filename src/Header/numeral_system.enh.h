@@ -86,10 +86,29 @@ namespace enh
 	*/
 	namespace numeric
 	{
+		/**
+			\brief Type with upper limit at 10.
+		*/
 		using dec = NumericSystem<unsigned short, 10U>;
+		
+		/**
+			\brief Type with upper limit at 100.
+		*/
 		using cent = NumericSystem<unsigned short, 100U>;
+		
+		/**
+			\brief Type with upper limit at 1000.
+		*/
 		using kilo = NumericSystem<unsigned short, 1000U>;
+		
+		/**
+			\brief Type with upper limit at 1000000.
+		*/
 		using mill = NumericSystem<unsigned long, 1000000UL>;
+
+		/**
+			\brief Type with upper limit at 1000000000.
+		*/
 		using bill = NumericSystem<unsigned long, 1000000000ULL>
 	}
 
