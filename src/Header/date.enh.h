@@ -227,7 +227,7 @@ namespace enh
 			) : confined_base(
 				[&](long long a)
 				{
-					return (a <= year_limit(yr));
+					return (a < year_limit(yr));
 				},
 				[&](long long a)
 				{
@@ -235,7 +235,7 @@ namespace enh
 				},
 					[&]()
 				{
-					return year_limit(yr);
+					return year_limit(yr) - 1;
 				},
 					[&]()
 				{
@@ -249,9 +249,9 @@ namespace enh
 
 	class date
 	{
-		date_types::day_t day;
+		long long year; 
 		date_types::month_t month;
-		long long year;
+		date_types::day_t day;
 		date_types::weekday_t wkday;
 		date_types::yearday_t yrday;
 
@@ -305,6 +305,27 @@ namespace enh
 		{
 			setDate(std::time(nullptr));
 		}
+
+		/**
+			\brief Sets the date to the date indicated by arguments.
+
+			<h3>Exception</h3>
+			Throws <code>std::invalid_argument</code> if dy, mnth, week, ydy is
+			not within bounds. [0,month_limit], [0,11], [0,6], [0,year_limit)
+			respectively.
+		*/
+		constexpr inline date(
+			unsigned short dy /**< : <i>in</i> : The day of the month
+							  [1,month_limit].*/,
+			unsigned short mnth /**< : <i>in</i> : The number of months after
+								January [0,11].*/,
+			long yr /**< : <i>in</i> : The Year.*/,
+			unsigned short week /**< : <i>in</i> : The day of the week after
+								Sunday [0,6].*/,
+			unsigned ydy /**< : <i>in</i> : The number of day after 01 January
+						 of that year [1,year_limit).*/
+		) : year(yr), month(mnth), day(month, year, dy), wkday(week),
+			yrday(year, ydy) {}
 	};
 	
 
