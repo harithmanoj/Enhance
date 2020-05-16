@@ -32,6 +32,7 @@
 
 #include <atomic>
 #include <type_traits>
+#include <string>
 
 
 namespace enh
