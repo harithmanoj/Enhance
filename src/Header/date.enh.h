@@ -60,7 +60,7 @@ namespace enh
 	*/
 	inline constexpr unsigned short month_limit(
 		unsigned short mnth /**< : <i>in</i> : The month count.*/,
-		long yr /**< : <i>in</i> : The year count.*/
+		long long yr /**< : <i>in</i> : The year count.*/
 	) noexcept
 	{
 		switch (mnth)
@@ -117,7 +117,7 @@ namespace enh
 		\brief The maximum date for that year.
 	*/
 	inline constexpr unsigned year_limit(
-		long yr /**< : <i>in</i> : The year count.*/
+		long long yr /**< : <i>in</i> : The year count.*/
 	) noexcept
 	{
 		if (yr % 4 == 0)
@@ -414,7 +414,7 @@ namespace enh
 		/**
 			\brief The Year.
 		*/
-		constexpr inline long getYear() const noexcept { return year; }
+		constexpr inline long long getYear() const noexcept { return year; }
 
 		/**
 			\brief The number of days after last Sunday.
@@ -517,13 +517,13 @@ namespace enh
 
 			pddth = format.find("ddth");
 			if (pddth != std::string::npos)
-				format.replace(pddth, 4, signExtendValue(day, 2) +
+				format.replace(pddth, 4, signExtendValue(day.get(), 2) +
 					getOrdinalIndicator(day.get()).data());
 			else
 			{
 				pdd = format.find("dd");
 				if (pdd != std::string::npos)
-					format.replace(pdd, 2, signExtendValue(day, 2));
+					format.replace(pdd, 2, signExtendValue(day.get(), 2));
 			}
 
 			pshMonth = format.find("shMonth");
@@ -538,7 +538,7 @@ namespace enh
 				{
 					pmm = format.find("mm");
 					if (pmm != std::string::npos)
-						format.replace(pmm, 2, signExtendValue(month
+						format.replace(pmm, 2, signExtendValue(month.get()
 							+ 1, 2));
 				}
 			}
