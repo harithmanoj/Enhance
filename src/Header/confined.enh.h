@@ -222,7 +222,7 @@ namespace enh
 			for confining between 2 and 9 (inclusive),
 			from  value 6, add(20) will return 3 and sets value to 5.
 		*/
-		constexpr inline unsigned add(
+		constexpr inline unsigned long long add(
 			unsigned long long additional /**< : <i>in</i> : The number of units to
 								  add.*/
 		) noexcept
@@ -230,7 +230,7 @@ namespace enh
 			if (additional == 0)
 				return 0;
 			unsigned long long rem = additional % (uLimit() - lLimit());
-			unsigned ret = additional / (uLimit() - lLimit());
+			unsigned long long ret = additional / (uLimit() - lLimit());
 
 			if (!uLimit_pred((unsigned long long)(value) + rem))
 			{
@@ -308,7 +308,7 @@ namespace enh
 			for confining between 2 and 9 (inclusive),
 			from  value 6, sub(20) will return 3 and set value to 7.
 		*/
-		constexpr inline unsigned sub(
+		constexpr inline unsigned long long sub(
 			unsigned long long difference /**< : <i>in</i> : The number of units to
 								 subtract.*/
 		) noexcept
@@ -316,7 +316,7 @@ namespace enh
 			if (difference == 0)
 				return 0;
 			unsigned long long rem = difference % (uLimit() - lLimit());
-			unsigned ret = difference / (uLimit() - lLimit());
+			unsigned long long ret = difference / (uLimit() - lLimit());
 
 			rem = value - rem;
 			if (!lLimit_pred(rem))
