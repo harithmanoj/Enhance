@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['info_5ftype_391',['info_type',['../classenh_1_1queued__process.html#a2cc8dbc12c9c5c730bc4b0c7ea71e2af',1,'enh::queued_process']]]
+  ['dec_435',['dec',['../namespaceenh_1_1numeric.html#a383f3096b018e92870fd3d65dfdd5af6',1,'enh::numeric']]]
 ];

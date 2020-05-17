@@ -29,7 +29,6 @@
 
 #define QUEUED_PROCESS_ENH_H						queued_process.enh.h
 
-#include "logger.enh.h"
 #include "error_base.enh.h"
 
 #include <mutex>

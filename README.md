@@ -33,7 +33,7 @@ version info.
 
 Exists in `namespace enh`.
 
-### Headers :
+### Headers 
 
 `framework.enh.h`
 
@@ -52,9 +52,13 @@ General is a library of functions for general use.
 
 Exists in `namespace enh`.
 
-### Headers :
+### Headers 
 
 `general.enh.h`
+
+`confined.enh.h`
+
+`numeral_system.enh.h`
 
 ### The Library 
 
@@ -63,6 +67,8 @@ Exists in `namespace enh`.
 * Signum function and inclusive_ration (also constexpr).
 * getOrdinalIndicator returns "th", "st", "nd" "rd" according to argument passed.
 * signExtend extends the string format of a numeral by prepending '0' s
+* confined_base class for storing a value within bounds
+* NumericSystem class for storing a value within 0 and an upper limit.
  
 _______________________________________________________________________________
 ## Diagnose
@@ -75,7 +81,7 @@ Exists in `namespace debug`, but use Macros for logging easily.
 
 See `logger.enh.h` documentation for usage.
 
-### Headers :
+### Headers 
 
 `logger.enh.h`
 
@@ -94,7 +100,7 @@ various error handling uses.
 
 Exists in `namespace enh`.
 
-### Headers :
+### Headers 
 
 `error_base.enh.h`
 
@@ -113,7 +119,7 @@ Library for ease of concurrent programming.
 
 Exists in `namespace enh`.
 
-### Headers :
+### Headers 
 
 `queued_process.enh.h`
 
@@ -128,7 +134,7 @@ Library for time tracking, synchronisation etc.
 
 Exists in `namespace enh`.
 
-### Header:
+### Header
 
 `timer.enh.h`
 
@@ -164,36 +170,66 @@ project.
 ### Dependencies
 
 * `framework.enh.h` depends only on standard c++ headers.
-* `general.enh.h` depends on `framework.enh.h`
-* `logger.enh.h` depends on `framework.enh.h` but requires compilation of `logger.cpp`
-* `error_base.enh.h` depends on `framework.enh.h`, `general.enh.h`, `logger.enh.h`
-* `queued_process.enh.h` depends on `error_base.enh.h`, `framework.enh.h`, `general.enh.h`, `logger.enh.h`
-* `counter.enh.h` depends on `framework.enh.h`
-* `timer.enh.h` depends on `framework.enh.h`, `logger.enh.h`
-* `date.enh.h` depends on `general.enh.h`, `framework.enh.h`
-* `time_stamp.enh.h` depends on `date.enh.h`, `general.enh.h`, `framework.enh.h`
-* `date_time.enh.h` depends on `time_stamp.enh.h`, `date.enh.h`, `general.enh.h`, `framework.enh.h`
+* `general.enh.h` depends only on standard c++ headers.
+* `logger.enh.h` depends only on standard c++ headers but requires 
+compilation of `logger.cpp`.
+* `error_base.enh.h` depends on `general.enh.h`, `logger.enh.h`.
+* `queued_process.enh.h` depends on `error_base.enh.h`, `general.enh.h`, 
+`logger.enh.h`.
+* `counter.enh.h` depends only on standard c++ headers.
+* `timer.enh.h` depends on `logger.enh.h`.
+* `date.enh.h` depends on `general.enh.h`, `numerical_system.enh.h`, 
+`confined.enh.h`.
+* `time_stamp.enh.h` depends on `date.enh.h`, `general.enh.h`, 
+`numerical_system.enh.h`, `confined.enh.h`.
+* `date_time.enh.h` depends on `time_stamp.enh.h`, `date.enh.h`, 
+`general.enh.h`, `numerical_system.enh.h`, `confined.enh.h`.
 
 ### Dependency Graph
 
-                                                  framework.enh.h
+                   logger.enh.h      general.enh.h       confined.enh.h          framework.enh.h 
+                     |       |             |                   |
+                     |   logger.cpp        |                   |                       counter.enh.h 
+                     |                     |                   |
+         +-----------+------+    +---------+---------+  numeral_system.enh
+         |                  |    |                   |     |
+     timer.enh.h        error_base.enh.h             |     |
+                              |                     date.enh.h
+                     queued_process.enh.h               |
+                                                 time_stamp.enh.h
                                                         |
-                  +-------------------------------------+--------------------------------------------------+
-                  |                                     |                                                  |
-             general.enh.h                        logger.enh.h                                       counter.enh.h
-                  |                                   (logger.cpp)
-          +-------+-------------+                       |
-          |                     |     +-----------------+------------------+
-      date.enh.h                |     |                                    |
-          |                 error_base.enh.h                          timer.enh.h
-    time_stamp.enh.h               |
-          |                queued_process.enh.h
-    date_time.enh.h
+                                                  date_time.enh.h
+
+### Module wise dependency
+
+* %Diagnose : `logger.enh.h`, `logger.cpp`
+* %General : `general.enh.h`
+* %Framework : `framework.enh.h`
+* %Counter : `counter.enh.h`
+* %Confined : `confined.enh.h`, `numerical_system.enh.h`
+* %Timer : `timer.enh.h` depends on %Diagnose
+* %Error : `error_base.enh.h` depends on %Diagnose, %General
+* %QProc : `queued_process.enh.h` depends on %Error, %Diagnose, %General
+* %DateTime : `date.enh.h`, `time_stamp.enh.h`, `date_time.enh.h` depends on 
+%Confined, %General
+
+Graph:
+
+
+            Diagnose          General  Confined    Framework
+               |                 |        |               
+      +--------+-------+ +-------+-----+  |            Counter
+      |                | |             |  |
+    Timer             Error          DateTime
+                        |
+                      QProc
 
 ## Contribution
 
 
-Code contribution is welcome. Refer [Contributing.md](https://github.com/harithmanoj/Enhance/blob/master/Contributing.md) for ways to contribute.
+Code contribution is welcome. Refer [Contributing.md]
+(https://github.com/harithmanoj/Enhance/blob/master/Contributing.md) 
+for ways to contribute.
 
 
 

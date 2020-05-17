@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Enhance
-   &#160;<span id="projectnumber">1.3.0.4</span>
+   &#160;<span id="projectnumber">1.3.1.5</span>
    </div>
    <div id="projectbrief">Enhance is a collection of C++ libraries for different uses</div>
   </td>
@@ -70,6 +70,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">date.enh.h File Reference</div>  </div>
@@ -79,14 +80,19 @@ $(function() {
 <p>File for date class.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="general_8enh_8h.html">general.enh.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="numeral__system_8enh_8h.html">numeral_system.enh.h</a>&quot;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
 <code>#include &lt;ctime&gt;</code><br />
 <code>#include &lt;exception&gt;</code><br />
 <code>#include &lt;stdexcept&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html">enh::date</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to represent date.  <a href="classenh_1_1date.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1dt__type_1_1day__t.html">enh::dt_type::day_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Neumerical type that is confined to interval [1,month_limit].  <a href="classenh_1_1dt__type_1_1day__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1dt__type_1_1yearday__t.html">enh::dt_type::yearday_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Neumerical type that is confined to interval [1,year_limit].  <a href="classenh_1_1dt__type_1_1yearday__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -94,18 +100,32 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceenh"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html">enh</a></td></tr>
 <tr class="memdesc:namespaceenh"><td class="mdescLeft">&#160;</td><td class="mdescRight">The namespace for all the functions and classes of this library. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceenh_1_1dt__type"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh_1_1dt__type.html">enh::dt_type</a></td></tr>
+<tr class="memdesc:namespaceenh_1_1dt__type"><td class="mdescLeft">&#160;</td><td class="mdescRight">The namespace for storing date and time elements seperately. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a4e2b3f7aa5310ff4e47076969dd50e27"><td class="memItemLeft" align="right" valign="top"><a id="a4e2b3f7aa5310ff4e47076969dd50e27"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh_1_1dt__type.html#a4e2b3f7aa5310ff4e47076969dd50e27">enh::dt_type::month_t</a> = NumericSystem&lt; unsigned short, 12 &gt;</td></tr>
+<tr class="memdesc:a4e2b3f7aa5310ff4e47076969dd50e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numerical value confined to ones that month can take [0,11]. <br /></td></tr>
+<tr class="separator:a4e2b3f7aa5310ff4e47076969dd50e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2428982d707ea69f8025a0109f1ab4af"><td class="memItemLeft" align="right" valign="top"><a id="a2428982d707ea69f8025a0109f1ab4af"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh_1_1dt__type.html#a2428982d707ea69f8025a0109f1ab4af">enh::dt_type::weekday_t</a> = NumericSystem&lt; unsigned short, 7 &gt;</td></tr>
+<tr class="memdesc:a2428982d707ea69f8025a0109f1ab4af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numerical value confined to ones that week day can take [0,6]. <br /></td></tr>
+<tr class="separator:a2428982d707ea69f8025a0109f1ab4af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4dcc172e289b03b0295ea140d68a274b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a4dcc172e289b03b0295ea140d68a274b">enh::localtime</a> (tm *str_tm, time_t *arith_tm)</td></tr>
 <tr class="memdesc:a4dcc172e289b03b0295ea140d68a274b"><td class="mdescLeft">&#160;</td><td class="mdescRight">wrapper over unsafe localtime function.  <a href="namespaceenh.html#a4dcc172e289b03b0295ea140d68a274b">More...</a><br /></td></tr>
 <tr class="separator:a4dcc172e289b03b0295ea140d68a274b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a89d6dc1f27d7423607ffe07f6bb3c0"><td class="memItemLeft" align="right" valign="top">constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a3a89d6dc1f27d7423607ffe07f6bb3c0">enh::month_limit</a> (unsigned short mnth, long yr) noexcept</td></tr>
-<tr class="memdesc:a3a89d6dc1f27d7423607ffe07f6bb3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum date for that month.  <a href="namespaceenh.html#a3a89d6dc1f27d7423607ffe07f6bb3c0">More...</a><br /></td></tr>
-<tr class="separator:a3a89d6dc1f27d7423607ffe07f6bb3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd8eedb8bd3b3548af8f4ecdd1afec12"><td class="memItemLeft" align="right" valign="top">constexpr unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#afd8eedb8bd3b3548af8f4ecdd1afec12">enh::year_limit</a> (long yr) noexcept</td></tr>
-<tr class="memdesc:afd8eedb8bd3b3548af8f4ecdd1afec12"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum date for that year.  <a href="namespaceenh.html#afd8eedb8bd3b3548af8f4ecdd1afec12">More...</a><br /></td></tr>
-<tr class="separator:afd8eedb8bd3b3548af8f4ecdd1afec12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27050797d2d5a5cfcbedce528d2c4ccd"><td class="memItemLeft" align="right" valign="top">constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a27050797d2d5a5cfcbedce528d2c4ccd">enh::month_limit</a> (unsigned short mnth, long long yr) noexcept</td></tr>
+<tr class="memdesc:a27050797d2d5a5cfcbedce528d2c4ccd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum date for that month.  <a href="namespaceenh.html#a27050797d2d5a5cfcbedce528d2c4ccd">More...</a><br /></td></tr>
+<tr class="separator:a27050797d2d5a5cfcbedce528d2c4ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d4771e8332732a22b633252b8d16073"><td class="memItemLeft" align="right" valign="top">constexpr unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a7d4771e8332732a22b633252b8d16073">enh::year_limit</a> (long long yr) noexcept</td></tr>
+<tr class="memdesc:a7d4771e8332732a22b633252b8d16073"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum date for that year.  <a href="namespaceenh.html#a7d4771e8332732a22b633252b8d16073">More...</a><br /></td></tr>
+<tr class="separator:a7d4771e8332732a22b633252b8d16073"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ad12d5acd9f98c7a028dbcaea95019c"><td class="memItemLeft" align="right" valign="top"><a id="a2ad12d5acd9f98c7a028dbcaea95019c"></a>
 constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenh.html#a2ad12d5acd9f98c7a028dbcaea95019c">enh::week_day_increments</a> (unsigned short week, unsigned long day_count) noexcept</td></tr>
 <tr class="memdesc:a2ad12d5acd9f98c7a028dbcaea95019c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The week day after day_count number of days from week. <br /></td></tr>

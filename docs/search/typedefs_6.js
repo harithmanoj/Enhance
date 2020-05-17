@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['seconds_397',['seconds',['../namespaceenh.html#a0e90f21da57b74c795abcad09d29622a',1,'enh']]]
+  ['kilo_440',['kilo',['../namespaceenh_1_1numeric.html#aea34a241e02cd673f8e39ede26265072',1,'enh::numeric']]]
 ];

@@ -31,7 +31,6 @@
 #define ERROR_BASE_ENH_H				error_base.enh.h
 
 #include <atomic>
-#include "framework.enh.h"
 #include "general.enh.h"
 #include "logger.enh.h"
 
