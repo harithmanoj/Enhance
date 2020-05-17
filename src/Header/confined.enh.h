@@ -42,6 +42,11 @@ namespace enh
 
 		<h3>template</h3>
 		<code>integral</code> : The integral type of the value.
+
+		<h3>Example</h3>
+
+		\include{lineno} confined_base_ex.cpp
+
 	*/
 	template<class integral>
 	class confined_base
