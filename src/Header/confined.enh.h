@@ -408,7 +408,9 @@ namespace enh
 		const unsigned long long &rhs /**< : <i>in</i> : RHS argument of operator.*/
 	) noexcept
 	{
-		return confined_base<integral>(lhs).add(rhs);
+		auto t =(lhs);
+		t.add(rhs);
+		return t;
 	}
 
 	/**
@@ -421,7 +423,9 @@ namespace enh
 										   of operator.*/
 	) noexcept
 	{
-		return confined_base<integral>(rhs).add(lhs);
+		auto t = (rhs);
+		t.add(lhs);
+		return t;
 	}
 
 	/**
@@ -434,7 +438,9 @@ namespace enh
 		const unsigned long long &rhs /**< : <i>in</i> : RHS argument of operator.*/
 		) noexcept
 	{
-		return confined_base<integral>(lhs).sub(rhs);
+		auto t = (lhs);
+		t.sub(rhs);
+		return t;
 	}
 
 	/**
@@ -447,7 +453,9 @@ namespace enh
 										   of operator.*/
 		) noexcept
 	{
-		return confined_base<integral>(rhs).sub(lhs);
+		auto t = (rhs);
+		t.sub(lhs);
+		return t;
 	}
 
 	
@@ -709,7 +717,6 @@ namespace enh
 	{
 		return (lhs < rhs.get());
 	}
-
 
 }
 
