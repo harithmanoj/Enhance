@@ -33,6 +33,13 @@
 
 namespace enh
 {
+	namespace dt_type
+	{
+		using sec_t = enh::NumericSystem<unsigned short, 60>;
+		using min_t = enh::NumericSystem<unsigned short, 60>;
+		using hr_t = enh::NumericSystem<unsigned short, 24>;
+	}
+
 	/**
 		\brief Class for time manipulation.
 
@@ -45,17 +52,17 @@ namespace enh
 		/**
 			\brief The seconds part of time [0,60].
 		*/
-		unsigned short seconds;
+		dt_type::sec_t seconds;
 		
 		/**
 			\brief The minutes part of time [0,59].
 		*/
-		unsigned short minutes;
+		dt_type::min_t minutes;
 
 		/**
 			\brief The hours part of time [0,23].
 		*/
-		unsigned short hours;
+		dt_type::hr_t hours;
 
 	public:
 
@@ -67,24 +74,14 @@ namespace enh
 			not within bounds. [0,60], [0,59], [0,23] respectively.
 		*/
 		constexpr inline void setTime(
-			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
+			unsigned short sec /**< : <i>in</i> : The seconds field [0,59].*/,
 			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
 			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
 		)
 		{
-			if (!isConfined<unsigned short>(sec, 0, 60, true, true))
-				throw std::invalid_argument("Seconds should be in range"
-					" [0,60]");
-			if (!isConfined<unsigned short>(min, 0, 59, true, true))
-				throw std::invalid_argument("Minutes should be in range"
-					" [0,59]");
-			if (!isConfined<unsigned short>(hr, 0, 23, true, true))
-				throw std::invalid_argument("Hours should be in range"
-					" [0,23]");
-
-			seconds = sec;
-			minutes = min;
-			hours = hr;
+			seconds.set(sec);
+			minutes.set(min);
+			hours.set(hr);
 		}
 
 		/**
@@ -96,7 +93,10 @@ namespace enh
 		{
 			tm tm_str;
 			enh::localtime(&tm_str, &timeStamp);
-			setTime(tm_str.tm_sec, tm_str.tm_min, tm_str.tm_hour);
+			if (tm_str.tm_sec <= 59)
+				setTime(tm_str.tm_sec, tm_str.tm_min, tm_str.tm_hour);
+			else
+				setTime(59, tm_str.tm_min, tm_str.tm_hour);
 		}
 
 		/**
@@ -118,18 +118,7 @@ namespace enh
 			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
 			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
 			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
-		) : seconds(sec), minutes(min), hours(hr)
-		{
-			if (!isConfined<unsigned short>(sec, 0, 60, true, true))
-				throw std::invalid_argument("Seconds should be in range"
-					" [0,60]");
-			if (!isConfined<unsigned short>(min, 0, 59, true, true))
-				throw std::invalid_argument("Minutes should be in range"
-					" [0,59]");
-			if (!isConfined<unsigned short>(hr, 0, 23, true, true))
-				throw std::invalid_argument("Hours should be in range"
-					" [0,23]");
-		}
+		) : seconds(sec), minutes(min), hours(hr) {}
 
 		/**
 			\brief Sets the time to the time indicated by argument.
@@ -150,76 +139,103 @@ namespace enh
 		}
 
 		/**
-			\brief Adds One Hour to the time stamp,
-			if Hour is 23, resets to 0.\n
+			\brief Adds to the hour part of time held.
 
 			<h3>Return</h3>
-			Returns true if Hour is reset to 0.
+			Returns the number of days passed (hr/24).
+
 		*/
-		constexpr inline bool addHour()
+		constexpr inline unsigned long long addHours(
+			unsigned long long hr /**< : <i>in</i> : The hours to add.*/
+		) noexcept
 		{
-			if (hours >= 23)
-			{
-				hours = 0;
-				return true;
-			}
-			else
-				++hours;
-			return false;
+			return hours.add(hr);
 		}
 
 		/**
-			\brief Adds One Minutes to the time stamp,
-			if Minutes is 59, resets to 0, Adds One Hour.\n
+			\brief Adds to the minute part of time held (also hour).
 
 			<h3>Return</h3>
-			Returns true if Hour is reset to 0.
+			Returns the number of days passed (min/(24*60)).
+
 		*/
-		constexpr inline bool addMinutes()
+		constexpr inline unsigned long long addMinutes(
+			unsigned long long min /**< : <i>in</i> : The minutes to add.*/
+		) noexcept
 		{
-			if (minutes >= 59)
-			{
-				minutes = 0;
-				return addHour();
-			}
-			else
-				++minutes;
-			return false;
+			return addHours(minutes.add(min));
 		}
 
 		/**
-			\brief Adds One Seconds to the time stamp,
-			if Seconds is 59, resets to 0, Adds One Minutes.\n
+			\brief Adds to the second part of time held (also hour).
 
 			<h3>Return</h3>
-			Returns true if Hour is reset to 0.
+			Returns the number of days passed (sec/(24*60*60)).
+
 		*/
-		constexpr inline bool addSeconds()
+		constexpr inline unsigned long long addSeconds(
+			unsigned long long sec  /**< : <i>in</i> : The seconds to add.*/
+		) noexcept
 		{
-			if (seconds >= 59)
-			{
-				seconds = 0;
-				return addMinutes();
-			}
-			else
-				++seconds;
-			return false;
+			return addMinutes(seconds.add(sec));
+		}
+
+		/**
+			\brief Reduce the hour part of time held.
+
+			<h3>Return</h3>
+			Returns the number of days reduced (hr/24).
+
+		*/
+		constexpr inline unsigned long long subHours(
+			unsigned long long hr /**< : <i>in</i> : The hours to reduce.*/
+		) noexcept
+		{
+			return hours.sub(hr);
+		}
+
+		/**
+			\brief Reduce the minute part of time held (also hour).
+
+			<h3>Return</h3>
+			Returns the number of days passed (min/(24*60)).
+
+		*/
+		constexpr inline unsigned long long subMinutes(
+			unsigned long long min /**< : <i>in</i> : The minutes to reduce.*/
+		) noexcept
+		{
+			return subHours(minutes.sub(min));
+		}
+
+		/**
+			\brief Reduces the second part of time held (also hour).
+
+			<h3>Return</h3>
+			Returns the number of days passed (sec/(24*60*60)).
+
+		*/
+		constexpr inline unsigned long long subSeconds(
+			unsigned long long sec /**< : <i>in</i> : The seconds to reduce.*/
+		) noexcept
+		{
+			return subMinutes(seconds.sub(sec));
 		}
 
 		/**
 			\brief Get Seconds field.
 		*/
-		constexpr inline unsigned short getSeconds() const noexcept { return seconds; }
+		constexpr inline unsigned short getSeconds() const noexcept { return seconds.get(); }
 
 		/**
 			\brief Get Minutes field.
 		*/
-		constexpr inline unsigned short getMinutes() const noexcept { return minutes; }
+		constexpr inline unsigned short getMinutes() const noexcept { return minutes.get(); }
 
 		/**
 			\brief Get Hours field.
 		*/
-		constexpr inline unsigned short getHours() const noexcept { return hours; }
+		constexpr inline unsigned short getHours() const noexcept { return hours.get(); }
 
 		/**
 			\brief Get The time as a string in default format.
@@ -232,9 +248,9 @@ namespace enh
 		*/
 		inline std::string getStringTime() const
 		{
-			return signExtendValue(hours, 2) + " : "
-				+ signExtendValue(minutes, 2) + " : "
-				+ signExtendValue(seconds, 2);
+			return signExtendValue(hours.get(), 2) + " : "
+				+ signExtendValue(minutes.get(), 2) + " : "
+				+ signExtendValue(seconds.get(), 2);
 		}
 
 		/**
@@ -260,15 +276,15 @@ namespace enh
 			std::size_t psec, pmin, phour;
 			psec = format.find("sec");
 			if (psec != std::string::npos)
-				format.replace(psec, 3, signExtendValue(seconds, 2));
+				format.replace(psec, 3, signExtendValue(seconds.get(), 2));
 			
 			pmin = format.find("min");
 			if (pmin != std::string::npos)
-				format.replace(pmin, 3, signExtendValue(minutes, 2));
+				format.replace(pmin, 3, signExtendValue(minutes.get(), 2));
 			
 			phour = format.find("hour");
 			if (phour != std::string::npos)
-				format.replace(phour, 4, signExtendValue(hours, 2));
+				format.replace(phour, 4, signExtendValue(hours.get(), 2));
 
 			return format;
 		}

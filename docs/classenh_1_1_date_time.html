@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Enhance
-   &#160;<span id="projectnumber">1.3.0.4</span>
+   &#160;<span id="projectnumber">1.3.1.5</span>
    </div>
    <div id="projectbrief">Enhance is a collection of C++ libraries for different uses</div>
   </td>
@@ -85,8 +85,7 @@ Inheritance diagram for enh::DateTime:</div>
  <div class="center">
   <img src="classenh_1_1_date_time.png" usemap="#enh::DateTime_map" alt=""/>
   <map id="enh::DateTime_map" name="enh::DateTime_map">
-<area href="classenh_1_1date.html" title="Class to represent date." alt="enh::date" shape="rect" coords="0,0,100,24"/>
-<area href="classenh_1_1time__stamp.html" title="Class for time manipulation." alt="enh::time_stamp" shape="rect" coords="110,0,210,24"/>
+<area href="classenh_1_1time__stamp.html" title="Class for time manipulation." alt="enh::time_stamp" shape="rect" coords="0,0,100,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -118,18 +117,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a53425a3da2cccd9235aa8d63b5996397"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#a53425a3da2cccd9235aa8d63b5996397">getStringDateTime</a> (std::string format)</td></tr>
 <tr class="memdesc:a53425a3da2cccd9235aa8d63b5996397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get The date and time as a string in custom format.  <a href="classenh_1_1_date_time.html#a53425a3da2cccd9235aa8d63b5996397">More...</a><br /></td></tr>
 <tr class="separator:a53425a3da2cccd9235aa8d63b5996397"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a458ea8c092d92e9e01863e4b192ca58f"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#a458ea8c092d92e9e01863e4b192ca58f">addSeconds</a> ()</td></tr>
-<tr class="memdesc:a458ea8c092d92e9e01863e4b192ca58f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds One Seconds to the time stamp, if Seconds is 59, resets to 0, Adds One Minutes.<br  />
-.  <a href="classenh_1_1_date_time.html#a458ea8c092d92e9e01863e4b192ca58f">More...</a><br /></td></tr>
-<tr class="separator:a458ea8c092d92e9e01863e4b192ca58f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87dd90167f09c64ffd972fadf851f18a"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#a87dd90167f09c64ffd972fadf851f18a">addMinutes</a> ()</td></tr>
-<tr class="memdesc:a87dd90167f09c64ffd972fadf851f18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds One Minutes to the time stamp, if Minutes is 59, resets to 0, Adds One Hour.<br  />
-.  <a href="classenh_1_1_date_time.html#a87dd90167f09c64ffd972fadf851f18a">More...</a><br /></td></tr>
-<tr class="separator:a87dd90167f09c64ffd972fadf851f18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a451f6ccc07dab1e606e95d55f63d8bbb"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#a451f6ccc07dab1e606e95d55f63d8bbb">addHour</a> ()</td></tr>
-<tr class="memdesc:a451f6ccc07dab1e606e95d55f63d8bbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds One Hour to the time stamp, if Hour is 23, resets to 0.<br  />
-.  <a href="classenh_1_1_date_time.html#a451f6ccc07dab1e606e95d55f63d8bbb">More...</a><br /></td></tr>
-<tr class="separator:a451f6ccc07dab1e606e95d55f63d8bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ea223fd1bbd5e258e60fb7530d6f345"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#a7ea223fd1bbd5e258e60fb7530d6f345">addHours</a> (unsigned long long hr) noexcept</td></tr>
+<tr class="memdesc:a7ea223fd1bbd5e258e60fb7530d6f345"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds to the hour part of time held.  <a href="classenh_1_1_date_time.html#a7ea223fd1bbd5e258e60fb7530d6f345">More...</a><br /></td></tr>
+<tr class="separator:a7ea223fd1bbd5e258e60fb7530d6f345"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17f2e7a0cac52243492ba1b4fac48838"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#a17f2e7a0cac52243492ba1b4fac48838">addMinutes</a> (unsigned long long <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">min</a>) noexcept</td></tr>
+<tr class="memdesc:a17f2e7a0cac52243492ba1b4fac48838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds to the minute part of time held (also hour).  <a href="classenh_1_1_date_time.html#a17f2e7a0cac52243492ba1b4fac48838">More...</a><br /></td></tr>
+<tr class="separator:a17f2e7a0cac52243492ba1b4fac48838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6f9347f1ccaaa1c229e6023fd52c10b"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#af6f9347f1ccaaa1c229e6023fd52c10b">addSeconds</a> (unsigned long long sec) noexcept</td></tr>
+<tr class="memdesc:af6f9347f1ccaaa1c229e6023fd52c10b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds to the second part of time held (also hour).  <a href="classenh_1_1_date_time.html#af6f9347f1ccaaa1c229e6023fd52c10b">More...</a><br /></td></tr>
+<tr class="separator:af6f9347f1ccaaa1c229e6023fd52c10b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13ba343e01411c69695b2e4b415325f3"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#a13ba343e01411c69695b2e4b415325f3">subHours</a> (unsigned long long hr) noexcept</td></tr>
+<tr class="memdesc:a13ba343e01411c69695b2e4b415325f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduce the hour part of time held.  <a href="classenh_1_1_date_time.html#a13ba343e01411c69695b2e4b415325f3">More...</a><br /></td></tr>
+<tr class="separator:a13ba343e01411c69695b2e4b415325f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64eb6bcbd6fd3611f26a33122c4e484f"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#a64eb6bcbd6fd3611f26a33122c4e484f">subMinutes</a> (unsigned long long <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">min</a>) noexcept</td></tr>
+<tr class="memdesc:a64eb6bcbd6fd3611f26a33122c4e484f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduce the minute part of time held (also hour).  <a href="classenh_1_1_date_time.html#a64eb6bcbd6fd3611f26a33122c4e484f">More...</a><br /></td></tr>
+<tr class="separator:a64eb6bcbd6fd3611f26a33122c4e484f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f693531d36e9cdac0c65ba2fac06abf"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#a4f693531d36e9cdac0c65ba2fac06abf">subSeconds</a> (unsigned long long sec) noexcept</td></tr>
+<tr class="memdesc:a4f693531d36e9cdac0c65ba2fac06abf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduces the second part of time held (also hour).  <a href="classenh_1_1_date_time.html#a4f693531d36e9cdac0c65ba2fac06abf">More...</a><br /></td></tr>
+<tr class="separator:a4f693531d36e9cdac0c65ba2fac06abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7be34c94cb4c18087ce7788b7e7dc7f6"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#a7be34c94cb4c18087ce7788b7e7dc7f6">isEqualTo</a> (const <a class="el" href="classenh_1_1_date_time.html">DateTime</a> &amp;dt) const noexcept</td></tr>
 <tr class="memdesc:a7be34c94cb4c18087ce7788b7e7dc7f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if argument is equal to this object.  <a href="classenh_1_1_date_time.html#a7be34c94cb4c18087ce7788b7e7dc7f6">More...</a><br /></td></tr>
 <tr class="separator:a7be34c94cb4c18087ce7788b7e7dc7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,94 +153,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a297c2d86df12aed88eb58e47f0eb9395"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1_date_time.html#a297c2d86df12aed88eb58e47f0eb9395">isGreaterThanEq</a> (const <a class="el" href="classenh_1_1_date_time.html">DateTime</a> &amp;dt) const noexcept</td></tr>
 <tr class="memdesc:a297c2d86df12aed88eb58e47f0eb9395"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if current <a class="el" href="classenh_1_1_date_time.html" title="Class for date and time joint manipulation.">DateTime</a> is greater than or equal to argument.  <a href="classenh_1_1_date_time.html#a297c2d86df12aed88eb58e47f0eb9395">More...</a><br /></td></tr>
 <tr class="separator:a297c2d86df12aed88eb58e47f0eb9395"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classenh_1_1date"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classenh_1_1date')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classenh_1_1date.html">enh::date</a></td></tr>
-<tr class="memitem:a8788f3bb12b9e17b3a60b4c9cdb8b983 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="a8788f3bb12b9e17b3a60b4c9cdb8b983"></a>
-constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a8788f3bb12b9e17b3a60b4c9cdb8b983">add_day</a> ()</td></tr>
-<tr class="memdesc:a8788f3bb12b9e17b3a60b4c9cdb8b983 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add one day to date. <br /></td></tr>
-<tr class="separator:a8788f3bb12b9e17b3a60b4c9cdb8b983 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e09e3c88495fe4419ad6c5ac8df8d44 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a6e09e3c88495fe4419ad6c5ac8df8d44">setDate</a> (unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned ydy)</td></tr>
-<tr class="memdesc:a6e09e3c88495fe4419ad6c5ac8df8d44 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the date to the date indicated by arguments.  <a href="classenh_1_1date.html#a6e09e3c88495fe4419ad6c5ac8df8d44">More...</a><br /></td></tr>
-<tr class="separator:a6e09e3c88495fe4419ad6c5ac8df8d44 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20ed25c17a7e67cf5295ff0aa4e07650 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a20ed25c17a7e67cf5295ff0aa4e07650">setDate</a> (time_t timeStamp)</td></tr>
-<tr class="memdesc:a20ed25c17a7e67cf5295ff0aa4e07650 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the date to the date indicated by argument.  <a href="classenh_1_1date.html#a20ed25c17a7e67cf5295ff0aa4e07650">More...</a><br /></td></tr>
-<tr class="separator:a20ed25c17a7e67cf5295ff0aa4e07650 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaad30168b7bb62e0feda6113906632ee inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="aaad30168b7bb62e0feda6113906632ee"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#aaad30168b7bb62e0feda6113906632ee">setDate</a> ()</td></tr>
-<tr class="memdesc:aaad30168b7bb62e0feda6113906632ee inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the date to the date current date. <br /></td></tr>
-<tr class="separator:aaad30168b7bb62e0feda6113906632ee inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79f005d7b309290e5f511c920675bc24 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a79f005d7b309290e5f511c920675bc24">date</a> (unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned ydy)</td></tr>
-<tr class="memdesc:a79f005d7b309290e5f511c920675bc24 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the date to the date indicated by arguments.  <a href="classenh_1_1date.html#a79f005d7b309290e5f511c920675bc24">More...</a><br /></td></tr>
-<tr class="separator:a79f005d7b309290e5f511c920675bc24 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a492f6d75efb3e3023620aead68bfacfc inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a492f6d75efb3e3023620aead68bfacfc">date</a> (time_t timeStamp)</td></tr>
-<tr class="memdesc:a492f6d75efb3e3023620aead68bfacfc inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the date to the date indicated by argument.  <a href="classenh_1_1date.html#a492f6d75efb3e3023620aead68bfacfc">More...</a><br /></td></tr>
-<tr class="separator:a492f6d75efb3e3023620aead68bfacfc inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97d21e49b1d6f4f319b08abcacf9e9aa inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="a97d21e49b1d6f4f319b08abcacf9e9aa"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a97d21e49b1d6f4f319b08abcacf9e9aa">date</a> ()</td></tr>
-<tr class="memdesc:a97d21e49b1d6f4f319b08abcacf9e9aa inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the date to the date current date. <br /></td></tr>
-<tr class="separator:a97d21e49b1d6f4f319b08abcacf9e9aa inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd0a26569b3399c55ea0e06525f258fb inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="acd0a26569b3399c55ea0e06525f258fb"></a>
-constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#acd0a26569b3399c55ea0e06525f258fb">getDayOfMonth</a> () const noexcept</td></tr>
-<tr class="memdesc:acd0a26569b3399c55ea0e06525f258fb inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">The day of this month. <br /></td></tr>
-<tr class="separator:acd0a26569b3399c55ea0e06525f258fb inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4fd4fd7afe7f17e70360cbc5a9513f1 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="aa4fd4fd7afe7f17e70360cbc5a9513f1"></a>
-constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#aa4fd4fd7afe7f17e70360cbc5a9513f1">getMonth</a> () const noexcept</td></tr>
-<tr class="memdesc:aa4fd4fd7afe7f17e70360cbc5a9513f1 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of months after January of this year. <br /></td></tr>
-<tr class="separator:aa4fd4fd7afe7f17e70360cbc5a9513f1 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb91bcde7c15d6726cbebabe091ea397 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="adb91bcde7c15d6726cbebabe091ea397"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#adb91bcde7c15d6726cbebabe091ea397">getMonthString</a> () const</td></tr>
-<tr class="memdesc:adb91bcde7c15d6726cbebabe091ea397 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the month. <br /></td></tr>
-<tr class="separator:adb91bcde7c15d6726cbebabe091ea397 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad02736aa79b2169cbeb2ebbe9b3346a6 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="ad02736aa79b2169cbeb2ebbe9b3346a6"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#ad02736aa79b2169cbeb2ebbe9b3346a6">getShortMonthString</a> () const</td></tr>
-<tr class="memdesc:ad02736aa79b2169cbeb2ebbe9b3346a6 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the month (shortened). <br /></td></tr>
-<tr class="separator:ad02736aa79b2169cbeb2ebbe9b3346a6 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bc2430e5922b4e84bc17bf4ff380458 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="a4bc2430e5922b4e84bc17bf4ff380458"></a>
-constexpr long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a4bc2430e5922b4e84bc17bf4ff380458">getYear</a> () const noexcept</td></tr>
-<tr class="memdesc:a4bc2430e5922b4e84bc17bf4ff380458 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Year. <br /></td></tr>
-<tr class="separator:a4bc2430e5922b4e84bc17bf4ff380458 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a854f69e23f5f21d709142608c6d602e6 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="a854f69e23f5f21d709142608c6d602e6"></a>
-constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a854f69e23f5f21d709142608c6d602e6">getDayOfWeek</a> () const noexcept</td></tr>
-<tr class="memdesc:a854f69e23f5f21d709142608c6d602e6 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of days after last Sunday. <br /></td></tr>
-<tr class="separator:a854f69e23f5f21d709142608c6d602e6 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83c6cd8468c4e05e9a88bf5af91f9ff3 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="a83c6cd8468c4e05e9a88bf5af91f9ff3"></a>
-constexpr unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a83c6cd8468c4e05e9a88bf5af91f9ff3">getDayOfYear</a> () const noexcept</td></tr>
-<tr class="memdesc:a83c6cd8468c4e05e9a88bf5af91f9ff3 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of days after 1st of January this year. <br /></td></tr>
-<tr class="separator:a83c6cd8468c4e05e9a88bf5af91f9ff3 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8916144151b3368a867d3ea92b3b739 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="ad8916144151b3368a867d3ea92b3b739"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#ad8916144151b3368a867d3ea92b3b739">getDayOfWeekString</a> () const</td></tr>
-<tr class="memdesc:ad8916144151b3368a867d3ea92b3b739 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the day. <br /></td></tr>
-<tr class="separator:ad8916144151b3368a867d3ea92b3b739 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf3c44fafcec705b374cbf1844edffb9 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top"><a id="adf3c44fafcec705b374cbf1844edffb9"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#adf3c44fafcec705b374cbf1844edffb9">getShortDayOfWeekString</a> () const</td></tr>
-<tr class="memdesc:adf3c44fafcec705b374cbf1844edffb9 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the day (shortened). <br /></td></tr>
-<tr class="separator:adf3c44fafcec705b374cbf1844edffb9 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a194d05e9f8566cead869b3a9f04b80b1 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a194d05e9f8566cead869b3a9f04b80b1">getDaySuperScript</a> () const</td></tr>
-<tr class="memdesc:a194d05e9f8566cead869b3a9f04b80b1 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">The superscript to be added after the month.  <a href="classenh_1_1date.html#a194d05e9f8566cead869b3a9f04b80b1">More...</a><br /></td></tr>
-<tr class="separator:a194d05e9f8566cead869b3a9f04b80b1 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d6be6c3f1138a3af8afe170995c16b3 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a4d6be6c3f1138a3af8afe170995c16b3">getStringDate</a> () const</td></tr>
-<tr class="memdesc:a4d6be6c3f1138a3af8afe170995c16b3 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get The date as a string.  <a href="classenh_1_1date.html#a4d6be6c3f1138a3af8afe170995c16b3">More...</a><br /></td></tr>
-<tr class="separator:a4d6be6c3f1138a3af8afe170995c16b3 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a496782e446b40a9fc9c5992c06be3fca inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a496782e446b40a9fc9c5992c06be3fca">getStringDate</a> (std::string format) const</td></tr>
-<tr class="memdesc:a496782e446b40a9fc9c5992c06be3fca inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get The date as a string in custom format.  <a href="classenh_1_1date.html#a496782e446b40a9fc9c5992c06be3fca">More...</a><br /></td></tr>
-<tr class="separator:a496782e446b40a9fc9c5992c06be3fca inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a120fc311cfadeea944a0d5fcf69624fb inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a120fc311cfadeea944a0d5fcf69624fb">isEqualTo</a> (const <a class="el" href="classenh_1_1date.html">date</a> &amp;dt) const noexcept</td></tr>
-<tr class="memdesc:a120fc311cfadeea944a0d5fcf69624fb inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if argument is equal to this object.  <a href="classenh_1_1date.html#a120fc311cfadeea944a0d5fcf69624fb">More...</a><br /></td></tr>
-<tr class="separator:a120fc311cfadeea944a0d5fcf69624fb inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91b45aa4472a34356cd187208f756296 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a91b45aa4472a34356cd187208f756296">isNotEqualTo</a> (const <a class="el" href="classenh_1_1date.html">date</a> &amp;dt) const noexcept</td></tr>
-<tr class="memdesc:a91b45aa4472a34356cd187208f756296 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if argument is not equal to this object.  <a href="classenh_1_1date.html#a91b45aa4472a34356cd187208f756296">More...</a><br /></td></tr>
-<tr class="separator:a91b45aa4472a34356cd187208f756296 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aeb2f09a21d2cb3e3c1ec32c6515289 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a6aeb2f09a21d2cb3e3c1ec32c6515289">isLesserThan</a> (const <a class="el" href="classenh_1_1date.html">date</a> &amp;dt) const noexcept</td></tr>
-<tr class="memdesc:a6aeb2f09a21d2cb3e3c1ec32c6515289 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if current date is lesser than argument.  <a href="classenh_1_1date.html#a6aeb2f09a21d2cb3e3c1ec32c6515289">More...</a><br /></td></tr>
-<tr class="separator:a6aeb2f09a21d2cb3e3c1ec32c6515289 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46cca5c73ce3cea40b92f09aa8d3a0c4 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a46cca5c73ce3cea40b92f09aa8d3a0c4">isLesserThanEq</a> (const <a class="el" href="classenh_1_1date.html">date</a> &amp;dt) const noexcept</td></tr>
-<tr class="memdesc:a46cca5c73ce3cea40b92f09aa8d3a0c4 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if current date is lesser than or equal to argument.  <a href="classenh_1_1date.html#a46cca5c73ce3cea40b92f09aa8d3a0c4">More...</a><br /></td></tr>
-<tr class="separator:a46cca5c73ce3cea40b92f09aa8d3a0c4 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a297f52dd1ffed3365f2c4e670d3ac710 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#a297f52dd1ffed3365f2c4e670d3ac710">isGreaterThan</a> (const <a class="el" href="classenh_1_1date.html">date</a> &amp;dt) const noexcept</td></tr>
-<tr class="memdesc:a297f52dd1ffed3365f2c4e670d3ac710 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if current date is greater than argument.  <a href="classenh_1_1date.html#a297f52dd1ffed3365f2c4e670d3ac710">More...</a><br /></td></tr>
-<tr class="separator:a297f52dd1ffed3365f2c4e670d3ac710 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf319c0e705afcb0490ca169dbe642e4 inherit pub_methods_classenh_1_1date"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1date.html#aaf319c0e705afcb0490ca169dbe642e4">isGreaterThanEq</a> (const <a class="el" href="classenh_1_1date.html">date</a> &amp;dt) const noexcept</td></tr>
-<tr class="memdesc:aaf319c0e705afcb0490ca169dbe642e4 inherit pub_methods_classenh_1_1date"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if current date is greater than or equal to argument.  <a href="classenh_1_1date.html#aaf319c0e705afcb0490ca169dbe642e4">More...</a><br /></td></tr>
-<tr class="separator:aaf319c0e705afcb0490ca169dbe642e4 inherit pub_methods_classenh_1_1date"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classenh_1_1time__stamp"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classenh_1_1time__stamp')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classenh_1_1time__stamp.html">enh::time_stamp</a></td></tr>
 <tr class="memitem:ade163a73074cb1bf18aab2c4ee85176b inherit pub_methods_classenh_1_1time__stamp"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#ade163a73074cb1bf18aab2c4ee85176b">setTime</a> (unsigned short sec, unsigned short <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">min</a>, unsigned short hr)</td></tr>
 <tr class="memdesc:ade163a73074cb1bf18aab2c4ee85176b inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the time to the time indicated by arguments.  <a href="classenh_1_1time__stamp.html#ade163a73074cb1bf18aab2c4ee85176b">More...</a><br /></td></tr>
@@ -257,18 +174,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#ae3d5cabfeefa4ed165f49349fc5b40d7">time_stamp</a> ()</td></tr>
 <tr class="memdesc:ae3d5cabfeefa4ed165f49349fc5b40d7 inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the time to the current time. <br /></td></tr>
 <tr class="separator:ae3d5cabfeefa4ed165f49349fc5b40d7 inherit pub_methods_classenh_1_1time__stamp"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf897da9cebf8723868f86a916d75045 inherit pub_methods_classenh_1_1time__stamp"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#acf897da9cebf8723868f86a916d75045">addHour</a> ()</td></tr>
-<tr class="memdesc:acf897da9cebf8723868f86a916d75045 inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds One Hour to the time stamp, if Hour is 23, resets to 0.<br  />
-.  <a href="classenh_1_1time__stamp.html#acf897da9cebf8723868f86a916d75045">More...</a><br /></td></tr>
-<tr class="separator:acf897da9cebf8723868f86a916d75045 inherit pub_methods_classenh_1_1time__stamp"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36742a19921e9088c1dad4a9ea0c52ac inherit pub_methods_classenh_1_1time__stamp"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a36742a19921e9088c1dad4a9ea0c52ac">addMinutes</a> ()</td></tr>
-<tr class="memdesc:a36742a19921e9088c1dad4a9ea0c52ac inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds One Minutes to the time stamp, if Minutes is 59, resets to 0, Adds One Hour.<br  />
-.  <a href="classenh_1_1time__stamp.html#a36742a19921e9088c1dad4a9ea0c52ac">More...</a><br /></td></tr>
-<tr class="separator:a36742a19921e9088c1dad4a9ea0c52ac inherit pub_methods_classenh_1_1time__stamp"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f9083400c5b161a51a64b481a41a78a inherit pub_methods_classenh_1_1time__stamp"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a1f9083400c5b161a51a64b481a41a78a">addSeconds</a> ()</td></tr>
-<tr class="memdesc:a1f9083400c5b161a51a64b481a41a78a inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds One Seconds to the time stamp, if Seconds is 59, resets to 0, Adds One Minutes.<br  />
-.  <a href="classenh_1_1time__stamp.html#a1f9083400c5b161a51a64b481a41a78a">More...</a><br /></td></tr>
-<tr class="separator:a1f9083400c5b161a51a64b481a41a78a inherit pub_methods_classenh_1_1time__stamp"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94c9b912c5a5061be9c872251baea0c3 inherit pub_methods_classenh_1_1time__stamp"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a94c9b912c5a5061be9c872251baea0c3">addHours</a> (unsigned long long hr) noexcept</td></tr>
+<tr class="memdesc:a94c9b912c5a5061be9c872251baea0c3 inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds to the hour part of time held.  <a href="classenh_1_1time__stamp.html#a94c9b912c5a5061be9c872251baea0c3">More...</a><br /></td></tr>
+<tr class="separator:a94c9b912c5a5061be9c872251baea0c3 inherit pub_methods_classenh_1_1time__stamp"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade26a2133aba024698f4b95aff22bd3b inherit pub_methods_classenh_1_1time__stamp"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#ade26a2133aba024698f4b95aff22bd3b">addMinutes</a> (unsigned long long <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">min</a>) noexcept</td></tr>
+<tr class="memdesc:ade26a2133aba024698f4b95aff22bd3b inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds to the minute part of time held (also hour).  <a href="classenh_1_1time__stamp.html#ade26a2133aba024698f4b95aff22bd3b">More...</a><br /></td></tr>
+<tr class="separator:ade26a2133aba024698f4b95aff22bd3b inherit pub_methods_classenh_1_1time__stamp"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b1738352f828d20ba3b5aa0da3cd8c8 inherit pub_methods_classenh_1_1time__stamp"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a6b1738352f828d20ba3b5aa0da3cd8c8">addSeconds</a> (unsigned long long sec) noexcept</td></tr>
+<tr class="memdesc:a6b1738352f828d20ba3b5aa0da3cd8c8 inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds to the second part of time held (also hour).  <a href="classenh_1_1time__stamp.html#a6b1738352f828d20ba3b5aa0da3cd8c8">More...</a><br /></td></tr>
+<tr class="separator:a6b1738352f828d20ba3b5aa0da3cd8c8 inherit pub_methods_classenh_1_1time__stamp"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96ef05368b254e34d472f3ebf7893ffb inherit pub_methods_classenh_1_1time__stamp"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a96ef05368b254e34d472f3ebf7893ffb">subHours</a> (unsigned long long hr) noexcept</td></tr>
+<tr class="memdesc:a96ef05368b254e34d472f3ebf7893ffb inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduce the hour part of time held.  <a href="classenh_1_1time__stamp.html#a96ef05368b254e34d472f3ebf7893ffb">More...</a><br /></td></tr>
+<tr class="separator:a96ef05368b254e34d472f3ebf7893ffb inherit pub_methods_classenh_1_1time__stamp"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa45eac709939e5fbc1d79486984a618e inherit pub_methods_classenh_1_1time__stamp"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#aa45eac709939e5fbc1d79486984a618e">subMinutes</a> (unsigned long long <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">min</a>) noexcept</td></tr>
+<tr class="memdesc:aa45eac709939e5fbc1d79486984a618e inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduce the minute part of time held (also hour).  <a href="classenh_1_1time__stamp.html#aa45eac709939e5fbc1d79486984a618e">More...</a><br /></td></tr>
+<tr class="separator:aa45eac709939e5fbc1d79486984a618e inherit pub_methods_classenh_1_1time__stamp"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a743d87e0bb3ca033189ed665fa379d71 inherit pub_methods_classenh_1_1time__stamp"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a743d87e0bb3ca033189ed665fa379d71">subSeconds</a> (unsigned long long sec) noexcept</td></tr>
+<tr class="memdesc:a743d87e0bb3ca033189ed665fa379d71 inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduces the second part of time held (also hour).  <a href="classenh_1_1time__stamp.html#a743d87e0bb3ca033189ed665fa379d71">More...</a><br /></td></tr>
+<tr class="separator:a743d87e0bb3ca033189ed665fa379d71 inherit pub_methods_classenh_1_1time__stamp"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aa5df47219c1017da0067748564b5c8 inherit pub_methods_classenh_1_1time__stamp"><td class="memItemLeft" align="right" valign="top"><a id="a2aa5df47219c1017da0067748564b5c8"></a>
 constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a2aa5df47219c1017da0067748564b5c8">getSeconds</a> () const noexcept</td></tr>
 <tr class="memdesc:a2aa5df47219c1017da0067748564b5c8 inherit pub_methods_classenh_1_1time__stamp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Seconds field. <br /></td></tr>
@@ -316,115 +239,120 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keywordtype">int</span> main()</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="classenh_1_1_date_time.html">enh::DateTime</a> dt[] = {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        {}, {}, {}, {std::time(<span class="keyword">nullptr</span>) + 30 * 24 * 60 * 60}, {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        {}, {}, {}, {std::time(<span class="keyword">nullptr</span>)}, {</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;            22,6,2020,0,300,25,16,21</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        }</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    };</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    dt[0].<a class="code" href="classenh_1_1_date_time.html#a451f6ccc07dab1e606e95d55f63d8bbb">addHour</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    dt[0].<a class="code" href="classenh_1_1_date_time.html#a7ea223fd1bbd5e258e60fb7530d6f345">addHours</a>(25);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    dt[1].<a class="code" href="classenh_1_1date.html#a8788f3bb12b9e17b3a60b4c9cdb8b983">add_day</a>();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    dt[1].addDay(200);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i : dt)</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        std::cout &lt;&lt; i.getHours() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getMinutes() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getSeconds() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        std::cout &lt;&lt; i.getDayOfWeek() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getDayOfWeekString() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getShortDayOfWeekString()</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getDayOfMonth() &lt;&lt; i.getDaySuperScript() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getMonth() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getMonthString()</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getShortMonthString() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getDayOfYear() &lt;&lt; <span class="stringliteral">&quot;\n\n&quot;</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;def : &quot;</span> &lt;&lt; i.getStringDateTime() &lt;&lt; <span class="stringliteral">&quot;\n\n&quot;</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        std::string form[] = {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="stringliteral">&quot;sec:min:hour; Day, ddth - Month - yyyy&quot;</span>,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="stringliteral">&quot;sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy&quot;</span>,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="stringliteral">&quot;sec/min/hour/shDay/dd/shMonth/yyyy&quot;</span>,</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="stringliteral">&quot;hour : shDay, dd mm yyyy&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        };</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> j : form)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;format :  &quot;</span> &lt;&lt; j &lt;&lt; <span class="stringliteral">&quot; \n&gt;&gt; &quot;</span> &lt;&lt; i.getStringDateTime(j) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    dt[2].addDay(50);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    dt[2].<a class="code" href="classenh_1_1_date_time.html#a17f2e7a0cac52243492ba1b4fac48838">addMinutes</a>(360);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i : dt)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        std::cout &lt;&lt; i.getHours() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getMinutes() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getSeconds() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        std::cout &lt;&lt; i.getDayOfWeek() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getDayOfWeekString() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getShortDayOfWeekString()</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getDayOfMonth() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getMonth() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getMonthString()</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getShortMonthString() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i.getDayOfYear() &lt;&lt; <span class="stringliteral">&quot;\n\n&quot;</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;def : &quot;</span> &lt;&lt; i.getStringDateTime() &lt;&lt; <span class="stringliteral">&quot;\n\n&quot;</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        std::string form[] = {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="stringliteral">&quot;sec:min:hour; Day, ddth - Month - yyyy&quot;</span>,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="stringliteral">&quot;sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy&quot;</span>,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="stringliteral">&quot;sec/min/hour/shDay/dd/shMonth/yyyy&quot;</span>,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="stringliteral">&quot;hour : shDay, dd mm yyyy&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        };</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> j : form)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;format :  &quot;</span> &lt;&lt; j &lt;&lt; <span class="stringliteral">&quot; \n&gt;&gt; &quot;</span> &lt;&lt; i.getStringDateTime(j) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/* ****************************************************************************</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">Output :</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">23 45 47</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">3 Wednesday Wed 13th 4 May May 133</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">def : 23 : 45 : 47 ; Wednesday, 13th May 2020</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">format :  sec:min:hour; Day, ddth - Month - yyyy</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">&gt;&gt; 47:45:23; Wednesday, 13th - May - 2020</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">format :  sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">&gt;&gt; 47 of the 45th minute of the 23th hour in the day of Wednesday which is 13th of May of 2020</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">format :  sec/min/hour/shDay/dd/shMonth/yyyy</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">&gt;&gt; 47/45/23/Wed/13/May/2020</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">format :  hour : shDay, dd mm yyyy</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">&gt;&gt; 23 : Wed, 13 05 2020</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">22 45 47</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">4 Thursday Thu 14th 4 May May 133</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">def : 22 : 45 : 47 ; Thursday, 14th May 2020</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">format :  sec:min:hour; Day, ddth - Month - yyyy</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">&gt;&gt; 47:45:22; Thursday, 14th - May - 2020</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">format :  sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">&gt;&gt; 47 of the 45th minute of the 22th hour in the day of Thursday which is 14th of May of 2020</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">format :  sec/min/hour/shDay/dd/shMonth/yyyy</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">&gt;&gt; 47/45/22/Thu/14/May/2020</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">format :  hour : shDay, dd mm yyyy</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">&gt;&gt; 22 : Thu, 14 05 2020</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">22 45 47</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">3 Wednesday Wed 13th 4 May May 133</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">def : 22 : 45 : 47 ; Wednesday, 13th May 2020</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">format :  sec:min:hour; Day, ddth - Month - yyyy</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">&gt;&gt; 47:45:22; Wednesday, 13th - May - 2020</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">format :  sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">&gt;&gt; 47 of the 45th minute of the 22th hour in the day of Wednesday which is 13th of May of 2020</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">format :  sec/min/hour/shDay/dd/shMonth/yyyy</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">&gt;&gt; 47/45/22/Wed/13/May/2020</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">format :  hour : shDay, dd mm yyyy</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">&gt;&gt; 22 : Wed, 13 05 2020</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">22 45 47</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">5 Friday Fri 12th 5 June Jun 163</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">def : 22 : 45 : 47 ; Friday, 12th June 2020</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">format :  sec:min:hour; Day, ddth - Month - yyyy</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">&gt;&gt; 47:45:22; Friday, 12th - June - 2020</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">format :  sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">&gt;&gt; 47 of the 45th minute of the 22th hour in the day of Friday which is 12th of June of 2020</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">format :  sec/min/hour/shDay/dd/shMonth/yyyy</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">&gt;&gt; 47/45/22/Fri/12/Jun/2020</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">format :  hour : shDay, dd mm yyyy</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">&gt;&gt; 22 : Fri, 12 06 2020</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">21 16 25</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">0 Sunday Sun 22nd 6 July Jul 300</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">def : 21 : 16 : 25 ; Sunday, 22nd July 2020</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">format :  sec:min:hour; Day, ddth - Month - yyyy</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">&gt;&gt; 25:16:21; Sunday, 22nd - July - 2020</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">format :  sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">&gt;&gt; 25 of the 16th minute of the 21th hour in the day of Sunday which is 22nd of July of 2020</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">format :  sec/min/hour/shDay/dd/shMonth/yyyy</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">&gt;&gt; 25/16/21/Sun/22/Jul/2020</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">format :  hour : shDay, dd mm yyyy</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">&gt;&gt; 21 : Sun, 22 07 2020</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">******************************************************************************/</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/* ****************************************************************************</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">Output :</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">20 38 12</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">1 Monday Mon 18 4 May May 167</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">def : 20 : 38 : 12 ; Monday, 18th May 2020</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">format :  sec:min:hour; Day, ddth - Month - yyyy</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">&gt;&gt; 12:38:20; Monday, 18th - May - 2020</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">format :  sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">&gt;&gt; 12 of the 38th minute of the 20th hour in the day of Monday which is 18th of May of 2020</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">format :  sec/min/hour/shDay/dd/shMonth/yyyy</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">&gt;&gt; 12/38/20/Mon/18/May/2020</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">format :  hour : shDay, dd mm yyyy</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">&gt;&gt; 20 : Mon, 18 05 2020</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">18 38 12</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">2 Tuesday Tue 9 11 December Dec 344</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">def : 18 : 38 : 12 ; Tuesday, 9th December 2020</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">format :  sec:min:hour; Day, ddth - Month - yyyy</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">&gt;&gt; 12:38:18; Tuesday, 09th - December - 2020</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">format :  sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">&gt;&gt; 12 of the 38th minute of the 18th hour in the day of Tuesday which is 09th of December of 2020</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">format :  sec/min/hour/shDay/dd/shMonth/yyyy</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">&gt;&gt; 12/38/18/Tue/09/Dec/2020</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">format :  hour : shDay, dd mm yyyy</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">&gt;&gt; 18 : Tue, 09 12 2020</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">0 44 12</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">3 Wednesday Wed 8 6 July Jul 226</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">def : 00 : 44 : 12 ; Wednesday, 8th July 2020</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">format :  sec:min:hour; Day, ddth - Month - yyyy</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">&gt;&gt; 12:44:00; Wednesday, 08th - July - 2020</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">format :  sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">&gt;&gt; 12 of the 44th minute of the 00th hour in the day of Wednesday which is 08th of July of 2020</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">format :  sec/min/hour/shDay/dd/shMonth/yyyy</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">&gt;&gt; 12/44/00/Wed/08/Jul/2020</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">format :  hour : shDay, dd mm yyyy</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">&gt;&gt; 00 : Wed, 08 07 2020</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">18 38 12</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">0 Sunday Sun 17 4 May May 137</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">def : 18 : 38 : 12 ; Sunday, 17th May 2020</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">format :  sec:min:hour; Day, ddth - Month - yyyy</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">&gt;&gt; 12:38:18; Sunday, 17th - May - 2020</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">format :  sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">&gt;&gt; 12 of the 38th minute of the 18th hour in the day of Sunday which is 17th of May of 2020</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">format :  sec/min/hour/shDay/dd/shMonth/yyyy</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">&gt;&gt; 12/38/18/Sun/17/May/2020</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">format :  hour : shDay, dd mm yyyy</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">&gt;&gt; 18 : Sun, 17 05 2020</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">21 16 25</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">0 Sunday Sun 22 6 July Jul 300</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">def : 21 : 16 : 25 ; Sunday, 22nd July 2020</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">format :  sec:min:hour; Day, ddth - Month - yyyy</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">&gt;&gt; 25:16:21; Sunday, 22nd - July - 2020</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">format :  sec of the minth minute of the hourth hour in the day of Day which is ddth of Month of yyyy</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">&gt;&gt; 25 of the 16th minute of the 21th hour in the day of Sunday which is 22nd of July of 2020</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">format :  sec/min/hour/shDay/dd/shMonth/yyyy</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">&gt;&gt; 25/16/21/Sun/22/Jul/2020</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">format :  hour : shDay, dd mm yyyy</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">&gt;&gt; 21 : Sun, 22 07 2020</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">******************************************************************************/</span></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae1d40f82c5b0efe8b8c639dba857c652"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1d40f82c5b0efe8b8c639dba857c652">&#9670;&nbsp;</a></span>DateTime() <span class="overload">[1/2]</span></h2>
@@ -550,8 +478,8 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a451f6ccc07dab1e606e95d55f63d8bbb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a451f6ccc07dab1e606e95d55f63d8bbb">&#9670;&nbsp;</a></span>addHour()</h2>
+<a id="a7ea223fd1bbd5e258e60fb7530d6f345"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ea223fd1bbd5e258e60fb7530d6f345">&#9670;&nbsp;</a></span>addHours()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -560,30 +488,34 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool enh::DateTime::addHour </td>
+          <td class="memname">constexpr void enh::DateTime::addHours </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>hr</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds One Hour to the time stamp, if Hour is 23, resets to 0.<br  />
-. </p>
-<h3>Return</h3>
-<p>Returns true if Hour is reset to 0. </p>
+<p>Adds to the hour part of time held. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hr</td><td>: <em>in</em> : The hours to add. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="classenh_1_1date.html#a8788f3bb12b9e17b3a60b4c9cdb8b983">enh::date::add_day()</a>, and <a class="el" href="classenh_1_1time__stamp.html#acf897da9cebf8723868f86a916d75045">enh::time_stamp::addHour()</a>.</p>
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#a94c9b912c5a5061be9c872251baea0c3">enh::time_stamp::addHours()</a>.</p>
 
 </div>
 </div>
-<a id="a87dd90167f09c64ffd972fadf851f18a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87dd90167f09c64ffd972fadf851f18a">&#9670;&nbsp;</a></span>addMinutes()</h2>
+<a id="a17f2e7a0cac52243492ba1b4fac48838"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17f2e7a0cac52243492ba1b4fac48838">&#9670;&nbsp;</a></span>addMinutes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -592,30 +524,34 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool enh::DateTime::addMinutes </td>
+          <td class="memname">constexpr void enh::DateTime::addMinutes </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>min</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds One Minutes to the time stamp, if Minutes is 59, resets to 0, Adds One Hour.<br  />
-. </p>
-<h3>Return</h3>
-<p>Returns true if Hour is reset to 0. </p>
+<p>Adds to the minute part of time held (also hour). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td>: <em>in</em> : The minutes to add. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="classenh_1_1date.html#a8788f3bb12b9e17b3a60b4c9cdb8b983">enh::date::add_day()</a>, and <a class="el" href="classenh_1_1time__stamp.html#a36742a19921e9088c1dad4a9ea0c52ac">enh::time_stamp::addMinutes()</a>.</p>
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#ade26a2133aba024698f4b95aff22bd3b">enh::time_stamp::addMinutes()</a>, and <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">enh::min()</a>.</p>
 
 </div>
 </div>
-<a id="a458ea8c092d92e9e01863e4b192ca58f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a458ea8c092d92e9e01863e4b192ca58f">&#9670;&nbsp;</a></span>addSeconds()</h2>
+<a id="af6f9347f1ccaaa1c229e6023fd52c10b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6f9347f1ccaaa1c229e6023fd52c10b">&#9670;&nbsp;</a></span>addSeconds()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -624,25 +560,29 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool enh::DateTime::addSeconds </td>
+          <td class="memname">constexpr void enh::DateTime::addSeconds </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>sec</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds One Seconds to the time stamp, if Seconds is 59, resets to 0, Adds One Minutes.<br  />
-. </p>
-<h3>Return</h3>
-<p>Returns true if Hour is reset to 0. </p>
+<p>Adds to the second part of time held (also hour). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sec</td><td>: <em>in</em> : The seconds to add. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="classenh_1_1date.html#a8788f3bb12b9e17b3a60b4c9cdb8b983">enh::date::add_day()</a>, and <a class="el" href="classenh_1_1time__stamp.html#a1f9083400c5b161a51a64b481a41a78a">enh::time_stamp::addSeconds()</a>.</p>
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#a6b1738352f828d20ba3b5aa0da3cd8c8">enh::time_stamp::addSeconds()</a>.</p>
 
 </div>
 </div>
@@ -678,7 +618,7 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
 </li>
 </ol>
 
-<p class="reference">References <a class="el" href="classenh_1_1date.html#a4d6be6c3f1138a3af8afe170995c16b3">enh::date::getStringDate()</a>, and <a class="el" href="classenh_1_1time__stamp.html#aad6b220a638c598bd12fba0fba9534ea">enh::time_stamp::getStringTime()</a>.</p>
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#aad6b220a638c598bd12fba0fba9534ea">enh::time_stamp::getStringTime()</a>.</p>
 
 </div>
 </div>
@@ -727,7 +667,7 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="classenh_1_1date.html#a4d6be6c3f1138a3af8afe170995c16b3">enh::date::getStringDate()</a>, and <a class="el" href="classenh_1_1time__stamp.html#aad6b220a638c598bd12fba0fba9534ea">enh::time_stamp::getStringTime()</a>.</p>
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#aad6b220a638c598bd12fba0fba9534ea">enh::time_stamp::getStringTime()</a>.</p>
 
 </div>
 </div>
@@ -765,7 +705,7 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#acee85a5eac640c0ab524c31d2fe90aed">enh::time_stamp::isEqualTo()</a>, and <a class="el" href="classenh_1_1date.html#a120fc311cfadeea944a0d5fcf69624fb">enh::date::isEqualTo()</a>.</p>
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#acee85a5eac640c0ab524c31d2fe90aed">enh::time_stamp::isEqualTo()</a>.</p>
 
 </div>
 </div>
@@ -879,7 +819,7 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#a2ad0c96e276e79e9448c60ddff0fb84f">enh::time_stamp::isLesserThan()</a>, and <a class="el" href="classenh_1_1date.html#a6aeb2f09a21d2cb3e3c1ec32c6515289">enh::date::isLesserThan()</a>.</p>
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#a2ad0c96e276e79e9448c60ddff0fb84f">enh::time_stamp::isLesserThan()</a>.</p>
 
 </div>
 </div>
@@ -917,7 +857,7 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#a8438c8ff7971aef81fac47dae35b1b03">enh::time_stamp::isLesserThanEq()</a>, and <a class="el" href="classenh_1_1date.html#a46cca5c73ce3cea40b92f09aa8d3a0c4">enh::date::isLesserThanEq()</a>.</p>
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#a8438c8ff7971aef81fac47dae35b1b03">enh::time_stamp::isLesserThanEq()</a>.</p>
 
 </div>
 </div>
@@ -1080,7 +1020,115 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">enh::min()</a>, <a class="el" href="classenh_1_1date.html#aaad30168b7bb62e0feda6113906632ee">enh::date::setDate()</a>, and <a class="el" href="classenh_1_1time__stamp.html#a0828a1cb34e325d605fdc6b5df5586be">enh::time_stamp::setTime()</a>.</p>
+<p class="reference">References <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">enh::min()</a>, and <a class="el" href="classenh_1_1time__stamp.html#a0828a1cb34e325d605fdc6b5df5586be">enh::time_stamp::setTime()</a>.</p>
+
+</div>
+</div>
+<a id="a13ba343e01411c69695b2e4b415325f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13ba343e01411c69695b2e4b415325f3">&#9670;&nbsp;</a></span>subHours()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr void enh::DateTime::subHours </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>hr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reduce the hour part of time held. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hr</td><td>: <em>in</em> : The hours to reduce. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#a96ef05368b254e34d472f3ebf7893ffb">enh::time_stamp::subHours()</a>.</p>
+
+</div>
+</div>
+<a id="a64eb6bcbd6fd3611f26a33122c4e484f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64eb6bcbd6fd3611f26a33122c4e484f">&#9670;&nbsp;</a></span>subMinutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr void enh::DateTime::subMinutes </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>min</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reduce the minute part of time held (also hour). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td>: <em>in</em> : The minutes to reduce. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">enh::min()</a>, and <a class="el" href="classenh_1_1time__stamp.html#aa45eac709939e5fbc1d79486984a618e">enh::time_stamp::subMinutes()</a>.</p>
+
+</div>
+</div>
+<a id="a4f693531d36e9cdac0c65ba2fac06abf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f693531d36e9cdac0c65ba2fac06abf">&#9670;&nbsp;</a></span>subSeconds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr void enh::DateTime::subSeconds </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>sec</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reduces the second part of time held (also hour). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sec</td><td>: <em>in</em> : The seconds to reduce. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#a743d87e0bb3ca033189ed665fa379d71">enh::time_stamp::subSeconds()</a>.</p>
 
 </div>
 </div>
@@ -1090,8 +1138,8 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
 </div><!-- contents -->
 <div class="ttc" id="aclassenh_1_1_date_time_html"><div class="ttname"><a href="classenh_1_1_date_time.html">enh::DateTime</a></div><div class="ttdoc">Class for date and time joint manipulation.</div><div class="ttdef"><b>Definition:</b> date_time.enh.h:44</div></div>
 <div class="ttc" id="adate__time_8enh_8h_html"><div class="ttname"><a href="date__time_8enh_8h.html">date_time.enh.h</a></div><div class="ttdoc">File for combined date time class.</div></div>
-<div class="ttc" id="aclassenh_1_1_date_time_html_a451f6ccc07dab1e606e95d55f63d8bbb"><div class="ttname"><a href="classenh_1_1_date_time.html#a451f6ccc07dab1e606e95d55f63d8bbb">enh::DateTime::addHour</a></div><div class="ttdeci">constexpr bool addHour()</div><div class="ttdoc">Adds One Hour to the time stamp, if Hour is 23, resets to 0. .</div><div class="ttdef"><b>Definition:</b> date_time.enh.h:214</div></div>
-<div class="ttc" id="aclassenh_1_1date_html_a8788f3bb12b9e17b3a60b4c9cdb8b983"><div class="ttname"><a href="classenh_1_1date.html#a8788f3bb12b9e17b3a60b4c9cdb8b983">enh::date::add_day</a></div><div class="ttdeci">constexpr void add_day()</div><div class="ttdoc">Add one day to date.</div><div class="ttdef"><b>Definition:</b> date.enh.h:197</div></div>
+<div class="ttc" id="aclassenh_1_1_date_time_html_a17f2e7a0cac52243492ba1b4fac48838"><div class="ttname"><a href="classenh_1_1_date_time.html#a17f2e7a0cac52243492ba1b4fac48838">enh::DateTime::addMinutes</a></div><div class="ttdeci">constexpr void addMinutes(unsigned long long min) noexcept</div><div class="ttdoc">Adds to the minute part of time held (also hour).</div><div class="ttdef"><b>Definition:</b> date_time.enh.h:194</div></div>
+<div class="ttc" id="aclassenh_1_1_date_time_html_a7ea223fd1bbd5e258e60fb7530d6f345"><div class="ttname"><a href="classenh_1_1_date_time.html#a7ea223fd1bbd5e258e60fb7530d6f345">enh::DateTime::addHours</a></div><div class="ttdeci">constexpr void addHours(unsigned long long hr) noexcept</div><div class="ttdoc">Adds to the hour part of time held.</div><div class="ttdef"><b>Definition:</b> date_time.enh.h:184</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

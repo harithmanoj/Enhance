@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error_388',['error',['../classenh_1_1error__base.html#a47deb7a12772f468c46e511debc6e077',1,'enh::error_base']]]
+  ['bill_433',['bill',['../namespaceenh_1_1numeric.html#a48ff74902b4c0fb67e1497304f3d4491',1,'enh::numeric']]]
 ];

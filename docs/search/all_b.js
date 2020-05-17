@@ -1,9 +1,20 @@
 var searchData=
 [
-  ['max_109',['max',['../namespaceenh.html#a5f461456cf52f5d925004b085dd84761',1,'enh']]],
-  ['micros_110',['micros',['../namespaceenh.html#a4161dbe2decf77ed6da3d93d5ed14c9d',1,'enh']]],
-  ['millis_111',['millis',['../namespaceenh.html#abaa97670f060ac3bf5704a6c3350e8bb',1,'enh']]],
-  ['min_112',['min',['../namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c',1,'enh']]],
-  ['minutes_113',['minutes',['../namespaceenh.html#aad379e78fcdc490e2fca2fe25344a4f6',1,'enh']]],
-  ['month_5flimit_114',['month_limit',['../namespaceenh.html#a3a89d6dc1f27d7423607ffe07f6bb3c0',1,'enh']]]
+  ['lib_5ferror_5fflag_5flog_96',['LIB_ERROR_FLAG_LOG',['../error__base_8enh_8h.html#ac1173d82ebbeb190649ef1a93fafd95c',1,'error_base.enh.h']]],
+  ['lib_5ferror_5fflag_5flogp_97',['LIB_ERROR_FLAG_LOGP',['../error__base_8enh_8h.html#a15482f7ba898ea83b2b9707774404fe7',1,'error_base.enh.h']]],
+  ['lib_5flog_5fdesc_98',['LIB_LOG_DESC',['../logger_8enh_8h.html#a221a201e3be8bc19b8ecb9337295ebc2',1,'logger.enh.h']]],
+  ['lib_5flog_5fline_99',['LIB_LOG_LINE',['../logger_8enh_8h.html#ad825cc3fbe076b63a32289e85099aaa3',1,'logger.enh.h']]],
+  ['lib_5flog_5fval_100',['LIB_LOG_VAL',['../logger_8enh_8h.html#a01f54130cf98192961ae779e165cb495',1,'logger.enh.h']]],
+  ['lib_5freplace_101',['LIB_REPLACE',['../logger_8enh_8h.html#ae60d43340c9acbc8de39c596865ae5b5',1,'logger.enh.h']]],
+  ['lib_5freplace_5fas_102',['LIB_REPLACE_AS',['../logger_8enh_8h.html#a9d113e8863d81c43bed558aa85fb576f',1,'logger.enh.h']]],
+  ['limit_103',['limit',['../classenh_1_1_numeric_system.html#a37cc536dfe12aa39552056ed2c15ecfa',1,'enh::NumericSystem']]],
+  ['limit_5ft_104',['limit_t',['../classenh_1_1confined__base.html#ae4920a36fef0f041a3fe519cb8cbe1af',1,'enh::confined_base']]],
+  ['localtime_105',['localtime',['../namespaceenh.html#a4dcc172e289b03b0295ea140d68a274b',1,'enh']]],
+  ['log_106',['Log',['../classenh_1_1error__base.html#a2921e99de5c1eb5f0b493159ffd04ab5',1,'enh::error_base::Log()'],['../namespacedebug.html#a24f177f77e5c8af3922ada72aea089ac',1,'debug::Log(std::string lg, std::string function)'],['../namespacedebug.html#a734ce3feb2187ac6495262f52f7b3753',1,'debug::Log(std::string file, std::string function, unsigned long line)'],['../namespacedebug.html#ae5935b08444a6013a0f16fd8a0e2900d',1,'debug::Log(std::string file, std::string function, unsigned long line, std::string descr)'],['../namespacedebug.html#a717f2ef93984eb5de567d96bc78ede21',1,'debug::Log(std::string file, std::string function, unsigned long line, std::string var, const T &amp;val)']]],
+  ['log_5fdesc_107',['LOG_DESC',['../logger_8enh_8h.html#acfc65a19f5e85486ddc830b77d4a2398',1,'logger.enh.h']]],
+  ['log_5fline_108',['LOG_LINE',['../logger_8enh_8h.html#a9917792a9ae6fb8263dd825556b1adc1',1,'logger.enh.h']]],
+  ['log_5fval_109',['LOG_VAL',['../logger_8enh_8h.html#af329f089bb4b5fed246cd36aa698b107',1,'logger.enh.h']]],
+  ['logger_2ecpp_110',['logger.cpp',['../logger_8cpp.html',1,'']]],
+  ['logger_2eenh_2eh_111',['logger.enh.h',['../logger_8enh_8h.html',1,'']]],
+  ['license_112',['License',['../md__f_1_source__enhance__license.html',1,'']]]
 ];

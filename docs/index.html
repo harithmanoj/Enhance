@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Enhance
-   &#160;<span id="projectnumber">1.3.0.4</span>
+   &#160;<span id="projectnumber">1.3.1.5</span>
    </div>
    <div id="projectbrief">Enhance is a collection of C++ libraries for different uses</div>
   </td>
@@ -91,7 +91,7 @@ Framework</h2>
 <p>Framework is a library that defines The version of Enhance and class to store version info.</p>
 <p>Exists in <code>namespace enh</code>.</p>
 <h3><a class="anchor" id="autotoc_md2"></a>
-Headers :</h3>
+Headers</h3>
 <p><code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></p>
 <h3><a class="anchor" id="autotoc_md3"></a>
 The Library</h3>
@@ -106,8 +106,10 @@ General</h2>
 <p>General is a library of functions for general use.</p>
 <p>Exists in <code>namespace enh</code>.</p>
 <h3><a class="anchor" id="autotoc_md5"></a>
-Headers :</h3>
+Headers</h3>
 <p><code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code></p>
+<p><code><a class="el" href="confined_8enh_8h.html" title="The file to declare class for confined counts.">confined.enh.h</a></code></p>
+<p><code><a class="el" href="numeral__system_8enh_8h.html" title="The file to declare class for a custom numeral system.">numeral_system.enh.h</a></code></p>
 <h3><a class="anchor" id="autotoc_md6"></a>
 The Library</h3>
 <ul>
@@ -116,6 +118,8 @@ The Library</h3>
 <li>Signum function and inclusive_ration (also constexpr).</li>
 <li>getOrdinalIndicator returns "th", "st", "nd" "rd" according to argument passed.</li>
 <li>signExtend extends the string format of a numeral by prepending '0' s</li>
+<li>confined_base class for storing a value within bounds</li>
+<li>NumericSystem class for storing a value within 0 and an upper limit.</li>
 </ul>
 <hr  />
  <h2><a class="anchor" id="autotoc_md7"></a>
@@ -125,7 +129,7 @@ Diagnose</h2>
 <p>Exists in <code>namespace debug</code>, but use Macros for logging easily.</p>
 <p>See <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code> documentation for usage.</p>
 <h3><a class="anchor" id="autotoc_md8"></a>
-Headers :</h3>
+Headers</h3>
 <p><code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code></p>
 <h3><a class="anchor" id="autotoc_md9"></a>
 The Library</h3>
@@ -140,7 +144,7 @@ Error Handling</h2>
 <p>Error Handling Library is a library that contains functions and classes for various error handling uses.</p>
 <p>Exists in <code>namespace enh</code>.</p>
 <h3><a class="anchor" id="autotoc_md11"></a>
-Headers :</h3>
+Headers</h3>
 <p><code><a class="el" href="error__base_8enh_8h.html" title="The file to declare Error Handling classes and functions.">error_base.enh.h</a></code></p>
 <h3><a class="anchor" id="autotoc_md12"></a>
 The Library</h3>
@@ -155,7 +159,7 @@ Concurrent</h2>
 <p>Library for ease of concurrent programming.</p>
 <p>Exists in <code>namespace enh</code>.</p>
 <h3><a class="anchor" id="autotoc_md14"></a>
-Headers :</h3>
+Headers</h3>
 <p><code><a class="el" href="queued__process_8enh_8h.html" title="The file to declare class queued_process.">queued_process.enh.h</a></code></p>
 <h3><a class="anchor" id="autotoc_md15"></a>
 The Library</h3>
@@ -169,7 +173,7 @@ Time</h2>
 <p>Library for time tracking, synchronisation etc.</p>
 <p>Exists in <code>namespace enh</code>.</p>
 <h3><a class="anchor" id="autotoc_md17"></a>
-Header:</h3>
+Header</h3>
 <p><code><a class="el" href="timer_8enh_8h.html" title="File to declare functions and classes related to timer functionality.">timer.enh.h</a></code></p>
 <p><code><a class="el" href="counter_8enh_8h.html" title="The file to declare counter class.">counter.enh.h</a></code></p>
 <p><code><a class="el" href="time__stamp_8enh_8h.html" title="File for time class.">time_stamp.enh.h</a></code></p>
@@ -195,35 +199,55 @@ HOW TO INSTALL</h2>
 Dependencies</h3>
 <ul>
 <li><code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code> depends only on standard c++ headers.</li>
-<li><code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code> depends on <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
-<li><code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code> depends on <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code> but requires compilation of <code><a class="el" href="logger_8cpp.html" title="The file to define logger functions.">logger.cpp</a></code></li>
-<li><code><a class="el" href="error__base_8enh_8h.html" title="The file to declare Error Handling classes and functions.">error_base.enh.h</a></code> depends on <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code>, <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code></li>
-<li><code><a class="el" href="queued__process_8enh_8h.html" title="The file to declare class queued_process.">queued_process.enh.h</a></code> depends on <code><a class="el" href="error__base_8enh_8h.html" title="The file to declare Error Handling classes and functions.">error_base.enh.h</a></code>, <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code>, <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code></li>
-<li><code><a class="el" href="counter_8enh_8h.html" title="The file to declare counter class.">counter.enh.h</a></code> depends on <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
-<li><code><a class="el" href="timer_8enh_8h.html" title="File to declare functions and classes related to timer functionality.">timer.enh.h</a></code> depends on <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code>, <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code></li>
-<li><code><a class="el" href="date_8enh_8h.html" title="File for date class.">date.enh.h</a></code> depends on <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
-<li><code><a class="el" href="time__stamp_8enh_8h.html" title="File for time class.">time_stamp.enh.h</a></code> depends on <code><a class="el" href="date_8enh_8h.html" title="File for date class.">date.enh.h</a></code>, <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
-<li><code><a class="el" href="date__time_8enh_8h.html" title="File for combined date time class.">date_time.enh.h</a></code> depends on <code><a class="el" href="time__stamp_8enh_8h.html" title="File for time class.">time_stamp.enh.h</a></code>, <code><a class="el" href="date_8enh_8h.html" title="File for date class.">date.enh.h</a></code>, <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
+<li><code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code> depends only on standard c++ headers.</li>
+<li><code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code> depends only on standard c++ headers but requires compilation of <code><a class="el" href="logger_8cpp.html" title="The file to define logger functions.">logger.cpp</a></code>.</li>
+<li><code><a class="el" href="error__base_8enh_8h.html" title="The file to declare Error Handling classes and functions.">error_base.enh.h</a></code> depends on <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code>.</li>
+<li><code><a class="el" href="queued__process_8enh_8h.html" title="The file to declare class queued_process.">queued_process.enh.h</a></code> depends on <code><a class="el" href="error__base_8enh_8h.html" title="The file to declare Error Handling classes and functions.">error_base.enh.h</a></code>, <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code>.</li>
+<li><code><a class="el" href="counter_8enh_8h.html" title="The file to declare counter class.">counter.enh.h</a></code> depends only on standard c++ headers.</li>
+<li><code><a class="el" href="timer_8enh_8h.html" title="File to declare functions and classes related to timer functionality.">timer.enh.h</a></code> depends on <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code>.</li>
+<li><code><a class="el" href="date_8enh_8h.html" title="File for date class.">date.enh.h</a></code> depends on <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code>numerical_system.enh.h</code>, <code><a class="el" href="confined_8enh_8h.html" title="The file to declare class for confined counts.">confined.enh.h</a></code>.</li>
+<li><code><a class="el" href="time__stamp_8enh_8h.html" title="File for time class.">time_stamp.enh.h</a></code> depends on <code><a class="el" href="date_8enh_8h.html" title="File for date class.">date.enh.h</a></code>, <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code>numerical_system.enh.h</code>, <code><a class="el" href="confined_8enh_8h.html" title="The file to declare class for confined counts.">confined.enh.h</a></code>.</li>
+<li><code><a class="el" href="date__time_8enh_8h.html" title="File for combined date time class.">date_time.enh.h</a></code> depends on <code><a class="el" href="time__stamp_8enh_8h.html" title="File for time class.">time_stamp.enh.h</a></code>, <code><a class="el" href="date_8enh_8h.html" title="File for date class.">date.enh.h</a></code>, <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code>, <code>numerical_system.enh.h</code>, <code><a class="el" href="confined_8enh_8h.html" title="The file to declare class for confined counts.">confined.enh.h</a></code>.</li>
 </ul>
 <h3><a class="anchor" id="autotoc_md21"></a>
 Dependency Graph</h3>
-<pre class="fragment">                                              framework.enh.h
+<pre class="fragment">               logger.enh.h      general.enh.h       confined.enh.h          framework.enh.h 
+                 |       |             |                   |
+                 |   logger.cpp        |                   |                       counter.enh.h 
+                 |                     |                   |
+     +-----------+------+    +---------+---------+  numeral_system.enh
+     |                  |    |                   |     |
+ timer.enh.h        error_base.enh.h             |     |
+                          |                     date.enh.h
+                 queued_process.enh.h               |
+                                             time_stamp.enh.h
                                                     |
-              +-------------------------------------+--------------------------------------------------+
-              |                                     |                                                  |
-         general.enh.h                        logger.enh.h                                       counter.enh.h
-              |                                   (logger.cpp)
-      +-------+-------------+                       |
-      |                     |     +-----------------+------------------+
-  date.enh.h                |     |                                    |
-      |                 error_base.enh.h                          timer.enh.h
-time_stamp.enh.h               |
-      |                queued_process.enh.h
-date_time.enh.h
-</pre><h2><a class="anchor" id="autotoc_md22"></a>
+                                              date_time.enh.h
+</pre><h3><a class="anchor" id="autotoc_md22"></a>
+Module wise dependency</h3>
+<ul>
+<li>Diagnose : <code><a class="el" href="logger_8enh_8h.html" title="The file for logging functionality.">logger.enh.h</a></code>, <code><a class="el" href="logger_8cpp.html" title="The file to define logger functions.">logger.cpp</a></code></li>
+<li>General : <code><a class="el" href="general_8enh_8h.html" title="The file to declare general purpose classes and functions.">general.enh.h</a></code></li>
+<li>Framework : <code><a class="el" href="framework_8enh_8h.html" title="The file to declare version and the version info class.">framework.enh.h</a></code></li>
+<li>Counter : <code><a class="el" href="counter_8enh_8h.html" title="The file to declare counter class.">counter.enh.h</a></code></li>
+<li>Confined : <code><a class="el" href="confined_8enh_8h.html" title="The file to declare class for confined counts.">confined.enh.h</a></code>, <code>numerical_system.enh.h</code></li>
+<li>Timer : <code><a class="el" href="timer_8enh_8h.html" title="File to declare functions and classes related to timer functionality.">timer.enh.h</a></code> depends on Diagnose</li>
+<li>Error : <code><a class="el" href="error__base_8enh_8h.html" title="The file to declare Error Handling classes and functions.">error_base.enh.h</a></code> depends on Diagnose, General</li>
+<li>QProc : <code><a class="el" href="queued__process_8enh_8h.html" title="The file to declare class queued_process.">queued_process.enh.h</a></code> depends on Error, Diagnose, General</li>
+<li>DateTime : <code><a class="el" href="date_8enh_8h.html" title="File for date class.">date.enh.h</a></code>, <code><a class="el" href="time__stamp_8enh_8h.html" title="File for time class.">time_stamp.enh.h</a></code>, <code><a class="el" href="date__time_8enh_8h.html" title="File for combined date time class.">date_time.enh.h</a></code> depends on Confined, General</li>
+</ul>
+<p>Graph:</p>
+<pre class="fragment">        Diagnose          General  Confined    Framework
+           |                 |        |               
+  +--------+-------+ +-------+-----+  |            Counter
+  |                | |             |  |
+Timer             Error          DateTime
+                    |
+                  QProc
+</pre><h2><a class="anchor" id="autotoc_md23"></a>
 Contribution</h2>
 <p>Code contribution is welcome. Refer <a href="https://github.com/harithmanoj/Enhance/blob/master/Contributing.md">Contributing.md</a> for ways to contribute.</p>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 AUTHOR</h2>
 <p>Harith Manoj, <a href="#" onclick="location.href='mai'+'lto:'+'har'+'it'+'hpu'+'b@'+'gma'+'il'+'.co'+'m'; return false;">harit<span style="display: none;">.nosp@m.</span>hpub<span style="display: none;">.nosp@m.</span>@gmai<span style="display: none;">.nosp@m.</span>l.co<span style="display: none;">.nosp@m.</span>m</a> </p>
 </div></div><!-- PageDoc -->

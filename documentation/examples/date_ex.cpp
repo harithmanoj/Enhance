@@ -4,12 +4,14 @@
 
 int main()
 {
-	enh::date dt[] = { {},{std::time(nullptr) + 3600 * 35 * 24}, {21,4,2020,2,75} };
+	enh::date dt[] = { {},{std::time(nullptr)}, {21,4,2020,2,75} };
+
+	dt[1].addDay(250);
 
 	for (auto i : dt)
 	{
 		std::cout << i.getDayOfWeek() << " " << i.getDayOfWeekString() << " " << i.getShortDayOfWeekString()
-			<< " " << i.getDayOfMonth() << i.getDaySuperScript() << " " << i.getMonth() << " " << i.getMonthString()
+			<< " " << i.getDayOfMonth() << " " << i.getMonth() << " " << i.getMonthString()
 			<< " " << i.getShortMonthString() << " " << i.getDayOfYear() << "\n\n";
 		std::cout << "def : " << i.getStringDate() << "\n\n";
 		std::string form[] = {
@@ -31,25 +33,25 @@ int main()
 
 Output :
 
-3 Wednesday Wed 13th 4 May May 133
+0 Sunday Sun 17 4 May May 137
 
-def : Wednesday, 13th May 2020
+def : Sunday, 17th May 2020
 
-Format : shDay, ddth mm yyyy >> Wed, 13th 05 2020
-Format : Day, dd Month yyyy >> Wednesday, 13 May 2020
-Format : shDay, ddth shMonth yyyy >> Wed, 13th May 2020
-Format : dd/mm/yyyy >> 13/05/2020
-Format : ddth : Day, Month : yyyy >> 13th : Wednesday, May : 2020
-3 Wednesday Wed 17th 5 June Jun 168
+Format : shDay, ddth mm yyyy >> Sun, 17th 05 2020
+Format : Day, dd Month yyyy >> Sunday, 17 May 2020
+Format : shDay, ddth shMonth yyyy >> Sun, 17th May 2020
+Format : dd/mm/yyyy >> 17/05/2020
+Format : ddth : Day, Month : yyyy >> 17th : Sunday, May : 2020
+4 Thursday Thu 30 0 January Jan 38
 
-def : Wednesday, 17th June 2020
+def : Thursday, 30th January 2021
 
-Format : shDay, ddth mm yyyy >> Wed, 17th 06 2020
-Format : Day, dd Month yyyy >> Wednesday, 17 June 2020
-Format : shDay, ddth shMonth yyyy >> Wed, 17th Jun 2020
-Format : dd/mm/yyyy >> 17/06/2020
-Format : ddth : Day, Month : yyyy >> 17th : Wednesday, June : 2020
-2 Tuesday Tue 21st 4 May May 75
+Format : shDay, ddth mm yyyy >> Thu, 30th 01 2021
+Format : Day, dd Month yyyy >> Thursday, 30 January 2021
+Format : shDay, ddth shMonth yyyy >> Thu, 30th Jan 2021
+Format : dd/mm/yyyy >> 30/01/2021
+Format : ddth : Day, Month : yyyy >> 30th : Thursday, January : 2021
+2 Tuesday Tue 21 4 May May 75
 
 def : Tuesday, 21st May 2020
 
