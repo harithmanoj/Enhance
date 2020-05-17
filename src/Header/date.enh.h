@@ -670,6 +670,7 @@ namespace enh
 			unsigned long long dy /**< : <i>in</i> : The days to add.*/
 		) noexcept
 		{
+			wkday.add(dy);
 			unsigned long long additional = dy % (365 + 365 + 365 + 366);
 			unsigned long long yr_add = 4 * (dy / (365 + 365 + 365 + 366));
 			year += yr_add;
@@ -677,13 +678,17 @@ namespace enh
 			auto current_step = month_limit(month.get(), year) - 1;
 			while (additional > current_step)
 			{
-				year += month.add(day.add(current_step));
-				
+				auto yr = month.add(day.add(current_step));
+				yrday.add(current_step);
+				year += yr;
+
 				additional -= current_step;
 				current_step = month_limit(month.get(), year) - 1;
 			}
 			
-			year += month.add(day.add(additional));			
+			auto yr = month.add(day.add(additional));		
+			yrday.add(current_step);
+			year += yr;
 		}
 
 		/**
@@ -693,6 +698,7 @@ namespace enh
 			unsigned long long dy /**< : <i>in</i> : The days to subtract.*/
 		) noexcept
 		{
+			wkday.sub(dy);
 			unsigned long long difference = dy % (365 + 365 + 365 + 366);
 			unsigned long long yr_sub = 4 * (dy / (365 + 365 + 365 + 366));
 			year -= yr_sub;
@@ -700,13 +706,17 @@ namespace enh
 			auto current_step = month_limit(month.get(), year) - 1;
 			while (difference > current_step)
 			{
-				year -= month.sub(day.sub(current_step));
+				auto yr = month.sub(day.sub(current_step));
+				yrday.sub(current_step);
+				year -= yr;
 
 				difference -= current_step;
 				current_step = month_limit(month.get(), year) - 1;
 			}
 
-			year -= month.sub(day.sub(difference));
+			auto yr = month.sub(day.sub(difference));
+			yrday.sub(current_step);
+			year -= yr;
 		}
 
 
