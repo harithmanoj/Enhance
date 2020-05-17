@@ -234,7 +234,7 @@ namespace enh
 
 			if (!uLimit_pred((unsigned long long)(value) + rem))
 			{
-				value = value + rem + lLimit() - uLimit();
+				value = value + rem + lLimit() - uLimit() - 1;
 				++ret;
 			}
 			else
@@ -321,7 +321,7 @@ namespace enh
 			rem = value - rem;
 			if (!lLimit_pred(rem))
 			{
-				value = rem + uLimit() - lLimit();
+				value = rem + uLimit() - lLimit() + 1;
 				++ret;
 			}
 			else
