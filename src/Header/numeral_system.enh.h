@@ -47,13 +47,13 @@ namespace enh
 		/**
 			\brief The upper limit for values of this type.
 		*/
-		static constexpr value_type limit = upper;
+		static constexpr confined_base<integral>::value_type limit = upper;
 
 		/**
 			\brief The constructor the class initialises value to 0.
 		*/
 		constexpr inline NumericSystem() noexcept
-			: confined_base(
+			: confined_base<integral>::confined_base(
 				[&](long long a) {return a < limit; },
 				[&](long long a) { return a >= 0; },
 				[&]() {return 0; },
@@ -69,13 +69,12 @@ namespace enh
 			than or equal to upper.
 		*/
 		constexpr inline NumericSystem(
-			value_type val
-		)
-			: confined_base(
+			confined_base<integral>::value_type val
+		) : confined_base<integral>::confined_base(
 				[&](long long a) {return a < limit; },
 				[&](long long a) { return a >= 0; },
-				[&]() {return 0; },
 				[&]() {return limit - 1; },
+				[&]() {return 0; },
 				val)
 		{}
 	};
@@ -109,7 +108,7 @@ namespace enh
 		/**
 			\brief Type with upper limit at 1000000000.
 		*/
-		using bill = NumericSystem<unsigned long, 1000000000ULL>
+		using bill = NumericSystem<unsigned long, 1000000000ULL>;
 	}
 
 }
