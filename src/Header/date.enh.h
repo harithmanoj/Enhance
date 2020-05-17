@@ -180,19 +180,19 @@ namespace enh
 				const long long &yr /**< : <i>in</i> : The value of year.*/,
 				unsigned short dy /**< : <i>in</i> : The value of day.*/
 			) : confined_base(
-					[&](long long a) 
+					[&mnth, &yr](long long a) 
 					{
 						return (a <= month_limit(mnth.get(), yr));
 					},
-					[&](long long a)
+					[](long long a)
 					{
 						return (a >= 1);
 					},
-					[&]()
+					[&mnth, &yr]()
 					{
 						return month_limit(mnth.get(), yr);
 					},
-					[&]()
+					[]()
 					{
 						return 1;
 					},
@@ -226,19 +226,19 @@ namespace enh
 				unsigned short yrdy /**< : <i>in</i> : The value of year 
 									day.*/
 			) : confined_base(
-				[&](long long a)
+				[&yr](long long a)
 				{
 					return (a < year_limit(yr));
 				},
-				[&](long long a)
+				[](long long a)
 				{
 					return (a >= 0);
 				},
-					[&]()
+					[&yr]()
 				{
 					return year_limit(yr) - 1;
 				},
-					[&]()
+					[]()
 				{
 					return 0;
 				},
