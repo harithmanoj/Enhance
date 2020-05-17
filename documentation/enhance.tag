@@ -1,10 +1,170 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <tagfile>
   <compound kind="file">
+    <name>confined.enh.h</name>
+    <path>F:/source/Enhance/src/Header/</path>
+    <filename>confined_8enh_8h.html</filename>
+    <class kind="class">enh::confined_base</class>
+    <namespace>enh</namespace>
+    <member kind="function">
+      <type>constexpr confined_base&lt; integral &gt;</type>
+      <name>operator+</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aa401f521327d24656575961cbf34e4d6</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const unsigned long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; integral &gt;</type>
+      <name>operator+</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a6c952138b7eda2b9b3e8a0a416817c5e</anchor>
+      <arglist>(const unsigned long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; integral &gt;</type>
+      <name>operator-</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a252874bca379fed3e094ef47dd9a0590</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const unsigned long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; integral &gt;</type>
+      <name>operator-</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>abe83bdec9aeb31830a6fd2a2657446bd</anchor>
+      <arglist>(const unsigned long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a667f9755d74ec1b161f557ad7c8b0536</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a2f3dceeedb85296f38da5bba52d7da80</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a88c8853675b0cd19af478d27d2dc8e76</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ad045b2a117c2e7a90f146f722441e41d</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ae034f233985b4b1545b9ec7d1189f2e2</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aa8d0a242edafe34f519c758f48e8d2c3</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ad35eef65ed0ef2abfb1e9e3d016e7682</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a00b64cbad1ba16dedf112db86f8400f4</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aedf60553435222a820aba27aed5d661e</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a5dce85441c399ca29f1aeb8082ecd990</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a2a05b45f16135cd95811bfd762523e22</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>abc6f69c1921b03221de398c6cfe2dbb4</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aa9f6408ece8d4db782b1b692f403b7f0</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a6e1fbb06134b4b24a3ff8ab50a5cdfd1</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a7276ea4521fb7a5c5dc1189537811586</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a1aa4471aa10a9c201e0b4bffb6c1b09f</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aaeb41650575cef24bd0adae8241622ca</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a60afd9f3277f897e958ffe582a42bb7e</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>counter.enh.h</name>
     <path>F:/source/Enhance/src/Header/</path>
     <filename>counter_8enh_8h.html</filename>
-    <includes id="framework_8enh_8h" name="framework.enh.h" local="yes" imported="no">framework.enh.h</includes>
     <class kind="class">enh::counter</class>
     <namespace>enh</namespace>
     <member kind="function">
@@ -34,8 +194,25 @@
     <path>F:/source/Enhance/src/Header/</path>
     <filename>date_8enh_8h.html</filename>
     <includes id="general_8enh_8h" name="general.enh.h" local="yes" imported="no">general.enh.h</includes>
-    <class kind="class">enh::date</class>
+    <includes id="numeral__system_8enh_8h" name="numeral_system.enh.h" local="yes" imported="no">numeral_system.enh.h</includes>
+    <class kind="class">enh::dt_type::day_t</class>
+    <class kind="class">enh::dt_type::yearday_t</class>
     <namespace>enh</namespace>
+    <namespace>enh::dt_type</namespace>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned short, 12 &gt;</type>
+      <name>month_t</name>
+      <anchorfile>namespaceenh_1_1dt__type.html</anchorfile>
+      <anchor>a4e2b3f7aa5310ff4e47076969dd50e27</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned short, 7 &gt;</type>
+      <name>weekday_t</name>
+      <anchorfile>namespaceenh_1_1dt__type.html</anchorfile>
+      <anchor>a2428982d707ea69f8025a0109f1ab4af</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>localtime</name>
@@ -47,15 +224,15 @@
       <type>constexpr unsigned short</type>
       <name>month_limit</name>
       <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>a3a89d6dc1f27d7423607ffe07f6bb3c0</anchor>
-      <arglist>(unsigned short mnth, long yr) noexcept</arglist>
+      <anchor>a27050797d2d5a5cfcbedce528d2c4ccd</anchor>
+      <arglist>(unsigned short mnth, long long yr) noexcept</arglist>
     </member>
     <member kind="function">
       <type>constexpr unsigned</type>
       <name>year_limit</name>
       <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>afd8eedb8bd3b3548af8f4ecdd1afec12</anchor>
-      <arglist>(long yr) noexcept</arglist>
+      <anchor>a7d4771e8332732a22b633252b8d16073</anchor>
+      <arglist>(long long yr) noexcept</arglist>
     </member>
     <member kind="function">
       <type>constexpr unsigned short</type>
@@ -161,7 +338,6 @@
     <name>error_base.enh.h</name>
     <path>F:/source/Enhance/src/Header/</path>
     <filename>error__base_8enh_8h.html</filename>
-    <includes id="framework_8enh_8h" name="framework.enh.h" local="yes" imported="no">framework.enh.h</includes>
     <includes id="general_8enh_8h" name="general.enh.h" local="yes" imported="no">general.enh.h</includes>
     <includes id="logger_8enh_8h" name="logger.enh.h" local="yes" imported="no">logger.enh.h</includes>
     <class kind="class">enh::error_base</class>
@@ -253,7 +429,6 @@
     <name>general.enh.h</name>
     <path>F:/source/Enhance/src/Header/</path>
     <filename>general_8enh_8h.html</filename>
-    <includes id="framework_8enh_8h" name="framework.enh.h" local="yes" imported="no">framework.enh.h</includes>
     <namespace>enh</namespace>
     <member kind="function">
       <type>constexpr bool</type>
@@ -298,10 +473,10 @@
       <arglist>(arithmetic value, unsigned length)</arglist>
     </member>
     <member kind="function">
-      <type>std::string</type>
+      <type>constexpr std::string_view</type>
       <name>getOrdinalIndicator</name>
       <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>af497c3ace8c354a276830475fe416315</anchor>
+      <anchor>a0ebd777dbb04fc520e41b1f7c06b9c2c</anchor>
       <arglist>(integral value)</arglist>
     </member>
     <member kind="variable">
@@ -323,7 +498,6 @@
     <name>logger.enh.h</name>
     <path>F:/source/Enhance/src/Header/</path>
     <filename>logger_8enh_8h.html</filename>
-    <includes id="framework_8enh_8h" name="framework.enh.h" local="yes" imported="no">framework.enh.h</includes>
     <namespace>debug</namespace>
     <member kind="define">
       <type>#define</type>
@@ -803,10 +977,53 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>numeral_system.enh.h</name>
+    <path>F:/source/Enhance/src/Header/</path>
+    <filename>numeral__system_8enh_8h.html</filename>
+    <includes id="confined_8enh_8h" name="confined.enh.h" local="yes" imported="no">confined.enh.h</includes>
+    <class kind="class">enh::NumericSystem</class>
+    <namespace>enh</namespace>
+    <namespace>enh::numeric</namespace>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned short, 10U &gt;</type>
+      <name>dec</name>
+      <anchorfile>namespaceenh_1_1numeric.html</anchorfile>
+      <anchor>a383f3096b018e92870fd3d65dfdd5af6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned short, 100U &gt;</type>
+      <name>cent</name>
+      <anchorfile>namespaceenh_1_1numeric.html</anchorfile>
+      <anchor>a8fce07b074c6c7d780d843053c31945d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned short, 1000U &gt;</type>
+      <name>kilo</name>
+      <anchorfile>namespaceenh_1_1numeric.html</anchorfile>
+      <anchor>aea34a241e02cd673f8e39ede26265072</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned long, 1000000UL &gt;</type>
+      <name>mill</name>
+      <anchorfile>namespaceenh_1_1numeric.html</anchorfile>
+      <anchor>a188322df1c543240f152853c4975c0c3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned long, 1000000000ULL &gt;</type>
+      <name>bill</name>
+      <anchorfile>namespaceenh_1_1numeric.html</anchorfile>
+      <anchor>a48ff74902b4c0fb67e1497304f3d4491</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>queued_process.enh.h</name>
     <path>F:/source/Enhance/src/Header/</path>
     <filename>queued__process_8enh_8h.html</filename>
-    <includes id="logger_8enh_8h" name="logger.enh.h" local="yes" imported="no">logger.enh.h</includes>
     <includes id="error__base_8enh_8h" name="error_base.enh.h" local="yes" imported="no">error_base.enh.h</includes>
     <class kind="struct">enh::gen_instruct</class>
     <class kind="struct">enh::quad_instruct</class>
@@ -821,6 +1038,7 @@
     <includes id="date_8enh_8h" name="date.enh.h" local="yes" imported="no">date.enh.h</includes>
     <class kind="class">enh::time_stamp</class>
     <namespace>enh</namespace>
+    <namespace>enh::dt_type</namespace>
     <member kind="function">
       <type>constexpr bool</type>
       <name>operator==</name>
@@ -951,6 +1169,323 @@
   <compound kind="class">
     <name>enh::blank_t</name>
     <filename>classenh_1_1blank__t.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>enh::confined_base</name>
+    <filename>classenh_1_1confined__base.html</filename>
+    <templarg></templarg>
+    <member kind="typedef">
+      <type>integral</type>
+      <name>value_type</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a7661dcc31427afe0b61a82c6ff2605f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::function&lt; bool(long long)&gt;</type>
+      <name>pred_t</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a77088ba8c6625b318736506a5efaa7fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::function&lt; value_type()&gt;</type>
+      <name>limit_t</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ae4920a36fef0f041a3fe519cb8cbe1af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr value_type</type>
+      <name>getUpperLimit</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a4be0ae32aa43a893d1d9710598f3880f</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr value_type</type>
+      <name>getLowerLimit</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ac9c2a3998696cdf9b7413ae2684b50fa</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr pred_t</type>
+      <name>getUpperPredicate</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>aa1483e4f7973d3f5feffda5bfa3aa098</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr pred_t</type>
+      <name>getLowerPredicate</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a3c72b3f9117ee9f5db369d3ee323a959</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>confined_base</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a827cc987ddf7eaf549d50e6f64710722</anchor>
+      <arglist>(pred_t upper_p, pred_t lower_p, limit_t upper_l, limit_t lower_l, value_type val)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>confined_base</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ad61011c620808171b30048cbe3f98cbc</anchor>
+      <arglist>(pred_t upper_p, pred_t lower_p, limit_t upper_l, limit_t lower_l)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr void</type>
+      <name>set</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a2e7df0e0edbd3752a96f34494d1cce3c</anchor>
+      <arglist>(const value_type &amp;val)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr value_type</type>
+      <name>get</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>afcc30fd19b470cfc7dd7466cc2c7337c</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned</type>
+      <name>add</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a5d2e979842b7fea6fae99f4f6efa8b7e</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned long long</type>
+      <name>add</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ad58460a2d10d5fe5268540d55c37ff3c</anchor>
+      <arglist>(unsigned long long additional) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt; &amp;</type>
+      <name>operator++</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a78e771e1e0c764a672e435a8aa547abf</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt;</type>
+      <name>operator++</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ad60b29c2f03cf392615fd7678797ebd1</anchor>
+      <arglist>(int) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt; &amp;</type>
+      <name>operator+=</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a4e53d633bac3aa97aefcae01386d1edb</anchor>
+      <arglist>(unsigned long long val)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned</type>
+      <name>sub</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>aabe19fc7782e8dce4ecb0c5bb1fc89a2</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned long long</type>
+      <name>sub</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a852131b52a84bd5099a9cfb3aaaed96f</anchor>
+      <arglist>(unsigned long long difference) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt; &amp;</type>
+      <name>operator--</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a12ee8f5545e2ad730ba5068b8977659f</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt;</type>
+      <name>operator--</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a5b2e086ac4e38453f6d54e22d449dc4d</anchor>
+      <arglist>(int) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt; &amp;</type>
+      <name>operator-=</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ad508feb925f9a757d96887e2c13bc3ff</anchor>
+      <arglist>(unsigned long long val)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>re_eval</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a74a1976728eabdf7561c9823ba0825e2</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>confined_base&lt; unsigned short &gt;</name>
+    <filename>classenh_1_1confined__base.html</filename>
+    <member kind="typedef">
+      <type>unsigned short</type>
+      <name>value_type</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a7661dcc31427afe0b61a82c6ff2605f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::function&lt; bool(long long)&gt;</type>
+      <name>pred_t</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a77088ba8c6625b318736506a5efaa7fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::function&lt; value_type()&gt;</type>
+      <name>limit_t</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ae4920a36fef0f041a3fe519cb8cbe1af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr value_type</type>
+      <name>getUpperLimit</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a4be0ae32aa43a893d1d9710598f3880f</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr value_type</type>
+      <name>getLowerLimit</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ac9c2a3998696cdf9b7413ae2684b50fa</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr pred_t</type>
+      <name>getUpperPredicate</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>aa1483e4f7973d3f5feffda5bfa3aa098</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr pred_t</type>
+      <name>getLowerPredicate</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a3c72b3f9117ee9f5db369d3ee323a959</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>confined_base</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a827cc987ddf7eaf549d50e6f64710722</anchor>
+      <arglist>(pred_t upper_p, pred_t lower_p, limit_t upper_l, limit_t lower_l, value_type val)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>confined_base</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ad61011c620808171b30048cbe3f98cbc</anchor>
+      <arglist>(pred_t upper_p, pred_t lower_p, limit_t upper_l, limit_t lower_l)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr void</type>
+      <name>set</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a2e7df0e0edbd3752a96f34494d1cce3c</anchor>
+      <arglist>(const value_type &amp;val)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr value_type</type>
+      <name>get</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>afcc30fd19b470cfc7dd7466cc2c7337c</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned</type>
+      <name>add</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a5d2e979842b7fea6fae99f4f6efa8b7e</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned long long</type>
+      <name>add</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ad58460a2d10d5fe5268540d55c37ff3c</anchor>
+      <arglist>(unsigned long long additional) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt; &amp;</type>
+      <name>operator++</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a78e771e1e0c764a672e435a8aa547abf</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt;</type>
+      <name>operator++</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ad60b29c2f03cf392615fd7678797ebd1</anchor>
+      <arglist>(int) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt; &amp;</type>
+      <name>operator+=</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a4e53d633bac3aa97aefcae01386d1edb</anchor>
+      <arglist>(unsigned long long val)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned</type>
+      <name>sub</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>aabe19fc7782e8dce4ecb0c5bb1fc89a2</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned long long</type>
+      <name>sub</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a852131b52a84bd5099a9cfb3aaaed96f</anchor>
+      <arglist>(unsigned long long difference) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt; &amp;</type>
+      <name>operator--</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a12ee8f5545e2ad730ba5068b8977659f</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt;</type>
+      <name>operator--</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a5b2e086ac4e38453f6d54e22d449dc4d</anchor>
+      <arglist>(int) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; value_type &gt; &amp;</type>
+      <name>operator-=</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>ad508feb925f9a757d96887e2c13bc3ff</anchor>
+      <arglist>(unsigned long long val)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>re_eval</name>
+      <anchorfile>classenh_1_1confined__base.html</anchorfile>
+      <anchor>a74a1976728eabdf7561c9823ba0825e2</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>enh::counter</name>
@@ -1216,188 +1751,8 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>enh::date</name>
-    <filename>classenh_1_1date.html</filename>
-    <member kind="function">
-      <type>constexpr void</type>
-      <name>add_day</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a8788f3bb12b9e17b3a60b4c9cdb8b983</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr void</type>
-      <name>setDate</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a6e09e3c88495fe4419ad6c5ac8df8d44</anchor>
-      <arglist>(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned ydy)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setDate</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a20ed25c17a7e67cf5295ff0aa4e07650</anchor>
-      <arglist>(time_t timeStamp)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setDate</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>aaad30168b7bb62e0feda6113906632ee</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>date</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a79f005d7b309290e5f511c920675bc24</anchor>
-      <arglist>(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned ydy)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>date</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a492f6d75efb3e3023620aead68bfacfc</anchor>
-      <arglist>(time_t timeStamp)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>date</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a97d21e49b1d6f4f319b08abcacf9e9aa</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr unsigned short</type>
-      <name>getDayOfMonth</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>acd0a26569b3399c55ea0e06525f258fb</anchor>
-      <arglist>() const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr unsigned short</type>
-      <name>getMonth</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>aa4fd4fd7afe7f17e70360cbc5a9513f1</anchor>
-      <arglist>() const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>getMonthString</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>adb91bcde7c15d6726cbebabe091ea397</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>getShortMonthString</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>ad02736aa79b2169cbeb2ebbe9b3346a6</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr long</type>
-      <name>getYear</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a4bc2430e5922b4e84bc17bf4ff380458</anchor>
-      <arglist>() const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr unsigned short</type>
-      <name>getDayOfWeek</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a854f69e23f5f21d709142608c6d602e6</anchor>
-      <arglist>() const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr unsigned</type>
-      <name>getDayOfYear</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a83c6cd8468c4e05e9a88bf5af91f9ff3</anchor>
-      <arglist>() const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>getDayOfWeekString</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>ad8916144151b3368a867d3ea92b3b739</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>getShortDayOfWeekString</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>adf3c44fafcec705b374cbf1844edffb9</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>getDaySuperScript</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a194d05e9f8566cead869b3a9f04b80b1</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>getStringDate</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a4d6be6c3f1138a3af8afe170995c16b3</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>getStringDate</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a496782e446b40a9fc9c5992c06be3fca</anchor>
-      <arglist>(std::string format) const</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr bool</type>
-      <name>isEqualTo</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a120fc311cfadeea944a0d5fcf69624fb</anchor>
-      <arglist>(const date &amp;dt) const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr bool</type>
-      <name>isNotEqualTo</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a91b45aa4472a34356cd187208f756296</anchor>
-      <arglist>(const date &amp;dt) const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr bool</type>
-      <name>isLesserThan</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a6aeb2f09a21d2cb3e3c1ec32c6515289</anchor>
-      <arglist>(const date &amp;dt) const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr bool</type>
-      <name>isLesserThanEq</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a46cca5c73ce3cea40b92f09aa8d3a0c4</anchor>
-      <arglist>(const date &amp;dt) const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr bool</type>
-      <name>isGreaterThan</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>a297f52dd1ffed3365f2c4e670d3ac710</anchor>
-      <arglist>(const date &amp;dt) const noexcept</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr bool</type>
-      <name>isGreaterThanEq</name>
-      <anchorfile>classenh_1_1date.html</anchorfile>
-      <anchor>aaf319c0e705afcb0490ca169dbe642e4</anchor>
-      <arglist>(const date &amp;dt) const noexcept</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>enh::DateTime</name>
     <filename>classenh_1_1_date_time.html</filename>
-    <base>enh::date</base>
     <base>enh::time_stamp</base>
     <member kind="function">
       <type>constexpr void</type>
@@ -1456,25 +1811,46 @@
       <arglist>(std::string format)</arglist>
     </member>
     <member kind="function">
-      <type>constexpr bool</type>
-      <name>addSeconds</name>
+      <type>constexpr void</type>
+      <name>addHours</name>
       <anchorfile>classenh_1_1_date_time.html</anchorfile>
-      <anchor>a458ea8c092d92e9e01863e4b192ca58f</anchor>
-      <arglist>()</arglist>
+      <anchor>a7ea223fd1bbd5e258e60fb7530d6f345</anchor>
+      <arglist>(unsigned long long hr) noexcept</arglist>
     </member>
     <member kind="function">
-      <type>constexpr bool</type>
+      <type>constexpr void</type>
       <name>addMinutes</name>
       <anchorfile>classenh_1_1_date_time.html</anchorfile>
-      <anchor>a87dd90167f09c64ffd972fadf851f18a</anchor>
-      <arglist>()</arglist>
+      <anchor>a17f2e7a0cac52243492ba1b4fac48838</anchor>
+      <arglist>(unsigned long long min) noexcept</arglist>
     </member>
     <member kind="function">
-      <type>constexpr bool</type>
-      <name>addHour</name>
+      <type>constexpr void</type>
+      <name>addSeconds</name>
       <anchorfile>classenh_1_1_date_time.html</anchorfile>
-      <anchor>a451f6ccc07dab1e606e95d55f63d8bbb</anchor>
-      <arglist>()</arglist>
+      <anchor>af6f9347f1ccaaa1c229e6023fd52c10b</anchor>
+      <arglist>(unsigned long long sec) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr void</type>
+      <name>subHours</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a13ba343e01411c69695b2e4b415325f3</anchor>
+      <arglist>(unsigned long long hr) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr void</type>
+      <name>subMinutes</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a64eb6bcbd6fd3611f26a33122c4e484f</anchor>
+      <arglist>(unsigned long long min) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr void</type>
+      <name>subSeconds</name>
+      <anchorfile>classenh_1_1_date_time.html</anchorfile>
+      <anchor>a4f693531d36e9cdac0c65ba2fac06abf</anchor>
+      <arglist>(unsigned long long sec) noexcept</arglist>
     </member>
     <member kind="function">
       <type>constexpr bool</type>
@@ -1517,6 +1893,18 @@
       <anchorfile>classenh_1_1_date_time.html</anchorfile>
       <anchor>a297c2d86df12aed88eb58e47f0eb9395</anchor>
       <arglist>(const DateTime &amp;dt) const noexcept</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>enh::dt_type::day_t</name>
+    <filename>classenh_1_1dt__type_1_1day__t.html</filename>
+    <base>confined_base&lt; unsigned short &gt;</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>day_t</name>
+      <anchorfile>classenh_1_1dt__type_1_1day__t.html</anchorfile>
+      <anchor>a36ecf5ff027de3a7d3872b071d18be67</anchor>
+      <arglist>(const month_t &amp;mnth, const long long &amp;yr, unsigned short dy)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1621,6 +2009,138 @@
     <templarg></templarg>
     <templarg></templarg>
     <templarg></templarg>
+  </compound>
+  <compound kind="class">
+    <name>enh::NumericSystem</name>
+    <filename>classenh_1_1_numeric_system.html</filename>
+    <templarg></templarg>
+    <templarg>upper</templarg>
+    <base>enh::confined_base</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>NumericSystem</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a07ee817b80b86155686a82b919423f85</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>NumericSystem</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a21555464bd87a0ec1f3bf9452f14b66b</anchor>
+      <arglist>(confined_base&lt; integral &gt;::value_type val)</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr confined_base&lt; integral &gt;::value_type</type>
+      <name>limit</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a37cc536dfe12aa39552056ed2c15ecfa</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NumericSystem&lt; unsigned short, 12 &gt;</name>
+    <filename>classenh_1_1_numeric_system.html</filename>
+    <base>confined_base&lt; unsigned short &gt;</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>NumericSystem</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a07ee817b80b86155686a82b919423f85</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>NumericSystem</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a21555464bd87a0ec1f3bf9452f14b66b</anchor>
+      <arglist>(confined_base&lt; unsigned short &gt;::value_type val)</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr confined_base&lt; unsigned short &gt;::value_type</type>
+      <name>limit</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a37cc536dfe12aa39552056ed2c15ecfa</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NumericSystem&lt; unsigned short, 24 &gt;</name>
+    <filename>classenh_1_1_numeric_system.html</filename>
+    <base>confined_base&lt; unsigned short &gt;</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>NumericSystem</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a07ee817b80b86155686a82b919423f85</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>NumericSystem</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a21555464bd87a0ec1f3bf9452f14b66b</anchor>
+      <arglist>(confined_base&lt; unsigned short &gt;::value_type val)</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr confined_base&lt; unsigned short &gt;::value_type</type>
+      <name>limit</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a37cc536dfe12aa39552056ed2c15ecfa</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NumericSystem&lt; unsigned short, 60 &gt;</name>
+    <filename>classenh_1_1_numeric_system.html</filename>
+    <base>confined_base&lt; unsigned short &gt;</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>NumericSystem</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a07ee817b80b86155686a82b919423f85</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>NumericSystem</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a21555464bd87a0ec1f3bf9452f14b66b</anchor>
+      <arglist>(confined_base&lt; unsigned short &gt;::value_type val)</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr confined_base&lt; unsigned short &gt;::value_type</type>
+      <name>limit</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a37cc536dfe12aa39552056ed2c15ecfa</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NumericSystem&lt; unsigned short, 7 &gt;</name>
+    <filename>classenh_1_1_numeric_system.html</filename>
+    <base>confined_base&lt; unsigned short &gt;</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>NumericSystem</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a07ee817b80b86155686a82b919423f85</anchor>
+      <arglist>() noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>NumericSystem</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a21555464bd87a0ec1f3bf9452f14b66b</anchor>
+      <arglist>(confined_base&lt; unsigned short &gt;::value_type val)</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr confined_base&lt; unsigned short &gt;::value_type</type>
+      <name>limit</name>
+      <anchorfile>classenh_1_1_numeric_system.html</anchorfile>
+      <anchor>a37cc536dfe12aa39552056ed2c15ecfa</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="struct">
     <name>enh::quad_instruct</name>
@@ -1786,25 +2306,46 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>constexpr bool</type>
-      <name>addHour</name>
+      <type>constexpr unsigned long long</type>
+      <name>addHours</name>
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
-      <anchor>acf897da9cebf8723868f86a916d75045</anchor>
-      <arglist>()</arglist>
+      <anchor>a94c9b912c5a5061be9c872251baea0c3</anchor>
+      <arglist>(unsigned long long hr) noexcept</arglist>
     </member>
     <member kind="function">
-      <type>constexpr bool</type>
+      <type>constexpr unsigned long long</type>
       <name>addMinutes</name>
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
-      <anchor>a36742a19921e9088c1dad4a9ea0c52ac</anchor>
-      <arglist>()</arglist>
+      <anchor>ade26a2133aba024698f4b95aff22bd3b</anchor>
+      <arglist>(unsigned long long min) noexcept</arglist>
     </member>
     <member kind="function">
-      <type>constexpr bool</type>
+      <type>constexpr unsigned long long</type>
       <name>addSeconds</name>
       <anchorfile>classenh_1_1time__stamp.html</anchorfile>
-      <anchor>a1f9083400c5b161a51a64b481a41a78a</anchor>
-      <arglist>()</arglist>
+      <anchor>a6b1738352f828d20ba3b5aa0da3cd8c8</anchor>
+      <arglist>(unsigned long long sec) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned long long</type>
+      <name>subHours</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a96ef05368b254e34d472f3ebf7893ffb</anchor>
+      <arglist>(unsigned long long hr) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned long long</type>
+      <name>subMinutes</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>aa45eac709939e5fbc1d79486984a618e</anchor>
+      <arglist>(unsigned long long min) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr unsigned long long</type>
+      <name>subSeconds</name>
+      <anchorfile>classenh_1_1time__stamp.html</anchorfile>
+      <anchor>a743d87e0bb3ca033189ed665fa379d71</anchor>
+      <arglist>(unsigned long long sec) noexcept</arglist>
     </member>
     <member kind="function">
       <type>constexpr unsigned short</type>
@@ -2083,6 +2624,18 @@
       <arglist>() const noexcept</arglist>
     </member>
   </compound>
+  <compound kind="class">
+    <name>enh::dt_type::yearday_t</name>
+    <filename>classenh_1_1dt__type_1_1yearday__t.html</filename>
+    <base>confined_base&lt; unsigned short &gt;</base>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>yearday_t</name>
+      <anchorfile>classenh_1_1dt__type_1_1yearday__t.html</anchorfile>
+      <anchor>a972116c3b32acae04d12e41b222f2955</anchor>
+      <arglist>(const long long &amp;yr, unsigned short yrdy)</arglist>
+    </member>
+  </compound>
   <compound kind="namespace">
     <name>debug</name>
     <filename>namespacedebug.html</filename>
@@ -2125,12 +2678,15 @@
   <compound kind="namespace">
     <name>enh</name>
     <filename>namespaceenh.html</filename>
+    <namespace>enh::dt_type</namespace>
+    <namespace>enh::numeric</namespace>
     <class kind="class">enh::blank_t</class>
+    <class kind="class">enh::confined_base</class>
     <class kind="class">enh::counter</class>
-    <class kind="class">enh::date</class>
     <class kind="class">enh::DateTime</class>
     <class kind="class">enh::error_base</class>
     <class kind="struct">enh::gen_instruct</class>
+    <class kind="class">enh::NumericSystem</class>
     <class kind="struct">enh::quad_instruct</class>
     <class kind="class">enh::queued_process</class>
     <class kind="class">enh::time_stamp</class>
@@ -2212,6 +2768,160 @@
       <enumvalue file="namespaceenh.html" anchor="a0b0e871be4713899208ceba5d9b14172a7d649ef069df9885e382417c79f3d5cd">RELEASE</enumvalue>
     </member>
     <member kind="function">
+      <type>constexpr confined_base&lt; integral &gt;</type>
+      <name>operator+</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aa401f521327d24656575961cbf34e4d6</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const unsigned long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; integral &gt;</type>
+      <name>operator+</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a6c952138b7eda2b9b3e8a0a416817c5e</anchor>
+      <arglist>(const unsigned long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; integral &gt;</type>
+      <name>operator-</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a252874bca379fed3e094ef47dd9a0590</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const unsigned long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr confined_base&lt; integral &gt;</type>
+      <name>operator-</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>abe83bdec9aeb31830a6fd2a2657446bd</anchor>
+      <arglist>(const unsigned long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a667f9755d74ec1b161f557ad7c8b0536</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a2f3dceeedb85296f38da5bba52d7da80</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a88c8853675b0cd19af478d27d2dc8e76</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ad045b2a117c2e7a90f146f722441e41d</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ae034f233985b4b1545b9ec7d1189f2e2</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aa8d0a242edafe34f519c758f48e8d2c3</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>ad35eef65ed0ef2abfb1e9e3d016e7682</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a00b64cbad1ba16dedf112db86f8400f4</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aedf60553435222a820aba27aed5d661e</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a5dce85441c399ca29f1aeb8082ecd990</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a2a05b45f16135cd95811bfd762523e22</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>abc6f69c1921b03221de398c6cfe2dbb4</anchor>
+      <arglist>(const confined_base&lt; integral &gt; &amp;lhs, const long long &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aa9f6408ece8d4db782b1b692f403b7f0</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator!=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a6e1fbb06134b4b24a3ff8ab50a5cdfd1</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a7276ea4521fb7a5c5dc1189537811586</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&gt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a1aa4471aa10a9c201e0b4bffb6c1b09f</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>aaeb41650575cef24bd0adae8241622ca</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>operator&lt;=</name>
+      <anchorfile>namespaceenh.html</anchorfile>
+      <anchor>a60afd9f3277f897e958ffe582a42bb7e</anchor>
+      <arglist>(const long long &amp;lhs, const confined_base&lt; integral &gt; &amp;rhs) noexcept</arglist>
+    </member>
+    <member kind="function">
       <type>counter</type>
       <name>max</name>
       <anchorfile>namespaceenh.html</anchorfile>
@@ -2243,15 +2953,15 @@
       <type>constexpr unsigned short</type>
       <name>month_limit</name>
       <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>a3a89d6dc1f27d7423607ffe07f6bb3c0</anchor>
-      <arglist>(unsigned short mnth, long yr) noexcept</arglist>
+      <anchor>a27050797d2d5a5cfcbedce528d2c4ccd</anchor>
+      <arglist>(unsigned short mnth, long long yr) noexcept</arglist>
     </member>
     <member kind="function">
       <type>constexpr unsigned</type>
       <name>year_limit</name>
       <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>afd8eedb8bd3b3548af8f4ecdd1afec12</anchor>
-      <arglist>(long yr) noexcept</arglist>
+      <anchor>a7d4771e8332732a22b633252b8d16073</anchor>
+      <arglist>(long long yr) noexcept</arglist>
     </member>
     <member kind="function">
       <type>constexpr unsigned short</type>
@@ -2394,10 +3104,10 @@
       <arglist>(arithmetic value, unsigned length)</arglist>
     </member>
     <member kind="function">
-      <type>std::string</type>
+      <type>constexpr std::string_view</type>
       <name>getOrdinalIndicator</name>
       <anchorfile>namespaceenh.html</anchorfile>
-      <anchor>af497c3ace8c354a276830475fe416315</anchor>
+      <anchor>a0ebd777dbb04fc520e41b1f7c06b9c2c</anchor>
       <arglist>(integral value)</arglist>
     </member>
     <member kind="function">
@@ -2475,6 +3185,65 @@
       <name>isGoodTimerType_v</name>
       <anchorfile>namespaceenh.html</anchorfile>
       <anchor>a9620d58c64304582f23239af5662d60c</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
+    <name>enh::dt_type</name>
+    <filename>namespaceenh_1_1dt__type.html</filename>
+    <class kind="class">enh::dt_type::day_t</class>
+    <class kind="class">enh::dt_type::yearday_t</class>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned short, 12 &gt;</type>
+      <name>month_t</name>
+      <anchorfile>namespaceenh_1_1dt__type.html</anchorfile>
+      <anchor>a4e2b3f7aa5310ff4e47076969dd50e27</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned short, 7 &gt;</type>
+      <name>weekday_t</name>
+      <anchorfile>namespaceenh_1_1dt__type.html</anchorfile>
+      <anchor>a2428982d707ea69f8025a0109f1ab4af</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
+    <name>enh::numeric</name>
+    <filename>namespaceenh_1_1numeric.html</filename>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned short, 10U &gt;</type>
+      <name>dec</name>
+      <anchorfile>namespaceenh_1_1numeric.html</anchorfile>
+      <anchor>a383f3096b018e92870fd3d65dfdd5af6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned short, 100U &gt;</type>
+      <name>cent</name>
+      <anchorfile>namespaceenh_1_1numeric.html</anchorfile>
+      <anchor>a8fce07b074c6c7d780d843053c31945d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned short, 1000U &gt;</type>
+      <name>kilo</name>
+      <anchorfile>namespaceenh_1_1numeric.html</anchorfile>
+      <anchor>aea34a241e02cd673f8e39ede26265072</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned long, 1000000UL &gt;</type>
+      <name>mill</name>
+      <anchorfile>namespaceenh_1_1numeric.html</anchorfile>
+      <anchor>a188322df1c543240f152853c4975c0c3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>NumericSystem&lt; unsigned long, 1000000000ULL &gt;</type>
+      <name>bill</name>
+      <anchorfile>namespaceenh_1_1numeric.html</anchorfile>
+      <anchor>a48ff74902b4c0fb67e1497304f3d4491</anchor>
       <arglist></arglist>
     </member>
   </compound>

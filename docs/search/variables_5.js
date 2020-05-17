@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['unknown_387',['UNKNOWN',['../classenh_1_1error__base.html#a96758f902259dabe544309442e6de195',1,'enh::error_base']]]
+  ['safe_430',['SAFE',['../classenh_1_1error__base.html#a53737218f4ba4028cb4c5261386581e8',1,'enh::error_base']]],
+  ['signum_431',['signum',['../namespaceenh.html#a1373aa9e1df59df05a38e668bd25402b',1,'enh']]]
 ];
