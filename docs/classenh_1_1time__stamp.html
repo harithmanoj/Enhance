@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Enhance
-   &#160;<span id="projectnumber">1.3.0.4</span>
+   &#160;<span id="projectnumber">1.3.1.5</span>
    </div>
    <div id="projectbrief">Enhance is a collection of C++ libraries for different uses</div>
   </td>
@@ -111,18 +111,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#ae3d5cabfeefa4ed165f49349fc5b40d7">time_stamp</a> ()</td></tr>
 <tr class="memdesc:ae3d5cabfeefa4ed165f49349fc5b40d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the time to the current time. <br /></td></tr>
 <tr class="separator:ae3d5cabfeefa4ed165f49349fc5b40d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf897da9cebf8723868f86a916d75045"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#acf897da9cebf8723868f86a916d75045">addHour</a> ()</td></tr>
-<tr class="memdesc:acf897da9cebf8723868f86a916d75045"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds One Hour to the time stamp, if Hour is 23, resets to 0.<br  />
-.  <a href="classenh_1_1time__stamp.html#acf897da9cebf8723868f86a916d75045">More...</a><br /></td></tr>
-<tr class="separator:acf897da9cebf8723868f86a916d75045"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36742a19921e9088c1dad4a9ea0c52ac"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a36742a19921e9088c1dad4a9ea0c52ac">addMinutes</a> ()</td></tr>
-<tr class="memdesc:a36742a19921e9088c1dad4a9ea0c52ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds One Minutes to the time stamp, if Minutes is 59, resets to 0, Adds One Hour.<br  />
-.  <a href="classenh_1_1time__stamp.html#a36742a19921e9088c1dad4a9ea0c52ac">More...</a><br /></td></tr>
-<tr class="separator:a36742a19921e9088c1dad4a9ea0c52ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f9083400c5b161a51a64b481a41a78a"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a1f9083400c5b161a51a64b481a41a78a">addSeconds</a> ()</td></tr>
-<tr class="memdesc:a1f9083400c5b161a51a64b481a41a78a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds One Seconds to the time stamp, if Seconds is 59, resets to 0, Adds One Minutes.<br  />
-.  <a href="classenh_1_1time__stamp.html#a1f9083400c5b161a51a64b481a41a78a">More...</a><br /></td></tr>
-<tr class="separator:a1f9083400c5b161a51a64b481a41a78a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94c9b912c5a5061be9c872251baea0c3"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a94c9b912c5a5061be9c872251baea0c3">addHours</a> (unsigned long long hr) noexcept</td></tr>
+<tr class="memdesc:a94c9b912c5a5061be9c872251baea0c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds to the hour part of time held.  <a href="classenh_1_1time__stamp.html#a94c9b912c5a5061be9c872251baea0c3">More...</a><br /></td></tr>
+<tr class="separator:a94c9b912c5a5061be9c872251baea0c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade26a2133aba024698f4b95aff22bd3b"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#ade26a2133aba024698f4b95aff22bd3b">addMinutes</a> (unsigned long long <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">min</a>) noexcept</td></tr>
+<tr class="memdesc:ade26a2133aba024698f4b95aff22bd3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds to the minute part of time held (also hour).  <a href="classenh_1_1time__stamp.html#ade26a2133aba024698f4b95aff22bd3b">More...</a><br /></td></tr>
+<tr class="separator:ade26a2133aba024698f4b95aff22bd3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b1738352f828d20ba3b5aa0da3cd8c8"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a6b1738352f828d20ba3b5aa0da3cd8c8">addSeconds</a> (unsigned long long sec) noexcept</td></tr>
+<tr class="memdesc:a6b1738352f828d20ba3b5aa0da3cd8c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds to the second part of time held (also hour).  <a href="classenh_1_1time__stamp.html#a6b1738352f828d20ba3b5aa0da3cd8c8">More...</a><br /></td></tr>
+<tr class="separator:a6b1738352f828d20ba3b5aa0da3cd8c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96ef05368b254e34d472f3ebf7893ffb"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a96ef05368b254e34d472f3ebf7893ffb">subHours</a> (unsigned long long hr) noexcept</td></tr>
+<tr class="memdesc:a96ef05368b254e34d472f3ebf7893ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduce the hour part of time held.  <a href="classenh_1_1time__stamp.html#a96ef05368b254e34d472f3ebf7893ffb">More...</a><br /></td></tr>
+<tr class="separator:a96ef05368b254e34d472f3ebf7893ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa45eac709939e5fbc1d79486984a618e"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#aa45eac709939e5fbc1d79486984a618e">subMinutes</a> (unsigned long long <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">min</a>) noexcept</td></tr>
+<tr class="memdesc:aa45eac709939e5fbc1d79486984a618e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduce the minute part of time held (also hour).  <a href="classenh_1_1time__stamp.html#aa45eac709939e5fbc1d79486984a618e">More...</a><br /></td></tr>
+<tr class="separator:aa45eac709939e5fbc1d79486984a618e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a743d87e0bb3ca033189ed665fa379d71"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a743d87e0bb3ca033189ed665fa379d71">subSeconds</a> (unsigned long long sec) noexcept</td></tr>
+<tr class="memdesc:a743d87e0bb3ca033189ed665fa379d71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduces the second part of time held (also hour).  <a href="classenh_1_1time__stamp.html#a743d87e0bb3ca033189ed665fa379d71">More...</a><br /></td></tr>
+<tr class="separator:a743d87e0bb3ca033189ed665fa379d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aa5df47219c1017da0067748564b5c8"><td class="memItemLeft" align="right" valign="top"><a id="a2aa5df47219c1017da0067748564b5c8"></a>
 constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classenh_1_1time__stamp.html#a2aa5df47219c1017da0067748564b5c8">getSeconds</a> () const noexcept</td></tr>
 <tr class="memdesc:a2aa5df47219c1017da0067748564b5c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Seconds field. <br /></td></tr>
@@ -170,8 +176,8 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="classenh_1_1time__stamp.html">enh::time_stamp</a> time_array[] = { {}, {std::time(<span class="keyword">nullptr</span>)}, {25,36,12} };</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    time_array[1].<a class="code" href="classenh_1_1time__stamp.html#acf897da9cebf8723868f86a916d75045">addHour</a>();</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    time_array[1].<a class="code" href="classenh_1_1time__stamp.html#acf897da9cebf8723868f86a916d75045">addHour</a>();</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    time_array[1].<a class="code" href="classenh_1_1time__stamp.html#a94c9b912c5a5061be9c872251baea0c3">addHours</a>(230);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    time_array[1].<a class="code" href="classenh_1_1time__stamp.html#a94c9b912c5a5061be9c872251baea0c3">addHours</a>(230);</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i : time_array)</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
@@ -201,23 +207,23 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">Output :</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">21 12 3</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">17 3 38</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">def : 21 : 12 : 03</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">format : sec, min, hour &gt;&gt;  03, 12, 21</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">format : secs min minutes, hour hours &gt;&gt;  03s 12 minutes, 21 hours</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">format : hour : min / 60 : sec / 3600 &gt;&gt;  21 : 12 / 60 : 03 / 3600</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">format : hour/min/sec &gt;&gt;  21/12/03</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">format : houro min&#39; sec&#39;&#39; &gt;&gt;  21o 12&#39; 03&#39;&#39;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">def : 17 : 03 : 38</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">format : sec, min, hour &gt;&gt;  38, 03, 17</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">format : secs min minutes, hour hours &gt;&gt;  38s 03 minutes, 17 hours</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">format : hour : min / 60 : sec / 3600 &gt;&gt;  17 : 03 / 60 : 38 / 3600</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">format : hour/min/sec &gt;&gt;  17/03/38</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">format : houro min&#39; sec&#39;&#39; &gt;&gt;  17o 03&#39; 38&#39;&#39;</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">23 12 3</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">17 3 38</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">def : 23 : 12 : 03</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">format : sec, min, hour &gt;&gt;  03, 12, 23</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">format : secs min minutes, hour hours &gt;&gt;  03s 12 minutes, 23 hours</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">format : hour : min / 60 : sec / 3600 &gt;&gt;  23 : 12 / 60 : 03 / 3600</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">format : hour/min/sec &gt;&gt;  23/12/03</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">format : houro min&#39; sec&#39;&#39; &gt;&gt;  23o 12&#39; 03&#39;&#39;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">def : 17 : 03 : 38</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">format : sec, min, hour &gt;&gt;  38, 03, 17</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">format : secs min minutes, hour hours &gt;&gt;  38s 03 minutes, 17 hours</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">format : hour : min / 60 : sec / 3600 &gt;&gt;  17 : 03 / 60 : 38 / 3600</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">format : hour/min/sec &gt;&gt;  17/03/38</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">format : houro min&#39; sec&#39;&#39; &gt;&gt;  17o 03&#39; 38&#39;&#39;</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">12 36 25</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"></span> </div>
@@ -229,7 +235,8 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">format : houro min&#39; sec&#39;&#39; &gt;&gt;  12o 36&#39; 25&#39;&#39;</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">******************************************************************************/</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">******************************************************************************/</span></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acc618457169ed847ab171ce9eed26011"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acc618457169ed847ab171ce9eed26011">&#9670;&nbsp;</a></span>time_stamp() <span class="overload">[1/2]</span></h2>
@@ -283,8 +290,6 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">enh::min()</a>.</p>
-
 </div>
 </div>
 <a id="a21486be746a32a0c6da17223bae6452b"></a>
@@ -324,8 +329,8 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="acf897da9cebf8723868f86a916d75045"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf897da9cebf8723868f86a916d75045">&#9670;&nbsp;</a></span>addHour()</h2>
+<a id="a94c9b912c5a5061be9c872251baea0c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94c9b912c5a5061be9c872251baea0c3">&#9670;&nbsp;</a></span>addHours()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -334,28 +339,34 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool enh::time_stamp::addHour </td>
+          <td class="memname">constexpr unsigned long long enh::time_stamp::addHours </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>hr</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds One Hour to the time stamp, if Hour is 23, resets to 0.<br  />
-. </p>
+<p>Adds to the hour part of time held. </p>
 <h3>Return</h3>
-<p>Returns true if Hour is reset to 0. </p>
+<p>Returns the number of days passed (hr/24). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hr</td><td>: <em>in</em> : The hours to add. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="a36742a19921e9088c1dad4a9ea0c52ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36742a19921e9088c1dad4a9ea0c52ac">&#9670;&nbsp;</a></span>addMinutes()</h2>
+<a id="ade26a2133aba024698f4b95aff22bd3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade26a2133aba024698f4b95aff22bd3b">&#9670;&nbsp;</a></span>addMinutes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -364,30 +375,36 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool enh::time_stamp::addMinutes </td>
+          <td class="memname">constexpr unsigned long long enh::time_stamp::addMinutes </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>min</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds One Minutes to the time stamp, if Minutes is 59, resets to 0, Adds One Hour.<br  />
-. </p>
+<p>Adds to the minute part of time held (also hour). </p>
 <h3>Return</h3>
-<p>Returns true if Hour is reset to 0. </p>
+<p>Returns the number of days passed (min/(24*60)). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td>: <em>in</em> : The minutes to add. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#acf897da9cebf8723868f86a916d75045">addHour()</a>.</p>
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#a94c9b912c5a5061be9c872251baea0c3">addHours()</a>, and <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">enh::min()</a>.</p>
 
 </div>
 </div>
-<a id="a1f9083400c5b161a51a64b481a41a78a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f9083400c5b161a51a64b481a41a78a">&#9670;&nbsp;</a></span>addSeconds()</h2>
+<a id="a6b1738352f828d20ba3b5aa0da3cd8c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b1738352f828d20ba3b5aa0da3cd8c8">&#9670;&nbsp;</a></span>addSeconds()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -396,25 +413,31 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool enh::time_stamp::addSeconds </td>
+          <td class="memname">constexpr unsigned long long enh::time_stamp::addSeconds </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>sec</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds One Seconds to the time stamp, if Seconds is 59, resets to 0, Adds One Minutes.<br  />
-. </p>
+<p>Adds to the second part of time held (also hour). </p>
 <h3>Return</h3>
-<p>Returns true if Hour is reset to 0. </p>
+<p>Returns the number of days passed (sec/(24*60*60)). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sec</td><td>: <em>in</em> : The seconds to add. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#a36742a19921e9088c1dad4a9ea0c52ac">addMinutes()</a>.</p>
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#ade26a2133aba024698f4b95aff22bd3b">addMinutes()</a>.</p>
 
 </div>
 </div>
@@ -803,7 +826,7 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
 <p>Throws <code>std::invalid_argument</code> if sec, min, hr is not within bounds. [0,60], [0,59], [0,23] respectively. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sec</td><td>: <em>in</em> : The seconds field [0,60]. </td></tr>
+    <tr><td class="paramname">sec</td><td>: <em>in</em> : The seconds field [0,59]. </td></tr>
     <tr><td class="paramname">min</td><td>: <em>in</em> : The minutes field [0,59]. </td></tr>
     <tr><td class="paramname">hr</td><td>: <em>in</em> : The hours field [0,59]. </td></tr>
   </table>
@@ -814,13 +837,125 @@ constexpr unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a c
 
 </div>
 </div>
+<a id="a96ef05368b254e34d472f3ebf7893ffb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96ef05368b254e34d472f3ebf7893ffb">&#9670;&nbsp;</a></span>subHours()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr unsigned long long enh::time_stamp::subHours </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>hr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reduce the hour part of time held. </p>
+<h3>Return</h3>
+<p>Returns the number of days reduced (hr/24). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hr</td><td>: <em>in</em> : The hours to reduce. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa45eac709939e5fbc1d79486984a618e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa45eac709939e5fbc1d79486984a618e">&#9670;&nbsp;</a></span>subMinutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr unsigned long long enh::time_stamp::subMinutes </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>min</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reduce the minute part of time held (also hour). </p>
+<h3>Return</h3>
+<p>Returns the number of days passed (min/(24*60)). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td>: <em>in</em> : The minutes to reduce. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="namespaceenh.html#af17a502dc7630b917abc0c438cbfb18c">enh::min()</a>, and <a class="el" href="classenh_1_1time__stamp.html#a96ef05368b254e34d472f3ebf7893ffb">subHours()</a>.</p>
+
+</div>
+</div>
+<a id="a743d87e0bb3ca033189ed665fa379d71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a743d87e0bb3ca033189ed665fa379d71">&#9670;&nbsp;</a></span>subSeconds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr unsigned long long enh::time_stamp::subSeconds </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>sec</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reduces the second part of time held (also hour). </p>
+<h3>Return</h3>
+<p>Returns the number of days passed (sec/(24*60*60)). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sec</td><td>: <em>in</em> : The seconds to reduce. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classenh_1_1time__stamp.html#aa45eac709939e5fbc1d79486984a618e">subMinutes()</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>F:/source/Enhance/src/Header/<a class="el" href="time__stamp_8enh_8h.html">time_stamp.enh.h</a></li>
 </ul>
 </div><!-- contents -->
+<div class="ttc" id="aclassenh_1_1time__stamp_html_a94c9b912c5a5061be9c872251baea0c3"><div class="ttname"><a href="classenh_1_1time__stamp.html#a94c9b912c5a5061be9c872251baea0c3">enh::time_stamp::addHours</a></div><div class="ttdeci">constexpr unsigned long long addHours(unsigned long long hr) noexcept</div><div class="ttdoc">Adds to the hour part of time held.</div><div class="ttdef"><b>Definition:</b> time_stamp.enh.h:148</div></div>
 <div class="ttc" id="atime__stamp_8enh_8h_html"><div class="ttname"><a href="time__stamp_8enh_8h.html">time_stamp.enh.h</a></div><div class="ttdoc">File for time class.</div></div>
-<div class="ttc" id="aclassenh_1_1time__stamp_html_acf897da9cebf8723868f86a916d75045"><div class="ttname"><a href="classenh_1_1time__stamp.html#acf897da9cebf8723868f86a916d75045">enh::time_stamp::addHour</a></div><div class="ttdeci">constexpr bool addHour()</div><div class="ttdoc">Adds One Hour to the time stamp, if Hour is 23, resets to 0. .</div><div class="ttdef"><b>Definition:</b> time_stamp.enh.h:159</div></div>
-<div class="ttc" id="aclassenh_1_1time__stamp_html"><div class="ttname"><a href="classenh_1_1time__stamp.html">enh::time_stamp</a></div><div class="ttdoc">Class for time manipulation.</div><div class="ttdef"><b>Definition:</b> time_stamp.enh.h:43</div></div>
+<div class="ttc" id="aclassenh_1_1time__stamp_html"><div class="ttname"><a href="classenh_1_1time__stamp.html">enh::time_stamp</a></div><div class="ttdoc">Class for time manipulation.</div><div class="ttdef"><b>Definition:</b> time_stamp.enh.h:50</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

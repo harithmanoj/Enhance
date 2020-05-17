@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['wait_225',['wait',['../classenh_1_1timer.html#a1ac9c2141748d87218f6e6e25d1f12a7',1,'enh::timer::wait(unsigned long long expected) noexcept'],['../classenh_1_1timer.html#ae43edb6c5742ff88b1dbc04d7433adf2',1,'enh::timer::wait() noexcept']]],
-  ['wait_5ffor_226',['wait_for',['../classenh_1_1timer.html#a1ea21820b2cbd14f7829dbd6ca2fb6e7',1,'enh::timer::wait_for(unsigned mult_count, std::function&lt; bool()&gt; condition) noexcept'],['../classenh_1_1timer.html#a88634683b66dea62a93b94125c94dc16',1,'enh::timer::wait_for(unsigned long mult_count) noexcept']]],
-  ['waitforqueueempty_227',['WaitForQueueEmpty',['../classenh_1_1queued__process.html#aa9e356200016900c12645f460095f1de',1,'enh::queued_process']]],
-  ['waitforqueuestop_228',['WaitForQueueStop',['../classenh_1_1queued__process.html#a2d279f828b41dbd3bbdf931f8b86dc70',1,'enh::queued_process']]],
-  ['week_5fday_5fincrements_229',['week_day_increments',['../namespaceenh.html#a2ad12d5acd9f98c7a028dbcaea95019c',1,'enh']]]
+  ['value_5ftype_245',['value_type',['../classenh_1_1confined__base.html#a7661dcc31427afe0b61a82c6ff2605f5',1,'enh::confined_base']]],
+  ['version_5finfo_246',['version_info',['../classenh_1_1version__info.html',1,'enh::version_info'],['../classenh_1_1version__info.html#a47d86857a4d2e03740f6743281cf7e3f',1,'enh::version_info::version_info() noexcept'],['../classenh_1_1version__info.html#a89adefd30b10328224b16dcc4fecba73',1,'enh::version_info::version_info(unsigned mj, unsigned mn, unsigned rv, unsigned long bld, rel_type tp) noexcept'],['../classenh_1_1version__info.html#a6e34f4b25b00be1d37908f1d2c63d58d',1,'enh::version_info::version_info(unsigned mj, unsigned mn, unsigned rv, unsigned long bld, rel_type tp, std::string_view rep) noexcept']]],
+  ['version_5finfo_5fbeta_247',['VERSION_INFO_BETA',['../framework_8enh_8h.html#a1c3459a0275725d30597ead5e462101b',1,'framework.enh.h']]],
+  ['version_5finfo_5ffin_248',['VERSION_INFO_FIN',['../framework_8enh_8h.html#a76f8696dffccd48706b74844e9de764c',1,'framework.enh.h']]]
 ];

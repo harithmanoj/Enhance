@@ -1,23 +1,11 @@
 var searchData=
 [
-  ['safe_194',['SAFE',['../classenh_1_1error__base.html#a53737218f4ba4028cb4c5261386581e8',1,'enh::error_base']]],
-  ['safe_5fjoin_195',['safe_join',['../classenh_1_1queued__process.html#a3b8eb24df6899cfbc32901915ade2cb1',1,'enh::queued_process']]],
-  ['seconds_196',['seconds',['../namespaceenh.html#a0e90f21da57b74c795abcad09d29622a',1,'enh']]],
-  ['set_197',['set',['../classenh_1_1counter.html#af29d417f920c6dbcfd908398bf296bb5',1,'enh::counter::set()'],['../classenh_1_1_date_time.html#a5154f3a07b447af948e47da8f4c9246a',1,'enh::DateTime::set(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned short ydy, unsigned short sec, unsigned short min, unsigned short hr)'],['../classenh_1_1_date_time.html#aacd7fcc680fd526507a61eb61598c238',1,'enh::DateTime::set(time_t stamp)'],['../classenh_1_1_date_time.html#affdc2ebe402e93fac4b07317e2d3fbde',1,'enh::DateTime::set()']]],
-  ['set_5fdays_198',['set_days',['../classenh_1_1counter.html#abc898d1d0b5d66d151a29e282bb2e068',1,'enh::counter']]],
-  ['set_5fhours_199',['set_hours',['../classenh_1_1counter.html#ace6b561e766168f0ef3723a727978504',1,'enh::counter']]],
-  ['set_5fminutes_200',['set_minutes',['../classenh_1_1counter.html#acbed32dd24f87c815baf9ab6c26fdd46',1,'enh::counter']]],
-  ['set_5fseconds_201',['set_seconds',['../classenh_1_1counter.html#af9ac0d8cc80bbafa5ea4bc365ae054b5',1,'enh::counter']]],
-  ['setdate_202',['setDate',['../classenh_1_1date.html#a6e09e3c88495fe4419ad6c5ac8df8d44',1,'enh::date::setDate(unsigned short dy, unsigned short mnth, long yr, unsigned short week, unsigned ydy)'],['../classenh_1_1date.html#a20ed25c17a7e67cf5295ff0aa4e07650',1,'enh::date::setDate(time_t timeStamp)'],['../classenh_1_1date.html#aaad30168b7bb62e0feda6113906632ee',1,'enh::date::setDate()']]],
-  ['setflag_203',['setFlag',['../classenh_1_1error__base.html#acae84344086ae45978078942867eeeae',1,'enh::error_base']]],
-  ['settime_204',['setTime',['../classenh_1_1time__stamp.html#ade163a73074cb1bf18aab2c4ee85176b',1,'enh::time_stamp::setTime(unsigned short sec, unsigned short min, unsigned short hr)'],['../classenh_1_1time__stamp.html#ad911557fd27daac0401a712728e5a73e',1,'enh::time_stamp::setTime(time_t timeStamp)'],['../classenh_1_1time__stamp.html#a0828a1cb34e325d605fdc6b5df5586be',1,'enh::time_stamp::setTime()']]],
-  ['signextend_205',['signExtend',['../namespaceenh.html#a525a9551f46dd04c4284cfeb0aa54ee5',1,'enh']]],
-  ['signextendvalue_206',['signExtendValue',['../namespaceenh.html#a9d9628ceeec503473fc7acf9eb6519b6',1,'enh']]],
-  ['signum_207',['signum',['../namespaceenh.html#a1373aa9e1df59df05a38e668bd25402b',1,'enh']]],
-  ['signum_5ffn_208',['signum_fn',['../namespaceenh.html#abb2efaef3cc35aca10bc18ecc5d211ec',1,'enh']]],
-  ['start_5fqueue_5fprocess_209',['start_queue_process',['../classenh_1_1queued__process.html#a6f672330b15591f5efd9f24c02a7b130',1,'enh::queued_process']]],
-  ['start_5ftimer_210',['start_timer',['../classenh_1_1timer.html#a61e70ea33b8c1953895911a4c975e0a1',1,'enh::timer']]],
-  ['stop_211',['stop',['../classenh_1_1timer.html#aa4f008a170349f9dfbcbbab06b1a6568',1,'enh::timer']]],
-  ['stopqueue_212',['stopQueue',['../classenh_1_1queued__process.html#a8a2673b817a7fd554c9680e994a7d92c',1,'enh::queued_process']]],
-  ['string_213',['string',['../classenh_1_1version__info.html#a055ffb8eb57bc6a72bf7195ef9046f15',1,'enh::version_info']]]
+  ['re_5feval_206',['re_eval',['../classenh_1_1confined__base.html#a74a1976728eabdf7561c9823ba0825e2',1,'enh::confined_base']]],
+  ['read_5fraw_207',['read_raw',['../classenh_1_1counter.html#a1e0617b1284046d52c31fff8b4cded6e',1,'enh::counter']]],
+  ['registerproc_208',['RegisterProc',['../classenh_1_1queued__process.html#a63b2f078e4f940c1cc60876dd68e4cc5',1,'enh::queued_process']]],
+  ['rel_5ftype_209',['rel_type',['../namespaceenh.html#a0b0e871be4713899208ceba5d9b14172',1,'enh']]],
+  ['release_210',['RELEASE',['../namespaceenh.html#a0b0e871be4713899208ceba5d9b14172a7d649ef069df9885e382417c79f3d5cd',1,'enh']]],
+  ['replace_211',['REPLACE',['../logger_8enh_8h.html#a5b7ee3cb6b594766892973048166ab2b',1,'logger.enh.h']]],
+  ['replace_5fas_212',['REPLACE_AS',['../logger_8enh_8h.html#a87c3774199834ad3251dc50b70b0b259',1,'logger.enh.h']]],
+  ['reset_213',['reset',['../classenh_1_1counter.html#a70ef37aa21639eccf6aba14f305a8224',1,'enh::counter']]]
 ];
