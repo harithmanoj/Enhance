@@ -56,8 +56,8 @@ namespace enh
 			: confined_base<integral>::confined_base(
 				[&](long long a) {return a < limit; },
 				[&](long long a) { return a >= 0; },
-				[&]() {return 0; },
 				[&]() {return limit - 1; },
+				[&]() {return 0; },
 				0)
 		{}
 
