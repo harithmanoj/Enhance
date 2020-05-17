@@ -1039,6 +1039,27 @@
     <class kind="class">enh::time_stamp</class>
     <namespace>enh</namespace>
     <namespace>enh::dt_type</namespace>
+    <member kind="typedef">
+      <type>enh::NumericSystem&lt; unsigned short, 60 &gt;</type>
+      <name>sec_t</name>
+      <anchorfile>namespaceenh_1_1dt__type.html</anchorfile>
+      <anchor>a9be009b109c515a95b061b976d8a8bd1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enh::NumericSystem&lt; unsigned short, 60 &gt;</type>
+      <name>min_t</name>
+      <anchorfile>namespaceenh_1_1dt__type.html</anchorfile>
+      <anchor>a2522fb87cdbc6bb2d419ba53c316a363</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enh::NumericSystem&lt; unsigned short, 24 &gt;</type>
+      <name>hr_t</name>
+      <anchorfile>namespaceenh_1_1dt__type.html</anchorfile>
+      <anchor>a92990a1d4e4523fb486369e8abdeec76</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>constexpr bool</type>
       <name>operator==</name>
@@ -3205,6 +3226,27 @@
       <name>weekday_t</name>
       <anchorfile>namespaceenh_1_1dt__type.html</anchorfile>
       <anchor>a2428982d707ea69f8025a0109f1ab4af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enh::NumericSystem&lt; unsigned short, 60 &gt;</type>
+      <name>sec_t</name>
+      <anchorfile>namespaceenh_1_1dt__type.html</anchorfile>
+      <anchor>a9be009b109c515a95b061b976d8a8bd1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enh::NumericSystem&lt; unsigned short, 60 &gt;</type>
+      <name>min_t</name>
+      <anchorfile>namespaceenh_1_1dt__type.html</anchorfile>
+      <anchor>a2522fb87cdbc6bb2d419ba53c316a363</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>enh::NumericSystem&lt; unsigned short, 24 &gt;</type>
+      <name>hr_t</name>
+      <anchorfile>namespaceenh_1_1dt__type.html</anchorfile>
+      <anchor>a92990a1d4e4523fb486369e8abdeec76</anchor>
       <arglist></arglist>
     </member>
   </compound>
