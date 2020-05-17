@@ -1,8 +1,8 @@
 
 [//]: # (\page Release Notes)
 
-
--------------------------------------------------------------------------------
+Enhance Release Notes
+===============================================================================
 
 Draft:
 * Added class `confined_base` for a value that is within an interval.
