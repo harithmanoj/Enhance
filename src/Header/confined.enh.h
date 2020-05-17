@@ -83,13 +83,45 @@ namespace enh
 			\brief The upper limit.
 		*/
 		limit_t uLimit;
-		
+
 		/**
 			\brief The lower limit.
 		*/
 		limit_t lLimit;
 	public:
+
+		/**
+			\brief Returns upper limit.
+		*/
+		constexpr inline value_type getUpperLimit() const noexcept
+		{
+			return uLimit();
+		}
+
+		/**
+			\brief Returns lower limit.
+		*/
+		constexpr inline value_type getLowerLimit() const noexcept
+		{
+			return lLimit();
+		}
+
+		/**
+			\brief Returns upper checking function.
+		*/
+		constexpr inline pred_t getUpperPredicate() const noexcept
+		{
+			return uLimit_pred;
+		}
 		
+		/**
+			\brief Returns lower checking function.
+		*/
+		constexpr inline pred_t getLowerPredicate() const noexcept
+		{
+			return lLimit_pred;
+		}
+
 		/**
 			\brief Construct the object.
 
@@ -195,12 +227,14 @@ namespace enh
 								  add.*/
 		) noexcept
 		{
+			if (additional == 0)
+				return 0;
 			unsigned long long rem = additional % (uLimit() - lLimit());
 			unsigned ret = additional / (uLimit() - lLimit());
 
 			if (!uLimit_pred((unsigned long long)(value) + rem))
 			{
-				value = value + rem + lLimit() - uLimit();
+				value = value + rem + lLimit() - uLimit() - 1;
 				++ret;
 			}
 			else
@@ -279,13 +313,15 @@ namespace enh
 								 subtract.*/
 		) noexcept
 		{
+			if (difference == 0)
+				return 0;
 			unsigned long long rem = difference % (uLimit() - lLimit());
 			unsigned ret = difference / (uLimit() - lLimit());
 
 			rem = value - rem;
 			if (!lLimit_pred(rem))
 			{
-				value = rem + uLimit() - lLimit();
+				value = rem + uLimit() - lLimit() + 1;
 				++ret;
 			}
 			else
@@ -372,7 +408,9 @@ namespace enh
 		const unsigned long long &rhs /**< : <i>in</i> : RHS argument of operator.*/
 	) noexcept
 	{
-		return confined_base<integral>(lhs).add(rhs);
+		auto t =(lhs);
+		t.add(rhs);
+		return t;
 	}
 
 	/**
@@ -385,7 +423,9 @@ namespace enh
 										   of operator.*/
 	) noexcept
 	{
-		return confined_base<integral>(rhs).add(lhs);
+		auto t = (rhs);
+		t.add(lhs);
+		return t;
 	}
 
 	/**
@@ -398,7 +438,9 @@ namespace enh
 		const unsigned long long &rhs /**< : <i>in</i> : RHS argument of operator.*/
 		) noexcept
 	{
-		return confined_base<integral>(lhs).sub(rhs);
+		auto t = (lhs);
+		t.sub(rhs);
+		return t;
 	}
 
 	/**
@@ -411,8 +453,271 @@ namespace enh
 										   of operator.*/
 		) noexcept
 	{
-		return confined_base<integral>(rhs).sub(lhs);
+		auto t = (rhs);
+		t.sub(lhs);
+		return t;
 	}
+
+	
+
+
+	/**
+		\brief Checks if lhs is equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator == (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand 
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() == rhs.get());
+	}
+
+	/**
+		\brief Checks if lhs is not equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator != (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() != rhs.get());
+	}
+
+	/**
+		\brief Checks if lhs is greater than rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator > (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() > rhs.get());
+	}
+
+	/**
+		\brief Checks if lhs is greater than or equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator >= (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() >= rhs.get());
+	}
+
+	/**
+		\brief Checks if lhs is lesser than rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator < (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() < rhs.get());
+	}
+
+	/**
+		\brief Checks if lhs is lesser than or equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator <= (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() < rhs.get());
+	}
+
+
+
+
+	/**
+		\brief Checks if lhs is equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator == (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const long long &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() == rhs);
+	}
+
+	/**
+		\brief Checks if lhs is not equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator != (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const long long &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() != rhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator > (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const long long &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() > rhs);
+	}
+
+	/**
+		\brief Checks if lhs is greater than or equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator >= (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const long long &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() >= rhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator < (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const long long &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() < rhs);
+	}
+
+	/**
+		\brief Checks if lhs is lesser than or equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator <= (
+		const confined_base<integral> &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const long long &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs.get() < rhs);
+	}
+
+
+
+	/**
+		\brief Checks if lhs is equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator == (
+		const long long &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs == rhs.get());
+	}
+
+	/**
+		\brief Checks if lhs is not equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator != (
+		const long long &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs != rhs.get());
+	}
+
+	/**
+		\brief Checks if lhs is greater than rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator > (
+		const long long &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs > rhs.get());
+	}
+
+	/**
+		\brief Checks if lhs is greater than or equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator >= (
+		const long long &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs >= rhs.get());
+	}
+
+	/**
+		\brief Checks if lhs is lesser than rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator < (
+		const long long &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs < rhs.get());
+	}
+
+	/**
+		\brief Checks if lhs is lesser than or equal to rhs.
+	*/
+	template<class integral>
+	constexpr inline bool operator <= (
+		const long long &lhs /**< : <i>in</i> : The left hand
+										   side of the expression.*/,
+		const confined_base<integral> &rhs /**< : <i>in</i> : The right hand
+										   side of the expression.*/
+		) noexcept
+	{
+		return (lhs < rhs.get());
+	}
+
 }
 
 
