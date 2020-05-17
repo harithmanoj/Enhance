@@ -4,6 +4,13 @@
 
 -------------------------------------------------------------------------------
 
+Draft:
+* Added class `confined_base` for a value that is within an interval.
+* Added class `NumericSystem` for a value that is within [0,upper_limit).
+* Added types for date, month, wkday, yrday, second, minute, hour.
+* Made private data members of date, time_stamp, and DateTime class a 
+confined type.
+
 # Version 1.3
 
 ## Version 1.3.0.4.fin
