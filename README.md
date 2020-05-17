@@ -181,7 +181,7 @@ compilation of `logger.cpp`.
 * `date.enh.h` depends on `general.enh.h`, `numerical_system.enh.h`, 
 `confined.enh.h`.
 * `time_stamp.enh.h` depends on `date.enh.h`, `general.enh.h`, 
-`numerical_system.enh.h`, `confined.enh.h`.
+`numeral_system.enh.h`, `confined.enh.h`.
 * `date_time.enh.h` depends on `time_stamp.enh.h`, `date.enh.h`, 
 `general.enh.h`, `numerical_system.enh.h`, `confined.enh.h`.
 

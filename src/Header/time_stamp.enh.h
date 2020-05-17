@@ -35,8 +35,19 @@ namespace enh
 {
 	namespace dt_type
 	{
+		/**
+			\brief The confined type for seconds.
+		*/
 		using sec_t = enh::NumericSystem<unsigned short, 60>;
+		
+		/**
+			\brief The confined type for minutes.
+		*/
 		using min_t = enh::NumericSystem<unsigned short, 60>;
+		
+		/**
+			\brief The confined type for hours.
+		*/
 		using hr_t = enh::NumericSystem<unsigned short, 24>;
 	}
 
