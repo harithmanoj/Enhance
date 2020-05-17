@@ -80,8 +80,12 @@ namespace enh
 		{
 			tm temp;
 			localtime(&temp, &stamp);
-			set(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, temp.tm_wday,
-				temp.tm_yday, temp.tm_sec, temp.tm_min, temp.tm_hour);
+			if (temp.tm_sec <= 59)
+				set(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, temp.tm_wday,
+					temp.tm_yday, temp.tm_sec, temp.tm_min, temp.tm_hour);
+			else
+				set(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, temp.tm_wday,
+					temp.tm_yday, 59, temp.tm_min, temp.tm_hour);
 		}
 
 		/**
@@ -175,48 +179,63 @@ namespace enh
 		}
 
 		/**
-			\brief Adds One Seconds to the time stamp,
-			if Seconds is 59, resets to 0, Adds One Minutes.\n
-
-			<h3>Return</h3>
-			Returns true if Hour is reset to 0.
+			\brief Adds to the hour part of time held.
 		*/
-		constexpr bool addSeconds()
+		constexpr inline void addHours(
+			unsigned long long hr /**< : <i>in</i> : The hours to add.*/
+		) noexcept
 		{
-			auto t = time_stamp::addSeconds();
-			if (t)
-				add_day();
-			return t;
+			addDay(time_stamp::addHours(hr));
 		}
 
 		/**
-			\brief Adds One Minutes to the time stamp,
-			if Minutes is 59, resets to 0, Adds One Hour.\n
-
-			<h3>Return</h3>
-			Returns true if Hour is reset to 0.
+			\brief Adds to the minute part of time held (also hour).
 		*/
-		constexpr bool addMinutes()
+		constexpr inline void addMinutes(
+			unsigned long long min /**< : <i>in</i> : The minutes to add.*/
+		) noexcept
 		{
-			auto t = time_stamp::addMinutes();
-			if (t)
-				add_day();
-			return t;
+			addDay(time_stamp::addMinutes(min));
 		}
 
 		/**
-			\brief Adds One Hour to the time stamp,
-			if Hour is 23, resets to 0.\n
-
-			<h3>Return</h3>
-			Returns true if Hour is reset to 0.
+			\brief Adds to the second part of time held (also hour).
 		*/
-		constexpr bool addHour()
+		constexpr inline void addSeconds(
+			unsigned long long sec  /**< : <i>in</i> : The seconds to add.*/
+		) noexcept
 		{
-			auto t = time_stamp::addHour();
-			if (t)
-				add_day();
-			return t;
+			addDay(time_stamp::addSeconds(sec));
+		}
+
+		/**
+			\brief Reduce the hour part of time held.
+		*/
+		constexpr inline void subHours(
+			unsigned long long hr /**< : <i>in</i> : The hours to reduce.*/
+		) noexcept
+		{
+			subDay(time_stamp::subHours(hr));
+		}
+
+		/**
+			\brief Reduce the minute part of time held (also hour).
+		*/
+		constexpr inline void subMinutes(
+			unsigned long long min /**< : <i>in</i> : The minutes to reduce.*/
+		) noexcept
+		{
+			subDay(time_stamp::subMinutes(min));
+		}
+
+		/**
+			\brief Reduces the second part of time held (also hour).
+		*/
+		constexpr inline void subSeconds(
+			unsigned long long sec /**< : <i>in</i> : The seconds to reduce.*/
+		) noexcept
+		{
+			subDay(time_stamp::subSeconds(sec));
 		}
 
 		/**
