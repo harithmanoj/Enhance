@@ -5,8 +5,8 @@ int main()
 {
 	enh::time_stamp time_array[] = { {}, {std::time(nullptr)}, {25,36,12} };
 
-	time_array[1].addHour();
-	time_array[1].addHour();
+	time_array[1].addHours(230);
+	time_array[1].addHours(230);
 
 	for (auto i : time_array)
 	{
