@@ -140,8 +140,10 @@ namespace enh
 		return tmp % 7;
 	}
 
-
-	namespace date_types
+	/**
+		\brief The namespace for storing date and time elements seperately.
+	*/
+	namespace dt_type
 	{
 		/**
 			\brief Numerical value confined to ones that month can take 
@@ -251,10 +253,10 @@ namespace enh
 	class date
 	{
 		long long year; 
-		date_types::month_t month;
-		date_types::day_t day;
-		date_types::weekday_t wkday;
-		date_types::yearday_t yrday;
+		dt_type::month_t month;
+		dt_type::day_t day;
+		dt_type::weekday_t wkday;
+		dt_type::yearday_t yrday;
 
 	public:
 
