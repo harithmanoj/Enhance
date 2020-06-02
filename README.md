@@ -1,20 +1,20 @@
-[//]: # (\mainpage Enhance Main Page)
+## Enhance C++ Libraries ##
 
-## ENHANCE ##
-
-Enhance is a collection of multiple `C++` libraries that cater to many needs.
+Enhance C++ Libraries is a collection of multiple `C++` libraries that cater 
+to many needs.
 
 Including but not limited to :
 
 * Diagnostics.
 * Time and related tracking and syncronisation.
+* Date Time manipulation
 * Error Tracking.
 * Version info to be used inside programs.
 * Concurrent execution.
 
 The Library requires `C++ standard 17` to compile.
 
-The Library is released under [GPL License](https://github.com/harithmanoj/Enhance/blob/master/License.md)
+The Library is released under [Apache License](https://github.com/harithmanoj/Enhance/blob/master/License.md)
 
 Source code is Hosted in [GitHub](https://github.com/harithmanoj/Enhance)
 
@@ -22,14 +22,15 @@ Stable Releases can be found [here](https://github.com/harithmanoj/Enhance/relea
 
 Code Documentation is Hosted by GitHub Pages [here](https://harithmanoj.github.io/Enhance/index.html)
 
-The branch master contains last stable release code. For latest features, bugfixes etc, see develop branch.
+The branch master contains last stable release code. For latest features, 
+bugfixes etc, see develop branch.
 
 _______________________________________________________________________________
 ## Framework
 _______________________________________________________________________________
 
-Framework is a library that defines The version of Enhance and class to store
-version info.
+Framework is a library that defines The version of Enhance C++ Library and 
+class to store version info.
 
 Exists in `namespace enh`.
 
@@ -41,7 +42,7 @@ Exists in `namespace enh`.
 
 * Class to be used for storing version information.
 
-* Version of the Enhance library
+* Version of the Enhance C++ library
 
 
 _______________________________________________________________________________
