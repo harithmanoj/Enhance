@@ -1,10 +1,15 @@
 
 [//]: # (\page Release Notes)
 
-Enhance Release Notes
+Enhance C++ Libraries Release Notes
 ===============================================================================
 
 ## Version 1.3
+
+### Version 1.3.1.6.fin
+
+* The Library is now re-licensed under Apache License v2. See License.md for 
+License for use.
 
 ### Version 1.3.1.5.fin
 
