@@ -130,9 +130,9 @@ namespace enh
 			\brief Construct the object.
 
 			<h3>Exceptions</h3>
-			Throws <code>std::invalid_argument</h3> if value passed fails 
+			Throws <code>std::invalid_argument</code> if value passed fails 
 			upper and lower predicate.
-			Throws <code>std::invalid_argument</h3> if ulimit is less than llimit.
+			Throws <code>std::invalid_argument</code> if ulimit is less than llimit.
 		*/
 		constexpr inline confined_base(
 			pred_t upper_p /**< : <i>in</i> : The upper bounds 
@@ -158,7 +158,7 @@ namespace enh
 			\brief Construct the object, value as set as lower limit.
 
 			<h3>Exceptions</h3>
-			Throws <code>std::invalid_argument</h3> if ulimit is less than llimit.
+			Throws <code>std::invalid_argument</code> if ulimit is less than llimit.
 		*/
 		constexpr inline confined_base(
 			pred_t upper_p /**< : <i>in</i> : The upper bounds
