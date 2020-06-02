@@ -3291,12 +3291,13 @@
   </compound>
   <compound kind="page">
     <name>md_F:_source_Enhance_License</name>
-    <title>License</title>
-    <filename>md__f_1_source__enhance__license</filename>
+    <title>Apache License</title>
+    <filename>md__f_1_source__enhance__license.html</filename>
   </compound>
   <compound kind="page">
     <name>index</name>
-    <title></title>
-    <filename>index</filename>
+    <title>Enhance C++ Libraries</title>
+    <filename>index.html</filename>
+    <docanchor file="index.html">md_F</docanchor>
   </compound>
 </tagfile>

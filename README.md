@@ -1,5 +1,3 @@
-[//]: # (\mainpage Enhance Main Page)
-
 ## Enhance C++ Libraries ##
 
 Enhance C++ Libraries is a collection of multiple `C++` libraries that cater 
