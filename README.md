@@ -2,6 +2,7 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/harithmanoj/Enhance)
 ![GitHub](https://img.shields.io/github/license/harithmanoj/Enhance)
+![GitHub Release Date](https://img.shields.io/github/release-date/harithmanoj/Enhance)
 
 Enhance C++ Libraries is a collection of multiple `C++` libraries that cater 
 to many needs.
