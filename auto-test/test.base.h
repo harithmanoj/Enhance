@@ -49,13 +49,14 @@ namespace testBase
 
 inline int call_main()
 {
+	bool ret_val = 0;
 	for (auto &i : testBase::allTestCases)
 	{
 		if (!i())
-			return 1;
+			ret_val = 1;
 	}
 
-	return 0;
+	return ret_val;
 }
 
 #define CONCAT(x,y)								x##y
