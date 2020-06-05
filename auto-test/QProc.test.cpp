@@ -28,4 +28,6 @@ int main()
 	{
 		std::cerr << "QProc.test.cpp : Test 0 : Has evaluated all messages.";
 	}
+
+	return 0;
 }
