@@ -1,17 +1,32 @@
+/** ***************************************************************************
+	\file QProc.test.cpp
+
+	\brief The file to test parts of module QProc
+
+	Created 05 June 2020
+
+	This file is part of project Enhance C++ Libraries.
+
+	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+
+
+******************************************************************************/
+
 #include <iostream>
 #include <queued_process.enh.h>
-
-#define ASSERT_TEST(condition, message_fail)		if(condition) \
-													{\
-														std::cerr << "PASS : " << __FILE__ << " : " << __func__ << "\n";\
-														return true;\
-													}\
-													else\
-													{\
-														std::cerr << "FAIL : " << __FILE__ << " : " << __func__ << " : " message_fail "\n"; \
-														return false;\
-													}
-
+#include "test.base.h"
 
 namespace testCase
 {
@@ -103,20 +118,8 @@ namespace testCase
 
 int main()
 {
-
-	bool full_pass = testCase::basicTest();
-	if (!full_pass)
-		return 1;
-
-	full_pass = full_pass | testCase::forceStopTest();
-	if (!full_pass)
-		return 1;
-
-	full_pass == full_pass | testCase::restartTest();
-	if (!full_pass)
-		return 1;
-	
-	if (full_pass)
-		return 0;
-	
+	REGISTER_TEST(testCase::basicTest);
+	REGISTER_TEST(testCase::forceStopTest);
+	REGISTER_TEST(testCase::restartTest);
+	return call_main();
 }
