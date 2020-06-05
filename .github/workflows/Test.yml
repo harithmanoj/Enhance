@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Test
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: 
+      - master
+      - develop
+  pull_request:
+    branches: 
+      - master
+      - develop
+
+jobs:
+  QProcTest:
+    runs-on: windows-latest
+   
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: Enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.2.0
+    
+    - name: compile QProc Test Program
+      working-directory: ./auto-test
+      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" QProc.test.cpp
+      
+    - name: Run Test Program
+      run: auto-test/QProc.test.exe
