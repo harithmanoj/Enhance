@@ -19,7 +19,10 @@ namespace testCase
 		unsigned t = 0;
 		enh::queued_process<unsigned> tQ;
 		tQ.RegisterProc(
-			[&](unsigned a) -> enh::tristate {t += a; return enh::tristate::GOOD; }
+			[&](unsigned a) -> enh::tristate {
+				t += a; 
+				return enh::tristate::GOOD;
+			}
 		);
 		tQ.start_queue_process();
 		unsigned exp = 0;
@@ -42,8 +45,7 @@ namespace testCase
 		tQ.RegisterProc(
 			[&](unsigned a) -> enh::tristate {
 				std::this_thread::sleep_for(std::chrono::milliseconds(5));
-				t += a; 
-				std::cout << t << " " << a << "\n";
+				t += a;
 				return enh::tristate::GOOD; 
 			}
 		);
@@ -69,7 +71,10 @@ namespace testCase
 		unsigned t = 0;
 		enh::queued_process<unsigned> tQ;
 		tQ.RegisterProc(
-			[&](unsigned a) -> enh::tristate {t += a; return enh::tristate::GOOD; }
+			[&](unsigned a) -> enh::tristate {
+				t += a; 
+				return enh::tristate::GOOD; 
+			}
 		);
 		tQ.start_queue_process();
 		unsigned exp = 0;
@@ -88,6 +93,8 @@ namespace testCase
 			exp += i;
 			tQ.postMessage(i);
 		}
+
+		tQ.safe_join(std::chrono::milliseconds(1));
 
 		ASSERT_TEST(t == exp, "Restart queue failed");
 	}
