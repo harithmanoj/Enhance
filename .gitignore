@@ -6,7 +6,13 @@ Enhance.sln
 
 # Test projects
 /test
+
+
 /bin
 /resources
+
+# Binaries
+*.exe
+*.obj
 
 
