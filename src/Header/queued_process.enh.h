@@ -366,7 +366,7 @@ namespace enh
 				isQueueActive = false;
 				QueueStop = false;
 				std::lock_guard<std::mutex> lock(mtxQueue);
-				QueuedMessage = std::queue<instruct>;
+				QueuedMessage = std::queue<instruct>();
 			}
 
 		}
@@ -429,7 +429,7 @@ namespace enh
 		*/
 		~queued_process()
 		{
-			force_join()			
+			force_join();
 		}
 	};
 
