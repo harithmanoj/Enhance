@@ -331,7 +331,7 @@ namespace enh
 			condition becomes false.
 
 			The functions waits for a cycle then checks the condition passed 
-			through cond, and if it returns false, the function exits.
+			through condition, and if it returns false, the function exits.
 
 			<h3>Return</h3>
 			-1 if the condition fails. The overshoot 
