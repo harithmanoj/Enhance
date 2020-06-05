@@ -1,14 +1,14 @@
 #include <iostream>
 #include <queued_process.enh.h>
 
-void main()
+int main()
 {
 	unsigned t = 0;
 	enh::queued_process<unsigned> tQ;
 	tQ.RegisterProc(
 		[&](unsigned a) -> enh::tristate {t += a; return enh::tristate::GOOD; }
 	);
-
+	tQ.start_queue_process();
 	unsigned exp = 0;
 
 	for (unsigned i = 0; i < 5; ++i)
