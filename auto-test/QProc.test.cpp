@@ -9,6 +9,7 @@
 													else\
 													{\
 														std::cerr << "FAIL : " << __FILE__ << " : " << __func__ << " : " message_fail "\n"; \
+														return false;\
 													}
 
 
