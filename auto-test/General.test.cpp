@@ -65,31 +65,31 @@ namespace testCase
 			{
 				constexpr arithmetic base = 25;
 				constexpr auto ret = enh::signum_fn(base);
-				ASSERT_CONTINUE((ret == 1), "constexpr signum function should return 1 for positive numbers");
+				ASSERT_CONTINUE(ret == 1, "constexpr signum function should return 1 for positive numbers");
 			}
 			{
 				constexpr arithmetic base = 0;
 				constexpr auto ret = enh::signum_fn(base);
-				ASSERT_CONTINUE((ret == 0), "constexpr signum function should return 0 for 0");
+				ASSERT_CONTINUE(ret == 0, "constexpr signum function should return 0 for 0");
 			}
 
 			if (!std::is_unsigned_v<arithmetic>)
 			{
 				constexpr arithmetic base = -25;
 				constexpr auto ret = enh::signum_fn(base);
-				ASSERT_CONTINUE((ret == -1), "constexpr signum function should return -1 for negative numbers");
+				ASSERT_CONTINUE(ret == -1, "constexpr signum function should return -1 for negative numbers");
 			}
 
 
 			{
 				arithmetic base = 25;
 				auto ret = enh::signum_fn(base);
-				ASSERT_CONTINUE((ret == 1), "signum function should return 1 for positive numbers");
+				ASSERT_CONTINUE(ret == 1, "signum function should return 1 for positive numbers");
 			}
 			{
 				arithmetic base = 0;
 				auto ret = enh::signum_fn(base);
-				ASSERT_CONTINUE((ret == 0), "signum function should return 0 for 0");
+				ASSERT_CONTINUE(ret == 0, "signum function should return 0 for 0");
 			}
 
 			if (!std::is_unsigned_v<arithmetic>)
@@ -100,6 +100,48 @@ namespace testCase
 			}
 
 			return true;
+		}
+
+		template<class integral>
+		bool incl_ratioTest()
+		{
+			{
+				constexpr integral numerator = 25;
+				constexpr integral denominator = 5;
+				constexpr auto ret = enh::incl_ratio(numerator, denominator);
+				ASSERT_CONTINUE(ret == 5, "constexpr simple Divide failed");
+			}
+			{
+				constexpr integral numerator = 26;
+				constexpr integral denominator = 5;
+				constexpr auto ret = enh::incl_ratio(numerator, denominator);
+				ASSERT_CONTINUE(ret == 6, "constexpr divide with remainder 1 did not round up");
+			}
+			{
+				constexpr integral numerator = 29;
+				constexpr integral denominator = 5;
+				constexpr auto ret = enh::incl_ratio(numerator, denominator);
+				ASSERT_CONTINUE(ret == 6, "constexpr divide with remainder 4 did not round up");
+			}
+
+			{
+				integral numerator = 25;
+				integral denominator = 5;
+				auto ret = enh::incl_ratio(numerator, denominator);
+				ASSERT_CONTINUE(ret == 5, "simple Divide failed");
+			}
+			{
+				integral numerator = 26;
+				integral denominator = 5;
+				auto ret = enh::incl_ratio(numerator, denominator);
+				ASSERT_CONTINUE(ret == 6, "divide with remainder 1 did not round up");
+			}
+			{
+				integral numerator = 29;
+				integral denominator = 5;
+				auto ret = enh::incl_ratio(numerator, denominator);
+				ASSERT_CONTINUE(ret == 6, "divide with remainder 4 did not round up");
+			}
 		}
 	}
 
@@ -132,6 +174,20 @@ namespace testCase
 		ASSERT_TEST(ret_char && ret_unsigned && ret_unsigned_char, "signum_fn Failed");
 	}
 
+	bool incl_ratioAll()
+	{
+		bool ret_unsigned = nouse::incl_ratioTest<unsigned>();
+		ASSERT_CONTINUE(ret_unsigned, "incl_ratio Failed for unsigned instantiation");
+
+		bool ret_char = nouse::incl_ratioTest<char>();
+		ASSERT_CONTINUE(ret_char, "incl_ratio Failed for char instantiation");
+
+		bool ret_unsigned_char = nouse::incl_ratioTest<unsigned char>();
+		ASSERT_CONTINUE(ret_unsigned_char, "incl_ratio Failed for unsigned char instantiation");
+
+		ASSERT_TEST(ret_char && ret_unsigned && ret_unsigned_char, "incl_ratio Failed");
+	}
+
 }
 
 
@@ -139,5 +195,6 @@ int main()
 {
 	REGISTER_TEST(testCase::CheckFieldAll);
 	REGISTER_TEST(testCase::signum_fnAll);
+	REGISTER_TEST(testCase::incl_ratioAll);
 	return call_main();
 }
