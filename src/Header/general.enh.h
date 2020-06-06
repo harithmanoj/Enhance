@@ -197,7 +197,12 @@ namespace enh
 		)
 	{
 		if (value.size() < length)
-			return std::string(length - value.size(), '0') + value;
+		{
+			if (value[0] == '-')
+				return '-' + std::string(length - value.size() , '0') + &value.c_str()[1];
+			else
+				return std::string(length - value.size(), '0') + value;
+		}
 		else
 			return value;
 	}

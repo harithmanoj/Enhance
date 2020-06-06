@@ -59,20 +59,33 @@ inline int call_main()
 	return ret_val;
 }
 
-#define CONCAT(x,y)									x##y
+#define CONCAT(x,y)													x##y
 
-#define REGISTER_TEST(function)						testBase::allTestCases.push_back(function)
+#define REGISTER_TEST(function)										testBase::allTestCases.push_back(function)
 
-#define REGISTER_MEM_TEST(function)					testBase::allTestCases.push_back([this](){return function();})
+#define REGISTER_MEM_TEST(function)									testBase::allTestCases.push_back([this](){return function();})
 
-#define ASSERT_TEST(condition, fail_message)		return testBase::assertTest(condition, #condition, fail_message, __func__, __FILE__ )
+#define ASSERT_TEST(condition, fail_message)						return testBase::assertTest(condition, \
+																	#condition, fail_message, __func__, __FILE__ )
 
-#define ASSERT_CONTINUE(condition, fail_message)	if(!condition)\
-													{\
-														std::cerr << "FAIL : " << __FILE__ << " : " << __func__ << " : condition " << #condition << " : " << fail_message << "\n";\
-														return false;\
-													}
+#define ASSERT_CONTINUE(condition, fail_message)					if(!(condition))\
+																	{\
+																		std::cerr << "FAIL : " << __FILE__ \
+																			<< " : " << __func__ << " : condition " \
+																			<< #condition << " : " << fail_message << "\n";\
+																		return false;\
+																	}
 												
-
+#define ASSERT_LOG_CONTINUE(condition, fail_message, pass_message)	if(!(condition))\
+																	{\
+																		std::cerr << "FAIL : " << __FILE__ \
+																			<< " : " << __func__ << " : condition " \
+																			<< #condition << " : " << fail_message << "\n";\
+																		return false;\
+																	}\
+																	else\
+																		std::cout << "PASS : " << __FILE__ << " : "\
+																			<< __func__ << " : Intermediate Test Passed " \
+																			<< #condition << " " << pass_message << "\n";
 
 #endif
