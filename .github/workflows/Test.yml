@@ -11,6 +11,22 @@ on:
       - develop
 
 jobs:
+  GeneralTest:
+    runs-on: windows-latest
+
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: Enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.2.0
+    
+    - name: compile Timer Test Program
+      working-directory: ./auto-test
+      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" General.test.cpp
+      
+    - name: Run Test Program
+      run: auto-test/General.test.exe
 
   TimerTest:
     runs-on: windows-latest
