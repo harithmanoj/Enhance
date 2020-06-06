@@ -179,6 +179,37 @@ namespace enh
 		{
 			return (flag.load() == SAFE);
 		}
+
+		/*
+			\brief All error flag(s) set.
+
+			<h3>Return</h3>
+			All error flag(s) set.\n
+		*/
+		virtual std::string error_string() const
+		{
+			std::string ret = "";
+			if (isSafe())
+				return "SAFE";
+			bool prev = false;
+			bool unkwn = checkFlag(UNKNOWN);
+			if (unknwn)
+			{
+				ret = "UNKNOWN";
+				prev = true;
+			}
+
+			bool inv = checkFlag(INVALID_ARG);	
+			if (inv)
+			{
+				if (prev)
+					ret += " + ";
+				ret += "INVALID_ARG";
+				prev = true;
+			}
+
+			return ret;
+		}
 	protected:
 		
 		/**
@@ -219,6 +250,8 @@ namespace enh
 			return tristate::GOOD;
 		}
 
+		
+
 #ifdef ERROR_BASE_LOG
 
 
@@ -233,24 +266,7 @@ namespace enh
 			return "error_base";
 		}
 
-		/*
-			\brief All error flag(s) set.
-
-			<h3>Return</h3>
-			All error flag(s) set.\n
-		*/
-		virtual std::string error_string() const
-		{
-			std::string ret = "";
-			if (isSafe())
-				return "SAFE";
-			if (checkFlag(UNKNOWN))
-				ret = "UNKNOWN";
-			if (checkFlag(INVALID_ARG))
-				ret += " + INVALID_ARG";
-			
-			return ret;
-		}
+		
 		public:
 		
 		/**
