@@ -31,59 +31,67 @@
 
 namespace testCase
 {
-	template<class Unit, class LowerUnit, unsigned period, unsigned cycles, unsigned error_bounds>
 	bool BasicTest()
 	{
-		enh::timer<period, Unit> timerObject;
+		enh::millis<50> timerObject;
 
 		auto start = enh::high_res::now();
-		timerObject.wait_for(cycles);
+		timerObject.wait_for(20);		
 		auto end = enh::high_res::now();
-		auto time_elapsed = std::chrono::duration_cast<LowerUnit>(end - start).count();
-		auto expected_time = LowerUnit(Unit(period * cycles)).count();
-		long double error = time_elapsed - expected_time;
-		error = abs(error) / long double(expected_time);
-		std::string failMessage = "Error is higher than : 1 in " + std::to_string(error_bounds);
-		std::cout << expected_time << " " << time_elapsed << " " <<  error << "\n";
-		ASSERT_TEST((error < (1.0 / long double(error_bounds))), failMessage);
+		auto elapsed = std::chrono::duration_cast<std::microseconds>(end - start).count();
+		decltype(elapsed) expected = 20 * 50 * 1000;
+		ASSERT_TEST(elapsed > expected, "Timer does not wait for a minimum of given time");
 	}
 
-	template<class Unit, class LowerUnit, unsigned period, unsigned cycles, unsigned interrupt, unsigned error_bounds>
 	bool InterruptTest()
 	{
-		enh::timer<period, Unit> timerObject;
-		std::atomic<bool> stop = false;
-		auto expected_time = LowerUnit(Unit(period * interrupt)).count();
+		enh::millis<50> timerObject;
+		bool stop = false;
 		std::thread other([&]() {
-			std::this_thread::sleep_for(LowerUnit(expected_time));
+			std::this_thread::sleep_for(std::chrono::milliseconds(10 * 50));
 			stop = true;
 			});
 		auto start = enh::high_res::now();
-		timerObject.wait_for(cycles, [&]() { return !stop.load(); });
+		timerObject.wait_for(20, [&]() {return !stop; });
 		auto end = enh::high_res::now();
-		other.join();
-		auto time_elapsed = std::chrono::duration_cast<LowerUnit>(end - start).count();
-		expected_time = LowerUnit(Unit(period * interrupt)).count();
-		long double error = time_elapsed - expected_time;
-		error = abs(error) / long double(expected_time);
-		std::string failMessage = "Error is higher than : 1 in " + std::to_string(error_bounds);
-		ASSERT_TEST((error < (1.0 / long double(error_bounds))), failMessage);
+		auto elapsed = std::chrono::duration_cast<std::microseconds>(end - start).count();
+		decltype(elapsed) expected_full = 20 * 50 * 1000;
+		decltype(elapsed) expected = 10 * 50 * 1000;
+		ASSERT_TEST((elapsed > expected) && (elapsed < expected_full), "Timer does not wait for a minimum of given time");
 	}
+
+	bool RestartTest()
+	{
+		enh::millis<50> timerObject;
+		decltype(std::chrono::milliseconds().count()) elapsed = 0;
+		decltype(elapsed) expected;
+		
+		{
+			auto start = enh::high_res::now();
+			timerObject.wait_for(20);
+			auto end = enh::high_res::now();
+			elapsed = std::chrono::duration_cast<std::microseconds>(end - start).count();
+			expected = 20 * 50 * 1000;
+			timerObject.stop();
+		}
+		{
+			timerObject.start_timer();
+			auto start = enh::high_res::now();
+			timerObject.wait_for(20);
+			auto end = enh::high_res::now();
+			elapsed += std::chrono::duration_cast<std::microseconds>(end - start).count();
+			expected += 20 * 50 * 1000;
+		}
+		ASSERT_TEST(elapsed > expected, "Timer does not restart");
+
+	}
+
 }
 
 int main()
 {
-	using micros = std::chrono::microseconds;
-	using millis = std::chrono::milliseconds;
-	using sec_s = std::chrono::seconds;
-	using min_s = std::chrono::minutes;
-	REGISTER_TEST((testCase::BasicTest<millis, micros, 20, 10, 10>));
-	REGISTER_TEST((testCase::BasicTest<sec_s, micros, 1, 10, 1000>));
-	REGISTER_TEST((testCase::BasicTest<min_s, micros, 1, 2, 10000>));
-
-	REGISTER_TEST((testCase::InterruptTest<millis, micros, 20, 10, 5, 10>));
-	REGISTER_TEST((testCase::InterruptTest<sec_s, micros, 1, 10, 5, 1000>));
-	REGISTER_TEST((testCase::InterruptTest<min_s, micros, 1, 2, 1, 10000>));
-
+	REGISTER_TEST(testCase::BasicTest);
+	REGISTER_TEST(testCase::InterruptTest);
+	REGISTER_TEST(testCase::RestartTest);
 	return call_main();
 }
