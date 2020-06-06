@@ -397,6 +397,33 @@ namespace testCase
 		ASSERT_CONTINUE(zero, "sign Extend could not extend zero");
 		ASSERT_TEST(positive && negative && zero, "signExtend check failed");
 	}
+
+	bool ordinalAll()
+	{
+		bool reset;
+		ASSERT_CONTINUE((reset = (enh::getOrdinalIndicator(1) == "st")),
+			"ordinal indicator for 1 failed");
+		ASSERT_CONTINUE((reset = reset || (enh::getOrdinalIndicator(2) == "nd")), 
+			"ordinal indicator for 2 failed");
+		ASSERT_CONTINUE((reset = reset || (enh::getOrdinalIndicator(3) == "rd")),
+			"ordinal indicator for 3 failed");
+		for (int i = 4; i < 21; ++i)
+			ASSERT_CONTINUE((reset = reset || (enh::getOrdinalIndicator(i) == "th")),
+				"ordinal indicator for " + std::to_string(i) + " failed");
+		for (int i = 2; i < 30; ++i)
+		{
+			ASSERT_CONTINUE((reset = reset || (enh::getOrdinalIndicator(i * 10 + 1) == "st")),
+				"ordinal indicator for " + std::to_string(i * 10 + 1) + " failed");
+			ASSERT_CONTINUE((reset = reset || (enh::getOrdinalIndicator(i * 10 + 2) == "nd")),
+				"ordinal indicator for " + std::to_string(i * 10 + 2) + " failed");
+			ASSERT_CONTINUE((reset = reset || (enh::getOrdinalIndicator(i * 10 + 3) == "rd")),
+				"ordinal indicator for " + std::to_string(i * 10 + 3) + " failed");
+			ASSERT_CONTINUE((reset = reset || (enh::getOrdinalIndicator(i * 10 + 4) == "th")),
+				"ordinal indicator for " + std::to_string(i * 10 + 4) + " failed");
+		}
+
+		ASSERT_TEST(reset, "getOrdinalIndicator test failed");
+	}
 }
 
 
@@ -407,5 +434,6 @@ int main()
 	REGISTER_TEST(testCase::incl_ratioAll);
 	REGISTER_TEST(testCase::isConfinedAll);
 	REGISTER_TEST(testCase::signExtendAll);
+	REGISTER_TEST(testCase::ordinalAll);
 	return call_main();
 }
