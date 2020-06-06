@@ -386,6 +386,17 @@ namespace testCase
 		ASSERT_TEST(ret_char && ret_unsigned && ret_unsigned_char, "incl_ratio Failed");
 	}
 
+
+	bool signExtendAll()
+	{
+		bool positive = enh::signExtend("25", 10) == "0000000025";
+		bool negative = enh::signExtend("-25", 10) == "-000000025";
+		bool zero = enh::signExtend("0", 10) == "0000000000";
+		ASSERT_CONTINUE(positive, "sign Extend could not extend positive values");
+		ASSERT_CONTINUE(negative, "sign Extend could not extend negative values");
+		ASSERT_CONTINUE(zero, "sign Extend could not extend zero");
+		ASSERT_TEST(positive && negative && zero, "signExtend check failed");
+	}
 }
 
 
@@ -395,5 +406,6 @@ int main()
 	REGISTER_TEST(testCase::signum_fnAll);
 	REGISTER_TEST(testCase::incl_ratioAll);
 	REGISTER_TEST(testCase::isConfinedAll);
+	REGISTER_TEST(testCase::signExtendAll);
 	return call_main();
 }
