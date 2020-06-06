@@ -142,7 +142,205 @@ namespace testCase
 				auto ret = enh::incl_ratio(numerator, denominator);
 				ASSERT_CONTINUE(ret == 6, "divide with remainder 4 did not round up");
 			}
+
+			return true;
 		}
+
+		template<class type>
+		bool isConfinedTest()
+		{
+			{
+				constexpr type unchecked = type(30);
+				constexpr type lbound = type(10);
+				constexpr type ubound = type(50);
+				constexpr bool ni_ret = enh::isConfined(unchecked, lbound, ubound, false, false);
+				ASSERT_CONTINUE(ni_ret, "constexpr bound check in middle, non-inclusive");
+
+				constexpr bool ui_ret = enh::isConfined(unchecked, lbound, ubound, false, true);
+				ASSERT_CONTINUE(ui_ret, "constexpr bound check in middle, upper inclusive");
+
+				constexpr bool li_ret = enh::isConfined(unchecked, lbound, ubound, true, false);
+				ASSERT_CONTINUE(li_ret, "constexpr bound check in middle, lower inclusive");
+
+				constexpr bool i_ret = enh::isConfined(unchecked, lbound, ubound, true, true);
+				ASSERT_CONTINUE(i_ret, "constexpr bound check in middle, inclusive");
+			}
+
+			{
+				constexpr type unchecked = type(11);
+				constexpr type lbound = type(10);
+				constexpr type ubound = type(50);
+				constexpr bool ni_ret = enh::isConfined(unchecked, lbound, ubound, false, false);
+				ASSERT_CONTINUE(ni_ret, "constexpr bound check aproaching lower, non-inclusive");
+
+				constexpr bool ui_ret = enh::isConfined(unchecked, lbound, ubound, false, true);
+				ASSERT_CONTINUE(ui_ret, "constexpr bound check aproaching lower, upper inclusive");
+
+				constexpr bool li_ret = enh::isConfined(unchecked, lbound, ubound, true, false);
+				ASSERT_CONTINUE(li_ret, "constexpr bound check aproaching lower, lower inclusive");
+
+				constexpr bool i_ret = enh::isConfined(unchecked, lbound, ubound, true, true);
+				ASSERT_CONTINUE(i_ret, "constexpr bound check aproaching lower, inclusive");
+			}
+
+			{
+				constexpr type unchecked = type(49);
+				constexpr type lbound = type(10);
+				constexpr type ubound = type(50);
+				constexpr bool ni_ret = enh::isConfined(unchecked, lbound, ubound, false, false);
+				ASSERT_CONTINUE(ni_ret, "constexpr bound check aproaching upper, non-inclusive");
+
+				constexpr bool ui_ret = enh::isConfined(unchecked, lbound, ubound, false, true);
+				ASSERT_CONTINUE(ui_ret, "constexpr bound check aproaching upper, upper inclusive");
+
+				constexpr bool li_ret = enh::isConfined(unchecked, lbound, ubound, true, false);
+				ASSERT_CONTINUE(li_ret, "constexpr bound check aproaching upper, lower inclusive");
+
+				constexpr bool i_ret = enh::isConfined(unchecked, lbound, ubound, true, true);
+				ASSERT_CONTINUE(i_ret, "constexpr bound check aproaching upper, inclusive");
+			}
+
+			{
+				constexpr type unchecked = type(10);
+				constexpr type lbound = type(10);
+				constexpr type ubound = type(50);
+				constexpr bool ni_ret = enh::isConfined(unchecked, lbound, ubound, false, false);
+				ASSERT_CONTINUE(!ni_ret, "constexpr bound check lower, non-inclusive");
+
+				constexpr bool ui_ret = enh::isConfined(unchecked, lbound, ubound, false, true);
+				ASSERT_CONTINUE(!ui_ret, "constexpr bound check lower, upper inclusive");
+
+				constexpr bool li_ret = enh::isConfined(unchecked, lbound, ubound, true, false);
+				ASSERT_CONTINUE(li_ret, "constexpr bound check lower, lower inclusive");
+
+				constexpr bool i_ret = enh::isConfined(unchecked, lbound, ubound, true, true);
+				ASSERT_CONTINUE(i_ret, "constexpr bound check lower, inclusive");
+			}
+
+			{
+				constexpr type unchecked = type(50);
+				constexpr type lbound = type(10);
+				constexpr type ubound = type(50);
+				constexpr bool ni_ret = enh::isConfined(unchecked, lbound, ubound, false, false);
+				ASSERT_CONTINUE(!ni_ret, "constexpr bound check upper, non-inclusive");
+
+				constexpr bool ui_ret = enh::isConfined(unchecked, lbound, ubound, false, true);
+				ASSERT_CONTINUE(ui_ret, "constexpr bound check upper, upper inclusive");
+
+				constexpr bool li_ret = enh::isConfined(unchecked, lbound, ubound, true, false);
+				ASSERT_CONTINUE(!li_ret, "constexpr bound check upper, lower inclusive");
+
+				constexpr bool i_ret = enh::isConfined(unchecked, lbound, ubound, true, true);
+				ASSERT_CONTINUE(i_ret, "constexpr bound check upper, inclusive");
+			}
+
+
+			{
+				type unchecked = type(30);
+				type lbound = type(10);
+				type ubound = type(50);
+				bool ni_ret = enh::isConfined(unchecked, lbound, ubound, false, false);
+				ASSERT_CONTINUE(ni_ret, "bound check in middle, non-inclusive");
+
+				bool ui_ret = enh::isConfined(unchecked, lbound, ubound, false, true);
+				ASSERT_CONTINUE(ui_ret, "bound check in middle, upper inclusive");
+
+				bool li_ret = enh::isConfined(unchecked, lbound, ubound, true, false);
+				ASSERT_CONTINUE(li_ret, "bound check in middle, lower inclusive");
+
+				bool i_ret = enh::isConfined(unchecked, lbound, ubound, true, true);
+				ASSERT_CONTINUE(i_ret, "bound check in middle, inclusive");
+			}
+
+			{
+				type unchecked = type(11);
+				type lbound = type(10);
+				type ubound = type(50);
+				bool ni_ret = enh::isConfined(unchecked, lbound, ubound, false, false);
+				ASSERT_CONTINUE(ni_ret, "bound check aproaching lower, non-inclusive");
+
+				bool ui_ret = enh::isConfined(unchecked, lbound, ubound, false, true);
+				ASSERT_CONTINUE(ui_ret, "bound check aproaching lower, upper inclusive");
+
+				bool li_ret = enh::isConfined(unchecked, lbound, ubound, true, false);
+				ASSERT_CONTINUE(li_ret, "bound check aproaching lower, lower inclusive");
+
+				bool i_ret = enh::isConfined(unchecked, lbound, ubound, true, true);
+				ASSERT_CONTINUE(i_ret, "bound check aproaching lower, inclusive");
+			}
+
+			{
+				type unchecked = type(49);
+				type lbound = type(10);
+				type ubound = type(50);
+				bool ni_ret = enh::isConfined(unchecked, lbound, ubound, false, false);
+				ASSERT_CONTINUE(ni_ret, "bound check aproaching upper, non-inclusive");
+
+				bool ui_ret = enh::isConfined(unchecked, lbound, ubound, false, true);
+				ASSERT_CONTINUE(ui_ret, "bound check aproaching upper, upper inclusive");
+
+				bool li_ret = enh::isConfined(unchecked, lbound, ubound, true, false);
+				ASSERT_CONTINUE(li_ret, "bound check aproaching upper, lower inclusive");
+
+				bool i_ret = enh::isConfined(unchecked, lbound, ubound, true, true);
+				ASSERT_CONTINUE(i_ret, "bound check aproaching upper, inclusive");
+			}
+
+			{
+				type unchecked = type(10);
+				type lbound = type(10);
+				type ubound = type(50);
+				bool ni_ret = enh::isConfined(unchecked, lbound, ubound, false, false);
+				ASSERT_CONTINUE(!ni_ret, "bound check lower, non-inclusive");
+
+				bool ui_ret = enh::isConfined(unchecked, lbound, ubound, false, true);
+				ASSERT_CONTINUE(!ui_ret, "bound check lower, upper inclusive");
+
+				bool li_ret = enh::isConfined(unchecked, lbound, ubound, true, false);
+				ASSERT_CONTINUE(li_ret, "bound check lower, lower inclusive");
+
+				bool i_ret = enh::isConfined(unchecked, lbound, ubound, true, true);
+				ASSERT_CONTINUE(i_ret, "bound check lower, inclusive");
+			}
+
+			{
+				type unchecked = type(50);
+				type lbound = type(10);
+				type ubound = type(50);
+				bool ni_ret = enh::isConfined(unchecked, lbound, ubound, false, false);
+				ASSERT_CONTINUE(!ni_ret, "bound check upper, non-inclusive");
+
+				bool ui_ret = enh::isConfined(unchecked, lbound, ubound, false, true);
+				ASSERT_CONTINUE(ui_ret, "bound check upper, upper inclusive");
+
+				bool li_ret = enh::isConfined(unchecked, lbound, ubound, true, false);
+				ASSERT_CONTINUE(!li_ret, "bound check upper, lower inclusive");
+
+				bool i_ret = enh::isConfined(unchecked, lbound, ubound, true, true);
+				ASSERT_CONTINUE(i_ret, "bound check upper, inclusive");
+			}
+
+			return true;
+		}
+
+	}
+
+	bool isConfinedAll()
+	{
+		bool ret_unsigned = nouse::isConfinedTest<unsigned>();
+		ASSERT_CONTINUE(ret_unsigned, "isConfined Failed for unsigned instantiation");
+
+		bool ret_char = nouse::isConfinedTest<char>();
+		ASSERT_CONTINUE(ret_char, "isConfined Failed for char instantiation");
+
+		bool ret_unsigned_char = nouse::isConfinedTest<unsigned char>();
+		ASSERT_CONTINUE(ret_unsigned_char, "isConfined Failed for unsigned char instantiation");
+
+		bool ret_long = nouse::isConfinedTest<long>();
+		ASSERT_CONTINUE(ret_long, "isConfined Failed for long instantiation");
+
+
+		ASSERT_TEST(/*ret_char &&*/ ret_unsigned && ret_unsigned_char, "isConfined Failed");
 	}
 
 	bool CheckFieldAll()
@@ -196,5 +394,6 @@ int main()
 	REGISTER_TEST(testCase::CheckFieldAll);
 	REGISTER_TEST(testCase::signum_fnAll);
 	REGISTER_TEST(testCase::incl_ratioAll);
+	REGISTER_TEST(testCase::isConfinedAll);
 	return call_main();
 }
