@@ -38,7 +38,7 @@ namespace testCase
 		auto start = enh::high_res::now();
 		timerObject.wait_for(20);		
 		auto end = enh::high_res::now();
-		auto elapsed = std::chrono::duration_cast<std::microseconds>(end - start).count();
+		auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 		decltype(elapsed) expected = 20 * 50 * 1000;
 		ASSERT_TEST(elapsed > expected, "Timer does not wait for a minimum of given time");
 	}
@@ -54,7 +54,8 @@ namespace testCase
 		auto start = enh::high_res::now();
 		timerObject.wait_for(20, [&]() {return !stop; });
 		auto end = enh::high_res::now();
-		auto elapsed = std::chrono::duration_cast<std::microseconds>(end - start).count();
+		other.join();
+		auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 		decltype(elapsed) expected_full = 20 * 50 * 1000;
 		decltype(elapsed) expected = 10 * 50 * 1000;
 		ASSERT_TEST((elapsed > expected) && (elapsed < expected_full), "Timer does not wait for a minimum of given time");
@@ -65,25 +66,25 @@ namespace testCase
 		enh::millis<50> timerObject;
 		decltype(std::chrono::milliseconds().count()) elapsed = 0;
 		decltype(elapsed) expected;
-		
+
 		{
 			auto start = enh::high_res::now();
 			timerObject.wait_for(20);
 			auto end = enh::high_res::now();
-			elapsed = std::chrono::duration_cast<std::microseconds>(end - start).count();
+			elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 			expected = 20 * 50 * 1000;
 			timerObject.stop();
+			timerObject.join();
 		}
 		{
-			timerObject.start_timer();
+			ASSERT_CONTINUE(timerObject.start_timer(), "Timer failed to stop");
 			auto start = enh::high_res::now();
 			timerObject.wait_for(20);
 			auto end = enh::high_res::now();
-			elapsed += std::chrono::duration_cast<std::microseconds>(end - start).count();
+			elapsed += std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 			expected += 20 * 50 * 1000;
 		}
 		ASSERT_TEST(elapsed > expected, "Timer does not restart");
-
 	}
 
 }
