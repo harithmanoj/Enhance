@@ -193,7 +193,7 @@ namespace enh
 				return "SAFE";
 			bool prev = false;
 			bool unkwn = checkFlag(UNKNOWN);
-			if (unknwn)
+			if (unkwn)
 			{
 				ret = "UNKNOWN";
 				prev = true;
