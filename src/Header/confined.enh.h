@@ -319,7 +319,7 @@ namespace enh
 		{
 			if (difference == 0)
 				return 0;
-			unsigned long long rem = difference % (uLimit() - lLimit());
+		    long long rem = difference % (uLimit() - lLimit());
 			unsigned long long ret = difference / (uLimit() - lLimit());
 
 			rem = value - rem;
