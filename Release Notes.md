@@ -6,6 +6,25 @@ Enhance C++ Libraries Release Notes
 
 ## Version 1.3
 
+### Version 1.3.1.7.fin
+
+#### Fixes:
+
+* `queued_process.enh.h` had a syntax error (missing () in line 369), 
+corrected.
+* Worker thread in class `queued_process` did not exit immediately after 
+`force_join` was called, corrected.
+* `signExtend` function did not work well for negative inputs, corrected.
+* In class `confined_base` subtract function did not work as expected for
+negative lower limits. corrected.
+
+#### Other Changes:
+
+* `error_string()` function of class `error_base` is now public and available 
+even if DEBUG_CONTROL is undefined.
+* `error_string()` output string is now better formatted.
+* Added Tests for multiple modules of library.
+
 ### Version 1.3.1.6.fin
 
 * The Library is now re-licensed under Apache License v2. See License.md for 
