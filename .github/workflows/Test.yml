@@ -5,16 +5,81 @@ name: Test
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  push:
-    branches: 
-      - master
-      - develop
   pull_request:
     branches: 
       - master
       - develop
 
 jobs:
+  GeneralTest:
+    runs-on: windows-latest
+
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: Enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.2.0
+    
+    - name: compile Timer Test Program
+      working-directory: ./auto-test
+      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" General.test.cpp
+      
+    - name: Run Test Program
+      run: auto-test/General.test.exe
+
+  ConfinedTest:
+    runs-on: windows-latest
+
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: Enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.2.0
+    
+    - name: compile Timer Test Program
+      working-directory: ./auto-test
+      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" Confined.test.cpp
+      
+    - name: Run Test Program
+      run: auto-test/Confined.test.exe
+
+  ErrorTest:
+    runs-on: windows-latest
+
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: Enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.2.0
+    
+    - name: compile Timer Test Program
+      working-directory: ./auto-test
+      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" Error.test.cpp
+      
+    - name: Run Test Program
+      run: auto-test/Error.test.exe
+
+
+  TimerTest:
+    runs-on: windows-latest
+
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: Enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.2.0
+    
+    - name: compile Timer Test Program
+      working-directory: ./auto-test
+      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" Timer.test.cpp
+      
+    - name: Run Test Program
+      run: auto-test/Timer.test.exe
+
   QProcTest:
     runs-on: windows-latest
    

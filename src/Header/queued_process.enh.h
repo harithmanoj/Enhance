@@ -226,7 +226,7 @@ namespace enh
 					if (!ret)
 						return (tristate::ERROR);
 					std::lock_guard<std::mutex> temp_lock(mtxQueue);
-					stopNow = QueuedMessage.empty();
+					stopNow = QueuedMessage.empty() || QueueStop.load();
 				}
 
 			}
