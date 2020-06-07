@@ -1,5 +1,7 @@
 ## Enhance C++ Libraries ##
 
+
+
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/harithmanoj/Enhance)
 ![GitHub](https://img.shields.io/github/license/harithmanoj/Enhance)
 ![GitHub Release Date](https://img.shields.io/github/release-date/harithmanoj/Enhance)
@@ -28,8 +30,8 @@ Stable Releases can be found [here](https://github.com/harithmanoj/Enhance/relea
 
 Code Documentation is Hosted by GitHub Pages [here](https://harithmanoj.github.io/Enhance/index.html)
 
-The branch master contains last stable release code. For latest features, 
-bugfixes etc, see develop branch or [this repository](https://github.com/harithmanoj/enhance-latest).
+The branch master of Enhance repository contains last stable release code. For latest features, 
+bugfixes etc, see develop branch or [enhance-latest](https://github.com/harithmanoj/enhance-latest).
 
 Documentation of Latest bug fixes and features can be found [here](https://harithmanoj.github.io/enhance-latest/index.html)
 
