@@ -1,9 +1,9 @@
 /** ***************************************************************************
-	\file Error.test.cpp
+	\file Confined.test.cpp
 
 	\brief The file to test parts of module Error
 
-	Created 05 June 2020
+	Created 07 June 2020
 
 	This file is part of project Enhance C++ Libraries.
 

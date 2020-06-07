@@ -3,7 +3,7 @@
 
 	\brief The file to test parts of module Error
 
-	Created 05 June 2020
+	Created 06 June 2020
 
 	This file is part of project Enhance C++ Libraries.
 
