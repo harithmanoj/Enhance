@@ -319,17 +319,16 @@ namespace enh
 		{
 			if (difference == 0)
 				return 0;
-		    long long rem = difference % (uLimit() - lLimit());
+		    unsigned long long rem = difference % (uLimit() - lLimit());
 			unsigned long long ret = difference / (uLimit() - lLimit());
 
-			rem = value - rem;
-			if (!lLimit_pred(rem))
+			if (!lLimit_pred(value - rem))
 			{
-				value = rem + uLimit() - lLimit() + 1;
+				value = value - rem + uLimit() - lLimit() + 1;
 				++ret;
 			}
 			else
-				value = rem;
+				value = value - rem;
 			return ret;
 		}
 
