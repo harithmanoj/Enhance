@@ -33,7 +33,7 @@ namespace testCase
 	namespace nouse
 	{
 		template<class integral>
-		bool basicAdd()
+		bool confinedbasicAdd()
 		{
 			enh::confined_base<long> conf(
 				[](long long a) {return a < 200; },
@@ -50,7 +50,7 @@ namespace testCase
 		}
 
 		template<class integral>
-		bool basicSub()
+		bool confinedbasicSub()
 		{
 			enh::confined_base<long> conf(
 				[](long long a) {return a < 200; },
@@ -66,7 +66,7 @@ namespace testCase
 		}
 
 		template<class integral>
-		bool multiAdd()
+		bool confinedmultiAdd()
 		{
 			enh::confined_base<long> conf(
 				[](long long a) {return a < 200; },
@@ -83,7 +83,7 @@ namespace testCase
 		}
 
 		template<class integral>
-		bool multiSub()
+		bool confinedmultiSub()
 		{
 			enh::confined_base<long> conf(
 				[](long long a) {return a < 200; },
@@ -97,70 +97,181 @@ namespace testCase
 			ASSERT_CONTINUE(conf.get() == 199, "sub failed to cycle back");
 			return true;
 		}
+
+
+		template<class integral>
+		bool confinedNegLimitBasicAdd()
+		{
+			enh::confined_base<long> conf(
+				[](long long a) {return a < 200; },
+				[](long long a) {return a >= -100; },
+				[]() {return 199; },
+				[]() {return -100; }
+			);
+
+			conf.set(199);
+			conf.add(1);
+
+			ASSERT_CONTINUE(conf.get() == -100, "add failed to cycle back");
+			return true;
+		}
+
+		template<class integral>
+		bool confinedNegLimitBasicSub()
+		{
+			enh::confined_base<long> conf(
+				[](long long a) {return a < 200; },
+				[](long long a) {return a >= -100; },
+				[]() {return 199; },
+				[]() {return -100; }
+			);
+
+			conf.set(-100);
+			conf.sub(1);
+			ASSERT_CONTINUE(conf.get() == 199, "sub failed to cycle back");
+			return true;
+		}
+
+		template<class integral>
+		bool confinedNegLimitMultiAdd()
+		{
+			enh::confined_base<long> conf(
+				[](long long a) {return a < 200; },
+				[](long long a) {return a >= -100; },
+				[]() {return 199; },
+				[]() {return -100; }
+			);
+
+			conf.set(179);
+			conf.add(21);
+
+			ASSERT_CONTINUE(conf.get() == -100, "add failed to cycle back");
+			return true;
+		}
+
+		template<class integral>
+		bool confinedNegLimitMultiSub()
+		{
+			enh::confined_base<long> conf(
+				[](long long a) {return a < 200; },
+				[](long long a) {return a >= -100; },
+				[]() {return 199; },
+				[]() {return -100; }
+			);
+
+			conf.set(-80);
+			conf.sub(21);
+			ASSERT_CONTINUE(conf.get() == 199, "sub failed to cycle back");
+			return true;
+		}
 	}
 
-	bool basicAddall()
+	bool confinedbasicAddall()
 	{
-		bool ret_uchar = nouse::basicAdd<unsigned char>();
-		bool ret_u = nouse::basicAdd<unsigned>();
-		bool ret_l = nouse::basicAdd<long>();
-		bool ret_ul = nouse::basicAdd<unsigned long>();
+		bool ret_uchar = nouse::confinedbasicAdd<unsigned char>();
 		ASSERT_CONTINUE(ret_uchar, "unsigned char instantiation failed");
+		bool ret_u = nouse::confinedbasicAdd<unsigned>();
 		ASSERT_CONTINUE(ret_u, "unsigned instantiation failed");
+		bool ret_l = nouse::confinedbasicAdd<long>();
 		ASSERT_CONTINUE(ret_l, "long instantiation failed");
+		bool ret_ul = nouse::confinedbasicAdd<unsigned long>();
 		ASSERT_CONTINUE(ret_ul, "unsigned long instantiation failed");
 
-		ASSERT_TEST(ret_u && ret_l && ret_uchar && ret_ul, "basicAdd failed");
+		ASSERT_TEST(ret_u && ret_l && ret_uchar && ret_ul, "confinedbasicAdd failed");
 	}
 
-	bool basicSuball()
+	bool confinedbasicSuball()
 	{
-		bool ret_uchar = nouse::basicSub<unsigned char>();
-		bool ret_u = nouse::basicSub<unsigned>();
-		bool ret_l = nouse::basicSub<long>();
-		bool ret_ul = nouse::basicSub<unsigned long>();
+		bool ret_uchar = nouse::confinedbasicSub<unsigned char>();
 		ASSERT_CONTINUE(ret_uchar, "unsigned char instantiation failed");
+		bool ret_u = nouse::confinedbasicSub<unsigned>();
 		ASSERT_CONTINUE(ret_u, "unsigned instantiation failed");
+		bool ret_l = nouse::confinedbasicSub<long>();
 		ASSERT_CONTINUE(ret_l, "long instantiation failed");
+		bool ret_ul = nouse::confinedbasicSub<unsigned long>();
 		ASSERT_CONTINUE(ret_ul, "unsigned long instantiation failed");
 
-		ASSERT_TEST(ret_u && ret_l && ret_uchar && ret_ul, "basicSub failed");
+		ASSERT_TEST(ret_u && ret_l && ret_uchar && ret_ul, "confinedbasicSub failed");
 	}
 
-	bool multiAddall()
+	bool confinedmultiAddall()
 	{
-		bool ret_uchar = nouse::multiAdd<unsigned char>();
-		bool ret_u = nouse::multiAdd<unsigned>();
-		bool ret_l = nouse::multiAdd<long>();
-		bool ret_ul = nouse::multiAdd<unsigned long>();
+		bool ret_uchar = nouse::confinedmultiAdd<unsigned char>();
 		ASSERT_CONTINUE(ret_uchar, "unsigned char instantiation failed");
+		bool ret_u = nouse::confinedmultiAdd<unsigned>();
 		ASSERT_CONTINUE(ret_u, "unsigned instantiation failed");
+		bool ret_l = nouse::confinedmultiAdd<long>();
 		ASSERT_CONTINUE(ret_l, "long instantiation failed");
+		bool ret_ul = nouse::confinedmultiAdd<unsigned long>();
 		ASSERT_CONTINUE(ret_ul, "unsigned long instantiation failed");
 
-		ASSERT_TEST(ret_u && ret_l && ret_uchar && ret_ul, "multiAdd failed");
+		ASSERT_TEST(ret_u && ret_l && ret_uchar && ret_ul, "confinedmultiAdd failed");
 	}
 
-	bool multiSuball()
+	bool confinedmultiSuball()
 	{
-		bool ret_uchar = nouse::multiSub<unsigned char>();
-		bool ret_u = nouse::multiSub<unsigned>();
-		bool ret_l = nouse::multiSub<long>();
-		bool ret_ul = nouse::multiSub<unsigned long>();
+		bool ret_uchar = nouse::confinedmultiSub<unsigned char>();
 		ASSERT_CONTINUE(ret_uchar, "unsigned char instantiation failed");
+		bool ret_u = nouse::confinedmultiSub<unsigned>();
 		ASSERT_CONTINUE(ret_u, "unsigned instantiation failed");
+		bool ret_l = nouse::confinedmultiSub<long>();
 		ASSERT_CONTINUE(ret_l, "long instantiation failed");
+		bool ret_ul = nouse::confinedmultiSub<unsigned long>();
 		ASSERT_CONTINUE(ret_ul, "unsigned long instantiation failed");
 
-		ASSERT_TEST(ret_u && ret_l && ret_uchar && ret_ul, "multiSub failed");
+		ASSERT_TEST(ret_u && ret_l && ret_uchar && ret_ul, "confinedmultiSub failed");
+	}
+
+	bool confinedNegLimitBasicAddall()
+	{
+		bool ret_l = nouse::confinedNegLimitBasicAdd<long>();
+		ASSERT_CONTINUE(ret_l, "long instantiation failed");
+		bool ret_ll = nouse::confinedNegLimitBasicAdd<long long>();
+		ASSERT_CONTINUE(ret_ll, "long long instantiation failed");
+
+		ASSERT_TEST(ret_l && ret_ll, "confinedNegLimitBasicAdd failed");
+	}
+
+	bool confinedNegLimitBasicSuball()
+	{
+		bool ret_l = nouse::confinedNegLimitBasicSub<long>();
+		ASSERT_CONTINUE(ret_l, "long instantiation failed");
+		bool ret_ll = nouse::confinedNegLimitBasicSub<long long>();
+		ASSERT_CONTINUE(ret_ll, "long long instantiation failed");
+
+		ASSERT_TEST(ret_l && ret_ll, "confinedNegLimitBasicSub failed");
+	}
+
+	bool confinedNegLimitMultiAddall()
+	{
+		bool ret_l = nouse::confinedNegLimitMultiAdd<long>();
+		ASSERT_CONTINUE(ret_l, "long instantiation failed");
+		bool ret_ll = nouse::confinedNegLimitMultiAdd<long long>();
+		ASSERT_CONTINUE(ret_ll, "long long instantiation failed");
+
+		ASSERT_TEST(ret_l && ret_ll, "confinedNegLimitMultiAdd failed");
+	}
+
+	bool confinedNegLimitMultiSuball()
+	{
+		bool ret_l = nouse::confinedNegLimitMultiSub<long>();
+		ASSERT_CONTINUE(ret_l, "long instantiation failed");
+		bool ret_ll = nouse::confinedNegLimitMultiSub<long long>();
+		ASSERT_CONTINUE(ret_ll, "long long instantiation failed");
+
+		ASSERT_TEST(ret_l && ret_ll, "confinedNegLimitMultiSub failed");
 	}
 }
 
 int main()
 {
-	REGISTER_TEST(testCase::basicAddall);
-	REGISTER_TEST(testCase::basicSuball);
-	REGISTER_TEST(testCase::multiAddall);
-	REGISTER_TEST(testCase::multiSuball);
+	REGISTER_TEST(testCase::confinedbasicAddall);
+	REGISTER_TEST(testCase::confinedbasicSuball);
+	REGISTER_TEST(testCase::confinedmultiAddall);
+	REGISTER_TEST(testCase::confinedmultiSuball);
+	REGISTER_TEST(testCase::confinedNegLimitBasicAddall);
+	REGISTER_TEST(testCase::confinedNegLimitBasicSuball);
+	REGISTER_TEST(testCase::confinedNegLimitMultiAddall);
+	REGISTER_TEST(testCase::confinedNegLimitMultiSuball);
 	return call_main();
 }
