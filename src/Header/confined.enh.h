@@ -68,6 +68,9 @@ namespace enh
 		using limit_t = std::function<value_type()>;
 	private:
 
+		static_assert(std::is_integral_v<integral>, "underlying type for "
+			"enh::confined_base must be integral");
+
 		/**
 			\brief The data.
 		*/
