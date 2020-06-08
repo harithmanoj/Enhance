@@ -67,8 +67,43 @@ namespace enh
 		constexpr inline WeightedField(
 			value_type val[3],
 			unsigned weight[2]
-		) noexcept : fieldWeight{ weight }, rawValue{ val[0] + (val[1] * weight[0]) + (val[2] * weight[1]) } {}
+		) noexcept : fieldWeight{ weight }, rawValue{ val[0] + (val[1] 
+			* weight[0]) + (val[2] * weight[1]) } {}
 
+		constexpr inline value_type getRaw() const noexcept 
+		{ 
+			return rawValue; 
+		}
+
+		constexpr inline value_type getField0() const noexcept 
+		{ 
+			return (rawValue % fieldWeight[0]); 
+		}
+
+		constexpr inline value_type getField1() const noexcept 
+		{ 
+			return ((rawValue / fieldWeight[0]) % fieldWeight[1]); 
+		}
+
+		constexpr inline value_type getField2() const noexcept
+		{
+			return (rawValue / (fieldWeight[0] * fieldWeight[1]));
+		}
+		
+		constexpr inline unsigned getweight0() const noexcept
+		{
+			return fieldWeight[0];
+		}
+
+		constexpr inline unsigned getweight1() const noexcept
+		{
+			return fieldWeight[1];
+		}
+
+		constexpr inline unsigned getweights(unsigned short value) const noexcept
+		{
+			return fieldWeight[value % 2];
+		}
 
 	};
 }
