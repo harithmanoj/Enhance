@@ -172,6 +172,13 @@ namespace enh
 			return *this;
 		}
 
+		constexpr inline WeightedField<value_type> &operator +=(
+			value_type &rhs
+		)
+		{
+			return saveAdd(rhs);
+		}
+
 		constexpr inline WeightedField<value_type> add(
 			const WeightedField<value_type> &rhs
 		) const
@@ -192,6 +199,13 @@ namespace enh
 			return saveAdd(rhs.getRaw());
 		}
 
+		constexpr inline WeightedField<value_type> &operator +=(
+			const WeightedField<value_type> &rhs
+		)
+		{
+			return saveAdd(rhs);
+		}
+
 		constexpr inline WeightedField<value_type> sub(
 			value_type val
 		) const noexcept
@@ -205,6 +219,13 @@ namespace enh
 		{
 			setRawValue(getRaw() - val);
 			return *this;
+		}
+
+		constexpr inline WeightedField<value_type> &operator -=(
+			value_type &rhs
+		)
+		{
+			return saveSub(rhs);
 		}
 
 		constexpr inline WeightedField<value_type> sub(
@@ -225,6 +246,13 @@ namespace enh
 				|| (fieldWeight[1] != rhs.fieldWeight[1]))
 				throw std::invalid_argument("Operand must be of same weight");
 			return saveSub(rhs.getRaw());
+		}
+
+		constexpr inline WeightedField<value_type> &operator -=(
+			const WeightedField<value_type> &rhs
+		)
+		{
+			return saveSub(rhs);
 		}
 
 		constexpr inline WeightedField<value_type> addu(
@@ -291,6 +319,7 @@ namespace enh
 				return saveSubu(-val, type_max);
 
 			value_type temp = val + getRaw();
+
 			if ((temp < val) || (temp < getRaw()))
 				setRawValue(type_max);
 			else
@@ -358,6 +387,13 @@ namespace enh
 			return *this;
 		}
 
+		constexpr inline WeightedField<value_type> &operator *=(
+			value_type multiplier
+		) noexcept
+		{
+			return saveMult(multiplier);
+		}
+
 		constexpr inline WeightedField<value_type> div(
 			value_type divisor
 		) const
@@ -373,8 +409,95 @@ namespace enh
 			return *this;
 		}
 
-
+		constexpr inline WeightedField<value_type> &operator /=(
+			value_type divisor
+		)
+		{
+			return saveDiv(divisor);
+		}
 	};
+
+	template<class T>
+	constexpr inline WeightedField<T> operator +(
+		const WeightField<T> &lhs,
+		T rhs
+	) const noexcept
+	{
+		return lhs.add(rhs);
+	}
+
+	template<class T>
+	constexpr inline WeightedField<T> operator +(
+		T lhs,
+		const WeightedField<T> &rhs
+	) const noexcept
+	{
+		return rhs.add(lhs);
+	}
+
+	template>class T>
+	constexpr inline WeightedField<T> operator +(
+		const WeightedField<T> &lhs,
+		const WeightedField<T> &rhs
+	) const
+	{
+		return rhs.add(lhs);
+	}
+
+	template<class T>
+	constexpr inline WeightedField<T> operator -(
+		const WeightField<T> &lhs,
+		T rhs
+	) const noexcept
+	{
+		return lhs.sub(rhs);
+	}
+
+	template<class T>
+	constexpr inline WeightedField<T> operator -(
+		T lhs,
+		const WeightedField<T> &rhs
+	) const noexcept
+	{
+		return WeightedField<T>{lhs - rhs.getRaw(), 
+			{ rhs.getWeight1(), rhs.getWeight2() }};
+	}
+
+	template > class T >
+	constexpr inline WeightedField<T> operator -(
+		const WeightedField<T> &lhs,
+		const WeightedField<T> &rhs
+	) const
+	{
+		return rhs.sub(lhs);
+	}
+
+	template<class T>
+	constexpr inline WeightedField<T> operator *(
+		const WeightField<T> &lhs,
+		T rhs
+	) const noexcept
+	{
+		return lhs.mult(rhs);
+	}
+
+	template<class T>
+	constexpr inline WeightedField<T> operator *(
+		T lhs,
+		const WeightedField<T> &rhs
+	) const noexcept
+	{
+		return rhs.mult(lhs);
+	}
+
+	template<class T>
+	constexpr inline WeightedField<T> operator /(
+		const WeightField<T> &lhs,
+		T rhs
+	) const noexcept
+	{
+		return lhs.div(rhs);
+	}
 }
 
 
