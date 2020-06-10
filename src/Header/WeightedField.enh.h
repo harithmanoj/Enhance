@@ -226,6 +226,78 @@ namespace enh
 				throw std::invalid_argument("Operand must be of same weight");
 			return saveSub(rhs.getRaw());
 		}
+
+		constexpr inline WeightedField<value_type> addu(
+			value_type val,
+			value_type type_max = std::numeric_limits<value_type>::max
+		) const noexcept;
+
+		constexpr inline WeightedField<value_type> &saveAddu(
+			value_type val,
+			value_type type_max = std::numeric_limits<value_type>::max
+		) const noexcept;
+
+		constexpr inline WeightedField<value_type> subu(
+			value_type val,
+			value_type type_max = std::numeric_limits<value_type>::max
+		) const noexcept
+		{
+			if (val < 0)
+				return addu(-val, type_max);
+
+			if (val > getRaw())
+				return WeightedField<value_type>{0, fieldWeight};
+			else
+				return sub(val);
+		}
+
+		constexpr inline WeightedField<value_type> &saveSubu(
+			value_type val,
+			value_type type_max = std::numeric_limits<value_type>::max
+		) const noexcept
+		{
+			if (val < 0)
+				return saveAddu(-val, type_max);
+
+			if (val > getRaw())
+				setRawValue(0);
+			else
+				setRawValue(getRaw() - val);
+
+			return *this;
+		}
+
+		constexpr inline WeightedField<value_type> addu(
+			value_type val, 
+			value_type type_max = std::numeric_limits<value_type>::max
+		) const noexcept
+		{
+			if (val < 0)
+				return subu(-val, type_max);
+
+			value_type temp = val + getRaw();
+			if ((temp < val) || (temp < getRaw()))
+				return WeightedField<value_type>{type_max, fieldWeight};
+			else
+				return add(val);
+		}
+
+		constexpr inline WeightedField<value_type> &saveAddu(
+			value_type val,
+			value_type type_max = std::numeric_limits<value_type>::max
+		) const noexcept
+		{
+			if (val < 0)
+				return saveSubu(-val, type_max);
+
+			value_type temp = val + getRaw();
+			if ((temp < val) || (temp < getRaw()))
+				setRawValue(type_max);
+			else
+				setRawValue(val + getRaw());
+
+			return *this;
+		}
 	};
 }
 
