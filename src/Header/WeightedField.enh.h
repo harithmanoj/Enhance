@@ -166,7 +166,7 @@ namespace enh
 
 		constexpr inline WeightedField<value_type>& saveAdd(
 			value_type val
-		) const noexcept
+		) noexcept
 		{
 			setRawValue(getRaw() + val);
 			return *this;
@@ -184,7 +184,7 @@ namespace enh
 
 		constexpr inline WeightedField<value_type> &saveAdd(
 			const WeightedField<value_type> &rhs
-		) const
+		)
 		{
 			if ((fieldWeight[0] != rhs.fieldWeight[0])
 				|| (fieldWeight[1] != rhs.fieldWeight[1]))
@@ -201,7 +201,7 @@ namespace enh
 
 		constexpr inline WeightedField<value_type> &saveSub(
 			value_type val
-		) const noexcept
+		) noexcept
 		{
 			setRawValue(getRaw() - val);
 			return *this;
@@ -219,7 +219,7 @@ namespace enh
 
 		constexpr inline WeightedField<value_type> &saveSub(
 			const WeightedField<value_type> &rhs
-		) const
+		)
 		{
 			if ((fieldWeight[0] != rhs.fieldWeight[0])
 				|| (fieldWeight[1] != rhs.fieldWeight[1]))
@@ -235,7 +235,7 @@ namespace enh
 		constexpr inline WeightedField<value_type> &saveAddu(
 			value_type val,
 			value_type type_max = std::numeric_limits<value_type>::max
-		) const noexcept;
+		) noexcept;
 
 		constexpr inline WeightedField<value_type> subu(
 			value_type val,
@@ -254,7 +254,7 @@ namespace enh
 		constexpr inline WeightedField<value_type> &saveSubu(
 			value_type val,
 			value_type type_max = std::numeric_limits<value_type>::max
-		) const noexcept
+		) noexcept
 		{
 			if (val < 0)
 				return saveAddu(-val, type_max);
@@ -285,7 +285,7 @@ namespace enh
 		constexpr inline WeightedField<value_type> &saveAddu(
 			value_type val,
 			value_type type_max = std::numeric_limits<value_type>::max
-		) const noexcept
+		) noexcept
 		{
 			if (val < 0)
 				return saveSubu(-val, type_max);
@@ -313,7 +313,7 @@ namespace enh
 		constexpr inline WeightedField<value_type> &saveAddu(
 			const WeightedField<value_type> &rhs,
 			value_type type_max = std::numeric_limits<value_type>::max
-		) const
+		)
 		{
 			if ((fieldWeight[0] != rhs.fieldWeight[0])
 				|| (fieldWeight[1] != rhs.fieldWeight[1]))
@@ -335,13 +335,45 @@ namespace enh
 		constexpr inline WeightedField<value_type> &saveSub(
 			const WeightedField<value_type> &rhs,
 			value_type type_max = std::numeric_limits<value_type>::max
-		) const
+		)
 		{
 			if ((fieldWeight[0] != rhs.fieldWeight[0])
 				|| (fieldWeight[1] != rhs.fieldWeight[1]))
 				throw std::invalid_argument("Operand must be of same weight");
 			return saveSubu(rhs.getRaw(), type_max);
 		}
+
+		constexpr inline WeightedField<value_type> mult(
+			value_type multiplier
+		) const noexcept
+		{
+			return WeightedField<value_type>{getRaw() * multiplier, fieldWeight};
+		}
+
+		constexpr inline WeightedField<value_type> &saveMult(
+			value_type multiplier
+		) noexcept
+		{
+			setRawValue(getRaw() * multiplier);
+			return *this;
+		}
+
+		constexpr inline WeightedField<value_type> div(
+			value_type divisor
+		) const
+		{
+			return WeightedField<value_type>{getRaw() / divisor, fieldWeight};
+		}
+
+		constexpr inline WeightedField<value_type> &saveDiv(
+			value_type divisor
+		)
+		{
+			setRawValue(getRaw() / divisor);
+			return *this;
+		}
+
+
 	};
 }
 
