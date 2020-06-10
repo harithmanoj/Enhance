@@ -29,6 +29,7 @@
 #define WEIGHTED_FIELD_ENH_H
 
 #include <type_traits>
+#include <stdexcept>
 
 namespace enh
 {
@@ -65,10 +66,14 @@ namespace enh
 		) noexcept : rawValue{ val }, fieldWeight{ weight } {}
 
 		constexpr inline WeightedField(
+			unsigned weight[2]
+		) noexcept : rawValue{ 0 }, fieldWeight{ weight } {}
+
+		constexpr inline WeightedField(
 			value_type val[3],
 			unsigned weight[2]
-		) noexcept : fieldWeight{ weight }, rawValue{ val[0] + (val[1] 
-			* weight[0]) + (val[2] * weight[1]) } {}
+		) noexcept : fieldWeight{ weight }, rawValue{ (val[0] % weight[0]) + ((val[1] % weight[1])
+			* weight[0]) + (val[2] * weight[1]) } { }
 
 		constexpr inline value_type getRaw() const noexcept 
 		{ 
@@ -89,20 +94,102 @@ namespace enh
 		{
 			return (rawValue / (fieldWeight[0] * fieldWeight[1]));
 		}
+
+		constexpr inline unsigned short getWeight0() const noexcept 
+		{ 
+			return 1; 
+		}
 		
-		constexpr inline unsigned getweight0() const noexcept
+		constexpr inline unsigned getweight1() const noexcept
 		{
 			return fieldWeight[0];
 		}
 
-		constexpr inline unsigned getweight1() const noexcept
+		constexpr inline unsigned getweight2() const noexcept
 		{
 			return fieldWeight[1];
 		}
 
-		constexpr inline unsigned getweights(unsigned short value) const noexcept
+		constexpr inline unsigned getweights(
+			unsigned short value
+		) const noexcept
 		{
-			return fieldWeight[value % 2];
+			if (calue == 0)
+				return 1;
+			return fieldWeight[(value % 3) - 1];
+		}
+
+		constexpr inline unsigned getFields(
+			unsigned short value
+		) const noexcept
+		{
+			return (rawValue / getweights(value));
+		}
+
+		constexpr inline void setRawValue(
+			value_type val
+		) noexcept { rawValue = val; }
+
+		constexpr inline void setWeights(
+			unsigned weight[2]
+		) noexcept
+		{
+			fieldWeight[0] = weight[0];
+			fieldWeight[1] = weight[1];
+		}
+
+		constexpr inline void setValue(
+			value_type val[3]
+		) noexcept
+		{
+			rawValue = val[0] % fieldWeight[0];
+			rawValue += (val[1] % fieldWeight[1]) * fieldWeight[0];
+			rawValue += val[2] * fieldWeight[1];
+
+		}
+
+		constexpr inline void setValue(
+			value_type val[3], 
+			unsigned weight[2]
+		) noexcept
+		{
+			setWeights(weight);
+			setValue(val);
+		}
+
+		constexpr inline WeightedField<value_type> add(
+			value_type val
+		) const noexcept
+		{
+			return WeightedField<value_type>{val + getRaw(), fieldWeight};
+		}
+
+		constexpr inline WeightedField<value_type>& addTo(
+			value_type val
+		) const noexcept
+		{
+			setRawValue(getRaw() + val);
+			return *this;
+		}
+
+		constexpr inline WeightedField<value_type> add(
+			WeightedField<value_type> rhs
+		) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0]) 
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return add(rhs.getRaw());
+		}
+
+		constexpr inline WeightedField<value_type> &addTo(
+			WeightedField<value_type> rhs
+		) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return addTo(rhs.getRaw());
 		}
 
 	};
