@@ -298,6 +298,50 @@ namespace enh
 
 			return *this;
 		}
+
+		constexpr inline WeightedField<value_type> addu(
+			const WeightedField<value_type> &rhs,
+			value_type type_max = std::numeric_limits<value_type>::max
+		) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return addu(rhs.getRaw(), type_max);
+		}
+
+		constexpr inline WeightedField<value_type> &saveAddu(
+			const WeightedField<value_type> &rhs,
+			value_type type_max = std::numeric_limits<value_type>::max
+		) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return saveAddu(rhs.getRaw(), type_max);
+		}
+
+		constexpr inline WeightedField<value_type> subu(
+			const WeightedField<value_type> &rhs,
+			value_type type_max = std::numeric_limits<value_type>::max
+		) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return subu(rhs.getRaw(), type_max);
+		}
+
+		constexpr inline WeightedField<value_type> &saveSub(
+			const WeightedField<value_type> &rhs,
+			value_type type_max = std::numeric_limits<value_type>::max
+		) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return saveSubu(rhs.getRaw(), type_max);
+		}
 	};
 }
 
