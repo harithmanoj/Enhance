@@ -164,7 +164,7 @@ namespace enh
 			return WeightedField<value_type>{val + getRaw(), fieldWeight};
 		}
 
-		constexpr inline WeightedField<value_type>& addTo(
+		constexpr inline WeightedField<value_type>& saveAdd(
 			value_type val
 		) const noexcept
 		{
@@ -173,25 +173,59 @@ namespace enh
 		}
 
 		constexpr inline WeightedField<value_type> add(
-			WeightedField<value_type> rhs
-		) const
-		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0]) 
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
-			return add(rhs.getRaw());
-		}
-
-		constexpr inline WeightedField<value_type> &addTo(
-			WeightedField<value_type> rhs
+			const WeightedField<value_type> &rhs
 		) const
 		{
 			if ((fieldWeight[0] != rhs.fieldWeight[0])
 				|| (fieldWeight[1] != rhs.fieldWeight[1]))
 				throw std::invalid_argument("Operand must be of same weight");
-			return addTo(rhs.getRaw());
+			return add(rhs.getRaw());
 		}
 
+		constexpr inline WeightedField<value_type> &saveAdd(
+			const WeightedField<value_type> &rhs
+		) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return saveAdd(rhs.getRaw());
+		}
+
+		constexpr inline WeightedField<value_type> sub(
+			value_type val
+		) const noexcept
+		{
+			return WeightedField<value_type>{ getRaw() - val, fieldWeight};
+		}
+
+		constexpr inline WeightedField<value_type> &saveSub(
+			value_type val
+		) const noexcept
+		{
+			setRawValue(getRaw() - val);
+			return *this;
+		}
+
+		constexpr inline WeightedField<value_type> sub(
+			const WeightedField<value_type> &rhs
+		) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return sub(rhs.getRaw());
+		}
+
+		constexpr inline WeightedField<value_type> &saveSub(
+			const WeightedField<value_type> &rhs
+		) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return saveSub(rhs.getRaw());
+		}
 	};
 }
 
