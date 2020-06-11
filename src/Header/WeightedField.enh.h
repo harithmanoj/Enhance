@@ -415,6 +415,109 @@ namespace enh
 		{
 			return saveDiv(divisor);
 		}
+
+
+		constexpr inline bool operator < (
+			value_type val
+		) const noexcept
+		{
+			return (getRaw() < val);
+		}
+
+		constexpr inline bool operator < (
+			const WeightedField<value_type> &rhs
+		) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return (getRaw() < rhs.getRaw());
+		}
+
+		constexpr inline bool operator <= (
+			value_type val
+		) const noexcept
+		{
+			return (getRaw() <= val);
+		}
+
+		constexpr inline bool operator <= (
+			const WeightedField<value_type> &rhs
+		) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return (getRaw() <= rhs.getRaw());
+		}
+
+		constexpr inline bool operator > (
+			value_type val
+		) const noexcept
+		{
+			return (getRaw() > val);
+		}
+
+		constexpr inline bool operator < (
+			const WeightedField<value_type> &rhs
+			) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return (getRaw() > rhs.getRaw());
+		}
+
+		constexpr inline bool operator >= (
+			value_type val
+		) const noexcept
+		{
+			return (getRaw() > val);
+		}
+
+		constexpr inline bool operator >= (
+			const WeightedField<value_type> &rhs
+			) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				throw std::invalid_argument("Operand must be of same weight");
+			return (getRaw() >= rhs.getRaw());
+		}
+
+		constexpr inline bool operator == (
+			value_type val
+		) const noexcept
+		{
+			return (getRaw() == val);
+		}
+
+		constexpr inline bool operator == (
+			const WeightedField<value_type> &rhs
+			) const noexcept
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				return false;
+			return (getRaw() == rhs.getRaw());
+		}
+
+		constexpr inline bool operator != (
+			value_type val
+		) const noexcept
+		{
+			return (getRaw() != val);
+		}
+
+		constexpr inline bool operator != (
+			const WeightedField<value_type> &rhs
+			) const
+		{
+			if ((fieldWeight[0] != rhs.fieldWeight[0])
+				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+				return true;
+			return (getRaw() != rhs.getRaw());
+		}
 	};
 
 	template<class T>
@@ -498,6 +601,8 @@ namespace enh
 	{
 		return lhs.div(rhs);
 	}
+
+	
 }
 
 
