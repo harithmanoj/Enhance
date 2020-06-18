@@ -33,12 +33,13 @@
 
 namespace enh
 {
-	template<class integral>
+
+	template<class integral, unsigned field_c>
 	class WeightedField
 	{
 		static_assert(std::is_integral_v<integral>, "underlying type for "
 			"WeightedField must be integral");
-
+		static_assert(field_c < 2, "field count must be minimum of 2");
 	public:
 
 		/**
@@ -46,84 +47,70 @@ namespace enh
 		*/
 		using value_type = integral;
 
+		constexpr static unsigned fieldCount = field_c;
+		constexpr static unsigned weightCount = field_c - 1;
+
 	private:
 
 		value_type rawValue;
 
-		unsigned fieldWeight[2];
+		unsigned fieldWeight[weightCount];
 
 	public:
 
-		constexpr inline WeightedField() noexcept : rawValue{ 0 }, fieldWeight{ 1,1 } { }
+		constexpr inline WeightedField() noexcept : rawValue{ 0 }, fieldWeight{ 1 } { }
 
 		constexpr inline WeightedField(
 			value_type val
-		) noexcept : rawValue{ val }, fieldWeight{ 1,1 } { }
+		) noexcept : rawValue{ val }, fieldWeight{ 1 } { }
 
 		constexpr inline WeightedField(
 			value_type val,
-			unsigned weight[2]
+			unsigned weight[weightCount]
 		) noexcept : rawValue{ val }, fieldWeight{ weight } {}
 
 		constexpr inline WeightedField(
-			unsigned weight[2]
+			unsigned weight[weightCount]
 		) noexcept : rawValue{ 0 }, fieldWeight{ weight } {}
 
 		constexpr inline WeightedField(
-			value_type val[3],
-			unsigned weight[2]
-		) noexcept : fieldWeight{ weight }, rawValue{ (val[0] % weight[0]) + ((val[1] % weight[1])
-			* weight[0]) + (val[2] * weight[1]) } { }
+			value_type val[weightCount + 1],
+			unsigned weight[weightCount]
+		) noexcept : fieldWeight{ weight }, rawValue{ (val[0] % weight[0]) } 
+		{ 
+			for (unsigned i = 1; i < weightCount; ++i)
+				rawValue += (val[i] % weight[i]) * weight[i - 1];
+		}
 
 		constexpr inline value_type getRaw() const noexcept 
 		{ 
 			return rawValue; 
 		}
 
-		constexpr inline value_type getField0() const noexcept 
-		{ 
-			return (rawValue % fieldWeight[0]); 
-		}
-
-		constexpr inline value_type getField1() const noexcept 
-		{ 
-			return ((rawValue / fieldWeight[0]) % fieldWeight[1]); 
-		}
-
-		constexpr inline value_type getField2() const noexcept
-		{
-			return (rawValue / (fieldWeight[0] * fieldWeight[1]));
-		}
-
-		constexpr inline unsigned short getWeight0() const noexcept 
-		{ 
-			return 1; 
-		}
-		
-		constexpr inline unsigned getweight1() const noexcept
-		{
-			return fieldWeight[0];
-		}
-
-		constexpr inline unsigned getweight2() const noexcept
-		{
-			return fieldWeight[1];
-		}
-
-		constexpr inline unsigned getweights(
+		constexpr inline unsigned getWeights(
 			unsigned short value
 		) const noexcept
 		{
-			if (calue == 0)
+			if (value == 0)
 				return 1;
 			return fieldWeight[(value % 3) - 1];
+		}
+
+		constexpr inline const unsigned *getWeights() const noexcept
+		{
+			return fieldWeight;
 		}
 
 		constexpr inline unsigned getFields(
 			unsigned short value
 		) const noexcept
 		{
-			return (rawValue / getweights(value));
+			value_type ret = rawValue;
+			for (unsigned i = 1; i < value; ++i)
+				ret /= getWeights(value);
+			if (value != (weightCount - 1))
+				ret = ret % getWeights(value + 1);
+			return ret;
 		}
 
 		constexpr inline void setRawValue(
@@ -131,40 +118,40 @@ namespace enh
 		) noexcept { rawValue = val; }
 
 		constexpr inline void setWeights(
-			unsigned weight[2]
+			unsigned weight[weightCount]
 		) noexcept
 		{
-			fieldWeight[0] = weight[0];
-			fieldWeight[1] = weight[1];
+			for (unsigned i = 0; i < weightCount; ++i)
+				fieldWeight[i] = weight[i];
 		}
 
 		constexpr inline void setValue(
-			value_type val[3]
+			value_type val[weightCount + 1]
 		) noexcept
 		{
-			rawValue = val[0] % fieldWeight[0];
-			rawValue += (val[1] % fieldWeight[1]) * fieldWeight[0];
-			rawValue += val[2] * fieldWeight[1];
+			rawValue = (val[0] % fieldWeight[0]);
+			for (unsigned i = 1; i < weightCount; ++i)
+				rawValue += (val[i] % fieldWeight[i]) * fieldWeight[i - 1];
 
 		}
 
 		constexpr inline void setValue(
-			value_type val[3], 
-			unsigned weight[2]
+			value_type val[weightCount + 1],
+			unsigned weight[weightCount]
 		) noexcept
 		{
 			setWeights(weight);
 			setValue(val);
 		}
 
-		constexpr inline WeightedField<value_type> add(
+		constexpr inline WeightedField<value_type, weightCount> add(
 			value_type val
 		) const noexcept
 		{
-			return WeightedField<value_type>{val + getRaw(), fieldWeight};
+			return WeightedField<value_type, weightCount>{val + getRaw(), fieldWeight};
 		}
 
-		constexpr inline WeightedField<value_type>& saveAdd(
+		constexpr inline WeightedField<value_type, weightCount>& saveAdd(
 			value_type val
 		) noexcept
 		{
@@ -172,48 +159,48 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type> &operator +=(
+		constexpr inline WeightedField<value_type, weightCount> &operator +=(
 			value_type &rhs
 		)
 		{
 			return saveAdd(rhs);
 		}
 
-		constexpr inline WeightedField<value_type> add(
-			const WeightedField<value_type> &rhs
+		constexpr inline WeightedField<value_type, weightCount> add(
+			const WeightedField<value_type, weightCount> &rhs
 		) const
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return add(rhs.getRaw());
 		}
 
-		constexpr inline WeightedField<value_type> &saveAdd(
-			const WeightedField<value_type> &rhs
+		constexpr inline WeightedField<value_type, weightCount> &saveAdd(
+			const WeightedField<value_type, weightCount> &rhs
 		)
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return saveAdd(rhs.getRaw());
 		}
 
-		constexpr inline WeightedField<value_type> &operator +=(
-			const WeightedField<value_type> &rhs
+		constexpr inline WeightedField<value_type, weightCount> &operator +=(
+			const WeightedField<value_type, weightCount> &rhs
 		)
 		{
 			return saveAdd(rhs);
 		}
 
-		constexpr inline WeightedField<value_type> sub(
+		constexpr inline WeightedField<value_type, weightCount> sub(
 			value_type val
 		) const noexcept
 		{
-			return WeightedField<value_type>{ getRaw() - val, fieldWeight};
+			return WeightedField<value_type, weightCount>{ getRaw() - val, fieldWeight};
 		}
 
-		constexpr inline WeightedField<value_type> &saveSub(
+		constexpr inline WeightedField<value_type, weightCount> &saveSub(
 			value_type val
 		) noexcept
 		{
@@ -221,51 +208,51 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type> &operator -=(
+		constexpr inline WeightedField<value_type, weightCount> &operator -=(
 			value_type &rhs
 		)
 		{
 			return saveSub(rhs);
 		}
 
-		constexpr inline WeightedField<value_type> sub(
-			const WeightedField<value_type> &rhs
+		constexpr inline WeightedField<value_type, weightCount> sub(
+			const WeightedField<value_type, weightCount> &rhs
 		) const
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return sub(rhs.getRaw());
 		}
 
-		constexpr inline WeightedField<value_type> &saveSub(
-			const WeightedField<value_type> &rhs
+		constexpr inline WeightedField<value_type, weightCount> &saveSub(
+			const WeightedField<value_type, weightCount> &rhs
 		)
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return saveSub(rhs.getRaw());
 		}
 
-		constexpr inline WeightedField<value_type> &operator -=(
-			const WeightedField<value_type> &rhs
+		constexpr inline WeightedField<value_type, weightCount> &operator -=(
+			const WeightedField<value_type, weightCount> &rhs
 		)
 		{
 			return saveSub(rhs);
 		}
 
-		constexpr inline WeightedField<value_type> addu(
+		constexpr inline WeightedField<value_type, weightCount> addu(
 			value_type val,
 			value_type type_max = std::numeric_limits<value_type>::max
 		) const noexcept;
 
-		constexpr inline WeightedField<value_type> &saveAddu(
+		constexpr inline WeightedField<value_type, weightCount> &saveAddu(
 			value_type val,
 			value_type type_max = std::numeric_limits<value_type>::max
 		) noexcept;
 
-		constexpr inline WeightedField<value_type> subu(
+		constexpr inline WeightedField<value_type, weightCount> subu(
 			value_type val,
 			value_type type_max = std::numeric_limits<value_type>::max
 		) const noexcept
@@ -274,12 +261,12 @@ namespace enh
 				return addu(-val, type_max);
 
 			if (val > getRaw())
-				return WeightedField<value_type>{0, fieldWeight};
+				return WeightedField<value_type, weightCount>{0, fieldWeight};
 			else
 				return sub(val);
 		}
 
-		constexpr inline WeightedField<value_type> &saveSubu(
+		constexpr inline WeightedField<value_type, weightCount> &saveSubu(
 			value_type val,
 			value_type type_max = std::numeric_limits<value_type>::max
 		) noexcept
@@ -295,7 +282,7 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type> addu(
+		constexpr inline WeightedField<value_type, weightCount> addu(
 			value_type val, 
 			value_type type_max = std::numeric_limits<value_type>::max
 		) const noexcept
@@ -305,12 +292,12 @@ namespace enh
 
 			value_type temp = val + getRaw();
 			if ((temp < val) || (temp < getRaw()))
-				return WeightedField<value_type>{type_max, fieldWeight};
+				return WeightedField<value_type, weightCount>{type_max, fieldWeight};
 			else
 				return add(val);
 		}
 
-		constexpr inline WeightedField<value_type> &saveAddu(
+		constexpr inline WeightedField<value_type, weightCount> &saveAddu(
 			value_type val,
 			value_type type_max = std::numeric_limits<value_type>::max
 		) noexcept
@@ -328,58 +315,58 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type> addu(
-			const WeightedField<value_type> &rhs,
+		constexpr inline WeightedField<value_type, weightCount> addu(
+			const WeightedField<value_type, weightCount> &rhs,
 			value_type type_max = std::numeric_limits<value_type>::max
 		) const
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return addu(rhs.getRaw(), type_max);
 		}
 
-		constexpr inline WeightedField<value_type> &saveAddu(
-			const WeightedField<value_type> &rhs,
+		constexpr inline WeightedField<value_type, weightCount> &saveAddu(
+			const WeightedField<value_type, weightCount> &rhs,
 			value_type type_max = std::numeric_limits<value_type>::max
 		)
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return saveAddu(rhs.getRaw(), type_max);
 		}
 
-		constexpr inline WeightedField<value_type> subu(
-			const WeightedField<value_type> &rhs,
+		constexpr inline WeightedField<value_type, weightCount> subu(
+			const WeightedField<value_type, weightCount> &rhs,
 			value_type type_max = std::numeric_limits<value_type>::max
 		) const
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return subu(rhs.getRaw(), type_max);
 		}
 
-		constexpr inline WeightedField<value_type> &saveSub(
-			const WeightedField<value_type> &rhs,
+		constexpr inline WeightedField<value_type, weightCount> &saveSub(
+			const WeightedField<value_type, weightCount> &rhs,
 			value_type type_max = std::numeric_limits<value_type>::max
 		)
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return saveSubu(rhs.getRaw(), type_max);
 		}
 
-		constexpr inline WeightedField<value_type> mult(
+		constexpr inline WeightedField<value_type, weightCount> mult(
 			value_type multiplier
 		) const noexcept
 		{
-			return WeightedField<value_type>{getRaw() * multiplier, fieldWeight};
+			return WeightedField<value_type, weightCount>{getRaw() * multiplier, fieldWeight};
 		}
 
-		constexpr inline WeightedField<value_type> &saveMult(
+		constexpr inline WeightedField<value_type, weightCount> &saveMult(
 			value_type multiplier
 		) noexcept
 		{
@@ -387,21 +374,21 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type> &operator *=(
+		constexpr inline WeightedField<value_type, weightCount> &operator *=(
 			value_type multiplier
 		) noexcept
 		{
 			return saveMult(multiplier);
 		}
 
-		constexpr inline WeightedField<value_type> div(
+		constexpr inline WeightedField<value_type, weightCount> div(
 			value_type divisor
 		) const
 		{
-			return WeightedField<value_type>{getRaw() / divisor, fieldWeight};
+			return WeightedField<value_type, weightCount>{getRaw() / divisor, fieldWeight};
 		}
 
-		constexpr inline WeightedField<value_type> &saveDiv(
+		constexpr inline WeightedField<value_type, weightCount> &saveDiv(
 			value_type divisor
 		)
 		{
@@ -409,7 +396,7 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type> &operator /=(
+		constexpr inline WeightedField<value_type, weightCount> &operator /=(
 			value_type divisor
 		)
 		{
@@ -425,12 +412,12 @@ namespace enh
 		}
 
 		constexpr inline bool operator < (
-			const WeightedField<value_type> &rhs
+			const WeightedField<value_type, weightCount> &rhs
 		) const
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return (getRaw() < rhs.getRaw());
 		}
 
@@ -442,12 +429,12 @@ namespace enh
 		}
 
 		constexpr inline bool operator <= (
-			const WeightedField<value_type> &rhs
+			const WeightedField<value_type, weightCount> &rhs
 		) const
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return (getRaw() <= rhs.getRaw());
 		}
 
@@ -459,12 +446,12 @@ namespace enh
 		}
 
 		constexpr inline bool operator < (
-			const WeightedField<value_type> &rhs
+			const WeightedField<value_type, weightCount> &rhs
 			) const
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return (getRaw() > rhs.getRaw());
 		}
 
@@ -476,12 +463,12 @@ namespace enh
 		}
 
 		constexpr inline bool operator >= (
-			const WeightedField<value_type> &rhs
+			const WeightedField<value_type, weightCount> &rhs
 			) const
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				throw std::invalid_argument("Operand must be of same weight");
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					throw std::invalid_argument("Operand must be of same weight");
 			return (getRaw() >= rhs.getRaw());
 		}
 
@@ -493,12 +480,12 @@ namespace enh
 		}
 
 		constexpr inline bool operator == (
-			const WeightedField<value_type> &rhs
+			const WeightedField<value_type, weightCount> &rhs
 			) const noexcept
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
-				return false;
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					return false;
 			return (getRaw() == rhs.getRaw());
 		}
 
@@ -510,45 +497,45 @@ namespace enh
 		}
 
 		constexpr inline bool operator != (
-			const WeightedField<value_type> &rhs
+			const WeightedField<value_type, weightCount> &rhs
 			) const
 		{
-			if ((fieldWeight[0] != rhs.fieldWeight[0])
-				|| (fieldWeight[1] != rhs.fieldWeight[1]))
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
 				return true;
 			return (getRaw() != rhs.getRaw());
 		}
 	};
 
-	template<class T>
-	constexpr inline WeightedField<T> operator +(
-		const WeightField<T> &lhs,
+	template<class T, unsigned n>
+	constexpr inline WeightedField<T,n> operator +(
+		const WeightField<T,n> &lhs,
 		T rhs
 	) const noexcept
 	{
 		return lhs.add(rhs);
 	}
 
-	template<class T>
-	constexpr inline WeightedField<T> operator +(
+	template<class T, unsigned n>
+	constexpr inline WeightedField<T,n> operator +(
 		T lhs,
-		const WeightedField<T> &rhs
+		const WeightedField<T,n> &rhs
 	) const noexcept
 	{
 		return rhs.add(lhs);
 	}
 
-	template>class T>
-	constexpr inline WeightedField<T> operator +(
-		const WeightedField<T> &lhs,
-		const WeightedField<T> &rhs
+	template>class T, unsigned n>
+	constexpr inline WeightedField<T,n> operator +(
+		const WeightedField<T,n> &lhs,
+		const WeightedField<T,n> &rhs
 	) const
 	{
 		return rhs.add(lhs);
 	}
 
-	template<class T>
-	constexpr inline WeightedField<T> operator -(
+	template<class T, unsigned n>
+	constexpr inline WeightedField<T,n> operator -(
 		const WeightField<T> &lhs,
 		T rhs
 	) const noexcept
@@ -556,46 +543,46 @@ namespace enh
 		return lhs.sub(rhs);
 	}
 
-	template<class T>
-	constexpr inline WeightedField<T> operator -(
+	template<class T, unsigned n>
+	constexpr inline WeightedField<T,n> operator -(
 		T lhs,
-		const WeightedField<T> &rhs
+		const WeightedField<T,n> &rhs
 	) const noexcept
 	{
-		return WeightedField<T>{lhs - rhs.getRaw(), 
+		return WeightedField<T,n>{lhs - rhs.getRaw(), 
 			{ rhs.getWeight1(), rhs.getWeight2() }};
 	}
 
-	template > class T >
-	constexpr inline WeightedField<T> operator -(
-		const WeightedField<T> &lhs,
-		const WeightedField<T> &rhs
+	template < class T , unsigned n>
+	constexpr inline WeightedField<T,n> operator -(
+		const WeightedField<T,n> &lhs,
+		const WeightedField<T,n> &rhs
 	) const
 	{
 		return rhs.sub(lhs);
 	}
 
-	template<class T>
-	constexpr inline WeightedField<T> operator *(
-		const WeightField<T> &lhs,
+	template<class T, unsigned n>
+	constexpr inline WeightedField<T,n> operator *(
+		const WeightedField<T, n>  &lhs,
 		T rhs
 	) const noexcept
 	{
 		return lhs.mult(rhs);
 	}
 
-	template<class T>
-	constexpr inline WeightedField<T> operator *(
+	template<class T, unsigned n>
+	constexpr inline WeightedField<T,n> operator *(
 		T lhs,
-		const WeightedField<T> &rhs
+		const WeightedField<T,n> &rhs
 	) const noexcept
 	{
 		return rhs.mult(lhs);
 	}
 
-	template<class T>
-	constexpr inline WeightedField<T> operator /(
-		const WeightField<T> &lhs,
+	template<class T, unsigned n>
+	constexpr inline WeightedField<T,n> operator /(
+		const WeightedField<T, n> &lhs,
 		T rhs
 	) const noexcept
 	{
