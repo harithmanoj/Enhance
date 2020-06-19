@@ -511,7 +511,7 @@ namespace enh
 	constexpr inline WeightedField<T,n> operator +(
 		const WeightedField<T,n> &lhs,
 		T rhs
-	) const noexcept
+	) noexcept
 	{
 		return lhs.add(rhs);
 	}
@@ -520,7 +520,7 @@ namespace enh
 	constexpr inline WeightedField<T,n> operator +(
 		T lhs,
 		const WeightedField<T,n> &rhs
-	) const noexcept
+	) noexcept
 	{
 		return rhs.add(lhs);
 	}
@@ -529,7 +529,7 @@ namespace enh
 	constexpr inline WeightedField<T,n> operator +(
 		const WeightedField<T,n> &lhs,
 		const WeightedField<T,n> &rhs
-	) const
+	)
 	{
 		return rhs.add(lhs);
 	}
@@ -538,7 +538,7 @@ namespace enh
 	constexpr inline WeightedField<T,n> operator -(
 		const WeightedField<T, n> &lhs,
 		T rhs
-	) const noexcept
+	) noexcept
 	{
 		return lhs.sub(rhs);
 	}
@@ -547,7 +547,7 @@ namespace enh
 	constexpr inline WeightedField<T,n> operator -(
 		T lhs,
 		const WeightedField<T,n> &rhs
-	) const noexcept
+	) noexcept
 	{
 		return WeightedField<T,n>{lhs - rhs.getRaw(), 
 			{ rhs.getWeight1(), rhs.getWeight2() }};
@@ -557,7 +557,7 @@ namespace enh
 	constexpr inline WeightedField<T,n> operator -(
 		const WeightedField<T,n> &lhs,
 		const WeightedField<T,n> &rhs
-	) const
+	)
 	{
 		return rhs.sub(lhs);
 	}
@@ -566,7 +566,7 @@ namespace enh
 	constexpr inline WeightedField<T,n> operator *(
 		const WeightedField<T, n>  &lhs,
 		T rhs
-	) const noexcept
+	) noexcept
 	{
 		return lhs.mult(rhs);
 	}
@@ -575,7 +575,7 @@ namespace enh
 	constexpr inline WeightedField<T,n> operator *(
 		T lhs,
 		const WeightedField<T,n> &rhs
-	) const noexcept
+	) noexcept
 	{
 		return rhs.mult(lhs);
 	}
@@ -584,7 +584,7 @@ namespace enh
 	constexpr inline WeightedField<T,n> operator /(
 		const WeightedField<T, n> &lhs,
 		T rhs
-	) const noexcept
+	) noexcept
 	{
 		return lhs.div(rhs);
 	}
