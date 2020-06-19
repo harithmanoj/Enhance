@@ -509,7 +509,7 @@ namespace enh
 
 	template<class T, unsigned n>
 	constexpr inline WeightedField<T,n> operator +(
-		const WeightField<T,n> &lhs,
+		const WeightedField<T,n> &lhs,
 		T rhs
 	) const noexcept
 	{
@@ -525,7 +525,7 @@ namespace enh
 		return rhs.add(lhs);
 	}
 
-	template>class T, unsigned n>
+	template<class T, unsigned n>
 	constexpr inline WeightedField<T,n> operator +(
 		const WeightedField<T,n> &lhs,
 		const WeightedField<T,n> &rhs
@@ -536,7 +536,7 @@ namespace enh
 
 	template<class T, unsigned n>
 	constexpr inline WeightedField<T,n> operator -(
-		const WeightField<T> &lhs,
+		const WeightedField<T, n> &lhs,
 		T rhs
 	) const noexcept
 	{
