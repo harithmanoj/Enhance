@@ -30,6 +30,7 @@
 
 #include <type_traits>
 #include <stdexcept>
+#include <array>
 
 namespace enh
 {
@@ -54,7 +55,7 @@ namespace enh
 
 		value_type rawValue;
 
-		unsigned fieldWeight[weightCount];
+		std::array<unsigned, weightCount> fieldWeight;
 
 	public:
 
@@ -66,17 +67,17 @@ namespace enh
 
 		constexpr inline WeightedField(
 			value_type val,
-			unsigned weight[weightCount]
-		) noexcept : rawValue{ val }, fieldWeight{ weight } {}
+			std::array<unsigned, weightCount> weight
+		) noexcept : rawValue{ val }, fieldWeight{ std::move(weight) } {}
 
 		constexpr inline WeightedField(
-			unsigned weight[weightCount]
-		) noexcept : rawValue{ 0 }, fieldWeight{ weight } {}
+			std::array<unsigned, weightCount> weight
+		) noexcept : rawValue{ 0 }, fieldWeight{ std::move(weight) } {}
 
 		constexpr inline WeightedField(
-			value_type val[weightCount + 1],
-			unsigned weight[weightCount]
-		) noexcept : fieldWeight{ weight }, rawValue{ (val[0] % weight[0]) } 
+			std::array<value_type, fieldCount> val,
+			std::array<unsigned, weightCount> weight
+		) noexcept : fieldWeight{ std::move(weight) }, rawValue{ (val[0] % weight[0]) }
 		{ 
 			for (unsigned i = 1; i < weightCount; ++i)
 				rawValue += (val[i] % weight[i]) * weight[i - 1];
@@ -118,7 +119,7 @@ namespace enh
 		) noexcept { rawValue = val; }
 
 		constexpr inline void setWeights(
-			unsigned weight[weightCount]
+			std::array<unsigned, weightCount> weight
 		) noexcept
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -126,7 +127,7 @@ namespace enh
 		}
 
 		constexpr inline void setValue(
-			value_type val[weightCount + 1]
+			std::array<value_type, fieldCount> val
 		) noexcept
 		{
 			rawValue = (val[0] % fieldWeight[0]);
@@ -136,19 +137,19 @@ namespace enh
 		}
 
 		constexpr inline void setValue(
-			value_type val[weightCount + 1],
-			unsigned weight[weightCount]
+			std::array<value_type, fieldCount> val,
+			std::array<unsigned, weightCount> weight
 		) noexcept
 		{
-			setWeights(weight);
-			setValue(val);
+			setWeights(std::move(weight));
+			setValue(std::move(val));
 		}
 
 		constexpr inline WeightedField<value_type, weightCount> add(
 			value_type val
 		) const noexcept
 		{
-			return WeightedField<value_type, weightCount>{val + getRaw(), fieldWeight};
+			return WeightedField<value_type, weightCount>{val + getRaw(), std::move(fieldWeight)};
 		}
 
 		constexpr inline WeightedField<value_type, weightCount>& saveAdd(
