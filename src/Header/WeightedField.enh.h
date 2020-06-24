@@ -40,7 +40,7 @@ namespace enh
 	{
 		static_assert(std::is_integral_v<integral>, "underlying type for "
 			"WeightedField must be integral");
-		static_assert(field_c < 2, "field count must be minimum of 2");
+		static_assert(field_c >= 2, "field count must be minimum of 2");
 	public:
 
 		/**
@@ -77,10 +77,12 @@ namespace enh
 		constexpr inline WeightedField(
 			std::array<value_type, fieldCount> val,
 			std::array<unsigned, weightCount> weight
-		) noexcept : fieldWeight{ std::move(weight) }, rawValue{ (val[0] % weight[0]) }
+		) noexcept : fieldWeight{ std::move(weight) }, rawValue{ (val[0] % static_cast<long>(weight[0])) }
 		{ 
-			for (unsigned i = 1; i < weightCount; ++i)
-				rawValue += (val[i] % weight[i]) * weight[i - 1];
+			for(unsigned i = 0; i < weightCount - 1; ++i)
+				rawValue += (val[i + 1] % weight[i + 1]) * weight[i];
+
+			rawValue += val[weightCount] * weight[weightCount - 1];
 		}
 
 		constexpr inline value_type getRaw() const noexcept 
@@ -106,11 +108,15 @@ namespace enh
 			unsigned short value
 		) const noexcept
 		{
+			value = value % fieldCount;
 			value_type ret = rawValue;
-			for (unsigned i = 1; i < value; ++i)
-				ret /= getWeights(value);
-			if (value != (weightCount - 1))
-				ret = ret % getWeights(value + 1);
+			if (value == 0)
+				return ret % fieldWeight[0];
+			for (int i = 0; i < value; ++i)
+				ret /= fieldWeight[i];
+			if (value == weightCount)
+				return ret;
+			ret = ret % fieldWeight[value];
 			return ret;
 		}
 
@@ -130,9 +136,11 @@ namespace enh
 			std::array<value_type, fieldCount> val
 		) noexcept
 		{
-			rawValue = (val[0] % fieldWeight[0]);
-			for (unsigned i = 1; i < weightCount; ++i)
-				rawValue += (val[i] % fieldWeight[i]) * fieldWeight[i - 1];
+			rawValue = (val[0] % static_cast<long>(fieldWeight[0]));
+			for (unsigned i = 0; i < weightCount - 1; ++i)
+				rawValue += (val[i + 1] % fieldWeight[i + 1]) * fieldWeight[i];
+
+			rawValue += val[weightCount] * fieldWeight[weightCount - 1];
 
 		}
 
@@ -243,19 +251,9 @@ namespace enh
 			return saveSub(rhs);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> addu(
-			value_type val,
-			value_type type_max = std::numeric_limits<value_type>::max
-		) const noexcept;
-
-		constexpr inline WeightedField<value_type, weightCount> &saveAddu(
-			value_type val,
-			value_type type_max = std::numeric_limits<value_type>::max
-		) noexcept;
-
 		constexpr inline WeightedField<value_type, weightCount> subu(
 			value_type val,
-			value_type type_max = std::numeric_limits<value_type>::max
+			value_type type_max = std::numeric_limits<value_type>::max()
 		) const noexcept
 		{
 			if (val < 0)
@@ -269,7 +267,7 @@ namespace enh
 
 		constexpr inline WeightedField<value_type, weightCount> &saveSubu(
 			value_type val,
-			value_type type_max = std::numeric_limits<value_type>::max
+			value_type type_max = std::numeric_limits<value_type>::max()
 		) noexcept
 		{
 			if (val < 0)
@@ -285,7 +283,7 @@ namespace enh
 
 		constexpr inline WeightedField<value_type, weightCount> addu(
 			value_type val, 
-			value_type type_max = std::numeric_limits<value_type>::max
+			value_type type_max = std::numeric_limits<value_type>::max()
 		) const noexcept
 		{
 			if (val < 0)
@@ -300,7 +298,7 @@ namespace enh
 
 		constexpr inline WeightedField<value_type, weightCount> &saveAddu(
 			value_type val,
-			value_type type_max = std::numeric_limits<value_type>::max
+			value_type type_max = std::numeric_limits<value_type>::max()
 		) noexcept
 		{
 			if (val < 0)
@@ -318,7 +316,7 @@ namespace enh
 
 		constexpr inline WeightedField<value_type, weightCount> addu(
 			const WeightedField<value_type, weightCount> &rhs,
-			value_type type_max = std::numeric_limits<value_type>::max
+			value_type type_max = std::numeric_limits<value_type>::max()
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -329,7 +327,7 @@ namespace enh
 
 		constexpr inline WeightedField<value_type, weightCount> &saveAddu(
 			const WeightedField<value_type, weightCount> &rhs,
-			value_type type_max = std::numeric_limits<value_type>::max
+			value_type type_max = std::numeric_limits<value_type>::max()
 		)
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -340,7 +338,7 @@ namespace enh
 
 		constexpr inline WeightedField<value_type, weightCount> subu(
 			const WeightedField<value_type, weightCount> &rhs,
-			value_type type_max = std::numeric_limits<value_type>::max
+			value_type type_max = std::numeric_limits<value_type>::max()
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -351,7 +349,7 @@ namespace enh
 
 		constexpr inline WeightedField<value_type, weightCount> &saveSub(
 			const WeightedField<value_type, weightCount> &rhs,
-			value_type type_max = std::numeric_limits<value_type>::max
+			value_type type_max = std::numeric_limits<value_type>::max()
 		)
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -446,7 +444,7 @@ namespace enh
 			return (getRaw() > val);
 		}
 
-		constexpr inline bool operator < (
+		constexpr inline bool operator > (
 			const WeightedField<value_type, weightCount> &rhs
 			) const
 		{
