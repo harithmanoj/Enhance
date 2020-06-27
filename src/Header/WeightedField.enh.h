@@ -61,7 +61,7 @@ namespace enh
 
 		constexpr inline WeightedField() noexcept : rawValue{ 0 }, fieldWeight{ 1 } { }
 
-		constexpr inline WeightedField(
+		explicit constexpr inline WeightedField(
 			value_type val
 		) noexcept : rawValue{ val }, fieldWeight{ 1 } { }
 
@@ -70,7 +70,7 @@ namespace enh
 			std::array<unsigned, weightCount> weight
 		) noexcept : rawValue{ val }, fieldWeight{ std::move(weight) } {}
 
-		constexpr inline WeightedField(
+		explicit constexpr inline WeightedField(
 			std::array<unsigned, weightCount> weight
 		) noexcept : rawValue{ 0 }, fieldWeight{ std::move(weight) } {}
 
