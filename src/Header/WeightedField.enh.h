@@ -169,10 +169,10 @@ namespace enh
 		}
 
 		constexpr inline WeightedField<value_type, fieldCount> &operator +=(
-			value_type &rhs
+			value_type rhs
 		)
 		{
-			return saveAdd(rhs);
+			return saveAdd(std::move(rhs));
 		}
 
 		constexpr inline WeightedField<value_type, fieldCount> add(
@@ -218,10 +218,10 @@ namespace enh
 		}
 
 		constexpr inline WeightedField<value_type, fieldCount> &operator -=(
-			value_type &rhs
+			value_type rhs
 		)
 		{
-			return saveSub(rhs);
+			return saveSub(std::move(rhs));
 		}
 
 		constexpr inline WeightedField<value_type, fieldCount> sub(
