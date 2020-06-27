@@ -80,9 +80,9 @@ namespace enh
 		) noexcept : fieldWeight{ std::move(weight) }, rawValue{ (val[0] % static_cast<long>(weight[0])) }
 		{ 
 			for(unsigned i = 0; i < weightCount - 1; ++i)
-				rawValue += (val[i + 1] % weight[i + 1]) * weight[i];
+				rawValue += (val[i + 1U] % weight[i + 1U]) * weight[i];
 
-			rawValue += val[weightCount] * weight[weightCount - 1];
+			rawValue += val[weightCount] * weight[weightCount - 1U];
 		}
 
 		constexpr inline value_type getRaw() const noexcept 
@@ -99,7 +99,7 @@ namespace enh
 			return fieldWeight[(value % 3) - 1];
 		}
 
-		constexpr inline const unsigned *getWeights() const noexcept
+		constexpr inline const auto& getWeights() const noexcept
 		{
 			return fieldWeight;
 		}
@@ -153,14 +153,14 @@ namespace enh
 			setValue(std::move(val));
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> add(
+		constexpr inline WeightedField<value_type, fieldCount> add(
 			value_type val
 		) const noexcept
 		{
-			return WeightedField<value_type, weightCount>{val + getRaw(), std::move(fieldWeight)};
+			return WeightedField<value_type, fieldCount>{val + getRaw(), std::move(fieldWeight)};
 		}
 
-		constexpr inline WeightedField<value_type, weightCount>& saveAdd(
+		constexpr inline WeightedField<value_type, fieldCount>& saveAdd(
 			value_type val
 		) noexcept
 		{
@@ -168,15 +168,15 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &operator +=(
+		constexpr inline WeightedField<value_type, fieldCount> &operator +=(
 			value_type &rhs
 		)
 		{
 			return saveAdd(rhs);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> add(
-			const WeightedField<value_type, weightCount> &rhs
+		constexpr inline WeightedField<value_type, fieldCount> add(
+			const WeightedField<value_type, fieldCount> &rhs
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -185,8 +185,8 @@ namespace enh
 			return add(rhs.getRaw());
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &saveAdd(
-			const WeightedField<value_type, weightCount> &rhs
+		constexpr inline WeightedField<value_type, fieldCount> &saveAdd(
+			const WeightedField<value_type, fieldCount> &rhs
 		)
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -195,21 +195,21 @@ namespace enh
 			return saveAdd(rhs.getRaw());
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &operator +=(
-			const WeightedField<value_type, weightCount> &rhs
+		constexpr inline WeightedField<value_type, fieldCount> &operator +=(
+			const WeightedField<value_type, fieldCount> &rhs
 		)
 		{
 			return saveAdd(rhs);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> sub(
+		constexpr inline WeightedField<value_type, fieldCount> sub(
 			value_type val
 		) const noexcept
 		{
-			return WeightedField<value_type, weightCount>{ getRaw() - val, fieldWeight};
+			return WeightedField<value_type, fieldCount>{ getRaw() - val, fieldWeight};
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &saveSub(
+		constexpr inline WeightedField<value_type, fieldCount> &saveSub(
 			value_type val
 		) noexcept
 		{
@@ -217,15 +217,15 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &operator -=(
+		constexpr inline WeightedField<value_type, fieldCount> &operator -=(
 			value_type &rhs
 		)
 		{
 			return saveSub(rhs);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> sub(
-			const WeightedField<value_type, weightCount> &rhs
+		constexpr inline WeightedField<value_type, fieldCount> sub(
+			const WeightedField<value_type, fieldCount> &rhs
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -234,8 +234,8 @@ namespace enh
 			return sub(rhs.getRaw());
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &saveSub(
-			const WeightedField<value_type, weightCount> &rhs
+		constexpr inline WeightedField<value_type, fieldCount> &saveSub(
+			const WeightedField<value_type, fieldCount> &rhs
 		)
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -244,14 +244,14 @@ namespace enh
 			return saveSub(rhs.getRaw());
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &operator -=(
-			const WeightedField<value_type, weightCount> &rhs
+		constexpr inline WeightedField<value_type, fieldCount> &operator -=(
+			const WeightedField<value_type, fieldCount> &rhs
 		)
 		{
 			return saveSub(rhs);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> subu(
+		constexpr inline WeightedField<value_type, fieldCount> subu(
 			value_type val,
 			value_type type_max = std::numeric_limits<value_type>::max()
 		) const noexcept
@@ -260,12 +260,12 @@ namespace enh
 				return addu(-val, type_max);
 
 			if (val > getRaw())
-				return WeightedField<value_type, weightCount>{0, fieldWeight};
+				return WeightedField<value_type, fieldCount>{0, fieldWeight};
 			else
 				return sub(val);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &saveSubu(
+		constexpr inline WeightedField<value_type, fieldCount> &saveSubu(
 			value_type val,
 			value_type type_max = std::numeric_limits<value_type>::max()
 		) noexcept
@@ -281,7 +281,7 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> addu(
+		constexpr inline WeightedField<value_type, fieldCount> addu(
 			value_type val, 
 			value_type type_max = std::numeric_limits<value_type>::max()
 		) const noexcept
@@ -291,12 +291,12 @@ namespace enh
 
 			value_type temp = val + getRaw();
 			if ((temp < val) || (temp < getRaw()))
-				return WeightedField<value_type, weightCount>{type_max, fieldWeight};
+				return WeightedField<value_type, fieldCount>{type_max, fieldWeight};
 			else
 				return add(val);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &saveAddu(
+		constexpr inline WeightedField<value_type, fieldCount> &saveAddu(
 			value_type val,
 			value_type type_max = std::numeric_limits<value_type>::max()
 		) noexcept
@@ -314,8 +314,8 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> addu(
-			const WeightedField<value_type, weightCount> &rhs,
+		constexpr inline WeightedField<value_type, fieldCount> addu(
+			const WeightedField<value_type, fieldCount> &rhs,
 			value_type type_max = std::numeric_limits<value_type>::max()
 		) const
 		{
@@ -325,8 +325,8 @@ namespace enh
 			return addu(rhs.getRaw(), type_max);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &saveAddu(
-			const WeightedField<value_type, weightCount> &rhs,
+		constexpr inline WeightedField<value_type, fieldCount> &saveAddu(
+			const WeightedField<value_type, fieldCount> &rhs,
 			value_type type_max = std::numeric_limits<value_type>::max()
 		)
 		{
@@ -336,8 +336,8 @@ namespace enh
 			return saveAddu(rhs.getRaw(), type_max);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> subu(
-			const WeightedField<value_type, weightCount> &rhs,
+		constexpr inline WeightedField<value_type, fieldCount> subu(
+			const WeightedField<value_type, fieldCount> &rhs,
 			value_type type_max = std::numeric_limits<value_type>::max()
 		) const
 		{
@@ -347,8 +347,8 @@ namespace enh
 			return subu(rhs.getRaw(), type_max);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &saveSub(
-			const WeightedField<value_type, weightCount> &rhs,
+		constexpr inline WeightedField<value_type, fieldCount> &saveSubu(
+			const WeightedField<value_type, fieldCount> &rhs,
 			value_type type_max = std::numeric_limits<value_type>::max()
 		)
 		{
@@ -358,14 +358,14 @@ namespace enh
 			return saveSubu(rhs.getRaw(), type_max);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> mult(
+		constexpr inline WeightedField<value_type, fieldCount> mult(
 			value_type multiplier
 		) const noexcept
 		{
-			return WeightedField<value_type, weightCount>{getRaw() * multiplier, fieldWeight};
+			return WeightedField<value_type, fieldCount>{getRaw() * multiplier, fieldWeight};
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &saveMult(
+		constexpr inline WeightedField<value_type, fieldCount> &saveMult(
 			value_type multiplier
 		) noexcept
 		{
@@ -373,21 +373,21 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &operator *=(
+		constexpr inline WeightedField<value_type, fieldCount> &operator *=(
 			value_type multiplier
 		) noexcept
 		{
 			return saveMult(multiplier);
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> div(
+		constexpr inline WeightedField<value_type, fieldCount> div(
 			value_type divisor
 		) const
 		{
-			return WeightedField<value_type, weightCount>{getRaw() / divisor, fieldWeight};
+			return WeightedField<value_type, fieldCount>{getRaw() / divisor, fieldWeight};
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &saveDiv(
+		constexpr inline WeightedField<value_type, fieldCount> &saveDiv(
 			value_type divisor
 		)
 		{
@@ -395,7 +395,7 @@ namespace enh
 			return *this;
 		}
 
-		constexpr inline WeightedField<value_type, weightCount> &operator /=(
+		constexpr inline WeightedField<value_type, fieldCount> &operator /=(
 			value_type divisor
 		)
 		{
@@ -411,7 +411,7 @@ namespace enh
 		}
 
 		constexpr inline bool operator < (
-			const WeightedField<value_type, weightCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -428,7 +428,7 @@ namespace enh
 		}
 
 		constexpr inline bool operator <= (
-			const WeightedField<value_type, weightCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -445,7 +445,7 @@ namespace enh
 		}
 
 		constexpr inline bool operator > (
-			const WeightedField<value_type, weightCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs
 			) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -462,7 +462,7 @@ namespace enh
 		}
 
 		constexpr inline bool operator >= (
-			const WeightedField<value_type, weightCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs
 			) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -479,7 +479,7 @@ namespace enh
 		}
 
 		constexpr inline bool operator == (
-			const WeightedField<value_type, weightCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs
 			) const noexcept
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -496,7 +496,7 @@ namespace enh
 		}
 
 		constexpr inline bool operator != (
-			const WeightedField<value_type, weightCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs
 			) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
