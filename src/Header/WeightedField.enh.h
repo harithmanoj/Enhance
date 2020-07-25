@@ -31,15 +31,28 @@
 #include <type_traits>
 #include <stdexcept>
 #include <array>
+#include <algorithm>
+#include <execution>
 
 namespace enh
 {
 
+	/**
+		\brief Class to represent number distributed in many weighted fields.
+
+		<h3>template</h3>
+		<code>integral</code> : The underlying type to store data.\n
+		<code>unsigned field_c </code> : The Number of weighted fields.\n
+
+
+	*/
 	template<class integral, unsigned field_c>
 	class WeightedField
 	{
+		// Underlying type must be integral.
 		static_assert(std::is_integral_v<integral>, "underlying type for "
 			"WeightedField must be integral");
+		// Cannot have field size < 2 
 		static_assert(field_c >= 2, "field count must be minimum of 2");
 	public:
 
@@ -48,110 +61,292 @@ namespace enh
 		*/
 		using value_type = integral;
 
+		/**
+			\brief The number of fields present.
+		*/
 		constexpr static unsigned fieldCount = field_c;
+
+		/**
+			\brief The number of weights, not including first (implied 1).
+		*/
 		constexpr static unsigned weightCount = field_c - 1;
 
 	private:
 
+		/**
+			\brief Underlying value stored as compounded weighted sum of all fields.
+		*/
 		value_type rawValue;
 
+		/**
+			\brief Weights of all fields (compounded excluding the implied 
+			lowest weight 1.
+
+			Index 0 will have lowest weight, with compounded weights as 
+			index increases.
+
+			1(implied) , 10, 20 will mean that it is a 3 field value with lowest weight
+			of 1, middle 10 and highest 200. 
+		*/
 		std::array<unsigned, weightCount> fieldWeight;
+
+		/**
+			\brief Verify validity of weights (must be greater than 1).
+		*/
+		constexpr inline bool verifyWeights() const noexcept
+		{
+			for (auto i : fieldWeight)
+				if (i <= 1)
+					return false;
+			return true;
+		}
+
+		/**
+			\brief Sets fieldWeights to default value (10).
+		*/
+		constexpr inline void setDefaultWeights() noexcept
+		{
+			for (auto &i : fieldWeight)
+				i = 10;
+		}
 
 	public:
 
-		constexpr inline WeightedField() noexcept : rawValue{ 0 }, fieldWeight{ 1 } { }
-
-		explicit constexpr inline WeightedField(
-			value_type val
-		) noexcept : rawValue{ val }, fieldWeight{ 1 } { }
-
-		constexpr inline WeightedField(
-			value_type val,
-			std::array<unsigned, weightCount> weight
-		) noexcept : rawValue{ val }, fieldWeight{ std::move(weight) } {}
-
-		explicit constexpr inline WeightedField(
-			std::array<unsigned, weightCount> weight
-		) noexcept : rawValue{ 0 }, fieldWeight{ std::move(weight) } {}
-
-		constexpr inline WeightedField(
-			std::array<value_type, fieldCount> val,
-			std::array<unsigned, weightCount> weight
-		) noexcept : fieldWeight{ std::move(weight) }, rawValue{ (val[0] % static_cast<long>(weight[0])) }
-		{ 
-			for(unsigned i = 0; i < weightCount - 1; ++i)
-				rawValue += (val[i + 1U] % weight[i + 1U]) * weight[i];
-
-			rawValue += val[weightCount] * weight[weightCount - 1U];
+		/**
+			\brief Sets the raw value (compounded weighted sum)
+		*/
+		constexpr inline void setRawValue(
+			value_type val /**< : <i>in</i> : The value to set.*/
+		) noexcept
+		{
+			rawValue = val;
 		}
 
+		/**
+			\brief Sets weights to given weights.
+
+			Throws <code>std::invalid_argument</code> if invalid weights are
+			provided.
+		*/
+		constexpr inline void setWeights(
+			std::array<unsigned, weightCount> weight /**< : <i>in</i> : 
+									 The weights to set.*/
+		) noexcept
+		{
+			fieldWeight = std::move(weight);
+			if (!verifyWeights())
+			{
+				setDefaultWeights();
+				throw std::invalid_argument("Field Weights must be "
+					"greater than 1");
+			}
+		}
+
+		/**
+			\brief Sets value to compounded weighted sum of given values.
+		*/
+		constexpr inline void setValue(
+			const std::array<value_type, fieldCount> &val /**< : <i>in</i> 
+											: The values for each field.*/
+		) noexcept
+		{
+			unsigned long incremental = 1;
+			auto next = val.begin();
+			for (auto i : fieldWeight)
+			{
+				rawValue += ((*next) % i) * incremental;
+				incremental *= i;
+				++next;
+			}
+
+			rawValue += (*next) * incremental;
+		}
+
+		/**
+			\brief Sets weights and value.
+
+			Throws <code>std::invalid_argument</code> if invalid weights are
+			provided.
+		*/
+		constexpr inline void setValue(
+			std::array<value_type, fieldCount> val /**< : <i>in</i> 
+											: The values for each field.*/,
+			std::array<unsigned, weightCount> weight /**< : <i>in</i> : 
+									 The weights to set.*/
+		) noexcept
+		{
+			setWeights(std::move(weight));
+			setValue(std::move(val));
+		}
+
+		/**
+			\brief Constructs with initial value 0 and decade weights.
+		*/
+		constexpr inline WeightedField() noexcept : rawValue{ 0 }, 
+			fieldWeight{ 0 } { setDefaultWeights(); }
+
+		/**
+			\brief Constructs with initial value as parameter and decade 
+			weights.
+		*/
+		explicit constexpr inline WeightedField(
+			value_type val /**< : <i>in</i> : The initial value of the 
+						   object.*/
+		) noexcept : rawValue{ val }, fieldWeight{ 0 }
+		{ setDefaultWeights(); }
+
+		/**
+			\brief Constructs with initial value given and weights provided.
+
+			Throws <code>std::invalid_argument</code> if invalid weights are 
+			provided.
+		*/
+		constexpr inline WeightedField(
+			value_type val /**< : <i>in</i> : The initial value of the 
+						   object. */,
+			std::array<unsigned, weightCount> weight /**< : <i>in</i> : 
+							The weights to be set (index 0 is the lowest 
+							level after implicit weight 1. */
+		) : rawValue{ val }, fieldWeight{ std::move(weight) } 
+		{
+			if (!verifyWeights())
+			{
+				setDefaultWeights();
+				throw std::invalid_argument("Field Weights must be greater "
+					"than 1");
+			}
+		}
+
+		/**
+			\brief Constructs with initial value 0 and weights provided.
+
+			Throws <code>std::invalid_argument</code> if invalid weights are 
+			provided.
+		*/
+		explicit constexpr inline WeightedField(
+			std::array<unsigned, weightCount> weight /**< : <i>in</i> :
+							The weights to be set (index 0 is the lowest
+							level after implicit weight 1. */
+		) noexcept : rawValue{ 0 }, fieldWeight{ std::move(weight) }
+		{
+			if (!verifyWeights())
+			{
+				setDefaultWeights();
+				throw std::invalid_argument("Field Weights must be greater "
+					"than 1");
+			}
+		}
+
+		/**
+			\brief Constructs with initial value as weighted sum of first 
+			parameter and weights given.
+
+			Throws <code>std::invalid_argument</code> if invalid weights are 
+			provided.
+		*/
+		constexpr inline WeightedField(
+			std::array<value_type, fieldCount> val /**< : <i>in</i> : The 
+							values of each field as an array.*/,
+			std::array<unsigned, weightCount> weight /**< : <i>in</i> :
+							The weights to be set (index 0 is the lowest
+							level after implicit weight 1. */
+		) noexcept : fieldWeight{ std::move(weight) }, rawValue{ 0 }
+		{
+			if (!verifyWeights())
+			{
+				setDefaultWeights();
+				throw std::invalid_argument("Field Weights must be greater "
+					"than 1");
+			}
+			setValue(std::move(val));
+		}
+
+		/**
+			\brief Returns the raw Value.
+
+			<h3>Return</h3>
+			Returns the raw Value (compounded weighted sum of all fields).
+		*/
 		constexpr inline value_type getRaw() const noexcept 
 		{ 
 			return rawValue; 
 		}
 
+		/**
+			\brief Returns weight of value'th field with respect to last field.
+
+			<h3>Return</h3>
+			Returns the relative weight associated with that field.
+
+		*/
 		constexpr inline unsigned getWeights(
 			unsigned short value
 		) const noexcept
 		{
 			if (value == 0)
 				return 1;
-			return fieldWeight[(value % 3) - 1];
+			return fieldWeight[(value % fieldCount) - 1];
 		}
 
+		/**
+			\brief Returns The absolute (compounded ) weight of a field.
+
+			<h3>Return</h3>
+			(relative to lowest field with absolute weight of 1).
+
+		*/
+		constexpr inline unsigned long getAbsoluteWeights(
+			unsigned short value /**< : <i>in</i> : The index of field.*/
+		) const noexcept
+		{
+			unsigned long ret = 1;
+			for (int i = 0; i < (value % fieldCount); ++i)
+				ret *= fieldWeight[i];
+			return ret;
+		}
+
+		/**
+			\brief Returns The relative weights as an array.
+
+			<h3>Return</h3>
+			Returns the relative weights as an const reference to an array.
+		*/
 		constexpr inline const auto& getWeights() const noexcept
 		{
 			return fieldWeight;
 		}
 
+		/**
+			\brief Returns The absolute weights as an array.
+
+			<h3>Return</h3>
+			Returns the absolute weights as an array.
+		*/
+		constexpr inline auto getAbsoluteWeights() const noexcept
+		{
+			std::array<unsigned, fieldCount> absWeight;
+			absWeight[0] = 1;
+			
+			for (unsigned i = 0; i < weightCount; ++i)
+				absWeight[i + 1] = absWeight[i] * fieldWeight[i];
+
+			return absWeight;
+		}
+
+		/**
+			\brief Get the value of certian field.
+		*/
 		constexpr inline unsigned getFields(
-			unsigned short value
+			unsigned short value /**< : <i>in</i> : The index of the field.*/
 		) const noexcept
 		{
-			value = value % fieldCount;
-			value_type ret = rawValue;
-			if (value == 0)
-				return ret % fieldWeight[0];
-			for (int i = 0; i < value; ++i)
-				ret /= fieldWeight[i];
 			if (value == weightCount)
-				return ret;
-			ret = ret % fieldWeight[value];
-			return ret;
+				return (rawValue / getAbsoluteWeights(value));
+			else
+				return (rawValue / getAbsoluteWeights(value)) % getWeights(value + 1);
 		}
 
-		constexpr inline void setRawValue(
-			value_type val
-		) noexcept { rawValue = val; }
-
-		constexpr inline void setWeights(
-			std::array<unsigned, weightCount> weight
-		) noexcept
-		{
-			for (unsigned i = 0; i < weightCount; ++i)
-				fieldWeight[i] = weight[i];
-		}
-
-		constexpr inline void setValue(
-			std::array<value_type, fieldCount> val
-		) noexcept
-		{
-			rawValue = (val[0] % static_cast<long>(fieldWeight[0]));
-			for (unsigned i = 0; i < weightCount - 1; ++i)
-				rawValue += (val[i + 1] % fieldWeight[i + 1]) * fieldWeight[i];
-
-			rawValue += val[weightCount] * fieldWeight[weightCount - 1];
-
-		}
-
-		constexpr inline void setValue(
-			std::array<value_type, fieldCount> val,
-			std::array<unsigned, weightCount> weight
-		) noexcept
-		{
-			setWeights(std::move(weight));
-			setValue(std::move(val));
-		}
+		
 
 		constexpr inline WeightedField<value_type, fieldCount> add(
 			value_type val

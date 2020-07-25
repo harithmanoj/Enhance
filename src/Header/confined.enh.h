@@ -174,7 +174,8 @@ namespace enh
 			uLimit(upper_l), lLimit(lower_l), value(0)
 		{
 			if (uLimit() < lLimit())
-				throw std::invalid_argument("upper limit should be greater than lower");
+				throw std::invalid_argument("upper limit should be greater than"
+					" lower");
 			value = lLimit();
 		}
 
