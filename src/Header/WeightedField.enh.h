@@ -343,84 +343,162 @@ namespace enh
 			if (value == weightCount)
 				return (rawValue / getAbsoluteWeights(value));
 			else
-				return (rawValue / getAbsoluteWeights(value)) % getWeights(value + 1);
+				return (rawValue / getAbsoluteWeights(value)) 
+				% getWeights(value + 1);
 		}
 
 		
+		/**
+			\brief Returns sum of raw value and current object.
 
+			<h3>Return</h3>
+			Returns the sum.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> add(
-			value_type val
+			value_type val /**< : <i>in</i> : The value to be added.*/
 		) const noexcept
 		{
 			return WeightedField<value_type, fieldCount>{val + getRaw(), std::move(fieldWeight)};
 		}
 
+		/**
+			\brief Adds raw value to current objects.
+
+			<h3>Return</h3>
+			Returns the sum.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount>& saveAdd(
-			value_type val
+			value_type val /**< : <i>in</i> : The value to be added.*/
 		) noexcept
 		{
 			setRawValue(getRaw() + val);
-			return *this;
+			return (*this);
 		}
 
+		/**
+			\brief operator overloaded to add and save.
+
+			<h3>Return</h3>
+			Returns reference to current object.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &operator +=(
-			value_type rhs
+			value_type rhs /**< : <i>in</i> : The value to be added.*/
 		)
 		{
 			return saveAdd(std::move(rhs));
 		}
 
+		/**
+			\brief Returns sum of current object and parameter.
+
+			<h3>Return</h3>
+			Sum of current object and paramater.
+
+			<h3>Exception</h3>
+			Throws if weights are not same.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> add(
-			const WeightedField<value_type, fieldCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs  /**< : <i>in</i> 
+													: The object to be added.*/
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (fieldWeight[i] != rhs.fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return add(rhs.getRaw());
 		}
 
+		/**
+			\brief Adds parameter to current object.
+
+			<h3>Return</h3>
+			Reference to current object.
+
+			<h3>Exception</h3>
+			Throws if weights are not same.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &saveAdd(
-			const WeightedField<value_type, fieldCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+													: The object to be added.*/
 		)
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (fieldWeight[i] != rhs.fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return saveAdd(rhs.getRaw());
 		}
 
+		/**
+			\brief Adds parameter to current object.
+
+			<h3>Return</h3>
+			Reference to current object.
+
+			<h3>Exception</h3>
+			Throws if weights are not same.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &operator +=(
-			const WeightedField<value_type, fieldCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+													: The object to be added.*/
 		)
 		{
 			return saveAdd(rhs);
 		}
 
+		/**
+			\brief Returns difference of raw value and current object.
+
+			<h3>Return</h3>
+			Returns the difference.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> sub(
-			value_type val
+			value_type val /**< : <i>in</i> : The value to be subtracted.*/
 		) const noexcept
 		{
 			return WeightedField<value_type, fieldCount>{ getRaw() - val, fieldWeight};
 		}
 
+		/**
+			\brief Returns difference of raw value and current object.
+
+			<h3>Return</h3>
+			Returns the difference.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &saveSub(
-			value_type val
+			value_type val /**< : <i>in</i> : The value to be subtracted.*/
 		) noexcept
 		{
 			setRawValue(getRaw() - val);
-			return *this;
+			return (*this);
 		}
 
+		/**
+			\brief operator overloaded to subtract and save.
+
+			<h3>Return</h3>
+			Returns reference to current object.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &operator -=(
-			value_type rhs
+			value_type rhs /**< : <i>in</i> : The value to be subtracted.*/
 		)
 		{
 			return saveSub(std::move(rhs));
 		}
 
+		/**
+			\brief Returns sum of current object and parameter.
+
+			<h3>Return</h3>
+			Sum of current object and paramater.
+
+			<h3>Exception</h3>
+			Throws if weights are not same.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> sub(
-			const WeightedField<value_type, fieldCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+											: The object to be subtracted.*/
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -429,8 +507,18 @@ namespace enh
 			return sub(rhs.getRaw());
 		}
 
+		/**
+			\brief subtracts parameter from object.
+
+			<h3>Return</h3>
+			Sum of current object and paramater.
+
+			<h3>Exception</h3>
+			Throws if weights are not same.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &saveSub(
-			const WeightedField<value_type, fieldCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+											: The object to be subtracted.*/
 		)
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -439,46 +527,78 @@ namespace enh
 			return saveSub(rhs.getRaw());
 		}
 
+		/**
+			\brief subtracts parameter from object.
+
+			<h3>Return</h3>
+			Sum of current object and paramater.
+
+			<h3>Exception</h3>
+			Throws if weights are not same.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &operator -=(
-			const WeightedField<value_type, fieldCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+											: The object to be subtracted.*/
 		)
 		{
 			return saveSub(rhs);
 		}
 
+		/**
+			\brief Returns difference with no overflow or underflow.
+
+			<h3>Return</h3>
+			The difference between current object and parameter.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> subu(
-			value_type val,
-			value_type type_max = std::numeric_limits<value_type>::max()
+			value_type val /**< : <i>in</i> : The value to be subtracted.*/,
+			value_type type_max = std::numeric_limits<value_type>::max() 
+								/**< : <i>in</i> : The maximum value for the 
+									value_type.*/
 		) const noexcept
 		{
 			if (val < 0)
 				return addu(-val, type_max);
-
-			if (val > getRaw())
+			else if (val > getRaw())
 				return WeightedField<value_type, fieldCount>{0, fieldWeight};
 			else
 				return sub(val);
 		}
 
+		/**
+			\brief subtracts parameter with no overflow or underflow.
+
+			<h3>Return</h3>
+			Reference to current object.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &saveSubu(
-			value_type val,
+			value_type val /**< : <i>in</i> : The value to be subtracted.*/,
 			value_type type_max = std::numeric_limits<value_type>::max()
+								/**< : <i>in</i> : The maximum value for the
+									value_type.*/
 		) noexcept
 		{
 			if (val < 0)
 				return saveAddu(-val, type_max);
-
-			if (val > getRaw())
+			else if (val > getRaw())
 				setRawValue(0);
 			else
 				setRawValue(getRaw() - val);
 
-			return *this;
+			return (*this);
 		}
 
+		/**
+			\brief Returns sum with no overflow or underflow.
+
+			<h3>Return</h3>
+			The sum of current object and parameter.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> addu(
-			value_type val, 
+			value_type val /**< : <i>in</i> : The value to be added.*/,
 			value_type type_max = std::numeric_limits<value_type>::max()
+								/**< : <i>in</i> : The maximum value for the
+									value_type.*/
 		) const noexcept
 		{
 			if (val < 0)
@@ -491,9 +611,17 @@ namespace enh
 				return add(val);
 		}
 
+		/**
+			\brief Adds parameter to object with no overflow or underflow.
+
+			<h3>Return</h3>
+			The Reference to current object.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &saveAddu(
-			value_type val,
+			value_type val /**< : <i>in</i> : The value to be added.*/,
 			value_type type_max = std::numeric_limits<value_type>::max()
+								/**< : <i>in</i> : The maximum value for the
+									value_type.*/
 		) noexcept
 		{
 			if (val < 0)
@@ -506,12 +634,21 @@ namespace enh
 			else
 				setRawValue(val + getRaw());
 
-			return *this;
+			return (*this);
 		}
 
+		/**
+			\brief Returns sum with no overflow or underflow.
+
+			<h3>Return</h3>
+			The sum of current object and parameter.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> addu(
-			const WeightedField<value_type, fieldCount> &rhs,
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+												: The value to be added.*/,
 			value_type type_max = std::numeric_limits<value_type>::max()
+								/**< : <i>in</i> : The maximum value for the
+									value_type.*/
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -520,9 +657,18 @@ namespace enh
 			return addu(rhs.getRaw(), type_max);
 		}
 
+		/**
+			\brief Adds parameter to object with no overflow or underflow.
+
+			<h3>Return</h3>
+			The Reference to current object.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &saveAddu(
-			const WeightedField<value_type, fieldCount> &rhs,
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+												: The value to be added.*/,
 			value_type type_max = std::numeric_limits<value_type>::max()
+								/**< : <i>in</i> : The maximum value for the
+														value_type.*/
 		)
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -531,9 +677,18 @@ namespace enh
 			return saveAddu(rhs.getRaw(), type_max);
 		}
 
+		/**
+			\brief Returns difference with no overflow or underflow.
+
+			<h3>Return</h3>
+			The difference between current object and parameter.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> subu(
-			const WeightedField<value_type, fieldCount> &rhs,
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+											: The value to be subtracted.*/,
 			value_type type_max = std::numeric_limits<value_type>::max()
+								/**< : <i>in</i> : The maximum value for the
+														value_type.*/
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -542,9 +697,18 @@ namespace enh
 			return subu(rhs.getRaw(), type_max);
 		}
 
+		/**
+			\brief subtracts parameter with no overflow or underflow.
+
+			<h3>Return</h3>
+			Reference to current object.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &saveSubu(
-			const WeightedField<value_type, fieldCount> &rhs,
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+											: The value to be subtracted.*/,
 			value_type type_max = std::numeric_limits<value_type>::max()
+								/**< : <i>in</i> : The maximum value for the
+									value_type.*/
 		)
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -553,60 +717,123 @@ namespace enh
 			return saveSubu(rhs.getRaw(), type_max);
 		}
 
+		/**
+			\brief Returns product of current object and value with a 
+			weight of 1.
+
+			<h3>Return</h3>
+			Returns the product of multiplier and raw Value.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> mult(
-			value_type multiplier
+			value_type multiplier /**< : <i>in</i> : The number to be 
+								  multiplied by.*/
 		) const noexcept
 		{
 			return WeightedField<value_type, fieldCount>{getRaw() * multiplier, fieldWeight};
 		}
 
+		/**
+			\brief multiplies current object with value with a
+			weight of 1.
+
+			<h3>Return</h3>
+			Returns reference to current objects.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &saveMult(
-			value_type multiplier
+			value_type multiplier /**< : <i>in</i> : The number to be 
+								  multiplied by.*/
 		) noexcept
 		{
 			setRawValue(getRaw() * multiplier);
-			return *this;
+			return (*this);
 		}
 
+		/**
+			\brief multiplies current object with value with a
+			weight of 1.
+
+			<h3>Return</h3>
+			Returns reference to current objects.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &operator *=(
-			value_type multiplier
+			value_type multiplier /**< : <i>in</i> : The number to be 
+								  multiplied by.*/
 		) noexcept
 		{
 			return saveMult(multiplier);
 		}
 
+		/**
+			\brief Returns quotient of current object devided by value with a
+			weight of 1.
+
+			<h3>Return</h3>
+			Returns the quotient of current object devided by divisor.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> div(
-			value_type divisor
+			value_type divisor /**< : <i>in</i> : The number to be 
+								  divided by.*/
 		) const
 		{
 			return WeightedField<value_type, fieldCount>{getRaw() / divisor, fieldWeight};
 		}
 
+		/**
+			\brief Sets current object to quotient of current object devided 
+			by value with a weight of 1.
+
+			<h3>Return</h3>
+			Returns reference to current object.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &saveDiv(
-			value_type divisor
+			value_type divisor /**< : <i>in</i> : The number to be 
+								  divided by.*/
 		)
 		{
 			setRawValue(getRaw() / divisor);
-			return *this;
+			return (*this);
 		}
 
+		/**
+			\brief Sets current object to quotient of current object devided
+			by value with a weight of 1.
+
+			<h3>Return</h3>
+			Returns reference to current object.
+		*/
 		constexpr inline WeightedField<value_type, fieldCount> &operator /=(
-			value_type divisor
+			value_type divisor /**< : <i>in</i> : The number to be 
+								  divided by.*/
 		)
 		{
 			return saveDiv(divisor);
 		}
 
+		/**
+			\brief Checks whether object is less than parameter.
 
+			<h3>Return</h3>
+			True if lhs less than rhs.
+		*/
 		constexpr inline bool operator < (
-			value_type val
+			value_type val /**< : <i>in</i> : Value to compare with.*/
 		) const noexcept
 		{
 			return (getRaw() < val);
 		}
 
+		/**
+			\brief Checks whether object is less than parameter.
+
+			<h3>Return</h3>
+			True if lhs less than rhs.
+
+			<h3>Exceptions</h3>
+			Throws if they dont have same weights.
+		*/
 		constexpr inline bool operator < (
-			const WeightedField<value_type, fieldCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+												: Value to compare with.*/
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -615,32 +842,65 @@ namespace enh
 			return (getRaw() < rhs.getRaw());
 		}
 
+		/**
+			\brief Checks whether object is less than or equal to parameter.
+
+			<h3>Return</h3>
+			True if lhs less than or equal to rhs.
+		*/
 		constexpr inline bool operator <= (
-			value_type val
+			value_type val /**< : <i>in</i> : Value to compare with.*/
 		) const noexcept
 		{
 			return (getRaw() <= val);
 		}
 
+		/**
+			\brief Checks whether object is less than or equal to parameter.
+
+			<h3>Return</h3>
+			True if lhs less than or equal to rhs.
+
+			<h3>Exceptions</h3>
+			Throws if they dont have same weights.
+		*/
 		constexpr inline bool operator <= (
-			const WeightedField<value_type, fieldCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+												: Value to compare with.*/
 		) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (fieldWeight[i] != rhs.fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return (getRaw() <= rhs.getRaw());
 		}
 
+		/**
+			\brief Checks whether object is greater than parameter.
+
+			<h3>Return</h3>
+			True if lhs greater than rhs.
+		*/
 		constexpr inline bool operator > (
-			value_type val
+			value_type val /**< : <i>in</i> : Value to compare with.*/
 		) const noexcept
 		{
 			return (getRaw() > val);
 		}
 
+		/**
+			\brief Checks whether object is greater than parameter.
+
+			<h3>Return</h3>
+			True if lhs greater than rhs.
+
+			<h3>Exceptions</h3>
+			Throws if they dont have same weights.
+		*/
 		constexpr inline bool operator > (
-			const WeightedField<value_type, fieldCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs/**< : <i>in</i> 
+												: Value to compare with.*/
 			) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -649,15 +909,31 @@ namespace enh
 			return (getRaw() > rhs.getRaw());
 		}
 
+		/**
+			\brief Checks whether object is greater than or equal to parameter.
+
+			<h3>Return</h3>
+			True if lhs greater than or equal to rhs.
+		*/
 		constexpr inline bool operator >= (
-			value_type val
+			value_type val  /**< : <i>in</i> : Value to compare with.*/
 		) const noexcept
 		{
 			return (getRaw() > val);
 		}
 
+		/**
+			\brief Checks whether object is greater than or equal to parameter.
+
+			<h3>Return</h3>
+			True if lhs greater than or equal to rhs.
+
+			<h3>Exceptions</h3>
+			Throws if they dont have same weights.
+		*/
 		constexpr inline bool operator >= (
-			const WeightedField<value_type, fieldCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs/**< : <i>in</i> 
+												: Value to compare with.*/
 			) const
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -666,15 +942,30 @@ namespace enh
 			return (getRaw() >= rhs.getRaw());
 		}
 
+		/**
+			\brief Checks whether object is equal to parameter.
+
+			<h3>Return</h3>
+			True if lhs equal to rhs.
+		*/
 		constexpr inline bool operator == (
-			value_type val
+			value_type val  /**< : <i>in</i> : Value to compare with.*/
 		) const noexcept
 		{
 			return (getRaw() == val);
 		}
 
+		/**
+			\brief Checks whether object is equal to parameter.
+
+			Weights must be same as well.
+
+			<h3>Return</h3>
+			True if lhs equal to rhs.
+		*/
 		constexpr inline bool operator == (
-			const WeightedField<value_type, fieldCount> &rhs
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+												: Value to compare with.*/
 			) const noexcept
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
@@ -683,24 +974,65 @@ namespace enh
 			return (getRaw() == rhs.getRaw());
 		}
 
+		/**
+			\brief Checks whether object is not equal to parameter.
+
+			Weights is checked as well.
+
+			<h3>Return</h3>
+			True if lhs equal to rhs.
+		*/
 		constexpr inline bool operator != (
-			value_type val
+			value_type val /**< : <i>in</i> : Value to compare with.*/
 		) const noexcept
 		{
 			return (getRaw() != val);
 		}
 
+
+		/**
+			\brief Checks whether object is not equal to parameter.
+
+			Weights is checked as well.
+
+			<h3>Return</h3>
+			True if lhs equal to rhs.
+		*/
 		constexpr inline bool operator != (
-			const WeightedField<value_type, fieldCount> &rhs
-			) const
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i> 
+												: Value to compare with.*/
+		) const noexcept
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (fieldWeight[i] != rhs.fieldWeight[i])
 				return true;
 			return (getRaw() != rhs.getRaw());
 		}
+
+		/**
+			\brief Checks if weights are same.
+
+			<h3>Return</h3>
+			Returns true if weights are same.
+		*/
+		constexpr inline bool isSameWeights(
+			const WeightedField<value_type, fieldCount> &rhs /**< : <i>in</i>
+												: Value to compare with.*/
+
+		) const noexcept
+		{
+			for (unsigned i = 0; i < weightCount; ++i)
+				if (fieldWeight[i] != rhs.fieldWeight[i])
+					return false;
+			return true;
+		}
 	};
 
+	/**
+		\brief operator + overloaded for WeightedField class.
+
+		Adds both parameters.
+	*/
 	template<class T, unsigned n>
 	constexpr inline WeightedField<T,n> operator +(
 		const WeightedField<T,n> &lhs,
@@ -710,6 +1042,11 @@ namespace enh
 		return lhs.add(rhs);
 	}
 
+	/**
+		\brief operator + overloaded for WeightedField class.
+
+		Adds both parameters.
+	*/
 	template<class T, unsigned n>
 	constexpr inline WeightedField<T,n> operator +(
 		T lhs,
@@ -719,6 +1056,14 @@ namespace enh
 		return rhs.add(lhs);
 	}
 
+	/**
+		\brief operator + overloaded for WeightedField class.
+
+		Adds both parameters.
+
+		<h3>Exception</h3>
+		Throws if weights are not same.
+	*/
 	template<class T, unsigned n>
 	constexpr inline WeightedField<T,n> operator +(
 		const WeightedField<T,n> &lhs,
@@ -728,6 +1073,11 @@ namespace enh
 		return rhs.add(lhs);
 	}
 
+	/**
+		\brief operator - overloaded for WeightedField class.
+
+		subtracts rhs from lhs.
+	*/
 	template<class T, unsigned n>
 	constexpr inline WeightedField<T,n> operator -(
 		const WeightedField<T, n> &lhs,
@@ -737,6 +1087,11 @@ namespace enh
 		return lhs.sub(rhs);
 	}
 
+	/**
+		\brief operator - overloaded for WeightedField class.
+
+		subtracts rhs from lhs.
+	*/
 	template<class T, unsigned n>
 	constexpr inline WeightedField<T,n> operator -(
 		T lhs,
@@ -747,6 +1102,14 @@ namespace enh
 			{ rhs.getWeight1(), rhs.getWeight2() }};
 	}
 
+	/**
+		\brief operator - overloaded for WeightedField class.
+
+		subtracts rhs from lhs.
+
+		<h3>Exception</h3>
+		Throws if weights are not same.
+	*/
 	template < class T , unsigned n>
 	constexpr inline WeightedField<T,n> operator -(
 		const WeightedField<T,n> &lhs,
@@ -756,6 +1119,11 @@ namespace enh
 		return rhs.sub(lhs);
 	}
 
+	/**
+		\brief operator * overloaded for WeightedField class.
+
+		multiplies both parameters.
+	*/
 	template<class T, unsigned n>
 	constexpr inline WeightedField<T,n> operator *(
 		const WeightedField<T, n>  &lhs,
@@ -765,6 +1133,11 @@ namespace enh
 		return lhs.mult(rhs);
 	}
 
+	/**
+		\brief operator * overloaded for WeightedField class.
+
+		multiplies both parameters.
+	*/
 	template<class T, unsigned n>
 	constexpr inline WeightedField<T,n> operator *(
 		T lhs,
@@ -774,6 +1147,11 @@ namespace enh
 		return rhs.mult(lhs);
 	}
 
+	/**
+		\brief operator / overloaded for WeightedField class.
+
+		divides lhs by rhs and returns quotient.
+	*/
 	template<class T, unsigned n>
 	constexpr inline WeightedField<T,n> operator /(
 		const WeightedField<T, n> &lhs,
