@@ -6,6 +6,18 @@ Enhance C++ Libraries Release Notes
 
 ## Version 1.3
 
+### Version 1.3.2.8.d1 alpha
+
+#### WeightedField class 
+
+* `WeightedField` class for Numbers having different components of different weight eg : Currency ([Rs, paise], [Dollars, cents]).
+* Fully equipped numerical type, addition, subtraction [signed and unsigned], division, multiplication, comparison
+* Fully constexpr compatible
+
+#### Other Changes
+
+* confined class now has static assert to check if template parameter is integral. [[It must be integral for proper working]].
+
 ### Version 1.3.1.7.fin
 
 #### Fixes:
