@@ -3,9 +3,12 @@
 
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/harithmanoj/Enhance)
+![GitHub develop release](https://img.shields.io/github/v/release/harithmanoj/enhance-develop)
 ![GitHub](https://img.shields.io/github/license/harithmanoj/Enhance)
 ![GitHub Release Date](https://img.shields.io/github/release-date/harithmanoj/Enhance)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/harithmanoj/Enhance/Test)
+
+Develop Release v1.3.2.8.d1 alpha
 
 
 Enhance C++ Libraries is a collection of multiple `C++` libraries that cater 
@@ -14,7 +17,7 @@ to many needs.
 Including but not limited to :
 
 * Diagnostics.
-* Time and related tracking and syncronisation.
+* Time and related tracking and synchronisation.
 * Date Time manipulation
 * Error Tracking.
 * Version info to be used inside programs.
