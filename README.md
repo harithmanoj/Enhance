@@ -3,7 +3,7 @@
 
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/harithmanoj/Enhance)
-![GitHub develop release](https://img.shields.io/github/v/release/harithmanoj/enhance-develop)
+![GitHub develop release](https://img.shields.io/github/v/release/harithmanoj/enhance-develop?include_prereleases)
 ![GitHub](https://img.shields.io/github/license/harithmanoj/Enhance)
 ![GitHub Release Date](https://img.shields.io/github/release-date/harithmanoj/Enhance)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/harithmanoj/Enhance/Test)
