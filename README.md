@@ -3,9 +3,12 @@
 
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/harithmanoj/Enhance)
+![GitHub develop release](https://img.shields.io/github/v/release/harithmanoj/enhance-develop)
 ![GitHub](https://img.shields.io/github/license/harithmanoj/Enhance)
 ![GitHub Release Date](https://img.shields.io/github/release-date/harithmanoj/Enhance)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/harithmanoj/Enhance/Test)
+
+Develop Release v1.3.2.8.d1 alpha
 
 
 Enhance C++ Libraries is a collection of multiple `C++` libraries that cater 
@@ -14,7 +17,7 @@ to many needs.
 Including but not limited to :
 
 * Diagnostics.
-* Time and related tracking and syncronisation.
+* Time and related tracking and synchronisation.
 * Date Time manipulation
 * Error Tracking.
 * Version info to be used inside programs.
@@ -71,6 +74,8 @@ Exists in `namespace enh`.
 
 `numeral_system.enh.h`
 
+`WeightedField.enh.h`
+
 ### The Library 
 
 * Check if bits are high in a variable (also constexpr).
@@ -80,6 +85,7 @@ Exists in `namespace enh`.
 * signExtend extends the string format of a numeral by prepending '0' s
 * confined_base class for storing a value within bounds
 * NumericSystem class for storing a value within 0 and an upper limit.
+* Class to hold values which has different denominations. (money)
  
 _______________________________________________________________________________
 ## Diagnose
