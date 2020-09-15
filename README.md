@@ -74,6 +74,8 @@ Exists in `namespace enh`.
 
 `numeral_system.enh.h`
 
+`WeightedField.enh.h`
+
 ### The Library 
 
 * Check if bits are high in a variable (also constexpr).
@@ -83,6 +85,7 @@ Exists in `namespace enh`.
 * signExtend extends the string format of a numeral by prepending '0' s
 * confined_base class for storing a value within bounds
 * NumericSystem class for storing a value within 0 and an upper limit.
+* Class to hold values which has different denominations. (money)
  
 _______________________________________________________________________________
 ## Diagnose
