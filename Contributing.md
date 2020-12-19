@@ -14,6 +14,20 @@ will it be merged with master.
 
 For typo corrections, open an issue.
 
+## Naming Convention
+
+Use all Capital with underscore seperator for constants and macros.
+
+Use camelCase for variables, functions etc.
+
+Use PascalCase for Types.
+
+Use underscore as prefix for all private class / structure members
+
+Use is / has / can / should etc prefix for boolean variables.
+
+Use i, j, k, index etc for index variables or iterator variables.
+
 ## Documentation 
 
 Doxygen documentation will only be built when code is ready to be released.
@@ -30,7 +44,7 @@ Doxygen comment blocks must be in /** ... */
 
 	This file is part of project Enhance C++ Libraries.
 
-	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+	Copyright 2020 <name>
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
