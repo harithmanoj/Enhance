@@ -127,7 +127,7 @@ namespace debug
 		The path of file.
 
 	*/
-	std::filesystem::path getFile(
+	std::filesystem::path getLoggingFilePath(
 		std::thread::id id /**< : <i>in</i> : The calling thread id.*/,
 		std::string function /**< : <i>in</i> : Logging function name.*/
 	);
@@ -138,8 +138,8 @@ namespace debug
 
 		The function which logs the string should be passed to function.
 	*/
-	void Log(
-		std::string lg /**< : <i>in</i> : The string to log.*/,
+	void log(
+		std::string msg /**< : <i>in</i> : The string to log.*/,
 		std::string function /**< : <i>in</i> : Logging function name.*/
 	);
 
@@ -147,7 +147,7 @@ namespace debug
 		\brief Logs calling line, function and file to a file indicated by 
 		current thread.
 	*/
-	void Log(
+	void log(
 		std::string file /**< : <i>in</i> : The file in which logging code is 
 						 present.*/,
 		std::string function/**< : <i>in</i> : Logging function name.*/,
@@ -159,7 +159,7 @@ namespace debug
 		\brief Logs calling line, function, file and a description to a file 
 		indicated by current thread.
 	*/
-	void Log(
+	void log(
 		std::string file /**< : <i>in</i> : The file in which logging code is 
 						 present.*/,
 		std::string function /**< : <i>in</i> : Logging function name.*/,
@@ -175,7 +175,7 @@ namespace debug
 		The type should be accepted by the stream insertion operator.
 	*/
 	template<class T>
-	void Log(
+	void log(
 		std::string file /**< : <i>in</i> : The file in which logging code is 
 						 present.*/,
 		std::string function /**< : <i>in</i> : Logging function name.*/,
@@ -187,7 +187,7 @@ namespace debug
 	{
 		std::ostringstream out;
 		out << std::setw(80) << file << " : " << std::setw(6) << line << "   " << std::setw(15) << function << "  " << var << " = " << val;
-		Log(out.str(),function);
+		log(out.str(),function);
 	}
 
 }
@@ -651,59 +651,59 @@ namespace debug
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_LINE REPLACE(debug::Log(INFO_FOR_LOG))
+#define LOG_LINE REPLACE(debug::log(INFO_FOR_LOG))
 
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_DESC(x) REPLACE(debug::Log(INFO_FOR_LOG,x))
+#define LOG_DESC(x) REPLACE(debug::log(INFO_FOR_LOG,x))
 
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_VAL(x) REPLACE(debug::Log(INFO_FOR_LOG,#x,x))
+#define LOG_VAL(x) REPLACE(debug::log(INFO_FOR_LOG,#x,x))
 
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined 
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
 */
-#define LIB_LOG_LINE LIB_REPLACE(debug::Log(INFO_FOR_LOG))
+#define LIB_LOG_LINE LIB_REPLACE(debug::log(INFO_FOR_LOG))
 
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined 
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
 */
-#define LIB_LOG_DESC(x) LIB_REPLACE(debug::Log(INFO_FOR_LOG,x))
+#define LIB_LOG_DESC(x) LIB_REPLACE(debug::log(INFO_FOR_LOG,x))
 
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined 
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
 */
-#define LIB_LOG_VAL(x) LIB_REPLACE(debug::Log(INFO_FOR_LOG,#x,x))
+#define LIB_LOG_VAL(x) LIB_REPLACE(debug::log(INFO_FOR_LOG,#x,x))
 
 
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 4.
 */
@@ -712,7 +712,7 @@ namespace debug
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 4.
 */
@@ -721,7 +721,7 @@ namespace debug
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 4.
 */
@@ -730,7 +730,7 @@ namespace debug
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 3.
 */
@@ -739,7 +739,7 @@ namespace debug
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 3.
 */
@@ -748,7 +748,7 @@ namespace debug
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 3.
 */
@@ -757,7 +757,7 @@ namespace debug
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 2.
 */
@@ -766,7 +766,7 @@ namespace debug
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 2.
 */
@@ -775,7 +775,7 @@ namespace debug
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 2.
 */
@@ -784,7 +784,7 @@ namespace debug
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 1.
 */
@@ -793,7 +793,7 @@ namespace debug
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 1.
 */
@@ -802,7 +802,7 @@ namespace debug
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 1.
 */
@@ -811,7 +811,7 @@ namespace debug
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 0.
 */
@@ -820,7 +820,7 @@ namespace debug
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 0.
 */
@@ -829,7 +829,7 @@ namespace debug
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if ENH_OPTIMISATION is greater than 0.
 */
@@ -838,7 +838,7 @@ namespace debug
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is 
 	greater than 4.
@@ -848,7 +848,7 @@ namespace debug
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is 
 	greater than 4.
@@ -858,7 +858,7 @@ namespace debug
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is 
 	greater than 4.
@@ -868,7 +868,7 @@ namespace debug
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 3.
@@ -879,7 +879,7 @@ namespace debug
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 3.
@@ -889,7 +889,7 @@ namespace debug
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 3.
@@ -899,7 +899,7 @@ namespace debug
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 2.
@@ -909,7 +909,7 @@ namespace debug
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 2.
@@ -919,7 +919,7 @@ namespace debug
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 2.
@@ -929,7 +929,7 @@ namespace debug
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 1.
@@ -939,7 +939,7 @@ namespace debug
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 1.
@@ -949,7 +949,7 @@ namespace debug
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 1.
@@ -959,7 +959,7 @@ namespace debug
 /**
 	\brief The Macro to log line completion in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 0.
@@ -969,7 +969,7 @@ namespace debug
 /**
 	\brief The Macro to log a string in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 0.
@@ -979,7 +979,7 @@ namespace debug
 /**
 	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to debug::Log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
 	greater than 0.

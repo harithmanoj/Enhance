@@ -57,7 +57,7 @@ void write(std::string buff, std::filesystem::path file)
 	out << buff << "\n";
 }
 
-std::filesystem::path debug::getFile(std::thread::id id, std::string function)
+std::filesystem::path debug::getLoggingFilePath(std::thread::id id, std::string function)
 {
 	auto file = std::filesystem::path("");
 	std::ostringstream out;
@@ -73,23 +73,23 @@ std::filesystem::path debug::getFile(std::thread::id id, std::string function)
 	return file;
 }
 
-void debug::Log(std::string lg, std::string function)
+void debug::log(std::string lg, std::string function)
 {
-	write(lg, getFile(std::this_thread::get_id(), function));
+	write(lg, getLoggingFilePath(std::this_thread::get_id(), function));
 }
 
-void debug::Log(std::string file, std::string function, unsigned long line)
+void debug::log(std::string file, std::string function, unsigned long line)
 {
 	std::ostringstream out;
 	out << std::setw(80) << file << " : " << std::setw(6) << line << "   " << std::setw(15) << function;
-	Log(out.str(), function);
+	log(out.str(), function);
 }
 
-void debug::Log(std::string file, std::string function, unsigned long line, std::string descr)
+void debug::log(std::string file, std::string function, unsigned long line, std::string descr)
 {
 	std::ostringstream out;
 	out << std::setw(80) << file << " : " << std::setw(6) << line << "   " << std::setw(15) << function << " ::   " << descr;
-	Log(out.str(), function);
+	log(out.str(), function);
 }
 
 #endif

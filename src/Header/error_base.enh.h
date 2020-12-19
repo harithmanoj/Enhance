@@ -273,7 +273,7 @@ namespace enh
 			\brief Logs value of flag at calling line, function and file to a 
 			file indicated by current thread.
 		*/
-		void Log(
+		void log(
 			std::string file /**< : <i>in</i> : The file in which logging 
 							 code is present.*/,
 			std::string function/**< : <i>in</i> : Logging function name.*/,
@@ -283,7 +283,7 @@ namespace enh
 								 error holder.*/
 		) const noexcept
 		{
-			debug::Log(file, function, line, derived_class() + " " + variable 
+			debug::log(file, function, line, derived_class() + " " + variable 
 				+ " flag : " + error_string());
 		}
 #endif
@@ -298,14 +298,14 @@ namespace enh
 	x must be a type that inherits publically from error_base or an object of 
 	error_base.
 */
-#define LIB_ERROR_FLAG_LOG(x)		O2_LIB_REPLACE(x.Log(INFO_FOR_LOG,#x))
+#define LIB_ERROR_FLAG_LOG(x)		O2_LIB_REPLACE(x.log(INFO_FOR_LOG,#x))
 
 /**
 	\brief Log error flags.
 	x must be a type that inherits publically from error_base or an object of
 	error_base.
 */
-#define ERROR_FLAG_LOG(x)			O2_REPLACE(x.Log(INFO_FOR_LOG,#x))
+#define ERROR_FLAG_LOG(x)			O2_REPLACE(x.log(INFO_FOR_LOG,#x))
 
 /**
 	\brief Log error flags within enhance library using pointer (in class 
@@ -313,13 +313,13 @@ namespace enh
 	x must be a type that inherits publically from error_base or an object of
 	error_base.
 */
-#define LIB_ERROR_FLAG_LOGP(x)		O2_LIB_REPLACE(x->Log(INFO_FOR_LOG,#x))
+#define LIB_ERROR_FLAG_LOGP(x)		O2_LIB_REPLACE(x->log(INFO_FOR_LOG,#x))
 
 /**
 	\brief Log error flags using pointer (in class logging using this pointer).
 	x must be a type that inherits publically from error_base or an object of
 	error_base.
 */
-#define ERROR_FLAG_LOGP(x)			O2_REPLACE(x->Log(INFO_FOR_LOG,#x))
+#define ERROR_FLAG_LOGP(x)			O2_REPLACE(x->log(INFO_FOR_LOG,#x))
 
 #endif
