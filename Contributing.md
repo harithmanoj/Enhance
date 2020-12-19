@@ -28,6 +28,10 @@ Use is / has / can / should etc prefix for boolean variables.
 
 Use i, j, k, index etc for index variables or iterator variables.
 
+Use mtx as prefix for mutexes.
+
+Use cv as prefix for Conditional Variable types
+
 ## Documentation 
 
 Doxygen documentation will only be built when code is ready to be released.

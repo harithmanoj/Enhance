@@ -94,7 +94,7 @@ namespace enh
 		`gen_instruct` and `quad_instruct` to merge different types easily.
 		The type must be copy-constructible. Let it be `info`.
 
-		- Create a Function of type QueuedProcess::processing_method returns 
+		- Create a Function of type QueuedProcess::MessageHandlerType returns 
 		`tristate`, takes `info` as argument. The function should return 
 		something other than tristate::GOOD if a fatal error occurs. Let it 
 		be `proc`.
@@ -126,56 +126,56 @@ namespace enh
 		/**
 			\brief The type of object to be processed
 		*/
-		using info_type = Instruct;
+		using InfoType = Instruct;
 
 		/**
 			\brief The function type that processes the infomation passed.
 		*/
-		using processing_method = std::function<tristate(info_type)>;
+		using MessageHandlerType = std::function<tristate(InfoType)>;
 
 	private:
 
 		/**
 			\brief The synchronising mutex for Queue.
 		*/
-		std::mutex mtxQueue;
+		std::mutex _mtxQueue;
 
 		/**
 			\brief The Queue to pass instruction from main to instruction processor.
 		*/
-		std::queue<info_type> QueuedMessage;
+		std::queue<InfoType> _queuedMessage;
 
 		/**
 			\brief The object to notify update to queue.
 		*/
-		std::condition_variable cvQueue;
+		std::condition_variable _cvQueueHandler;
 
 		/**
 			\brief The bool value which indicates whether queue has been
 			updated to avoid false wake-ups.
 		*/
-		std::atomic<bool> isUpdated;
+		std::atomic<bool> _isUpdated;
 
 		/**
 			\brief The bool variable which signals the instruction processing
 			function to stop and exit after emptying the queue.
 		*/
-		std::atomic<bool> QueueStop;
+		std::atomic<bool> _shouldStopQueue;
 
 		/**
 			\brief sets to true if Queued instruction processor is active.
 		*/
-		std::atomic<bool> isQueueActive;
+		std::atomic<bool> _isQueueActive;
 
 		/**
 			\brief The function which processes the instruction then.
 		*/
-		processing_method msgProc;
+		MessageHandlerType _messageHandlerFunction;
 
 		/**
 			\brief The thread handle for the queue process.
 		*/
-		std::thread queue_thread;
+		std::thread _queueHandlerThread;
 
 
 
@@ -193,40 +193,40 @@ namespace enh
 		tristate queue_exec_process() noexcept
 		{
 			O1_LIB_LOG_LINE;
-			if (!msgProc)
+			if (!_messageHandlerFunction)
 				return tristate::ERROR;
 			O1_LIB_LOG_LINE;
-			while (!(QueueStop.load()))
+			while (!(_shouldStopQueue.load()))
 			{
 				O3_LIB_LOG_LINE;
-				while (!(isUpdated.load()))
+				while (!(_isUpdated.load()))
 				{
-					std::unique_lock<std::mutex> lock(mtxQueue);
-					cvQueue.wait(lock);
-					bool empty = QueuedMessage.empty();
+					std::unique_lock<std::mutex> lock(_mtxQueue);
+					_cvQueueHandler.wait(lock);
+					bool empty = _queuedMessage.empty();
 					lock.unlock();
-					if (!(isUpdated.load()) && QueueStop.load() && empty)
+					if (!(_isUpdated.load()) && _shouldStopQueue.load() && empty)
 						return (tristate::GOOD);
 
 				}
-				isUpdated = false;
+				_isUpdated = false;
 				bool stopNow = false;
 				{
-					std::lock_guard<std::mutex> lock(mtxQueue);
-					stopNow = QueuedMessage.empty() || QueueStop.load();
+					std::lock_guard<std::mutex> lock(_mtxQueue);
+					stopNow = _queuedMessage.empty() || _shouldStopQueue.load();
 				}
 				while (!stopNow)
 				{
 					O3_LIB_LOG_LINE;
-					mtxQueue.lock();
-					info_type front = QueuedMessage.front();
-					QueuedMessage.pop();
-					mtxQueue.unlock();
-					tristate ret = msgProc(front);
+					_mtxQueue.lock();
+					InfoType front = _queuedMessage.front();
+					_queuedMessage.pop();
+					_mtxQueue.unlock();
+					tristate ret = _messageHandlerFunction(front);
 					if (!ret)
 						return (tristate::ERROR);
-					std::lock_guard<std::mutex> temp_lock(mtxQueue);
-					stopNow = QueuedMessage.empty() || QueueStop.load();
+					std::lock_guard<std::mutex> temp_lock(_mtxQueue);
+					stopNow = _queuedMessage.empty() || _shouldStopQueue.load();
 				}
 
 			}
@@ -241,24 +241,24 @@ namespace enh
 		/**
 			\brief The default constructor.
 		*/
-		QueuedProcess() noexcept : queue_thread()
+		QueuedProcess() noexcept : _queueHandlerThread()
 		{
-			isUpdated = false;
-			QueueStop = false;
-			isQueueActive = false;
+			_isUpdated = false;
+			_shouldStopQueue = false;
+			_isQueueActive = false;
 		}
 
 		/**
 			\brief Registers the processing method while constructing.
 		*/
 		explicit QueuedProcess(
-			processing_method msg /**< : <i>in</i> : The procedure.*/
-		) noexcept : queue_thread()
+			MessageHandlerType msg /**< : <i>in</i> : The procedure.*/
+		) noexcept : _queueHandlerThread()
 		{
-			isUpdated = false;
-			QueueStop = false;
-			isQueueActive = false;
-			msgProc = msg;
+			_isUpdated = false;
+			_shouldStopQueue = false;
+			_isQueueActive = false;
+			_messageHandlerFunction = msg;
 		}
 
 		QueuedProcess(const QueuedProcess&) = delete;
@@ -273,10 +273,10 @@ namespace enh
 			\brief The Function to set a function as the instruction processor.
 		*/
 		inline void RegisterProc(
-			processing_method in /**< : <i>in</i> : The procedure.*/
+			MessageHandlerType in /**< : <i>in</i> : The procedure.*/
 		) noexcept
 		{
-			msgProc = in;
+			_messageHandlerFunction = in;
 		}
 
 		/**
@@ -291,15 +291,15 @@ namespace enh
 		tristate start_queue_process() noexcept
 		{
 			O3_LIB_LOG_LINE;
-			if (!msgProc)
+			if (!_messageHandlerFunction)
 				return tristate::ERROR;
 			if (isQueueRunning())
 				return tristate::ERROR;
 			O2_LIB_LOG_LINE;
-			QueueStop = false;
-			queue_thread = std::thread(
+			_shouldStopQueue = false;
+			_queueHandlerThread = std::thread(
 				&QueuedProcess::queue_exec_process, this);
-			isQueueActive = true;
+			_isQueueActive = true;
 			O2_LIB_LOG_LINE;
 			return (tristate::GOOD);
 		}
@@ -308,27 +308,27 @@ namespace enh
 			\brief check if queue is updated.
 
 			<h3>Return</h3>
-			Returns isUpdated.\n
+			Returns _isUpdated.\n
 
 		*/
 		inline bool isQueueUpdated() noexcept
 		{
-			return isUpdated.load();
+			return _isUpdated.load();
 		}
 
 		/**
 			\brief The function post a message onto the queue.
 		*/
 		inline void postMessage(
-			info_type Message /**< : <i>in</i> : Message need to be pushed.*/
+			InfoType Message /**< : <i>in</i> : Message need to be pushed.*/
 		)
 		{
 			{
-				std::lock_guard<std::mutex> lock(mtxQueue);
-				QueuedMessage.push(Message);
-				isUpdated = true;
+				std::lock_guard<std::mutex> lock(_mtxQueue);
+				_queuedMessage.push(Message);
+				_isUpdated = true;
 			}
-			cvQueue.notify_all();
+			_cvQueueHandler.notify_all();
 			return;
 		}
 
@@ -339,8 +339,8 @@ namespace enh
 		*/
 		inline void stopQueue() noexcept
 		{
-			QueueStop = true;
-			cvQueue.notify_all();
+			_shouldStopQueue = true;
+			_cvQueueHandler.notify_all();
 		}
 
 
@@ -351,22 +351,22 @@ namespace enh
 		  true if queue is running.\n
 
 		*/
-		inline bool isQueueRunning() noexcept { return isQueueActive.load(); };
+		inline bool isQueueRunning() noexcept { return _isQueueActive.load(); };
 
 		/**
 			\brief Waits till Queued process stops execution. Then empties queue.
 		*/
 		inline void WaitForQueueStop() noexcept
 		{
-			if (queue_thread.joinable() || isQueueRunning() )
+			if (_queueHandlerThread.joinable() || isQueueRunning() )
 			{
 				O3_LIB_LOG_LINE;
-				queue_thread.join();
+				_queueHandlerThread.join();
 				O4_LIB_LOG_LINE;
-				isQueueActive = false;
-				QueueStop = false;
-				std::lock_guard<std::mutex> lock(mtxQueue);
-				QueuedMessage = std::queue<Instruct>();
+				_isQueueActive = false;
+				_shouldStopQueue = false;
+				std::lock_guard<std::mutex> lock(_mtxQueue);
+				_queuedMessage = std::queue<Instruct>();
 			}
 
 		}
@@ -414,8 +414,8 @@ namespace enh
 				std::this_thread::sleep_for(ns);
 				bool ret = false;
 				{
-					std::lock_guard<std::mutex> lock(mtxQueue);
-					ret = QueuedMessage.empty();
+					std::lock_guard<std::mutex> lock(_mtxQueue);
+					ret = _queuedMessage.empty();
 				}
 				if (ret)
 					return;
