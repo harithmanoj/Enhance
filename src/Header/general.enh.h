@@ -62,20 +62,23 @@ namespace enh
 		\brief [[deprecated]] The signum function, value is 0 if val is 0, 1 if val > 0,
 		-1 if  val < 0.
 
-		<b> DEPRECATED </b> : Use constexpr function signum_fn.
+		<b> DEPRECATED </b> : Use constexpr function signumFunction.
 	*/
 	template<long long val>
+	[[deprecated("use template<class arithmetic> enh::signumFunction(arithmetic)")]]
 	constexpr short signum = (val > 0) ? 1 : -1;
 
 	template<>
+	[[deprecated("use template<class arithmetic> enh::signumFunction(arithmetic)")]]
 	constexpr short signum<0> = 0;
 
 	/**
 		\brief [[deprecated]] The rounded up value of the ratio num / denom.
 
-		<b> DEPRECATED </b> : Use constexpr function incl_ratio.
+		<b> DEPRECATED </b> : Use constexpr function inclusiveRatio.
 	*/
 	template<unsigned long long num, unsigned long long denom>
+	[[deprecated("use template<class integral> enh::inclusiveRatio(integral, integral)")]]
 	constexpr unsigned long long inclusive_ratio = num / denom +
 		signum<num %denom>;
 
@@ -91,7 +94,7 @@ namespace enh
 		if argument is 0
 	*/
 	template<class arithmetic>
-	constexpr short signum_fn(arithmetic arg)
+	constexpr short signumFunction(arithmetic arg)
 	{
 		static_assert(std::is_arithmetic_v<arithmetic>, "signum function takes an arithmetic type");
 		if (arg > 0)
@@ -111,16 +114,16 @@ namespace enh
 		<h3>Return</h3>
 		The rounded up value, returns num / denom rounded up.
 
-		eg : incl_ratio(25,3) == 9
+		eg : inclusiveRatio(25,3) == 9
 	*/
 	template<class integral>
-	constexpr integral incl_ratio(
+	constexpr integral inclusiveRatio(
 		integral num /*< : <i>base</i> : The numerator of fraction.*/,
 		integral denom /*< : <i>base</i> : The denominator of fraction.*/
 	)
 	{
 		static_assert(std::is_integral_v<integral>, "inclusive ratio is for integral types");
-		return (num / denom) + signum_fn(num % denom);
+		return (num / denom) + signumFunction(num % denom);
 	}
 
 	/**
@@ -162,7 +165,7 @@ namespace enh
 
 	*/
 	template<class type>
-	constexpr bool isConfined(
+	constexpr bool isConfinedWithin(
 		type unChecked /*< : <i>in</i> : The value to check.*/,
 		type lBounds /*< : <i>in</i> : The Lower bound of the interval.*/,
 		type uBounds /*< : <i>in</i> : The Upper bound of the interval.*/,
