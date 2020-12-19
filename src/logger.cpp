@@ -33,7 +33,7 @@
 
 
 // setup will indicate if no file existed previously
-std::string Register(bool& setup, std::string function, std::thread::id id = std::this_thread::get_id())
+std::string retrieveThreadStarter(bool& setup, std::string function, std::thread::id id = std::this_thread::get_id())
 {
 	static std::map<std::thread::id, std::string> call_info; // To store thread id based log-file
 	std::string ret;
@@ -62,7 +62,7 @@ std::filesystem::path debug::getLoggingFilePath(std::thread::id id, std::string 
 	auto file = std::filesystem::path("");
 	std::ostringstream out;
 	bool setup = false;
-	out << id << "_thread_fn_" << Register(setup, function, id) << ".log";
+	out << id << "_thread_fn_" << retrieveThreadStarter(setup, function, id) << ".log";
 	file = out.str();
 	if (setup)
 	{

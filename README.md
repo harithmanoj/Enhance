@@ -213,7 +213,7 @@ compilation of `logger.cpp`.
          |                  |    |                   |     |
      timer.enh.h        error_base.enh.h             |     |
                               |                     date.enh.h
-                     QueuedProcess.enh.h               |
+                      QueuedProcess.enh.h               |
                                                  time_stamp.enh.h
                                                         |
                                                   date_time.enh.h
