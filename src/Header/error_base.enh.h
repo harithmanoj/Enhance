@@ -165,7 +165,7 @@ namespace enh
 			error check_flag /**< : <i>in</i> : flag to check if raised.*/
 		) const noexcept
 		{
-			return checkField(flag.load(), check_flag);
+			return checkBitField(flag.load(), check_flag);
 		}
 
 		/**
@@ -244,7 +244,7 @@ namespace enh
 			error bitClear /**< : <i>in</i> : flag to be removed.*/
 		) noexcept
 		{
-			if (!checkField(flag.load(), bitClear))
+			if (!checkBitField(flag.load(), bitClear))
 				return tristate::ERROR;
 			flag ^= bitClear;
 			return tristate::GOOD;

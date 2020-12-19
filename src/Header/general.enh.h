@@ -50,7 +50,7 @@ namespace enh
 
 	*/
 	template<class enumT>
-	inline constexpr bool checkField(
+	inline constexpr bool checkBitField(
 		enumT base /**< : <i>base</i> : The toCheckFor to check.*/,
 		enumT toCheckFor /**< : <i>base</i> : The fields to check for.*/
 	) noexcept
