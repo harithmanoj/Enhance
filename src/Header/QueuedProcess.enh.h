@@ -80,7 +80,7 @@ namespace enh
 
 		hasErrorHandlers        = false;\n
 
-		The function RegisterProc must be called to setup the processing function
+		The function registerHandlerFunction must be called to setup the processing function
 		before starting the queue process.\n\n
 
 		<h3>Template arguments</h3>
@@ -252,13 +252,13 @@ namespace enh
 			\brief Registers the processing method while constructing.
 		*/
 		explicit QueuedProcess(
-			MessageHandlerType msg /**< : <i>in</i> : The procedure.*/
+			MessageHandlerType msgHandler /**< : <i>in</i> : The procedure.*/
 		) noexcept : _queueHandlerThread()
 		{
 			_isUpdated = false;
 			_shouldStopQueue = false;
 			_isQueueActive = false;
-			_messageHandlerFunction = msg;
+			_messageHandlerFunction = msgHandler;
 		}
 
 		QueuedProcess(const QueuedProcess&) = delete;
@@ -272,7 +272,7 @@ namespace enh
 		/**
 			\brief The Function to set a function as the instruction processor.
 		*/
-		inline void RegisterProc(
+		inline void registerHandlerFunction(
 			MessageHandlerType in /**< : <i>in</i> : The procedure.*/
 		) noexcept
 		{
@@ -288,7 +288,7 @@ namespace enh
 			Returns tristate::PREV_ERROR if error was flagged in any previous
 			function calls.\n
 		*/
-		tristate start_queue_process() noexcept
+		tristate startQueueExecution() noexcept
 		{
 			O3_LIB_LOG_LINE;
 			if (!_messageHandlerFunction)
@@ -337,7 +337,7 @@ namespace enh
 			\brief The function to signal the queue to stop processing after
 			emptying the queue.
 		*/
-		inline void stopQueue() noexcept
+		inline void stopQueueExecution() noexcept
 		{
 			_shouldStopQueue = true;
 			_cvQueueHandler.notify_all();
@@ -356,7 +356,7 @@ namespace enh
 		/**
 			\brief Waits till Queued process stops execution. Then empties queue.
 		*/
-		inline void WaitForQueueStop() noexcept
+		inline void waitForQueueExecutionStop() noexcept
 		{
 			if (_queueHandlerThread.joinable() || isQueueRunning() )
 			{
@@ -374,16 +374,16 @@ namespace enh
 		/**
 			\brief Waits till Queue is Empty then stops process and joins.
 		*/
-		inline void safe_join(
+		inline void joinAfterQueueEmpty(
 			std::chrono::nanoseconds ns /**< : <i>in</i> : The amount of time
 							to wait between each cecks to the queues size.*/
 		)
 		{
 			if (!isQueueRunning())
 				return;
-			WaitForQueueEmpty(ns);
-			stopQueue();
-			WaitForQueueStop();
+			waitForQueueExecutionStop(ns);
+			stopQueueExecution();
+			waitForQueueExecutionStop();
 		}
 
 		/**
@@ -392,18 +392,18 @@ namespace enh
 			<b>Note</b> : Even if queue has messages left over, it will exit 
 			and messages will be destroyed.
 		*/
-		inline void force_join()
+		inline void forceImmediateJoin()
 		{
 			if (!isQueueRunning())
 				return;
-			stopQueue();
-			WaitForQueueStop();
+			stopQueueExecution();
+			waitForQueueExecutionStop();
 		}
 
 		/**
 			\brief The function to wait till instruction queue is empty.
 		*/
-		inline void WaitForQueueEmpty(
+		inline void waitForQueueExecutionStop(
 			std::chrono::nanoseconds ns /**< : <i>in</i> : The amount of time
 							to wait between each cecks to the queues size.*/
 		) noexcept
@@ -429,7 +429,7 @@ namespace enh
 		*/
 		~QueuedProcess()
 		{
-			force_join();
+			forceImmediateJoin();
 		}
 	};
 
