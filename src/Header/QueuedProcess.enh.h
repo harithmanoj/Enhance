@@ -190,7 +190,7 @@ namespace enh
 			function calls.\n
 
 		*/
-		tristate queue_exec_process() noexcept
+		tristate queueExecutionFunction() noexcept
 		{
 			O1_LIB_LOG_LINE;
 			if (!_messageHandlerFunction)
@@ -210,12 +210,12 @@ namespace enh
 
 				}
 				_isUpdated = false;
-				bool stopNow = false;
+				bool shouldStopNow = false;
 				{
 					std::lock_guard<std::mutex> lock(_mtxQueue);
-					stopNow = _queuedMessage.empty() || _shouldStopQueue.load();
+					shouldStopNow = _queuedMessage.empty() || _shouldStopQueue.load();
 				}
-				while (!stopNow)
+				while (!shouldStopNow)
 				{
 					O3_LIB_LOG_LINE;
 					_mtxQueue.lock();
@@ -226,7 +226,7 @@ namespace enh
 					if (!ret)
 						return (tristate::ERROR);
 					std::lock_guard<std::mutex> temp_lock(_mtxQueue);
-					stopNow = _queuedMessage.empty() || _shouldStopQueue.load();
+					shouldStopNow = _queuedMessage.empty() || _shouldStopQueue.load();
 				}
 
 			}
@@ -298,7 +298,7 @@ namespace enh
 			O2_LIB_LOG_LINE;
 			_shouldStopQueue = false;
 			_queueHandlerThread = std::thread(
-				&QueuedProcess::queue_exec_process, this);
+				&QueuedProcess::queueExecutionFunction, this);
 			_isQueueActive = true;
 			O2_LIB_LOG_LINE;
 			return (tristate::GOOD);
