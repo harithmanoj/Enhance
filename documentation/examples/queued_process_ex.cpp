@@ -1,9 +1,9 @@
-#include <queued_process.enh.h>
+#include <QueuedProcess.enh.h>
 #include <iostream>
 
 std::mutex mtxCout;
 
-enh::tristate process(enh::gen_instruct<int, std::string, std::string> msg)
+enh::tristate process(enh::GenInstruct<int, std::string, std::string> msg)
 {
 	std::lock_guard<std::mutex> lock(mtxCout);
 	if (msg.op == 0)
@@ -19,7 +19,7 @@ enh::tristate process(enh::gen_instruct<int, std::string, std::string> msg)
 
 int main()
 {
-	enh::queued_process<enh::gen_instruct<int, std::string, std::string>> prc(process);
+	enh::QueuedProcess<enh::GenInstruct<int, std::string, std::string>> prc(process);
 	prc.start_queue_process();
 	prc.postMessage({ 0,"con","cat" });
 	prc.postMessage({ 1,"1this only","not this" });

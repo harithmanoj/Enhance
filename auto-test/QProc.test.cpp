@@ -25,7 +25,7 @@
 ******************************************************************************/
 
 #include <iostream>
-#include <queued_process.enh.h>
+#include <QueuedProcess.enh.h>
 #include "test.base.h"
 
 namespace testCase
@@ -33,7 +33,7 @@ namespace testCase
 	bool basicTest()
 	{
 		unsigned t = 0;
-		enh::queued_process<unsigned> tQ;
+		enh::QueuedProcess<unsigned> tQ;
 		tQ.RegisterProc(
 			[&](unsigned a) -> enh::tristate {
 				t += a; 
@@ -57,7 +57,7 @@ namespace testCase
 	bool forceStopTest()
 	{
 		unsigned t = 0;
-		enh::queued_process<unsigned> tQ;
+		enh::QueuedProcess<unsigned> tQ;
 		tQ.RegisterProc(
 			[&](unsigned a) -> enh::tristate {
 				std::this_thread::sleep_for(std::chrono::milliseconds(5));
@@ -85,7 +85,7 @@ namespace testCase
 	bool restartTest()
 	{
 		unsigned t = 0;
-		enh::queued_process<unsigned> tQ;
+		enh::QueuedProcess<unsigned> tQ;
 		tQ.RegisterProc(
 			[&](unsigned a) -> enh::tristate {
 				t += a; 

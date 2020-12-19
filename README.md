@@ -20,7 +20,7 @@ Including but not limited to :
 * Diagnostics.
 * Time and related tracking and synchronisation.
 * Date Time manipulation
-* Error Tracking.
+* Error Tracking.qu
 * Version info to be used inside programs.
 * Concurrent execution.
 
@@ -139,7 +139,7 @@ Exists in `namespace enh`.
 
 ### Headers 
 
-`queued_process.enh.h`
+`QueuedProcess.enh.h`
 
 ### The Library 
 
@@ -192,7 +192,7 @@ project.
 * `logger.enh.h` depends only on standard c++ headers but requires 
 compilation of `logger.cpp`.
 * `error_base.enh.h` depends on `general.enh.h`, `logger.enh.h`.
-* `queued_process.enh.h` depends on `error_base.enh.h`, `general.enh.h`, 
+* `QueuedProcess.enh.h` depends on `error_base.enh.h`, `general.enh.h`, 
 `logger.enh.h`.
 * `counter.enh.h` depends only on standard c++ headers.
 * `timer.enh.h` depends on `logger.enh.h`.
@@ -213,7 +213,7 @@ compilation of `logger.cpp`.
          |                  |    |                   |     |
      timer.enh.h        error_base.enh.h             |     |
                               |                     date.enh.h
-                     queued_process.enh.h               |
+                     QueuedProcess.enh.h               |
                                                  time_stamp.enh.h
                                                         |
                                                   date_time.enh.h
@@ -227,7 +227,7 @@ compilation of `logger.cpp`.
 * %Confined : `confined.enh.h`, `numerical_system.enh.h`
 * %Timer : `timer.enh.h` depends on %Diagnose
 * %Error : `error_base.enh.h` depends on %Diagnose, %General
-* %QProc : `queued_process.enh.h` depends on %Error, %Diagnose, %General
+* %QProc : `QueuedProcess.enh.h` depends on %Error, %Diagnose, %General
 * %DateTime : `date.enh.h`, `time_stamp.enh.h`, `date_time.enh.h` depends on 
 %Confined, %General
 
