@@ -39,20 +39,20 @@ namespace enh
 		-# <code>integral upper</code> : The upper limit for the value.\n
 	*/
 	template<class integral, integral upper>
-	class NumericSystem : public confined_base<integral>
+	class NumericSystem : public ConfinedValue<integral>
 	{
 	public:
 		
 		/**
 			\brief The upper limit for values of this type.
 		*/
-		static constexpr confined_base<integral>::value_type limit = upper;
+		static constexpr ConfinedValue<integral>::value_type limit = upper;
 
 		/**
 			\brief The constructor the class initialises value to 0.
 		*/
 		constexpr inline NumericSystem() noexcept
-			: confined_base<integral>::confined_base(
+			: ConfinedValue<integral>::ConfinedValue(
 				[&](long long a) {return a < limit; },
 				[&](long long a) { return a >= 0; },
 				[&]() {return limit - 1; },
@@ -68,8 +68,8 @@ namespace enh
 			than or equal to upper.
 		*/
 		constexpr inline NumericSystem(
-			confined_base<integral>::value_type val
-		) : confined_base<integral>::confined_base(
+			ConfinedValue<integral>::value_type val
+		) : ConfinedValue<integral>::ConfinedValue(
 				[&](long long a) {return a < limit; },
 				[&](long long a) { return a >= 0; },
 				[&]() {return limit - 1; },

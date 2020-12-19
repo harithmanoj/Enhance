@@ -165,7 +165,7 @@ namespace enh
 			upper limit for date.
 
 		*/
-		class day_t : public confined_base<unsigned short>
+		class day_t : public ConfinedValue<unsigned short>
 		{
 			
 		public:
@@ -180,7 +180,7 @@ namespace enh
 				const month_t &mnth /**< : <i>in</i> : The value of month.*/,
 				const long long &yr /**< : <i>in</i> : The value of year.*/,
 				unsigned short dy /**< : <i>in</i> : The value of day.*/
-			) : confined_base(
+			) : ConfinedValue(
 					[&mnth, &yr](long long a) 
 					{
 						return (a <= month_limit(mnth.get(), yr));
@@ -211,7 +211,7 @@ namespace enh
 			upper limit for date.
 
 		*/
-		class yearday_t : public confined_base<unsigned short>
+		class yearday_t : public ConfinedValue<unsigned short>
 		{
 
 		public:
@@ -226,7 +226,7 @@ namespace enh
 				const long long &yr /**< : <i>in</i> : The value of year.*/,
 				unsigned short yrdy /**< : <i>in</i> : The value of year 
 									day.*/
-			) : confined_base(
+			) : ConfinedValue(
 				[&yr](long long a)
 				{
 					return (a < year_limit(yr));

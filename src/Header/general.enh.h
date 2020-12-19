@@ -109,20 +109,20 @@ namespace enh
 		\brief The inclusive ratio (ratio rounded up while deviding).
 
 		<h3>Template</h3>
-		<code>class integral</code> : The integral type of the argument.
+		<code>class Integral</code> : The Integral type of the argument.
 
 		<h3>Return</h3>
 		The rounded up value, returns num / denom rounded up.
 
 		eg : inclusiveRatio(25,3) == 9
 	*/
-	template<class integral>
-	constexpr integral inclusiveRatio(
-		integral num /*< : <i>base</i> : The numerator of fraction.*/,
-		integral denom /*< : <i>base</i> : The denominator of fraction.*/
+	template<class Integral>
+	constexpr Integral inclusiveRatio(
+		Integral num /*< : <i>base</i> : The numerator of fraction.*/,
+		Integral denom /*< : <i>base</i> : The denominator of fraction.*/
 	)
 	{
-		static_assert(std::is_integral_v<integral>, "inclusive ratio is for integral types");
+		static_assert(std::is_integral_v<Integral>, "inclusive ratio is for integral types");
 		return (num / denom) + signumFunction(num % denom);
 	}
 
@@ -230,7 +230,7 @@ namespace enh
 		\brief The Ordinal for the value.
 
 		<h3>Template</h3>
-		<code>class integral</code> : The integral type of the argument.
+		<code>class Integral</code> : The Integral type of the argument.
 
 		<h3>Return</h3>
 		The ordinal indicator used for this value.
@@ -240,10 +240,10 @@ namespace enh
 		getOrdinalIndicator(21) == "st"
 				
 	*/
-	template<class integral>
-	constexpr inline std::string_view getOrdinalIndicator(integral value)
+	template<class Integral>
+	constexpr inline std::string_view getOrdinalIndicator(Integral value)
 	{
-		static_assert(std::is_integral_v<integral>, "Ordinal Indicator is \
+		static_assert(std::is_integral_v<Integral>, "Ordinal Indicator is \
 										for integral types");
 		if ((value / 10) % 10 == 1)
 			return "th";
