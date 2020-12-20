@@ -1,5 +1,5 @@
 /** ***************************************************************************
-	\file confined.enh.h
+	\file ConfinedValue.enh.h
 
 	\brief The file to declare class for confined counts
 
@@ -25,7 +25,7 @@
 
 #ifndef CONFINED_ENH_H
 
-#define CONFINED_ENH_H							confined.enh.h
+#define CONFINED_ENH_H							ConfinedValue.enh.h
 
 #include <functional>
 #include <stdexcept>

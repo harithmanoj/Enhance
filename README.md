@@ -71,7 +71,7 @@ Exists in `namespace enh`.
 
 `general.enh.h`
 
-`confined.enh.h`
+`ConfinedValue.enh.h`
 
 `numeral_system.enh.h`
 
@@ -197,15 +197,15 @@ compilation of `logger.cpp`.
 * `counter.enh.h` depends only on standard c++ headers.
 * `timer.enh.h` depends on `logger.enh.h`.
 * `date.enh.h` depends on `general.enh.h`, `numerical_system.enh.h`, 
-`confined.enh.h`.
+`ConfinedValue.enh.h`.
 * `time_stamp.enh.h` depends on `date.enh.h`, `general.enh.h`, 
-`numeral_system.enh.h`, `confined.enh.h`.
+`numeral_system.enh.h`, `ConfinedValue.enh.h`.
 * `date_time.enh.h` depends on `time_stamp.enh.h`, `date.enh.h`, 
-`general.enh.h`, `numerical_system.enh.h`, `confined.enh.h`.
+`general.enh.h`, `numerical_system.enh.h`, `ConfinedValue.enh.h`.
 
 ### Dependency Graph
 
-                   logger.enh.h      general.enh.h       confined.enh.h          framework.enh.h 
+                   logger.enh.h      general.enh.h       ConfinedValue.enh.h          framework.enh.h 
                      |       |             |                   |
                      |   logger.cpp        |                   |                       counter.enh.h 
                      |                     |                   |
@@ -224,7 +224,7 @@ compilation of `logger.cpp`.
 * %General : `general.enh.h`
 * %Framework : `framework.enh.h`
 * %Counter : `counter.enh.h`
-* %Confined : `confined.enh.h`, `numerical_system.enh.h`
+* %Confined : `ConfinedValue.enh.h`, `numerical_system.enh.h`
 * %Timer : `timer.enh.h` depends on %Diagnose
 * %Error : `error_base.enh.h` depends on %Diagnose, %General
 * %QProc : `QueuedProcess.enh.h` depends on %Error, %Diagnose, %General

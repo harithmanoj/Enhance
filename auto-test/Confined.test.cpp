@@ -25,7 +25,7 @@
 ******************************************************************************/
 
 #include <iostream>
-#include <confined.enh.h>
+#include <ConfinedValue.enh.h>
 #include "test.base.h"
 
 namespace testCase

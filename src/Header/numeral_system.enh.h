@@ -27,7 +27,7 @@
 
 #define NUMERAL_SYSTEM_ENH_H					numeral_system.enh.h
 
-#include "confined.enh.h"
+#include "ConfinedValue.enh.h"
 
 namespace enh
 {
