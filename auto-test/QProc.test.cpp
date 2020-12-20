@@ -34,13 +34,13 @@ namespace testCase
 	{
 		unsigned t = 0;
 		enh::QueuedProcess<unsigned> tQ;
-		tQ.RegisterProc(
+		tQ.registerHandlerFunction(
 			[&](unsigned a) -> enh::tristate {
 				t += a; 
 				return enh::tristate::GOOD;
 			}
 		);
-		tQ.start_queue_process();
+		tQ.startQueueExecution();
 		unsigned exp = 0;
 
 		for (unsigned i = 0; i < 5; ++i)
@@ -49,7 +49,7 @@ namespace testCase
 			tQ.postMessage(i);
 		}
 
-		tQ.safe_join(std::chrono::milliseconds(1));
+		tQ.joinAfterQueueEmpty(std::chrono::milliseconds(1));
 
 		ASSERT_TEST(t == exp, "Not evaluating all messages");
 	}
@@ -58,14 +58,14 @@ namespace testCase
 	{
 		unsigned t = 0;
 		enh::QueuedProcess<unsigned> tQ;
-		tQ.RegisterProc(
+		tQ.registerHandlerFunction(
 			[&](unsigned a) -> enh::tristate {
 				std::this_thread::sleep_for(std::chrono::milliseconds(5));
 				t += a;
 				return enh::tristate::GOOD; 
 			}
 		);
-		tQ.start_queue_process();
+		tQ.startQueueExecution();
 		unsigned exp = 0;
 
 		for (unsigned i = 0; i < 10; ++i)
@@ -77,7 +77,7 @@ namespace testCase
 
 		exp = 0 + 1 + 2 + 3 + 4;
 
-		tQ.force_join();
+		tQ.forceImmediateJoin();
 
 		ASSERT_TEST(t <= exp, "Evaluating even after force stop");
 	}
@@ -86,13 +86,13 @@ namespace testCase
 	{
 		unsigned t = 0;
 		enh::QueuedProcess<unsigned> tQ;
-		tQ.RegisterProc(
+		tQ.registerHandlerFunction(
 			[&](unsigned a) -> enh::tristate {
 				t += a; 
 				return enh::tristate::GOOD; 
 			}
 		);
-		tQ.start_queue_process();
+		tQ.startQueueExecution();
 		unsigned exp = 0;
 
 		for (unsigned i = 0; i < 5; ++i)
@@ -101,16 +101,16 @@ namespace testCase
 			tQ.postMessage(i);
 		}
 
-		tQ.safe_join(std::chrono::milliseconds(1));
+		tQ.joinAfterQueueEmpty(std::chrono::milliseconds(1));
 
-		tQ.start_queue_process();
+		tQ.startQueueExecution();
 		for (unsigned i = 0; i < 5; ++i)
 		{
 			exp += i;
 			tQ.postMessage(i);
 		}
 
-		tQ.safe_join(std::chrono::milliseconds(1));
+		tQ.joinAfterQueueEmpty(std::chrono::milliseconds(1));
 
 		ASSERT_TEST(t == exp, "Restart queue failed");
 	}
