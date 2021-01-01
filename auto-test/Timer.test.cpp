@@ -35,9 +35,9 @@ namespace testCase
 	{
 		enh::millis<50> timerObject;
 
-		auto start = enh::high_res::now();
-		timerObject.wait_for(20);		
-		auto end = enh::high_res::now();
+		auto start = enh::HighResClock::now();
+		timerObject.waitFor(20);		
+		auto end = enh::HighResClock::now();
 		auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 		decltype(elapsed) expected = 20 * 50 * 1000;
 		ASSERT_TEST(elapsed > expected, "Timer does not wait for a minimum of given time");
@@ -51,9 +51,9 @@ namespace testCase
 			std::this_thread::sleep_for(std::chrono::milliseconds(10 * 50));
 			stop = true;
 			});
-		auto start = enh::high_res::now();
-		timerObject.wait_for(20, [&]() {return !stop; });
-		auto end = enh::high_res::now();
+		auto start = enh::HighResClock::now();
+		timerObject.waitFor(20, [&]() {return !stop; });
+		auto end = enh::HighResClock::now();
 		other.join();
 		auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 		decltype(elapsed) expected_full = 20 * 50 * 1000;
@@ -68,19 +68,19 @@ namespace testCase
 		decltype(elapsed) expected;
 
 		{
-			auto start = enh::high_res::now();
-			timerObject.wait_for(20);
-			auto end = enh::high_res::now();
+			auto start = enh::HighResClock::now();
+			timerObject.waitFor(20);
+			auto end = enh::HighResClock::now();
 			elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 			expected = 20 * 50 * 1000;
 			timerObject.stop();
-			timerObject.join();
+			timerObject.waitForTimerStop();
 		}
 		{
-			ASSERT_CONTINUE(timerObject.start_timer(), "Timer failed to stop");
-			auto start = enh::high_res::now();
-			timerObject.wait_for(20);
-			auto end = enh::high_res::now();
+			ASSERT_CONTINUE(timerObject.startTimerLoop(), "Timer failed to stop");
+			auto start = enh::HighResClock::now();
+			timerObject.waitFor(20);
+			auto end = enh::HighResClock::now();
 			elapsed += std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 			expected += 20 * 50 * 1000;
 		}
