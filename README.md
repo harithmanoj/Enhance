@@ -218,30 +218,6 @@ compilation of `logger.cpp`.
                                                         |
                                                   date_time.enh.h
 
-### Module wise dependency
-
-* %Diagnose : `logger.enh.h`, `logger.cpp`
-* %General : `general.enh.h`
-* %Framework : `framework.enh.h`
-* %Counter : `counter.enh.h`
-* %Confined : `ConfinedValue.enh.h`, `numerical_system.enh.h`
-* %Timer : `timer.enh.h` depends on %Diagnose
-* %Error : `error_base.enh.h` depends on %Diagnose, %General
-* %QProc : `QueuedProcess.enh.h` depends on %Error, %Diagnose, %General
-* %DateTime : `date.enh.h`, `time_stamp.enh.h`, `date_time.enh.h` depends on 
-%Confined, %General
-
-Graph:
-
-
-            Diagnose          General  Confined    Framework
-               |                 |        |               
-      +--------+-------+ +-------+-----+  |            Counter
-      |                | |             |  |
-    Timer             Error          DateTime
-                        |
-                      QProc
-
 ## Contribution
 
 
