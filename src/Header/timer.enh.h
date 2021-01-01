@@ -42,12 +42,12 @@ namespace enh
 	/**
 		\brief Alias for the standard high resolution clock for easy access.
 	*/
-	using high_res = std::chrono::high_resolution_clock;
+	using HighResClock = std::chrono::high_resolution_clock;
 
 	/**
 		\brief Alias for easily declaring complex time stamp type.
 	*/
-	using time_pt = decltype(high_res::now());
+	using TimePoint = decltype(HighResClock::now());
 
 
 
@@ -64,23 +64,23 @@ namespace enh
 		false for all else.\n
 	*/
 	template<class T>
-	constexpr bool isGoodTimer_v = false; // evaluates to false unless explicitely specified.
+	constexpr bool isGoodTimer = false; // evaluates to false unless explicitely specified.
 
 	//explicitely specifies that milliseconds is fine.
 	template<>
-	constexpr bool isGoodTimer_v<std::chrono::milliseconds> = true;
+	constexpr bool isGoodTimer<std::chrono::milliseconds> = true;
 
 	//explicitely specifies that seconds is fine.
 	template<>
-	constexpr bool isGoodTimer_v<std::chrono::seconds> = true;
+	constexpr bool isGoodTimer<std::chrono::seconds> = true;
 
 	//explicitely specifies that minutes is fine.
 	template<>
-	constexpr bool isGoodTimer_v<std::chrono::minutes> = true;
+	constexpr bool isGoodTimer<std::chrono::minutes> = true;
 
 	//explicitely specifies that hours is fine.
 	template<>
-	constexpr bool isGoodTimer_v<std::chrono::hours> = true;
+	constexpr bool isGoodTimer<std::chrono::hours> = true;
 
 	/**
 		\brief Template type to assertian whether a type can be used to instanciate
@@ -99,13 +99,13 @@ namespace enh
 		<b>Note : </b> Not all of these type can be used to make an object of that class.
 	*/
 	template<class T>
-	constexpr bool isGoodTimerType_v = isGoodTimer_v<T>;
+	constexpr bool isGoodTimerType = isGoodTimer<T>;
 
 	template<>
-	constexpr bool isGoodTimerType_v<std::chrono::nanoseconds> = true;
+	constexpr bool isGoodTimerType<std::chrono::nanoseconds> = true;
 
 	template<>
-	constexpr bool isGoodTimerType_v<std::chrono::microseconds> = true;
+	constexpr bool isGoodTimerType<std::chrono::microseconds> = true;
 
 
 	/**
@@ -157,7 +157,7 @@ namespace enh
 
 
 		//fails if not time unit.
-		static_assert(isGoodTimerType_v<unit>, "unit type must be time type");
+		static_assert(isGoodTimerType<unit>, "unit type must be time type");
 		//fails if period < 5ms
 		static_assert(!(std::is_same_v<std::chrono::milliseconds, unit> && (period < 5)),
 			"Precision cannot be achieved lower than 5ms");
@@ -167,20 +167,20 @@ namespace enh
 			\brief The variable that is initialized at the begining of program
 			to the time at that point. Approximately the program begining time.
 		*/
-		static time_pt program_start;
+		static TimePoint program_start;
 
 		/**
 			\brief The variable that is initialized at the begining of timer
 			thread start, the begining time point of the timer.
 		*/
-		time_pt timer_start;
+		TimePoint timer_start;
 
 		/**
 			\brief The time at which next notification is to be sent.
 
 			Value is @ref timer_start + period*@ref elapsed_cycles.
 		*/
-		time_pt timer_next;
+		TimePoint timer_next;
 
 
 		/**
@@ -249,7 +249,7 @@ namespace enh
 		{
 			clear_stop();
 			elapsed_cycles = 0;
-			timer_start = high_res::now();
+			timer_start = HighResClock::now();
 			timer_next = timer_start + unit(period);
 			while (!stopTimer.load())
 			{
@@ -269,7 +269,7 @@ namespace enh
 		*/
 		inline timer() noexcept
 		{
-			static_assert(isGoodTimer_v<unit>, "unit type must be std::chrono::milliseconds, seconds or hours");
+			static_assert(isGoodTimer<unit>, "unit type must be std::chrono::milliseconds, seconds or hours");
 			isTimerActive = false;
 			clear_stop();
 			elapsed_cycles = 0;
@@ -367,9 +367,9 @@ namespace enh
 		inline void clear_stop() noexcept { stopTimer = false; }
 
 		/**
-			\brief returns the start @ref time_pt of the program.
+			\brief returns the start @ref TimePoint of the program.
 		*/
-		inline static time_pt program_start_point() noexcept 
+		inline static TimePoint program_start_point() noexcept 
 		{ return program_start; }
 
 		/**
@@ -378,7 +378,7 @@ namespace enh
 		*/
 		inline static unit program_elapsed() noexcept
 		{
-			return std::chrono::duration_cast<unit>(high_res::now()
+			return std::chrono::duration_cast<unit>(HighResClock::now()
 				- program_start);
 		}
 
@@ -484,7 +484,7 @@ namespace enh
 	};
 
 	template<unsigned a, class b>
-	time_pt timer<a,b>::program_start = high_res::now();
+	TimePoint timer<a,b>::program_start = HighResClock::now();
 
 	/**
 		\brief The enh::timer class with unit <code>std::chrono::
