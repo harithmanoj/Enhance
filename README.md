@@ -84,7 +84,7 @@ Exists in `namespace enh`.
 * Signum function and inclusive_ration (also constexpr).
 * getOrdinalIndicator returns "th", "st", "nd" "rd" according to argument passed.
 * signExtend extends the string format of a numeral by prepending '0' s
-* confined_base class for storing a value within bounds
+* ConfinedValue class for storing a value within bounds
 * NumericSystem class for storing a value within 0 and an upper limit.
 * Class to hold values which has different denominations. (money)
  

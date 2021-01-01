@@ -35,7 +35,7 @@ namespace testCase
 		template<class integral>
 		bool confinedbasicAdd()
 		{
-			enh::confined_base<long> conf(
+			enh::ConfinedValue<long> conf(
 				[](long long a) {return a < 200; },
 				[](long long a) {return a >= 100; },
 				[]() {return 199; },
@@ -52,7 +52,7 @@ namespace testCase
 		template<class integral>
 		bool confinedbasicSub()
 		{
-			enh::confined_base<long> conf(
+			enh::ConfinedValue<long> conf(
 				[](long long a) {return a < 200; },
 				[](long long a) {return a >= 100; },
 				[]() {return 199; },
@@ -68,7 +68,7 @@ namespace testCase
 		template<class integral>
 		bool confinedmultiAdd()
 		{
-			enh::confined_base<long> conf(
+			enh::ConfinedValue<long> conf(
 				[](long long a) {return a < 200; },
 				[](long long a) {return a >= 100; },
 				[]() {return 199; },
@@ -85,7 +85,7 @@ namespace testCase
 		template<class integral>
 		bool confinedmultiSub()
 		{
-			enh::confined_base<long> conf(
+			enh::ConfinedValue<long> conf(
 				[](long long a) {return a < 200; },
 				[](long long a) {return a >= 100; },
 				[]() {return 199; },
@@ -102,7 +102,7 @@ namespace testCase
 		template<class integral>
 		bool confinedNegLimitBasicAdd()
 		{
-			enh::confined_base<long> conf(
+			enh::ConfinedValue<long> conf(
 				[](long long a) {return a < 200; },
 				[](long long a) {return a >= -100; },
 				[]() {return 199; },
@@ -119,7 +119,7 @@ namespace testCase
 		template<class integral>
 		bool confinedNegLimitBasicSub()
 		{
-			enh::confined_base<long> conf(
+			enh::ConfinedValue<long> conf(
 				[](long long a) {return a < 200; },
 				[](long long a) {return a >= -100; },
 				[]() {return 199; },
@@ -135,7 +135,7 @@ namespace testCase
 		template<class integral>
 		bool confinedNegLimitMultiAdd()
 		{
-			enh::confined_base<long> conf(
+			enh::ConfinedValue<long> conf(
 				[](long long a) {return a < 200; },
 				[](long long a) {return a >= -100; },
 				[]() {return 199; },
@@ -152,7 +152,7 @@ namespace testCase
 		template<class integral>
 		bool confinedNegLimitMultiSub()
 		{
-			enh::confined_base<long> conf(
+			enh::ConfinedValue<long> conf(
 				[](long long a) {return a < 200; },
 				[](long long a) {return a >= -100; },
 				[]() {return 199; },
