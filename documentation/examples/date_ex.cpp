@@ -4,7 +4,7 @@
 
 int main()
 {
-	enh::date dt[] = { {},{std::time(nullptr)}, {21,4,2020,2,75} };
+	enh::Date dt[] = { {},{std::time(nullptr)}, {21,4,2020,2,75} };
 
 	dt[1].addDay(250);
 
