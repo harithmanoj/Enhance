@@ -90,37 +90,37 @@ namespace enh
 		\include{lineno} error_base_ex.cpp
 	*/
 	template<class type>
-	class error_base
+	class ErrorTracker
 	{
 	public:
 
-		static_assert(std::is_integral_v<type>, "error_base should have integral error type");
+		static_assert(std::is_integral_v<type>, "ErrorTracker should have integral error type");
 		
 		/**
 			\brief The alias to hold constants for error reporting.
 		*/
-		using error = type;
+		using UnderlyingErrorType = type;
 
 		/**
 			\brief <i>0x00</i> : No error after last clear. 
 		*/
-		static constexpr error	SAFE = 0x00;
+		static constexpr UnderlyingErrorType SAFE = 0x00;
 
 		/**
 			\brief <i>0x01</i> : Unknown Error. 
 		*/
-		static constexpr error UNKNOWN = 0x01;
+		static constexpr UnderlyingErrorType UNKNOWN = 0x01;
 
 		/**
 			\brief <i>0x02</i> : Invalid argument. 
 		*/
-		static constexpr error INVALID_ARG = 0x02;
+		static constexpr UnderlyingErrorType INVALID_ARG = 0x02;
 	protected:
 
 		/**
 			\brief The error if any occured.
 		*/
-		std::atomic<error> flag;
+		std::atomic<UnderlyingErrorType> flag;
 
 	public:
 
@@ -129,7 +129,7 @@ namespace enh
 		/**
 			\brief default constructor, constructs it as SAFE no error.
 		*/
-		inline error_base()
+		inline ErrorTracker()
 		{
 			flag = SAFE;
 		}
@@ -149,7 +149,7 @@ namespace enh
 			<h3> Return </h3>
 			The error flag.\n
 		*/
-		inline error getError() const noexcept
+		inline UnderlyingErrorType getError() const noexcept
 		{
 			return flag;
 		}
@@ -162,7 +162,7 @@ namespace enh
 
 		*/
 		inline bool checkFlag(
-			error check_flag /**< : <i>in</i> : flag to check if raised.*/
+			UnderlyingErrorType check_flag /**< : <i>in</i> : flag to check if raised.*/
 		) const noexcept
 		{
 			return checkBitField(flag.load(), check_flag);
@@ -186,7 +186,7 @@ namespace enh
 			<h3>Return</h3>
 			All error flag(s) set.\n
 		*/
-		virtual std::string error_string() const
+		virtual std::string toString() const
 		{
 			std::string ret = "";
 			if (isSafe())
@@ -223,7 +223,7 @@ namespace enh
 
 		*/
 		inline Tristate setFlag(
-			error set /**< : <i>in</i> : flag to be added.*/
+			UnderlyingErrorType set /**< : <i>in</i> : flag to be added.*/
 		) noexcept
 		{
 			flag |= set;
@@ -241,7 +241,7 @@ namespace enh
 
 		*/
 		inline Tristate clearFlag(
-			error bitClear /**< : <i>in</i> : flag to be removed.*/
+			UnderlyingErrorType bitClear /**< : <i>in</i> : flag to be removed.*/
 		) noexcept
 		{
 			if (!checkBitField(flag.load(), bitClear))
@@ -263,7 +263,7 @@ namespace enh
 		*/
 		virtual std::string derived_class() const noexcept
 		{
-			return "error_base";
+			return "ErrorTracker";
 		}
 
 		
@@ -284,7 +284,7 @@ namespace enh
 		) const noexcept
 		{
 			debug::log(file, function, line, derived_class() + " " + variable 
-				+ " flag : " + error_string());
+				+ " flag : " + toString());
 		}
 #endif
 	};
@@ -295,30 +295,30 @@ namespace enh
 
 /**
 	\brief Log error flags within enhance library.
-	x must be a type that inherits publically from error_base or an object of 
-	error_base.
+	x must be a type that inherits publically from ErrorTracker or an object of 
+	ErrorTracker.
 */
 #define LIB_ERROR_FLAG_LOG(x)		O2_LIB_REPLACE(x.log(INFO_FOR_LOG,#x))
 
 /**
 	\brief Log error flags.
-	x must be a type that inherits publically from error_base or an object of
-	error_base.
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
 */
 #define ERROR_FLAG_LOG(x)			O2_REPLACE(x.log(INFO_FOR_LOG,#x))
 
 /**
 	\brief Log error flags within enhance library using pointer (in class 
 	logging using this pointer).
-	x must be a type that inherits publically from error_base or an object of
-	error_base.
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
 */
 #define LIB_ERROR_FLAG_LOGP(x)		O2_LIB_REPLACE(x->log(INFO_FOR_LOG,#x))
 
 /**
 	\brief Log error flags using pointer (in class logging using this pointer).
-	x must be a type that inherits publically from error_base or an object of
-	error_base.
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
 */
 #define ERROR_FLAG_LOGP(x)			O2_REPLACE(x->log(INFO_FOR_LOG,#x))
 

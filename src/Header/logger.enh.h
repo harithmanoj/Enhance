@@ -51,8 +51,8 @@
 	- Define `IGNORE_ENHANCE_DIAGNOSTICS` to remove all logging calls from 
 	enhance library classes and functions.
 
-	- Use `ERROR_FLAG_LOG` to log errors managed by `common::error_base` 
-	class template, Pass the object with which error_base methods can be 
+	- Use `ERROR_FLAG_LOG` to log errors managed by `common::ErrorTracker` 
+	class template, Pass the object with which ErrorTracker methods can be 
 	called.
 
 	- Use `REPLACE` for expressions to be evaluated only during debug.

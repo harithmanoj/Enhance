@@ -96,7 +96,7 @@ namespace enh
 
 		- Create a Function of type QueuedProcess::MessageHandlerType returns 
 		`tristate`, takes `info` as argument. The function should return 
-		something other than tristate::GOOD if a fatal error occurs. Let it 
+		something other than Tristate::GOOD if a fatal error occurs. Let it 
 		be `proc`.
 
 		- Create object of `queued_process<info>`, construct by passing `proc`
@@ -131,7 +131,7 @@ namespace enh
 		/**
 			\brief The function type that processes the infomation passed.
 		*/
-		using MessageHandlerType = std::function<tristate(InfoType)>;
+		using MessageHandlerType = std::function<Tristate(InfoType)>;
 
 	private:
 
@@ -185,16 +185,16 @@ namespace enh
 
 
 			<h3>Return</h3>
-			Returns tristate::ERROR if any msg_switch fails.\n
-			Returns tristate::PREV_ERROR if error was flagged in any previous
+			Returns Tristate::ERROR if any msg_switch fails.\n
+			Returns Tristate::PREV_ERROR if error was flagged in any previous
 			function calls.\n
 
 		*/
-		tristate queueExecutionFunction() noexcept
+		Tristate queueExecutionFunction() noexcept
 		{
 			O1_LIB_LOG_LINE;
 			if (!_messageHandlerFunction)
-				return tristate::ERROR;
+				return Tristate::ERROR;
 			O1_LIB_LOG_LINE;
 			while (!(_shouldStopQueue.load()))
 			{
@@ -206,7 +206,7 @@ namespace enh
 					bool empty = _queuedMessage.empty();
 					lock.unlock();
 					if (!(_isUpdated.load()) && _shouldStopQueue.load() && empty)
-						return (tristate::GOOD);
+						return (Tristate::GOOD);
 
 				}
 				_isUpdated = false;
@@ -222,16 +222,16 @@ namespace enh
 					InfoType front = _queuedMessage.front();
 					_queuedMessage.pop();
 					_mtxQueue.unlock();
-					tristate ret = _messageHandlerFunction(front);
+					Tristate ret = _messageHandlerFunction(front);
 					if (!ret)
-						return (tristate::ERROR);
+						return (Tristate::ERROR);
 					std::lock_guard<std::mutex> temp_lock(_mtxQueue);
 					shouldStopNow = _queuedMessage.empty() || _shouldStopQueue.load();
 				}
 
 			}
 			O4_LIB_LOG_LINE;
-			return (tristate::GOOD);
+			return (Tristate::GOOD);
 		}
 
 	public:
@@ -283,25 +283,25 @@ namespace enh
 			\brief starts the function queue_process in another thread.
 
 			<h3>Return</h3>
-			Returns tristate::ERROR if no procedure was set, or queue is
+			Returns Tristate::ERROR if no procedure was set, or queue is
 			already running or if thread allocation failed.\n
-			Returns tristate::PREV_ERROR if error was flagged in any previous
+			Returns Tristate::PREV_ERROR if error was flagged in any previous
 			function calls.\n
 		*/
-		tristate startQueueExecution() noexcept
+		Tristate startQueueExecution() noexcept
 		{
 			O3_LIB_LOG_LINE;
 			if (!_messageHandlerFunction)
-				return tristate::ERROR;
+				return Tristate::ERROR;
 			if (isQueueRunning())
-				return tristate::ERROR;
+				return Tristate::ERROR;
 			O2_LIB_LOG_LINE;
 			_shouldStopQueue = false;
 			_queueHandlerThread = std::thread(
 				&QueuedProcess::queueExecutionFunction, this);
 			_isQueueActive = true;
 			O2_LIB_LOG_LINE;
-			return (tristate::GOOD);
+			return (Tristate::GOOD);
 		}
 
 		/**
