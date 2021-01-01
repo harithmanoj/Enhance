@@ -1,27 +1,27 @@
 #include <error_base.enh.h>
 #include <iostream>
 
-enh::tristate foo(std::string len)
+enh::Tristate foo(std::string len)
 {
 	static bool error = false;
 	if (error)
-		return enh::tristate::PREV_ERR;
+		return enh::Tristate::PREV_ERR;
 	if (len.empty())
 	{
 		error = true;
-		return enh::tristate::ERROR;
+		return enh::Tristate::ERROR;
 	}
 	std::cout << len << "\n";
 
-	return enh::tristate::GOOD;
+	return enh::Tristate::GOOD;
 
 }
 
 int main()
 {
 	std::cout << std::boolalpha << !!foo("first") << "\n";
-	std::cout << (foo({}) == enh::tristate::ERROR) << "\n";
-	std::cout << (foo("kk") == enh::tristate::PREV_ERR) << "\n";
+	std::cout << (foo({}) == enh::Tristate::ERROR) << "\n";
+	std::cout << (foo("kk") == enh::Tristate::PREV_ERR) << "\n";
 	return 0;
 }
 

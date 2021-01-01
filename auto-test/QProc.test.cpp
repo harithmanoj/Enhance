@@ -35,9 +35,9 @@ namespace testCase
 		unsigned t = 0;
 		enh::QueuedProcess<unsigned> tQ;
 		tQ.registerHandlerFunction(
-			[&](unsigned a) -> enh::tristate {
+			[&](unsigned a) -> enh::Tristate {
 				t += a; 
-				return enh::tristate::GOOD;
+				return enh::Tristate::GOOD;
 			}
 		);
 		tQ.startQueueExecution();
@@ -59,10 +59,10 @@ namespace testCase
 		unsigned t = 0;
 		enh::QueuedProcess<unsigned> tQ;
 		tQ.registerHandlerFunction(
-			[&](unsigned a) -> enh::tristate {
+			[&](unsigned a) -> enh::Tristate {
 				std::this_thread::sleep_for(std::chrono::milliseconds(5));
 				t += a;
-				return enh::tristate::GOOD; 
+				return enh::Tristate::GOOD; 
 			}
 		);
 		tQ.startQueueExecution();
@@ -87,9 +87,9 @@ namespace testCase
 		unsigned t = 0;
 		enh::QueuedProcess<unsigned> tQ;
 		tQ.registerHandlerFunction(
-			[&](unsigned a) -> enh::tristate {
+			[&](unsigned a) -> enh::Tristate {
 				t += a; 
-				return enh::tristate::GOOD; 
+				return enh::Tristate::GOOD; 
 			}
 		);
 		tQ.startQueueExecution();

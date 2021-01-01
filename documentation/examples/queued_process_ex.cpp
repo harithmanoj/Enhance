@@ -3,7 +3,7 @@
 
 std::mutex mtxCout;
 
-enh::tristate process(enh::GenInstruct<int, std::string, std::string> msg)
+enh::Tristate process(enh::GenInstruct<int, std::string, std::string> msg)
 {
 	std::lock_guard<std::mutex> lock(mtxCout);
 	if (msg.op == 0)
@@ -14,7 +14,7 @@ enh::tristate process(enh::GenInstruct<int, std::string, std::string> msg)
 		std::cout << msg.uParam << "\n";
 	else
 		std::cout << "error\n";
-	return enh::tristate::GOOD;
+	return enh::Tristate::GOOD;
 }
 
 int main()

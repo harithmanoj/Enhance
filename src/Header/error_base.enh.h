@@ -50,7 +50,7 @@ namespace enh
 
 		\include{lineno} tristate_ex.cpp
 	*/
-	enum class tristate : char
+	enum class Tristate : char
 	{
 		GOOD = 1 /**< : <i>1</i> : No error flag set. */,
 		ERROR = 0 /**< : <i>0</i> : Error flag set now. */,
@@ -62,14 +62,14 @@ namespace enh
 		\brief checks if input is not safe (not GOOD).
 
 		<h3>Return</h3>
-		Returns false if e is tristate::GOOD and true
+		Returns false if e is Tristate::GOOD and true
 		else.\n
 	*/
 	inline bool operator !(
-		tristate e /**< : <i>in</i> : The tristate to check.*/
+		Tristate e /**< : <i>in</i> : The Tristate to check.*/
 		) noexcept
 	{
-		return (e != tristate::GOOD);
+		return (e != Tristate::GOOD);
 	}
 
 	/**
@@ -219,15 +219,15 @@ namespace enh
 			For Setting flag while simultaneously return error state.\n\n
 
 			<h3>Return</h3>
-			Returns value tristate::ERROR.\n
+			Returns value Tristate::ERROR.\n
 
 		*/
-		inline tristate setFlag(
+		inline Tristate setFlag(
 			error set /**< : <i>in</i> : flag to be added.*/
 		) noexcept
 		{
 			flag |= set;
-			return tristate::ERROR;
+			return Tristate::ERROR;
 		}
 
 		/**
@@ -236,18 +236,18 @@ namespace enh
 			For clearing certian flags after it has been resolved.\n\n
 
 			<h3>Return</h3>
-			Returns value tristate::ERROR if flag is
-			not set, tristate::GOOD else.\n
+			Returns value Tristate::ERROR if flag is
+			not set, Tristate::GOOD else.\n
 
 		*/
-		inline tristate clearFlag(
+		inline Tristate clearFlag(
 			error bitClear /**< : <i>in</i> : flag to be removed.*/
 		) noexcept
 		{
 			if (!checkBitField(flag.load(), bitClear))
-				return tristate::ERROR;
+				return Tristate::ERROR;
 			flag ^= bitClear;
-			return tristate::GOOD;
+			return Tristate::GOOD;
 		}
 
 		
