@@ -1,4 +1,4 @@
-#include <framework.enh.h>
+#include <VersionInfo.enh.h>
 #include <iostream>
 
 int main()
