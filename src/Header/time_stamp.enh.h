@@ -32,7 +32,7 @@
 
 namespace enh
 {
-	namespace dt_type
+	namespace numeric
 	{
 		/**
 			\brief The confined type for seconds.
@@ -62,17 +62,17 @@ namespace enh
 		/**
 			\brief The seconds part of time [0,60].
 		*/
-		dt_type::sec_t seconds;
+		numeric::sec_t seconds;
 		
 		/**
 			\brief The minutes part of time [0,59].
 		*/
-		dt_type::min_t minutes;
+		numeric::min_t minutes;
 
 		/**
 			\brief The hours part of time [0,23].
 		*/
-		dt_type::hr_t hours;
+		numeric::hr_t hours;
 
 	public:
 
@@ -102,7 +102,7 @@ namespace enh
 		)
 		{
 			tm tm_str;
-			enh::localtime(&tm_str, &timeStamp);
+			enh::localTime(&tm_str, &timeStamp);
 			if (tm_str.tm_sec <= 59)
 				setTime(tm_str.tm_sec, tm_str.tm_min, tm_str.tm_hour);
 			else

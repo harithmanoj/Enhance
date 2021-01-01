@@ -39,7 +39,7 @@ namespace enh
 
 		\include{lineno} DateTime_ex.cpp
 	*/
-	class DateTime : public date, public time_stamp
+	class DateTime : public Date, public time_stamp
 	{
 	
 	public:
@@ -50,14 +50,14 @@ namespace enh
 		*/
 		constexpr inline void set(
 			unsigned short dy /**< : <i>in</i> : The day of the month 
-							  [1,month_limit].*/,
+							  [1,monthTotalDays].*/,
 			unsigned short mnth /**< : <i>in</i> : The number of months after
 								January [0,11].*/,
 			long yr /**< : <i>in</i> : The Year.*/,
 			unsigned short week /**< : <i>in</i> : The day of the week after
 								Sunday [0,6].*/,
 			unsigned short ydy /**< : <i>in</i> : The number of day after 01 January
-						 of that year [1,year_limit).*/,
+						 of that year [1,yearTotalDays).*/,
 			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
 			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
 			unsigned short hr /**< : <i>in</i> : The hours field [0,59].*/
@@ -77,7 +77,7 @@ namespace enh
 		)
 		{
 			tm temp;
-			localtime(&temp, &stamp);
+			localTime(&temp, &stamp);
 			if (temp.tm_sec <= 59)
 				set(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, temp.tm_wday,
 					temp.tm_yday, temp.tm_sec, temp.tm_min, temp.tm_hour);
@@ -100,18 +100,18 @@ namespace enh
 		*/
 		constexpr inline DateTime(
 			unsigned short dy /**< : <i>in</i> : The day of the month
-							  [1,month_limit].*/,
+							  [1,monthTotalDays].*/,
 			unsigned short mnth /**< : <i>in</i> : The number of months after
 								January [0,11].*/,
 			long yr /**< : <i>in</i> : The Year.*/,
 			unsigned short week /**< : <i>in</i> : The day of the week after
 								Sunday [0,6].*/,
 			unsigned short ydy /**< : <i>in</i> : The number of day after 01 January
-						 of that year [1,year_limit).*/,
+						 of that year [1,yearTotalDays).*/,
 			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
 			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
 			unsigned short hr /**< : <i>in</i> : The hours field [0,59].*/
-		) : date(dy, mnth, yr, week, ydy), time_stamp(sec, min, hr) {}
+		) : Date(dy, mnth, yr, week, ydy), time_stamp(sec, min, hr) {}
 
 		/**
 			\brief Sets the time and date to the time and date indicated by
@@ -120,7 +120,7 @@ namespace enh
 		inline DateTime(
 			time_t stamp /**< : <i>in</i> : The time stamp which
 							 contains the date and time.*/
-		) : date(1,0,0,0,0), time_stamp(0,0,0) 
+		) : Date(1,0,0,0,0), time_stamp(0,0,0) 
 		{
 			set(stamp);
 		}
@@ -128,7 +128,7 @@ namespace enh
 		/**
 			\brief Sets the time and date to the current time and date.
 		*/
-		inline DateTime() : date(1, 0, 0, 0, 0), time_stamp(0, 0, 0) 
+		inline DateTime() : Date(1, 0, 0, 0, 0), time_stamp(0, 0, 0) 
 		{
 			set();
 		}
@@ -247,7 +247,7 @@ namespace enh
 			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
 		) const noexcept
 		{
-			return date::isEqualTo(dt) && time_stamp::isEqualTo(dt);
+			return Date::isEqualTo(dt) && time_stamp::isEqualTo(dt);
 		}
 
 		/**
@@ -274,7 +274,7 @@ namespace enh
 			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
 		) const noexcept
 		{
-			return date::isLesserThan(dt) && time_stamp::isLesserThan(dt);
+			return Date::isLesserThan(dt) && time_stamp::isLesserThan(dt);
 		}
 
 		/**
@@ -287,7 +287,7 @@ namespace enh
 			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
 		) const noexcept
 		{
-			return date::isLesserThanEq(dt) && time_stamp::isLesserThanEq(dt);
+			return Date::isLesserThanEq(dt) && time_stamp::isLesserThanEq(dt);
 		}
 
 		/**
