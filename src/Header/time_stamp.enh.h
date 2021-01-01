@@ -1,5 +1,5 @@
 /** ***************************************************************************
-	\file time_stamp.enh.h
+	\file TimeStamp.enh.h
 
 	\brief File for time class.
 
@@ -37,17 +37,17 @@ namespace enh
 		/**
 			\brief The confined type for seconds.
 		*/
-		using sec_t = enh::UnsignedLimitedNumber<unsigned short, 60>;
+		using Seconds = enh::UnsignedLimitedNumber<unsigned short, 60>;
 		
 		/**
 			\brief The confined type for minutes.
 		*/
-		using min_t = enh::UnsignedLimitedNumber<unsigned short, 60>;
+		using Minutes = enh::UnsignedLimitedNumber<unsigned short, 60>;
 		
 		/**
 			\brief The confined type for hours.
 		*/
-		using hr_t = enh::UnsignedLimitedNumber<unsigned short, 24>;
+		using Hours = enh::UnsignedLimitedNumber<unsigned short, 24>;
 	}
 
 	/**
@@ -57,22 +57,22 @@ namespace enh
 
 		\include{lineno} time_stamp_ex.cpp
 	*/
-	class time_stamp
+	class TimeStamp
 	{
 		/**
 			\brief The seconds part of time [0,60].
 		*/
-		numeric::sec_t seconds;
+		numeric::Seconds _seconds;
 		
 		/**
 			\brief The minutes part of time [0,59].
 		*/
-		numeric::min_t minutes;
+		numeric::Minutes _minutes;
 
 		/**
 			\brief The hours part of time [0,23].
 		*/
-		numeric::hr_t hours;
+		numeric::Hours _hours;
 
 	public:
 
@@ -89,9 +89,9 @@ namespace enh
 			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
 		)
 		{
-			seconds.set(sec);
-			minutes.set(min);
-			hours.set(hr);
+			_seconds.set(sec);
+			_minutes.set(min);
+			_hours.set(hr);
 		}
 
 		/**
@@ -124,16 +124,16 @@ namespace enh
 			Throws <code>std::invalid_argument</code> if sec, min, hr is
 			not within bounds. [0,60], [0,59], [0,23] respectively.
 		*/
-		constexpr inline time_stamp(
+		constexpr inline TimeStamp(
 			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
 			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
 			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
-		) : seconds(sec), minutes(min), hours(hr) {}
+		) : _seconds(sec), _minutes(min), _hours(hr) {}
 
 		/**
 			\brief Sets the time to the time indicated by argument.
 		*/
-		inline time_stamp(
+		inline TimeStamp(
 			time_t timeStamp /**< : <i>in</i> : The time to set.*/
 		)
 		{
@@ -143,7 +143,7 @@ namespace enh
 		/**
 			\brief Sets the time to the current time.
 		*/
-		inline time_stamp()
+		inline TimeStamp()
 		{
 			setTime();
 		}
@@ -159,7 +159,7 @@ namespace enh
 			unsigned long long hr /**< : <i>in</i> : The hours to add.*/
 		) noexcept
 		{
-			return hours.add(hr);
+			return _hours.add(hr);
 		}
 
 		/**
@@ -173,7 +173,7 @@ namespace enh
 			unsigned long long min /**< : <i>in</i> : The minutes to add.*/
 		) noexcept
 		{
-			return addHours(minutes.add(min));
+			return addHours(_minutes.add(min));
 		}
 
 		/**
@@ -187,7 +187,7 @@ namespace enh
 			unsigned long long sec  /**< : <i>in</i> : The seconds to add.*/
 		) noexcept
 		{
-			return addMinutes(seconds.add(sec));
+			return addMinutes(_seconds.add(sec));
 		}
 
 		/**
@@ -201,7 +201,7 @@ namespace enh
 			unsigned long long hr /**< : <i>in</i> : The hours to reduce.*/
 		) noexcept
 		{
-			return hours.sub(hr);
+			return _hours.sub(hr);
 		}
 
 		/**
@@ -215,7 +215,7 @@ namespace enh
 			unsigned long long min /**< : <i>in</i> : The minutes to reduce.*/
 		) noexcept
 		{
-			return subHours(minutes.sub(min));
+			return subHours(_minutes.sub(min));
 		}
 
 		/**
@@ -229,23 +229,23 @@ namespace enh
 			unsigned long long sec /**< : <i>in</i> : The seconds to reduce.*/
 		) noexcept
 		{
-			return subMinutes(seconds.sub(sec));
+			return subMinutes(_seconds.sub(sec));
 		}
 
 		/**
 			\brief Get Seconds field.
 		*/
-		constexpr inline unsigned short getSeconds() const noexcept { return seconds.get(); }
+		constexpr inline unsigned short getSeconds() const noexcept { return _seconds.get(); }
 
 		/**
 			\brief Get Minutes field.
 		*/
-		constexpr inline unsigned short getMinutes() const noexcept { return minutes.get(); }
+		constexpr inline unsigned short getMinutes() const noexcept { return _minutes.get(); }
 
 		/**
 			\brief Get Hours field.
 		*/
-		constexpr inline unsigned short getHours() const noexcept { return hours.get(); }
+		constexpr inline unsigned short getHours() const noexcept { return _hours.get(); }
 
 		/**
 			\brief Get The time as a string in default format.
@@ -258,9 +258,9 @@ namespace enh
 		*/
 		inline std::string getStringTime() const
 		{
-			return signExtendValue(hours.get(), 2) + " : "
-				+ signExtendValue(minutes.get(), 2) + " : "
-				+ signExtendValue(seconds.get(), 2);
+			return signExtendValue(_hours.get(), 2) + " : "
+				+ signExtendValue(_minutes.get(), 2) + " : "
+				+ signExtendValue(_seconds.get(), 2);
 		}
 
 		/**
@@ -286,15 +286,15 @@ namespace enh
 			std::size_t psec, pmin, phour;
 			psec = format.find("sec");
 			if (psec != std::string::npos)
-				format.replace(psec, 3, signExtendValue(seconds.get(), 2));
+				format.replace(psec, 3, signExtendValue(_seconds.get(), 2));
 			
 			pmin = format.find("min");
 			if (pmin != std::string::npos)
-				format.replace(pmin, 3, signExtendValue(minutes.get(), 2));
+				format.replace(pmin, 3, signExtendValue(_minutes.get(), 2));
 			
 			phour = format.find("hour");
 			if (phour != std::string::npos)
-				format.replace(phour, 4, signExtendValue(hours.get(), 2));
+				format.replace(phour, 4, signExtendValue(_hours.get(), 2));
 
 			return format;
 		}
@@ -307,10 +307,10 @@ namespace enh
 			current object.
 		*/
 		constexpr inline bool isEqualTo(
-			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+			const TimeStamp &dt /**< : <i>in</i> : The TimeStamp to compare with.*/
 		) const noexcept
 		{
-			return (hours == dt.hours) && (minutes == dt.minutes) && (seconds == dt.seconds);
+			return (_hours == dt._hours) && (_minutes == dt._minutes) && (_seconds == dt._seconds);
 		}
 
 		/**
@@ -321,37 +321,37 @@ namespace enh
 			current object.
 		*/
 		constexpr inline bool isNotEqualTo(
-			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+			const TimeStamp &dt /**< : <i>in</i> : The TimeStamp to compare with.*/
 		) const noexcept
 		{
 			return !isEqualTo(dt);
 		}
 
 		/**
-			\brief Checks if current time_stamp is lesser than argument.
+			\brief Checks if current TimeStamp is lesser than argument.
 
 			<h3>Return</h3>
-			Returns true if current time_stamp is lesser than argument.
+			Returns true if current TimeStamp is lesser than argument.
 		*/
 		constexpr inline bool isLesserThan(
-			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+			const TimeStamp &dt /**< : <i>in</i> : The TimeStamp to compare with.*/
 		) const noexcept
 		{
-			if (hours < dt.hours)
+			if (_hours < dt._hours)
 				return true;
-			else if (hours > dt.hours)
+			else if (_hours > dt._hours)
 				return false;
 			else
 			{
-				if (minutes < dt.minutes)
+				if (_minutes < dt._minutes)
 					return true;
-				else if (minutes > dt.minutes)
+				else if (_minutes > dt._minutes)
 					return false;
 				else
 				{
-					if (seconds < dt.seconds)
+					if (_seconds < dt._seconds)
 						return true;
-					else if (seconds > dt.seconds)
+					else if (_seconds > dt._seconds)
 						return false;
 					else
 						return false;
@@ -361,30 +361,30 @@ namespace enh
 		}
 
 		/**
-			\brief Checks if current time_stamp is lesser than or equal to argument.
+			\brief Checks if current TimeStamp is lesser than or equal to argument.
 
 			<h3>Return</h3>
-			Returns true if current time_stamp is lesser than or equal to argument.
+			Returns true if current TimeStamp is lesser than or equal to argument.
 		*/
 		constexpr inline bool isLesserThanEq(
-			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+			const TimeStamp &dt /**< : <i>in</i> : The TimeStamp to compare with.*/
 		) const noexcept
 		{
-			if (hours < dt.hours)
+			if (_hours < dt._hours)
 				return true;
-			else if (hours > dt.hours)
+			else if (_hours > dt._hours)
 				return false;
 			else
 			{
-				if (minutes < dt.minutes)
+				if (_minutes < dt._minutes)
 					return true;
-				else if (minutes > dt.minutes)
+				else if (_minutes > dt._minutes)
 					return false;
 				else
 				{
-					if (seconds < dt.seconds)
+					if (_seconds < dt._seconds)
 						return true;
-					else if (seconds > dt.seconds)
+					else if (_seconds > dt._seconds)
 						return false;
 					else
 						return true;
@@ -394,26 +394,26 @@ namespace enh
 		}
 
 		/**
-			\brief Checks if current time_stamp is greater than argument.
+			\brief Checks if current TimeStamp is greater than argument.
 
 			<h3>Return</h3>
-			Returns true if current time_stamp is greater than argument.
+			Returns true if current TimeStamp is greater than argument.
 		*/
 		constexpr inline bool isGreaterThan(
-			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+			const TimeStamp &dt /**< : <i>in</i> : The TimeStamp to compare with.*/
 		) const noexcept
 		{
 			return !isLesserThanEq(dt);
 		}
 
 		/**
-			\brief Checks if current time_stamp is greater than or equal to argument.
+			\brief Checks if current TimeStamp is greater than or equal to argument.
 
 			<h3>Return</h3>
-			Returns true if current time_stamp is greater than or equal to argument.
+			Returns true if current TimeStamp is greater than or equal to argument.
 		*/
 		constexpr inline bool isGreaterThanEq(
-			const time_stamp &dt /**< : <i>in</i> : The time_stamp to compare with.*/
+			const TimeStamp &dt /**< : <i>in</i> : The TimeStamp to compare with.*/
 		) const noexcept
 		{
 			return !isLesserThan(dt);
@@ -424,9 +424,9 @@ namespace enh
 		\brief Checks if lhs is equal to rhs.
 	*/
 	constexpr inline bool operator == (
-		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+		const TimeStamp &lhs /**< : <i>in</i> : The left hand side of the
 						expression.*/,
-		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+		const TimeStamp &rhs /**< : <i>in</i> : The right hand side of the
 						expression.*/
 		) noexcept
 	{
@@ -437,9 +437,9 @@ namespace enh
 		\brief Checks if lhs is not equal to rhs.
 	*/
 	constexpr inline bool operator != (
-		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+		const TimeStamp &lhs /**< : <i>in</i> : The left hand side of the
 						expression.*/,
-		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+		const TimeStamp &rhs /**< : <i>in</i> : The right hand side of the
 						expression.*/
 		) noexcept
 	{
@@ -450,9 +450,9 @@ namespace enh
 		\brief Checks if lhs is greater than rhs.
 	*/
 	constexpr inline bool operator > (
-		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+		const TimeStamp &lhs /**< : <i>in</i> : The left hand side of the
 						expression.*/,
-		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+		const TimeStamp &rhs /**< : <i>in</i> : The right hand side of the
 						expression.*/
 		) noexcept
 	{
@@ -463,9 +463,9 @@ namespace enh
 		\brief Checks if lhs is greater than or equal to rhs.
 	*/
 	constexpr inline bool operator >= (
-		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+		const TimeStamp &lhs /**< : <i>in</i> : The left hand side of the
 						expression.*/,
-		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+		const TimeStamp &rhs /**< : <i>in</i> : The right hand side of the
 						expression.*/
 		) noexcept
 	{
@@ -476,9 +476,9 @@ namespace enh
 		\brief Checks if lhs is lesser than rhs.
 	*/
 	constexpr inline bool operator < (
-		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+		const TimeStamp &lhs /**< : <i>in</i> : The left hand side of the
 						expression.*/,
-		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+		const TimeStamp &rhs /**< : <i>in</i> : The right hand side of the
 						expression.*/
 		) noexcept
 	{
@@ -489,9 +489,9 @@ namespace enh
 		\brief Checks if lhs is lesser than or equal to rhs.
 	*/
 	constexpr inline bool operator <= (
-		const time_stamp &lhs /**< : <i>in</i> : The left hand side of the
+		const TimeStamp &lhs /**< : <i>in</i> : The left hand side of the
 						expression.*/,
-		const time_stamp &rhs /**< : <i>in</i> : The right hand side of the
+		const TimeStamp &rhs /**< : <i>in</i> : The right hand side of the
 						expression.*/
 		) noexcept
 	{
