@@ -37,22 +37,22 @@ namespace testCase
 		{
 			{
 				constexpr enumT base = enumT(0xf0);
-				constexpr bool resultA = enh::checkField(enumT(base | 0x04), base);
+				constexpr bool resultA = enh::checkBitField(enumT(base | 0x04), base);
 				ASSERT_CONTINUE(resultA, "constexpr assert failed, base is present in base | any value");
 			}
 			{
 				enumT bd = 0x5f;
-				bool resultB = enh::checkField(enumT(bd | 0xf0), bd);
+				bool resultB = enh::checkBitField(enumT(bd | 0xf0), bd);
 				ASSERT_CONTINUE(resultB, "assert failed, base is present in base | any value");
 			}
 			{
 				constexpr enumT base = enumT(0xf0);
-				constexpr bool resultA = enh::checkField(base, enumT(base | 0x04));
+				constexpr bool resultA = enh::checkBitField(base, enumT(base | 0x04));
 				ASSERT_CONTINUE(!resultA, "constexpr assert failed, base | value should not be present in base");
 			}
 			{
 				enumT bd = 0x5f;
-				bool resultB = enh::checkField(bd, enumT(bd | 0xf0));
+				bool resultB = enh::checkBitField(bd, enumT(bd | 0xf0));
 				ASSERT_CONTINUE(!resultB, "assert failed, base | value should not be present in base");
 			}
 
