@@ -428,7 +428,7 @@ namespace enh
 		*/
 		static constexpr unsigned getSecondsSize()
 		{
-			return sizeof(unsigned);
+			return sizeof(decltype(_seconds));
 		}
 
 		/**
@@ -436,7 +436,7 @@ namespace enh
 		*/
 		static constexpr unsigned getMinutesSize()
 		{
-			return sizeof(unsigned);
+			return sizeof(decltype(_minutes));
 		}
 
 
@@ -445,7 +445,7 @@ namespace enh
 		*/
 		static constexpr unsigned getHoursSize()
 		{
-			return sizeof(unsigned);
+			return sizeof(decltype(_hours));
 		}
 
 		/**
@@ -453,7 +453,7 @@ namespace enh
 		*/
 		static constexpr unsigned getDaysSize()
 		{
-			return sizeof(unsigned long long);
+			return sizeof(decltype(_days));
 		}
 
 
