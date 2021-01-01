@@ -87,27 +87,27 @@ namespace enh
 		/**
 			\brief Type with upper limit at 10.
 		*/
-		using dec = UnsignedLimitedNumber<unsigned short, 10U>;
+		using Decade = UnsignedLimitedNumber<unsigned short, 10U>;
 		
 		/**
 			\brief Type with upper limit at 100.
 		*/
-		using cent = UnsignedLimitedNumber<unsigned short, 100U>;
+		using Centuary = UnsignedLimitedNumber<unsigned short, 100U>;
 		
 		/**
 			\brief Type with upper limit at 1000.
 		*/
-		using kilo = UnsignedLimitedNumber<unsigned short, 1000U>;
+		using Kilo = UnsignedLimitedNumber<unsigned short, 1000U>;
 		
 		/**
 			\brief Type with upper limit at 1000000.
 		*/
-		using mill = UnsignedLimitedNumber<unsigned long, 1000000UL>;
+		using Million = UnsignedLimitedNumber<unsigned long, 1000000UL>;
 
 		/**
 			\brief Type with upper limit at 1000000000.
 		*/
-		using bill = UnsignedLimitedNumber<unsigned long, 1000000000ULL>;
+		using Billion = UnsignedLimitedNumber<unsigned long, 1000000000ULL>;
 	}
 
 }
