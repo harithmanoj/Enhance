@@ -30,16 +30,16 @@
 
 /**
 	\brief Convert version numbers to a format that can be taken as argument by 
-	`enh::version_info` (beta release).
+	`enh::VersionInfo` (beta release).
 */
-#define VERSION_INFO_BETA(mj,mn,re,bl)		mj,mn,re,bl,enh::rel_type::BETA,\
+#define VERSION_INFO_BETA(mj,mn,re,bl)		mj,mn,re,bl,enh::ReleaseType::BETA,\
 											#mj "." #mn "." #re "." #bl ".beta"
 
 /**
 	\brief Convert version numbers to a format that can be taken as argument by
-	`enh::version_info` (final release).
+	`enh::VersionInfo` (final release).
 */
-#define VERSION_INFO_FIN(mj,mn,re,bl)		mj,mn,re,bl,enh::rel_type::RELEASE\
+#define VERSION_INFO_FIN(mj,mn,re,bl)		mj,mn,re,bl,enh::ReleaseType::RELEASE\
 											,#mj "." #mn "." #re "." #bl ".fin"
 
 #include <string>
@@ -50,9 +50,9 @@
 namespace enh
 {
 	/**
-		\brief Enumeration to define the release type.
+		\brief Enumeration to define the release _releaseType.
 	*/
-	enum class rel_type : unsigned {
+	enum class ReleaseType : unsigned {
 		BETA = 0,			/**< \brief <i>0</i> : Beta external release.*/
 		RELEASE = 1			/**< \brief <i>1</i> : Final external release.*/
 	};
@@ -79,37 +79,37 @@ namespace enh
 		\include{lineno} version_info_ex.cpp
 
 	*/
-	class version_info
+	class VersionInfo
 	{
 		/**
-			\brief The major version.
+			\brief The _major version.
 		*/
-		unsigned major;
+		unsigned _major;
 		
 		/**
-			\brief The minor version.
+			\brief The _minor version.
 		*/
-		unsigned minor;
+		unsigned _minor;
 		
 		/**
-			\brief The revision count.
+			\brief The _revision count.
 		*/
-		unsigned revision;
+		unsigned _revision;
 		
 		/**
-			\brief The build number.
+			\brief The _build number.
 		*/
-		unsigned long build;
+		unsigned long _build;
 
 		/**
-			\brief The release type.
+			\brief The release _releaseType.
 		*/
-		rel_type type;
+		ReleaseType _releaseType;
 
 		/**
 			\brief The string representation of the version.
 		*/
-		std::string_view string_rep;
+		std::string_view _constStringRepresentation;
 	public:
 
 
@@ -118,92 +118,92 @@ namespace enh
 
 
 			<h3>Overloads</h3>
-			-# <code>inline version_info(unsigned, unsigned, unsigned, unsigned,
-			 enh::rel_type) noexcept;</code>\n
-			-# <code>inline version_info(unsigned, unsigned, unsigned, unsigned,
-			enh::rel_type, std::string_view) noexcept;</code>\n
+			-# <code>inline VersionInfo(unsigned, unsigned, unsigned, unsigned,
+			 enh::ReleaseType) noexcept;</code>\n
+			-# <code>inline VersionInfo(unsigned, unsigned, unsigned, unsigned,
+			enh::ReleaseType, std::string_view) noexcept;</code>\n
 		*/
-		constexpr inline version_info() noexcept :major(0), minor(0), revision(0),
-			build(0), type(rel_type::BETA) { }
+		constexpr inline VersionInfo() noexcept :_major(0), _minor(0), _revision(0),
+			_build(0), _releaseType(ReleaseType::BETA) { }
 
 		/**
 			\brief The constructor initialises to argument passed (no default 
 			string).
 
 			<h3>Overloads</h3>
-			-# <code>inline version_info() noexcept;</code>\n
-			-# <code>inline version_info(unsigned, unsigned, unsigned,
-			unsigned, enh::rel_type, std::string_view) noexcept;</code>\n
+			-# <code>inline VersionInfo() noexcept;</code>\n
+			-# <code>inline VersionInfo(unsigned, unsigned, unsigned,
+			unsigned, enh::ReleaseType, std::string_view) noexcept;</code>\n
 		*/
-		constexpr inline version_info(
-			unsigned mj /**< : <i>in</i> : major version.*/,
-			unsigned mn /**< : <i>in</i> : minor version.*/,
-			unsigned rv /**< : <i>in</i> : revision number.*/,
-			unsigned long bld /**< : <i>in</i> : build number.*/,
-			rel_type tp /**< : <i>in</i> : The release type.*/
-		) noexcept : major(mj), minor(mn), revision(rv), build(bld), 
-			type(tp), string_rep("") { }
+		constexpr inline VersionInfo(
+			unsigned mj /**< : <i>in</i> : _major version.*/,
+			unsigned mn /**< : <i>in</i> : _minor version.*/,
+			unsigned rv /**< : <i>in</i> : _revision number.*/,
+			unsigned long bld /**< : <i>in</i> : _build number.*/,
+			ReleaseType tp /**< : <i>in</i> : The release _releaseType.*/
+		) noexcept : _major(mj), _minor(mn), _revision(rv), _build(bld), 
+			_releaseType(tp), _constStringRepresentation("") { }
 
 		/**
 			\brief The constructor initialises to argument passed with compile
 			-time string format of version.
 
 			<h3>Overloads</h3>
-			-# <code>inline version_info(unsigned, unsigned, unsigned,
-			unsigned, enh::rel_type) noexcept;</code>\n
-			-# <code>inline version_info() noexcept;</code>\n
+			-# <code>inline VersionInfo(unsigned, unsigned, unsigned,
+			unsigned, enh::ReleaseType) noexcept;</code>\n
+			-# <code>inline VersionInfo() noexcept;</code>\n
 		*/
-		constexpr inline version_info(
-			unsigned mj /**< : <i>in</i> : major version.*/,
-			unsigned mn /**< : <i>in</i> : minor version.*/,
-			unsigned rv /**< : <i>in</i> : revision number.*/,
-			unsigned long bld /**< : <i>in</i> : build number.*/,
-			rel_type tp /**< : <i>in</i> : The release type.*/,
+		constexpr inline VersionInfo(
+			unsigned mj /**< : <i>in</i> : _major version.*/,
+			unsigned mn /**< : <i>in</i> : _minor version.*/,
+			unsigned rv /**< : <i>in</i> : _revision number.*/,
+			unsigned long bld /**< : <i>in</i> : _build number.*/,
+			ReleaseType tp /**< : <i>in</i> : The release _releaseType.*/,
 			std::string_view rep  /**< : <i>in</i> : The version as a string.*/
-		) noexcept : major(mj), minor(mn), revision(rv), build(bld),
-			type(tp), string_rep(rep) { }
+		) noexcept : _major(mj), _minor(mn), _revision(rv), _build(bld),
+			_releaseType(tp), _constStringRepresentation(rep) { }
 
 		/**
-			\brief The get major version.
+			\brief The get _major version.
 
 			<h3>Return</h3>
 			Major version.\n
 		*/
-		inline constexpr unsigned get_major() const noexcept { return major; }
+		inline constexpr unsigned getMajor() const noexcept { return _major; }
 
 		/**
-			\brief The get minor version.
+			\brief The get _minor version.
 
 			<h3>Return</h3>
 			Minor version.\n
 		*/
-		inline constexpr unsigned get_minor() const noexcept { return minor; }
+		inline constexpr unsigned getMinor() const noexcept { return _minor; }
 
 		/**
-			\brief The get revision number.
+			\brief The get _revision number.
 
 			<h3>Return</h3>
 			Revision number.\n
 		*/
-		inline constexpr unsigned get_revision() const noexcept 
-		{ return revision; }
+		inline constexpr unsigned getRevision() const noexcept 
+		{ return _revision; }
 
 		/**
-			\brief The get build number.
+			\brief The get _build number.
 
 			<h3>Return</h3>
 			Build number.\n
 		*/
-		inline constexpr unsigned long get_build() const noexcept 
-		{ return build; }
+		inline constexpr unsigned long getBuild() const noexcept 
+		{ return _build; }
 
 		/**
-			\brief The get release type.
+			\brief The get release _releaseType.
 
 			<h3>Return</h3>
-			Release type.\n
+			Release _releaseType.\n
 		*/
-		inline constexpr rel_type get_type() const noexcept { return type; }
+		inline constexpr ReleaseType getReleaseType() const noexcept { return _releaseType; }
 
 		/*
 			\brief The function to get version as a string.
@@ -211,19 +211,19 @@ namespace enh
 			<h3>Return</h3>
 			The version as a string.\n
 		*/
-		inline std::string to_string() const
+		inline std::string toString() const
 		{
-			if (!string_rep.empty())
-				return string_rep.data();
-			std::string ret = std::to_string(major) + "." + std::to_string(minor) + "."
-				+ std::to_string(revision) + "." + std::to_string(build)
+			if (!_constStringRepresentation.empty())
+				return _constStringRepresentation.data();
+			std::string ret = std::to_string(_major) + "." + std::to_string(_minor) + "."
+				+ std::to_string(_revision) + "." + std::to_string(_build)
 				+ ".";
-			switch (type)
+			switch (_releaseType)
 			{
-			case rel_type::BETA:
+			case ReleaseType::BETA:
 				ret += "beta";
 				break;
-			case rel_type::RELEASE:
+			case ReleaseType::RELEASE:
 				ret += "fin";
 				break;
 			default:
@@ -241,24 +241,14 @@ namespace enh
 		*/
 		inline constexpr std::string_view string() const noexcept
 		{
-			return string_rep;
+			return _constStringRepresentation;
 		}
 	};
 
 	/**
 		\brief The version of enhance library.
 	*/
-	constexpr version_info enhance_version = version_info(VERSION_INFO_FIN(1,3,1,7));
+	constexpr VersionInfo enhanceVersion = VersionInfo(VERSION_INFO_FIN(1,3,1,7));
 }
-
-
-#undef  MAJOR_ENH				
-#undef  MINOR_ENH				
-#undef  REVISION_ENH			
-#undef  RELEASE_ENH				
-#undef  RELEASE_ENH_ST			
-#undef  VERSION_DT_ENH			
-#undef  TEXT_VER_ENH			
-#undef  VERSION_ENH				
 
 #endif
