@@ -1,7 +1,7 @@
 /** ***************************************************************************
-	\file counter.enh.h
+	\file Counter.enh.h
 
-	\brief The file to declare counter class
+	\brief The file to declare Counter class
 
 	Created 29 March 2020	
 
@@ -25,7 +25,7 @@
 
 #ifndef COUNTER_ENH_H
 
-#define COUNTER_ENH_H			counter.enh.h
+#define COUNTER_ENH_H			Counter.enh.h
 
 #include <atomic>
 #include <string>
@@ -38,7 +38,7 @@ namespace enh
 {
 	
 	/**
-		\brief The class for counter functionality.
+		\brief The class for Counter functionality.
 
 		hasErrorHandlers        = false;\n
 
@@ -50,68 +50,68 @@ namespace enh
 		\include{lineno} counter_ex.cpp
 
 	*/
-	class counter
+	class Counter
 	{
 		/**
-			\brief Stores the seconds state of counter.
+			\brief Stores the _seconds state of Counter.
 
 			value < 60.\n\n
 		*/
-		std::atomic<unsigned> seconds;
+		std::atomic<unsigned> _seconds;
 
 		/**
-			\brief Stores the minutes state of counter.
+			\brief Stores the _minutes state of Counter.
 
 			value < 60.\n\n
 		*/
-		std::atomic<unsigned> minutes;
+		std::atomic<unsigned> _minutes;
 
 		/**
-			\brief Stores the hours state of counter.
+			\brief Stores the _hours state of Counter.
 
 			value < 24.\n\n
 		*/
-		std::atomic<unsigned> hours;
+		std::atomic<unsigned> _hours;
 
 		/**
-			\brief Stores the days state of counter.
+			\brief Stores the _days state of Counter.
 		*/
-		std::atomic<unsigned long long> days;
+		std::atomic<unsigned long long> _days;
 
 	public:
 
 		/**
 			\brief The destructor for the class.
 		*/
-		inline ~counter() {}
+		inline ~Counter() {}
 
 		/**
 			\brief The constructor of the class sets all to 0.
 		*/
-		inline counter() noexcept : seconds(0), minutes(0), hours(0), days(0)
+		inline Counter() noexcept : _seconds(0), _minutes(0), _hours(0), _days(0)
 		{}
 
 		/**
 			\brief default copy constructor.
 		*/
-		inline counter(const counter& c) noexcept
+		inline Counter(const Counter& c) noexcept
 		{
-			seconds = c.seconds.load();
-			minutes = c.minutes.load();
-			hours = c.hours.load();
-			days = c.days.load();
+			_seconds = c._seconds.load();
+			_minutes = c._minutes.load();
+			_hours = c._hours.load();
+			_days = c._days.load();
 
 		}
 
 		/**
 			\brief default move constructor.
 		*/
-		inline counter(counter&& c) noexcept
+		inline Counter(Counter&& c) noexcept
 		{
-			seconds = c.seconds.load();
-			minutes = c.minutes.load();
-			hours = c.hours.load();
-			days = c.days.load();
+			_seconds = c._seconds.load();
+			_minutes = c._minutes.load();
+			_hours = c._hours.load();
+			_days = c._days.load();
 		}
 
 		/**
@@ -120,11 +120,11 @@ namespace enh
 			Setting of the state is done by ignoring the excess (sec < 60,
 			min < 60, hr < 24).\n\n
 		*/
-		inline counter(
-			unsigned sec /**< : <i>in</i> : The seconds to be set.*/,
-			unsigned min /**< : <i>in</i> : The minutes to be set.*/,
-			unsigned hr /**< : <i>in</i> : The hours to be set.*/,
-			unsigned long long dy /**< : <i>in</i> : The days to be set.*/
+		inline Counter(
+			unsigned sec /**< : <i>in</i> : The _seconds to be set.*/,
+			unsigned min /**< : <i>in</i> : The _minutes to be set.*/,
+			unsigned hr /**< : <i>in</i> : The _hours to be set.*/,
+			unsigned long long dy /**< : <i>in</i> : The _days to be set.*/
 		) noexcept
 		{
 			set(sec, min, hr, dy);
@@ -133,24 +133,24 @@ namespace enh
 		/**
 			\brief default copy assignment.
 		*/
-		inline counter& operator = (const counter& c) noexcept
+		inline Counter& operator = (const Counter& c) noexcept
 		{
-			seconds = c.seconds.load();
-			minutes = c.minutes.load();
-			hours = c.hours.load();
-			days = c.days.load();
+			_seconds = c._seconds.load();
+			_minutes = c._minutes.load();
+			_hours = c._hours.load();
+			_days = c._days.load();
 			return *this;
 		}
 
 		/**
 			\brief default copy assignment.
 		*/
-		inline counter& operator = (counter&& c) noexcept
+		inline Counter& operator = (Counter&& c) noexcept
 		{
-			seconds = c.seconds.load();
-			minutes = c.minutes.load();
-			hours = c.hours.load();
-			days = c.days.load();
+			_seconds = c._seconds.load();
+			_minutes = c._minutes.load();
+			_hours = c._hours.load();
+			_days = c._days.load();
 			return *this;
 		}
 
@@ -162,12 +162,12 @@ namespace enh
 			Reference to current state.\n
 
 		*/
-		inline counter& reset() noexcept
+		inline Counter& reset() noexcept
 		{
-			seconds = 0;
-			minutes = 0;
-			hours = 0;
-			days = 0;
+			_seconds = 0;
+			_minutes = 0;
+			_hours = 0;
+			_days = 0;
 			return *this;
 		}
 
@@ -179,194 +179,194 @@ namespace enh
 			Reference to current state.\n
 
 		*/
-		inline counter& operator () () noexcept
+		inline Counter& operator () () noexcept
 		{
 			return reset();
 		}
 
 		/**
-			\brief Functon sets the value of state to sec number of seconds.
+			\brief Functon sets the value of state to sec number of _seconds.
 			
 			Reset is called.
 			If sec is more than 60, It is converted to sec, min, hr, day format
 			and overwritten over old values.\n\n
 		*/
-		void set_seconds(
-			unsigned long long sec /**< : <i>in</i> : The seconds to be set.*/
+		void setSeconds(
+			unsigned long long sec /**< : <i>in</i> : The _seconds to be set.*/
 		) noexcept
 		{
 			reset();
-			seconds = sec;
+			_seconds = sec;
 			if (sec >= 60)
 			{
-				add_minutes((sec / 60));
-				seconds = sec % 60;
+				addMinutes((sec / 60));
+				_seconds = sec % 60;
 			}
 		}
 
 		/**
-			\brief Functon adds sec seconds to the value of state.
+			\brief Functon adds sec _seconds to the value of state.
 
-			If sec + seconds is more than 60, value is added to minutes,
-			hours, days	also.\n\n
+			If sec + _seconds is more than 60, value is added to _minutes,
+			_hours, _days	also.\n\n
 		*/
-		void add_seconds(
-			unsigned long long sec /**< : <i>in</i> : The seconds to be added.*/
+		void addSeconds(
+			unsigned long long sec /**< : <i>in</i> : The _seconds to be added.*/
 		) noexcept
 		{
-			if ((sec + seconds.load()) >= 60)
+			if ((sec + _seconds.load()) >= 60)
 			{
-				add_minutes((sec + seconds.load()) / 60);
+				addMinutes((sec + _seconds.load()) / 60);
 			}
 
-			seconds = (seconds.load() + sec) % 60;
+			_seconds = (_seconds.load() + sec) % 60;
 		}
 
 		/**
-			\brief Functon sets the value of state to min number of minutes.
+			\brief Functon sets the value of state to min number of _minutes.
 
 			Reset is called.
 			If min is more than 60, It is converted to min, hr, day format
 			and overwritten over old values.\n\n
 		*/
-		void set_minutes(
-			unsigned long long min/**< : <i>in</i> : The minutes to be set.*/
+		void setMinutes(
+			unsigned long long min/**< : <i>in</i> : The _minutes to be set.*/
 		) noexcept
 		{
 			reset();
-			minutes = min;
+			_minutes = min;
 			if (min >= 60)
 			{
-				add_hours((min / 60));
-				minutes = min % 60;
+				addHours((min / 60));
+				_minutes = min % 60;
 			}
 
 		}
 
 		/**
-			\brief Functon adds min minutes to the value of state.
+			\brief Functon adds min _minutes to the value of state.
 
-			If min + minutes is more than 60, value is added to
-			hours, days	also.\n\n
+			If min + _minutes is more than 60, value is added to
+			_hours, _days	also.\n\n
 		*/
-		void add_minutes(
-			unsigned long long min /**< : <i>in</i> : The minutes to be added.*/
+		void addMinutes(
+			unsigned long long min /**< : <i>in</i> : The _minutes to be added.*/
 		) noexcept
 		{
-			if ((min + minutes.load()) >= 60)
-				add_hours((min + minutes.load()) / 60);
+			if ((min + _minutes.load()) >= 60)
+				addHours((min + _minutes.load()) / 60);
 
-			minutes = (minutes.load() + min) % 60;
+			_minutes = (_minutes.load() + min) % 60;
 		}
 
 		/**
-			\brief Functon sets the value of state to hr number of hours.
+			\brief Functon sets the value of state to hr number of _hours.
 
 			Reset is called.
 			If hr is more than 60, It is converted to hr, day format
 			and overwritten over old values.\n\n
 		*/
-		void set_hours(
-			unsigned long long hr/**< : <i>in</i> : The hours to be set.*/
+		void setHours(
+			unsigned long long hr/**< : <i>in</i> : The _hours to be set.*/
 		) noexcept
 		{
 			reset();
-			hours = hr;
+			_hours = hr;
 			if (hr >= 24)
 			{
-				add_days((hr / 24));
-				hours = hr % 24;
+				addDays((hr / 24));
+				_hours = hr % 24;
 			}
 		}
 
 		/**
-			\brief Functon adds hr hours to the value of state.
+			\brief Functon adds hr _hours to the value of state.
 
-			If hr + hours is more than 24, value is added to days also.\n\n
+			If hr + _hours is more than 24, value is added to _days also.\n\n
 
 		*/
-		void add_hours(
-			unsigned long long hr/**< : <i>in</i> : The hours to be added.*/
+		void addHours(
+			unsigned long long hr/**< : <i>in</i> : The _hours to be added.*/
 		) noexcept
 		{
-			if ((hr + hours.load()) >= 24)
-				add_days((hr + hours.load()) / 24);
+			if ((hr + _hours.load()) >= 24)
+				addDays((hr + _hours.load()) / 24);
 
-			hours = ((hours.load() + hr) % 24);
+			_hours = ((_hours.load() + hr) % 24);
 		}
 
 		/**
-			\brief Functon sets the value of state to dy number of days.
+			\brief Functon sets the value of state to dy number of _days.
 		*/
-		void set_days(
-			unsigned long long dy/**< : <i>in</i> : The days to be set.*/
+		void setDays(
+			unsigned long long dy/**< : <i>in</i> : The _days to be set.*/
 		) noexcept
 		{
 			reset();
-			days = dy;
+			_days = dy;
 		}
 
 		/**
-			\brief Functon adds dy days to the value of state.
+			\brief Functon adds dy _days to the value of state.
 
 		*/
-		void add_days(
-			unsigned long long dy/**< : <i>in</i> : The days to be added.*/
+		void addDays(
+			unsigned long long dy/**< : <i>in</i> : The _days to be added.*/
 		) noexcept
 		{
-			days += dy;
+			_days += dy;
 		}
 
 		/**
-			\brief Returns the seconds part of the state.
+			\brief Returns the _seconds part of the state.
 
 			<h3>Return</h3>
-			The number of seconds.\n
+			The number of _seconds.\n
 
 		*/
-		inline unsigned get_seconds() const noexcept { return seconds.load();}
+		inline unsigned getSeconds() const noexcept { return _seconds.load();}
 
 		/**
-			\brief Returns the minutes part of the state.
+			\brief Returns the _minutes part of the state.
 
 			<h3>Return</h3>
-			The number of minutes.\n
+			The number of _minutes.\n
 
 		*/
-		inline unsigned get_minutes() const noexcept { return minutes.load();}
+		inline unsigned getMinutes() const noexcept { return _minutes.load();}
 
 		/**
-			\brief Returns the hours part of the state.
+			\brief Returns the _hours part of the state.
 
 			<h3>Return</h3>
-			The number of hours.\n
+			The number of _hours.\n
 
 		*/
-		inline unsigned get_hours() const noexcept { return hours.load();}
+		inline unsigned getHours() const noexcept { return _hours.load();}
 
 		/**
-			\brief Returns the days part of the state.
+			\brief Returns the _days part of the state.
 
 
 			<h3>Return</h3>
-			The number of days.\n
+			The number of _days.\n
 
 		*/
-		inline unsigned long long get_days() const noexcept
-		{ return days.load(); }
+		inline unsigned long long getDays() const noexcept
+		{ return _days.load(); }
 
 		/**
-			\brief Returns the total hours elapsed.
+			\brief Returns the total _hours elapsed.
 
 			<h3>Return</h3>
-			The total hours elapsed.\n
+			The total _hours elapsed.\n
 
 		*/
-		unsigned long long get_total_hours() const noexcept
+		unsigned long long getTotalHours() const noexcept
 		{
-			unsigned long long tot = (unsigned long long)hours.load() +
-				(days.load() * 24ULL);
-			if ((minutes >= 45) || ((minutes >= 44) && (seconds >= 45)))
+			unsigned long long tot = (unsigned long long)_hours.load() +
+				(_days.load() * 24ULL);
+			if ((_minutes >= 45) || ((_minutes >= 44) && (_seconds >= 45)))
 				tot += 1;
 			return tot;
 		}
@@ -379,32 +379,32 @@ namespace enh
 			min < 60, hr < 24).\n\n
 		*/
 		inline void set(
-			unsigned sec /**< : <i>in</i> : The seconds to be set.*/,
-			unsigned min /**< : <i>in</i> : The minutes to be set.*/,
-			unsigned hr /**< : <i>in</i> : The hours to be set.*/,
-			unsigned long long dy /**< : <i>in</i> : The days to be set.*/
+			unsigned sec /**< : <i>in</i> : The _seconds to be set.*/,
+			unsigned min /**< : <i>in</i> : The _minutes to be set.*/,
+			unsigned hr /**< : <i>in</i> : The _hours to be set.*/,
+			unsigned long long dy /**< : <i>in</i> : The _days to be set.*/
 		) noexcept
 		{
-			seconds = sec % 60;
-			minutes = min % 60;
-			hours = hr % 24;
-			days = dy;
+			_seconds = sec % 60;
+			_minutes = min % 60;
+			_hours = hr % 24;
+			_days = dy;
 		}
 
 		/**
 			\brief Functon adds inputs to the state.
 		*/
 		inline void add(
-			unsigned sec /**< : <i>in</i> : The seconds to be added.*/,
-			unsigned min /**< : <i>in</i> : The minutes to be added.*/,
-			unsigned hr /**< : <i>in</i> : The hours to be added.*/,
-			unsigned long long dy /**< : <i>in</i> : The days to be added.*/
+			unsigned sec /**< : <i>in</i> : The _seconds to be added.*/,
+			unsigned min /**< : <i>in</i> : The _minutes to be added.*/,
+			unsigned hr /**< : <i>in</i> : The _hours to be added.*/,
+			unsigned long long dy /**< : <i>in</i> : The _days to be added.*/
 		)
 		{
-			add_seconds(sec);
-			add_minutes(min);
-			add_hours(hr);
-			add_days(dy);
+			addSeconds(sec);
+			addMinutes(min);
+			addHours(hr);
+			addDays(dy);
 		}
 
 		/**
@@ -413,88 +413,88 @@ namespace enh
 			<h3>Return</h3>
 			The info formatted as a string.
 		*/
-		std::string get_string() const
+		std::string getString() const
 		{
-			return std::move(std::to_string(get_seconds()) + "s : "
-				+ std::to_string(get_minutes()) + "min : "
-				+ std::to_string(get_hours()) + "hr : "
-				+ std::to_string(get_days()) + "days ; "
-				+ std::to_string(get_total_hours()) + " total hours");
+			return std::move(std::to_string(getSeconds()) + "s : "
+				+ std::to_string(getMinutes()) + "min : "
+				+ std::to_string(getHours()) + "hr : "
+				+ std::to_string(getDays()) + "days ; "
+				+ std::to_string(getTotalHours()) + " total hours");
 		}
 
 
 		/**
-			\brief get size of seconds storage type
+			\brief get size of _seconds storage type
 		*/
-		static constexpr unsigned get_seconds_size()
+		static constexpr unsigned getSecondsSize()
 		{
-			return sizeof(unsigned);
+			return sizeof(decltype(_seconds));
 		}
 
 		/**
-			\brief get size of minutes storage type
+			\brief get size of _minutes storage type
 		*/
-		static constexpr unsigned get_minutes_size()
+		static constexpr unsigned getMinutesSize()
 		{
-			return sizeof(unsigned);
+			return sizeof(decltype(_minutes));
 		}
 
 
 		/**
-			\brief get size of hours storage type
+			\brief get size of _hours storage type
 		*/
-		static constexpr unsigned get_hours_size()
+		static constexpr unsigned getHoursSize()
 		{
-			return sizeof(unsigned);
+			return sizeof(decltype(_hours));
 		}
 
 		/**
-			\brief get size of days storage type
+			\brief get size of _days storage type
 		*/
-		static constexpr unsigned get_days_size()
+		static constexpr unsigned getDaysSize()
 		{
-			return sizeof(unsigned long long);
+			return sizeof(decltype(_days));
 		}
 
 
 		/**
 			\brief get size of raw data stream representing this.
 		*/
-		static constexpr unsigned get_raw_size()
+		static constexpr unsigned getRawSize()
 		{
-			return get_seconds_size() + get_minutes_size() + get_hours_size() + get_days_size();
+			return getSecondsSize() + getMinutesSize() + getHoursSize() + getDaysSize();
 		}
 
 		/**
 			\brief read raw data from argument to each field.
 		*/
-		void read_raw(
+		void readRaw(
 			const char* raw /**< : <i>in</i> : The raw data stream.*/,
 			unsigned size /**< : <i>in</i> : The length of the raw stream. 
-						  (should be get_raw_size()).*/
+						  (should be getRawSize()).*/
 		)
 		{
-			if (size != get_raw_size())
+			if (size != getRawSize())
 				throw std::invalid_argument("raw stream should be " 
-					+ std::to_string(get_raw_size()) + " bytes long");
-			seconds.store(*reinterpret_cast<const unsigned*>(raw));
-			raw = &raw[get_seconds_size()];
-			minutes.store(*reinterpret_cast<const unsigned*>(raw));
-			raw = &raw[get_minutes_size()];
-			hours.store(*reinterpret_cast<const unsigned*>(raw));
-			raw = &raw[get_hours_size()];
-			days.store(*reinterpret_cast<const unsigned*>(raw));
+					+ std::to_string(getRawSize()) + " bytes long");
+			_seconds.store(*reinterpret_cast<const unsigned*>(raw));
+			raw = &raw[getSecondsSize()];
+			_minutes.store(*reinterpret_cast<const unsigned*>(raw));
+			raw = &raw[getMinutesSize()];
+			_hours.store(*reinterpret_cast<const unsigned*>(raw));
+			raw = &raw[getHoursSize()];
+			_days.store(*reinterpret_cast<const unsigned*>(raw));
 		}
 
 		/**
 			\brief get string holding raw data stream representation of the objects state.
 		*/
-		std::string get_raw() const
+		std::string getRaw() const
 		{
-			auto sec = get_seconds();
-			auto min = get_minutes();
-			auto hr = get_hours();
-			auto dy = get_days();
+			auto sec = getSeconds();
+			auto min = getMinutes();
+			auto hr = getHours();
+			auto dy = getDays();
 			return std::move(
 				std::string(reinterpret_cast<char*>(&sec), sizeof(sec))
 				+ std::string(reinterpret_cast<char*>(&min), sizeof(min))
@@ -513,24 +513,24 @@ namespace enh
 			parameter.
 		*/
 		bool operator < (
-			counter a /**< : <i>in</i> : The argument to check against.*/
+			Counter a /**< : <i>in</i> : The argument to check against.*/
 			)  const noexcept
 		{
-			if (days.load() < a.get_days())
+			if (_days.load() < a.getDays())
 				return true;
-			if (days.load() > a.get_days())
+			if (_days.load() > a.getDays())
 				return false;
-			if (hours.load() < a.get_hours())
+			if (_hours.load() < a.getHours())
 				return true;
-			if (hours.load() > a.get_hours())
+			if (_hours.load() > a.getHours())
 				return false;
-			if (minutes.load() < a.get_minutes())
+			if (_minutes.load() < a.getMinutes())
 				return true;
-			if (minutes.load() > a.get_minutes())
+			if (_minutes.load() > a.getMinutes())
 				return false;
-			if (seconds.load() < a.get_seconds())
+			if (_seconds.load() < a.getSeconds())
 				return true;
-			if (seconds.load() > a.get_seconds())
+			if (_seconds.load() > a.getSeconds())
 				return false;
 			return false;
 		}
@@ -544,24 +544,24 @@ namespace enh
 			parameter.
 		*/
 		bool operator > (
-			counter a /**< : <i>in</i> : The argument to check against.*/
+			Counter a /**< : <i>in</i> : The argument to check against.*/
 			)  const noexcept
 		{
-			if (days.load() > a.get_days())
+			if (_days.load() > a.getDays())
 				return true;
-			if (days.load() < a.get_days())
+			if (_days.load() < a.getDays())
 				return false;
-			if (hours.load() > a.get_hours())
+			if (_hours.load() > a.getHours())
 				return true;
-			if (hours.load() < a.get_hours())
+			if (_hours.load() < a.getHours())
 				return false;
-			if (minutes.load() > a.get_minutes())
+			if (_minutes.load() > a.getMinutes())
 				return true;
-			if (minutes.load() < a.get_minutes())
+			if (_minutes.load() < a.getMinutes())
 				return false;
-			if (seconds.load() > a.get_seconds())
+			if (_seconds.load() > a.getSeconds())
 				return true;
-			if (seconds.load() < a.get_seconds())
+			if (_seconds.load() < a.getSeconds())
 				return false;
 			return false;
 		}
@@ -573,13 +573,13 @@ namespace enh
 			Returns true if current state is equal to parameter.
 		*/
 		bool operator == (
-			counter a /**< : <i>in</i> : The argument to check against.*/
+			Counter a /**< : <i>in</i> : The argument to check against.*/
 			)  const noexcept
 		{
-			if (days.load() == a.get_days())
-				if (hours.load() == a.get_hours())
-					if (minutes.load() == a.get_minutes())
-						if (seconds.load() == a.get_seconds())
+			if (_days.load() == a.getDays())
+				if (_hours.load() == a.getHours())
+					if (_minutes.load() == a.getMinutes())
+						if (_seconds.load() == a.getSeconds())
 							return true;
 			return false;
 		}
@@ -594,24 +594,24 @@ namespace enh
 			 equal parameter.
 		*/
 		bool operator <= (
-			counter a /**< : <i>in</i> : The argument to check against.*/
+			Counter a /**< : <i>in</i> : The argument to check against.*/
 			)  const noexcept
 		{
-			if (days.load() < a.get_days())
+			if (_days.load() < a.getDays())
 				return true;
-			if (days.load() > a.get_days())
+			if (_days.load() > a.getDays())
 				return false;
-			if (hours.load() < a.get_hours())
+			if (_hours.load() < a.getHours())
 				return true;
-			if (hours.load() > a.get_hours())
+			if (_hours.load() > a.getHours())
 				return false;
-			if (minutes.load() < a.get_minutes())
+			if (_minutes.load() < a.getMinutes())
 				return true;
-			if (minutes.load() > a.get_minutes())
+			if (_minutes.load() > a.getMinutes())
 				return false;
-			if (seconds.load() < a.get_seconds())
+			if (_seconds.load() < a.getSeconds())
 				return true;
-			if (seconds.load() > a.get_seconds())
+			if (_seconds.load() > a.getSeconds())
 				return false;
 			return true;
 		}
@@ -626,24 +626,24 @@ namespace enh
 			 equal parameter.
 		*/
 		bool operator >= (
-			counter a /**< : <i>in</i> : The argument to check against.*/
+			Counter a /**< : <i>in</i> : The argument to check against.*/
 			)  const noexcept
 		{
-			if (days.load() > a.get_days())
+			if (_days.load() > a.getDays())
 				return true;
-			if (days.load() < a.get_days())
+			if (_days.load() < a.getDays())
 				return false;
-			if (hours.load() > a.get_hours())
+			if (_hours.load() > a.getHours())
 				return true;
-			if (hours.load() < a.get_hours())
+			if (_hours.load() < a.getHours())
 				return false;
-			if (minutes.load() > a.get_minutes())
+			if (_minutes.load() > a.getMinutes())
 				return true;
-			if (minutes.load() < a.get_minutes())
+			if (_minutes.load() < a.getMinutes())
 				return false;
-			if (seconds.load() > a.get_seconds())
+			if (_seconds.load() > a.getSeconds())
 				return true;
-			if (seconds.load() < a.get_seconds())
+			if (_seconds.load() < a.getSeconds())
 				return false;
 			return true;
 		}
@@ -657,9 +657,9 @@ namespace enh
 		The greater value.\n
 
 	*/
-	inline counter max(
-		const counter a /**< : <i>in</i> : first parameter.*/,
-		const counter b /**< : <i>in</i> : seconds parameter.*/
+	inline Counter max(
+		const Counter a /**< : <i>in</i> : first parameter.*/,
+		const Counter b /**< : <i>in</i> : _seconds parameter.*/
 	) noexcept
 	{
 		if (a < b)
@@ -675,9 +675,9 @@ namespace enh
 		The lesser value.\n
 
 	*/
-	inline counter min(
-		const counter a /**< : <i>in</i> : first parameter.*/,
-		const counter b /**< : <i>in</i> : seconds parameter.*/
+	inline Counter min(
+		const Counter a /**< : <i>in</i> : first parameter.*/,
+		const Counter b /**< : <i>in</i> : _seconds parameter.*/
 	) noexcept
 	{
 		if (a < b)
@@ -688,17 +688,17 @@ namespace enh
 
 
 	/**
-		\brief Stream insertion operator overloaded for the class counter.
+		\brief Stream insertion operator overloaded for the class Counter.
 
 		<h3>Return</h3>
 		The reference to stream passed.\n
 	*/
 	inline std::ostream& operator << (
 		std::ostream& out /**< : <i>inout</i> : The stream which to insert.*/,
-		counter ct /**< : <i>in</i> : The cunter object to insert.*/
+		Counter ct /**< : <i>in</i> : The cunter object to insert.*/
 		) noexcept
 	{
-		out << ct.get_string();
+		out << ct.getString();
 		return out;
 	}
 

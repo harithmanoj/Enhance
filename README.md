@@ -20,7 +20,7 @@ Including but not limited to :
 * Diagnostics.
 * Time and related tracking and synchronisation.
 * Date Time manipulation
-* Error Tracking.
+* Error Tracking.qu
 * Version info to be used inside programs.
 * Concurrent execution.
 
@@ -71,7 +71,7 @@ Exists in `namespace enh`.
 
 `general.enh.h`
 
-`confined.enh.h`
+`ConfinedValue.enh.h`
 
 `numeral_system.enh.h`
 
@@ -84,9 +84,9 @@ Exists in `namespace enh`.
 * Signum function and inclusive_ration (also constexpr).
 * getOrdinalIndicator returns "th", "st", "nd" "rd" according to argument passed.
 * signExtend extends the string format of a numeral by prepending '0' s
-* confined_base class for storing a value within bounds
+* ConfinedValue class for storing a value within bounds
 * NumericSystem class for storing a value within 0 and an upper limit.
-* Class to hold values which has different denominations. (money)
+* Class to hold values which has different denominations. (eg money)
  
 _______________________________________________________________________________
 ## Diagnose
@@ -139,7 +139,7 @@ Exists in `namespace enh`.
 
 ### Headers 
 
-`queued_process.enh.h`
+`QueuedProcess.enh.h`
 
 ### The Library 
 
@@ -191,56 +191,33 @@ project.
 * `general.enh.h` depends only on standard c++ headers.
 * `logger.enh.h` depends only on standard c++ headers but requires 
 compilation of `logger.cpp`.
+* `WeightedField.enh.h` depends only on standard c++ headers.
 * `error_base.enh.h` depends on `general.enh.h`, `logger.enh.h`.
-* `queued_process.enh.h` depends on `error_base.enh.h`, `general.enh.h`, 
+* `QueuedProcess.enh.h` depends on `error_base.enh.h`, `general.enh.h`, 
 `logger.enh.h`.
 * `counter.enh.h` depends only on standard c++ headers.
 * `timer.enh.h` depends on `logger.enh.h`.
 * `date.enh.h` depends on `general.enh.h`, `numerical_system.enh.h`, 
-`confined.enh.h`.
+`ConfinedValue.enh.h`.
 * `time_stamp.enh.h` depends on `date.enh.h`, `general.enh.h`, 
-`numeral_system.enh.h`, `confined.enh.h`.
+`numeral_system.enh.h`, `ConfinedValue.enh.h`.
 * `date_time.enh.h` depends on `time_stamp.enh.h`, `date.enh.h`, 
-`general.enh.h`, `numerical_system.enh.h`, `confined.enh.h`.
+`general.enh.h`, `numerical_system.enh.h`, `ConfinedValue.enh.h`.
 
 ### Dependency Graph
 
-                   logger.enh.h      general.enh.h       confined.enh.h          framework.enh.h 
+                   logger.enh.h      general.enh.h       ConfinedValue.enh.h          framework.enh.h 
                      |       |             |                   |
                      |   logger.cpp        |                   |                       counter.enh.h 
                      |                     |                   |
-         +-----------+------+    +---------+---------+  numeral_system.enh
+         +-----------+------+    +---------+---------+  numeral_system.enh            WeightedField.enh.h
          |                  |    |                   |     |
      timer.enh.h        error_base.enh.h             |     |
                               |                     date.enh.h
-                     queued_process.enh.h               |
+                      QueuedProcess.enh.h               |
                                                  time_stamp.enh.h
                                                         |
                                                   date_time.enh.h
-
-### Module wise dependency
-
-* %Diagnose : `logger.enh.h`, `logger.cpp`
-* %General : `general.enh.h`
-* %Framework : `framework.enh.h`
-* %Counter : `counter.enh.h`
-* %Confined : `confined.enh.h`, `numerical_system.enh.h`
-* %Timer : `timer.enh.h` depends on %Diagnose
-* %Error : `error_base.enh.h` depends on %Diagnose, %General
-* %QProc : `queued_process.enh.h` depends on %Error, %Diagnose, %General
-* %DateTime : `date.enh.h`, `time_stamp.enh.h`, `date_time.enh.h` depends on 
-%Confined, %General
-
-Graph:
-
-
-            Diagnose          General  Confined    Framework
-               |                 |        |               
-      +--------+-------+ +-------+-----+  |            Counter
-      |                | |             |  |
-    Timer             Error          DateTime
-                        |
-                      QProc
 
 ## Contribution
 

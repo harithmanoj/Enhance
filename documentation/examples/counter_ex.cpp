@@ -3,19 +3,19 @@
 
 int main()
 {
-	enh::counter ct;						// 0s 0m 0h 0d
-	enh::counter state(25, 15, 12, 365);	// 25s 15m 12h 365d
+	enh::Counter ct;						// 0s 0m 0h 0d
+	enh::Counter state(25, 15, 12, 365);	// 25s 15m 12h 365d
 
-	std::cout << ct.get_seconds() << " " << ct.get_minutes() << " "
-		<< ct.get_hours() << " " << ct.get_days() << " " 
-		<< ct.get_total_hours() << "\n";
+	std::cout << ct.getSeconds() << " " << ct.getMinutes() << " "
+		<< ct.getHours() << " " << ct.getDays() << " " 
+		<< ct.getTotalHours() << "\n";
 
-	std::cout << state.get_seconds() << " " << state.get_minutes() << " "
-		<< state.get_hours() << " " << state.get_days() << " " 
-		<< state.get_total_hours() << "\n";
+	std::cout << state.getSeconds() << " " << state.getMinutes() << " "
+		<< state.getHours() << " " << state.getDays() << " " 
+		<< state.getTotalHours() << "\n";
 
-	std::cout << enh::counter(2, 3, 4, 256) << "\n";
-	std::cout << enh::counter(2, 25, 6, 251).get_string() << "\n";
+	std::cout << enh::Counter(2, 3, 4, 256) << "\n";
+	std::cout << enh::Counter(2, 25, 6, 251).getString() << "\n";
 
 	return 0;
 

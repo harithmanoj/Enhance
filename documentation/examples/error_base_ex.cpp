@@ -1,10 +1,10 @@
-#include <error_base.enh.h>
+#include <ErrorTracker.enh.h>
 #include <iostream>
 
-class derived_type : public enh::error_base<unsigned char>
+class derived_type : public enh::ErrorTracker<unsigned char>
 {
 public:
-	static constexpr error USER_DEF = 0x04;
+	static constexpr UnderlyingErrorType USER_DEF = 0x04;
 
 #ifdef ERROR_BASE_LOG
 private:
@@ -15,7 +15,7 @@ private:
 
 	virtual std::string error_string()  const
 	{
-		std::string ret = error_base::error_string();
+		std::string ret = ErrorTracker::toString();
 		if (ret == "SAFE")
 			return ret;
 		
@@ -25,7 +25,7 @@ private:
 	}
 #endif
 public:
-	void setFlag__(error fl)
+	void setFlag__(UnderlyingErrorType fl)
 	{
 		setFlag(fl);
 	}

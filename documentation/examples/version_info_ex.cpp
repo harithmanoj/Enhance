@@ -1,31 +1,31 @@
-#include <framework.enh.h>
+#include <VersionInfo.enh.h>
 #include <iostream>
 
 int main()
 {
-	constexpr enh::version_info ver(VERSION_INFO_FIN(1, 2, 3, 789));
-	constexpr enh::version_info ver2(VERSION_INFO_BETA(25, 36, 2, 7895));
+	constexpr enh::VersionInfo ver(VERSION_INFO_FIN(1, 2, 3, 789));
+	constexpr enh::VersionInfo ver2(VERSION_INFO_BETA(25, 36, 2, 7895));
 	constexpr const char* ver1_str = ver.string().data();
 	constexpr const char* ver2_str = ver2.string().data();
 
 	std::cout << ver.string() << " " << ver1_str << "\n"
-		<< ver.get_major() << " " << ver.get_minor() << " "
-		<< ver.get_revision() << " " << ver.get_build() << "\n"
-		<< ver.to_string() << "\n";
+		<< ver.getMajor() << " " << ver.getMinor() << " "
+		<< ver.getRevision() << " " << ver.getBuild() << "\n"
+		<< ver.toString() << "\n";
 
 	std::cout << ver2.string() << " " << ver2_str << "\n"
-		<< ver2.get_major() << " " << ver2.get_minor() << " "
-		<< ver2.get_revision() << " " << ver2.get_build() << "\n"
-		<< ver2.to_string() << "\n";
+		<< ver2.getMajor() << " " << ver2.getMinor() << " "
+		<< ver2.getRevision() << " " << ver2.getBuild() << "\n"
+		<< ver2.toString() << "\n";
 
-	std::cout << enh::version_info(1,2,3,4,enh::rel_type::RELEASE).string() 
+	std::cout << enh::VersionInfo(1,2,3,4,enh::ReleaseType::RELEASE).string() 
 		<< " " << "\n" 
-		<< enh::version_info(1,2,3,4,enh::rel_type::RELEASE).get_major() << " " 
-		<< enh::version_info(1,2,3,4,enh::rel_type::RELEASE).get_minor() << " "
-		<< enh::version_info(1,2,3,4,enh::rel_type::RELEASE).get_revision() 
+		<< enh::VersionInfo(1,2,3,4,enh::ReleaseType::RELEASE).getMajor() << " "
+		<< enh::VersionInfo(1,2,3,4,enh::ReleaseType::RELEASE).getMinor() << " "
+		<< enh::VersionInfo(1,2,3,4,enh::ReleaseType::RELEASE).getRevision()
 		<< " " 
-		<< enh::version_info(1,2,3,4,enh::rel_type::RELEASE).get_build() << "\n"
-		<< enh::version_info(1,2,3,4,enh::rel_type::RELEASE).to_string() << "\n";
+		<< enh::VersionInfo(1,2,3,4,enh::ReleaseType::RELEASE).getBuild() << "\n"
+		<< enh::VersionInfo(1,2,3,4,enh::ReleaseType::RELEASE).toString() << "\n";
 	return 0;
 }
 

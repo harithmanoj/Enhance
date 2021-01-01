@@ -1,9 +1,9 @@
-#include <time_stamp.enh.h>
+#include <TimeStamp.enh.h>
 #include <iostream>
 
 int main()
 {
-	enh::time_stamp time_array[] = { {}, {std::time(nullptr)}, {25,36,12} };
+	enh::TimeStamp time_array[] = { {}, {std::time(nullptr)}, {25,36,12} };
 
 	time_array[1].addHours(230);
 	time_array[1].addHours(230);

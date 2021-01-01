@@ -1,4 +1,4 @@
-#include <confined.enh.h>
+#include <ConfinedValue.enh.h>
 #include <iostream>
 
 
@@ -6,7 +6,7 @@ int main()
 {
 	unsigned foo = 50;
 	unsigned bar = 1;
-	enh::confined_base<unsigned> b(
+	enh::ConfinedValue<unsigned> b(
 		[&foo](long long a) {
 			return (a <= foo);
 		},
@@ -29,7 +29,7 @@ int main()
 		}
 		foo += 10;
 		bar += 5;
-		b.re_eval();
+		b.reValidateValue();
 	}
 
 	return 0;

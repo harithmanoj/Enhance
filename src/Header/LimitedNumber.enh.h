@@ -27,7 +27,7 @@
 
 #define NUMERAL_SYSTEM_ENH_H					numeral_system.enh.h
 
-#include "confined.enh.h"
+#include "ConfinedValue.enh.h"
 
 namespace enh
 {
@@ -39,20 +39,20 @@ namespace enh
 		-# <code>integral upper</code> : The upper limit for the value.\n
 	*/
 	template<class integral, integral upper>
-	class NumericSystem : public confined_base<integral>
+	class UnsignedLimitedNumber : public ConfinedValue<integral>
 	{
 	public:
 		
 		/**
 			\brief The upper limit for values of this type.
 		*/
-		static constexpr confined_base<integral>::value_type limit = upper;
+		static constexpr ConfinedValue<integral>::value_type limit = upper;
 
 		/**
 			\brief The constructor the class initialises value to 0.
 		*/
-		constexpr inline NumericSystem() noexcept
-			: confined_base<integral>::confined_base(
+		constexpr inline UnsignedLimitedNumber() noexcept
+			: ConfinedValue<integral>::ConfinedValue(
 				[&](long long a) {return a < limit; },
 				[&](long long a) { return a >= 0; },
 				[&]() {return limit - 1; },
@@ -67,14 +67,67 @@ namespace enh
 			Throws <code>std::invalid_argument</code> if value is greater 
 			than or equal to upper.
 		*/
-		constexpr inline NumericSystem(
-			confined_base<integral>::value_type val
-		) : confined_base<integral>::confined_base(
+		constexpr inline UnsignedLimitedNumber(
+			ConfinedValue<integral>::value_type val
+		) : ConfinedValue<integral>::ConfinedValue(
 				[&](long long a) {return a < limit; },
 				[&](long long a) { return a >= 0; },
 				[&]() {return limit - 1; },
 				[&]() {return 0; },
 				val)
+		{}
+	};
+
+	/**
+		\brief The class for a value that stays between lower and upper 
+		constant numbers.
+
+		<h3>template</h3>
+		-# <code>integral</code> : The type of value.\n
+		-# <code>integral upper</code> : The upper limit for the value.\n
+	*/
+	template<class integral, integral lower, integral upper>
+	class LimitedNumber : public ConfinedValue<integral>
+	{
+	public:
+
+		/**
+			\brief The upper limit for values of this type.
+		*/
+		static constexpr ConfinedValue<integral>::value_type upperLimit = upper;
+
+		/**
+			\brief The upper limit for values of this type.
+		*/
+		static constexpr ConfinedValue<integral>::value_type lowerLimit = lower;
+
+		/**
+			\brief The constructor the class initialises value to 0.
+		*/
+		constexpr inline LimitedNumber() noexcept
+			: ConfinedValue<integral>::ConfinedValue(
+				[&](long long a) {return a < upperLimit; },
+				[&](long long a) { return a > lowerLimit; },
+				[&]() {return upperLimit - 1; },
+				[&]() {return lowerLimit + 1; },
+				(upperLimit + lowerLimit)/2)
+		{}
+
+		/**
+			\brief The constructor initiliases with the value of parameter.
+
+			<h3>Exception</h3>
+			Throws <code>std::invalid_argument</code> if value is greater
+			than or equal to upper.
+		*/
+		constexpr inline UnsignedLimitedNumber(
+			ConfinedValue<integral>::value_type val
+		) : ConfinedValue<integral>::ConfinedValue(
+			[&](long long a) {return a < upperLimit; },
+			[&](long long a) { return a > lowerLimit; },
+			[&]() {return upperLimit - 1; },
+			[&]() {return lowerLimit + 1; },
+			val)
 		{}
 	};
 
@@ -87,27 +140,27 @@ namespace enh
 		/**
 			\brief Type with upper limit at 10.
 		*/
-		using dec = NumericSystem<unsigned short, 10U>;
+		using Decade = UnsignedLimitedNumber<unsigned short, 10U>;
 		
 		/**
 			\brief Type with upper limit at 100.
 		*/
-		using cent = NumericSystem<unsigned short, 100U>;
+		using Centuary = UnsignedLimitedNumber<unsigned short, 100U>;
 		
 		/**
 			\brief Type with upper limit at 1000.
 		*/
-		using kilo = NumericSystem<unsigned short, 1000U>;
+		using Kilo = UnsignedLimitedNumber<unsigned short, 1000U>;
 		
 		/**
 			\brief Type with upper limit at 1000000.
 		*/
-		using mill = NumericSystem<unsigned long, 1000000UL>;
+		using Million = UnsignedLimitedNumber<unsigned long, 1000000UL>;
 
 		/**
 			\brief Type with upper limit at 1000000000.
 		*/
-		using bill = NumericSystem<unsigned long, 1000000000ULL>;
+		using Billion = UnsignedLimitedNumber<unsigned long, 1000000000ULL>;
 	}
 
 }

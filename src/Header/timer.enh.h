@@ -42,18 +42,18 @@ namespace enh
 	/**
 		\brief Alias for the standard high resolution clock for easy access.
 	*/
-	using high_res = std::chrono::high_resolution_clock;
+	using HighResClock = std::chrono::high_resolution_clock;
 
 	/**
 		\brief Alias for easily declaring complex time stamp type.
 	*/
-	using time_pt = decltype(high_res::now());
+	using TimePoint = decltype(HighResClock::now());
 
 
 
 	/**
 		\brief Template type to assertian whether a type can be used to instanciate
-		the class @ref enh::timer.
+		the class @ref enh::Timer.
 
 		<h3>Template Parameter</h3>
 		-#  <code>T</code> : The type to check.
@@ -64,27 +64,27 @@ namespace enh
 		false for all else.\n
 	*/
 	template<class T>
-	constexpr bool isGoodTimer_v = false; // evaluates to false unless explicitely specified.
+	constexpr bool isGoodTimer = false; // evaluates to false unless explicitely specified.
 
 	//explicitely specifies that milliseconds is fine.
 	template<>
-	constexpr bool isGoodTimer_v<std::chrono::milliseconds> = true;
+	constexpr bool isGoodTimer<std::chrono::milliseconds> = true;
 
 	//explicitely specifies that seconds is fine.
 	template<>
-	constexpr bool isGoodTimer_v<std::chrono::seconds> = true;
+	constexpr bool isGoodTimer<std::chrono::seconds> = true;
 
 	//explicitely specifies that minutes is fine.
 	template<>
-	constexpr bool isGoodTimer_v<std::chrono::minutes> = true;
+	constexpr bool isGoodTimer<std::chrono::minutes> = true;
 
 	//explicitely specifies that hours is fine.
 	template<>
-	constexpr bool isGoodTimer_v<std::chrono::hours> = true;
+	constexpr bool isGoodTimer<std::chrono::hours> = true;
 
 	/**
 		\brief Template type to assertian whether a type can be used to instanciate
-		the template of class @ref enh::timer.
+		the template of class @ref enh::Timer.
 
 		<h3>Template Parameter</h3>
 		-#  <code>T</code> : The type to check.
@@ -99,25 +99,25 @@ namespace enh
 		<b>Note : </b> Not all of these type can be used to make an object of that class.
 	*/
 	template<class T>
-	constexpr bool isGoodTimerType_v = isGoodTimer_v<T>;
+	constexpr bool isGoodTimerType = isGoodTimer<T>;
 
 	template<>
-	constexpr bool isGoodTimerType_v<std::chrono::nanoseconds> = true;
+	constexpr bool isGoodTimerType<std::chrono::nanoseconds> = true;
 
 	template<>
-	constexpr bool isGoodTimerType_v<std::chrono::microseconds> = true;
+	constexpr bool isGoodTimerType<std::chrono::microseconds> = true;
 
 
 	/**
-		\brief The class to create a timer that notifies all clients periodically.
+		\brief The class to create a Timer that notifies all clients periodically.
 
-		The class will start a timer on instanciation and starts notifying 
+		The class will start a Timer on instanciation and starts notifying 
 		all client threads, periodically.
 		
 
 		The period is determined by the template arguments.
 
-		The period cannot be less than 5 if unit is milliseconds for accuracy.
+		The period cannot be less than 5 if TimeUnit is milliseconds for accuracy.
 
 		The class cannot be instanciated using any other type than 
 		milliseconds, seconds, minutes and hours.
@@ -129,37 +129,37 @@ namespace enh
 		hasErrorHandlers        = false;\n
 		
 		<h3>template</h3>
-		-#  <code>unsigned _per</code> : The period of time between each notification.\n
-		-#  <code>unit</code> : The unit of time of period.\n
+		-#  <code>unsigned periodPassed</code> : The period of time between each notification.\n
+		-#  <code>TimeUnit</code> : The TimeUnit of time of period.\n
 
 		<h3>Example</h3>
 
 		\include{lineno} timer_ex.cpp
 
 	*/
-	template<unsigned _per = 50U, class time_unit = std::chrono::milliseconds>
-	class timer
+	template<unsigned periodPassed = 50U, class TimeUnitPassed = std::chrono::milliseconds>
+	class Timer
 	{
 	
 	public:
 
 		/**
-			\brief The period of timer.
+			\brief The period of Timer.
 		*/
-		static constexpr unsigned period = _per;
+		static constexpr unsigned period = periodPassed;
 
 		/**
-			\brief The unit of measurement.
+			\brief The TimeUnit of measurement.
 		*/
-		using unit = time_unit;
+		using TimeUnit = TimeUnitPassed;
 
 	private:
 
 
-		//fails if not time unit.
-		static_assert(isGoodTimerType_v<unit>, "unit type must be time type");
+		//fails if not time TimeUnit.
+		static_assert(isGoodTimerType<TimeUnit>, "TimeUnit type must be time type");
 		//fails if period < 5ms
-		static_assert(!(std::is_same_v<std::chrono::milliseconds, unit> && (period < 5)),
+		static_assert(!(std::is_same_v<std::chrono::milliseconds, TimeUnit> && (period < 5)),
 			"Precision cannot be achieved lower than 5ms");
 
 
@@ -167,93 +167,93 @@ namespace enh
 			\brief The variable that is initialized at the begining of program
 			to the time at that point. Approximately the program begining time.
 		*/
-		static time_pt program_start;
+		static TimePoint _programStartTimePoint;
 
 		/**
-			\brief The variable that is initialized at the begining of timer
-			thread start, the begining time point of the timer.
+			\brief The variable that is initialized at the begining of Timer
+			thread start, the begining time point of the Timer.
 		*/
-		time_pt timer_start;
+		TimePoint _timerStartPoint;
 
 		/**
 			\brief The time at which next notification is to be sent.
 
-			Value is @ref timer_start + period*@ref elapsed_cycles.
+			Value is @ref _timerStartPoint + period*@ref _elapsedCycles.
 		*/
-		time_pt timer_next;
+		TimePoint _nextTimerPoint;
 
 
 		/**
-			\brief The mutex to hold ownership over @ref elapsed_cycles and
+			\brief The mutex to hold ownership over @ref _elapsedCycles and
 			the notifier.
 		*/
-		std::mutex mtxTimer;
+		std::mutex _elapsedCyclesSyncMutex;
 
 		/**
 			\brief The condition_variable to notify all client threads about 
 			the end of that period.
 		*/
-		std::condition_variable cvTimer;
+		std::condition_variable _notifyTimerPeriodEnd;
 
 		/**
-			\brief The variable to signal the end of the timer loop, set by 
-			any control thread and read by the timer thread to stop execution
+			\brief The variable to signal the end of the Timer loop, set by 
+			any control thread and read by the Timer thread to stop execution
 			and return.
 		*/
-		std::atomic<bool> stopTimer;
+		std::atomic<bool> _shouldStopTimer;
 
 		/**
-			\brief The variable that tracks the cycles elapsed since timer
+			\brief The variable that tracks the cycles elapsed since Timer
 			start.
 
 			The product of this and period gives time elapsed.
 		*/
-		unsigned long long elapsed_cycles;
+		unsigned long long _elapsedCycles;
 
 
 		/**
-			\brief the thread handle to the thread running the timer function.
+			\brief the thread handle to the thread running the Timer function.
 		*/
-		std::thread timerThread;
+		std::thread _timerThread;
 
 		/**
-			\brief true if timer thread is running.
+			\brief true if Timer thread is running.
 		*/
-		bool isTimerActive;
+		bool _isTimerActive;
 
 
 
 		/**
 			\brief Blocks execution till the time point described in 
-			timer_next.
+			_nextTimerPoint.
 
 			And then notifies the waiting threads.
 		*/
-		inline void single_period() noexcept
+		inline void singlePeriodSleep() noexcept
 		{
-			std::this_thread::sleep_until(timer_next);
+			std::this_thread::sleep_until(_nextTimerPoint);
 			{
-				std::lock_guard<std::mutex> lock(mtxTimer);
-				++elapsed_cycles;
-				timer_next += unit(period);
+				std::lock_guard<std::mutex> lock(_elapsedCyclesSyncMutex);
+				++_elapsedCycles;
+				_nextTimerPoint += TimeUnit(period);
 			}
-			cvTimer.notify_all();
+			_notifyTimerPeriodEnd.notify_all();
 		}
 
 
 		/**
-			\brief keeps on executing single_period until the time when 
-			stopTimer is set.
+			\brief keeps on executing singlePeriodSleep until the time when 
+			_shouldStopTimer is set.
 		*/
-		void loop() noexcept
+		void timerLoop() noexcept
 		{
-			clear_stop();
-			elapsed_cycles = 0;
-			timer_start = high_res::now();
-			timer_next = timer_start + unit(period);
-			while (!stopTimer.load())
+			clearStopSignal();
+			_elapsedCycles = 0;
+			_timerStartPoint = HighResClock::now();
+			_nextTimerPoint = _timerStartPoint + TimeUnit(period);
+			while (!_shouldStopTimer.load())
 			{
-				single_period();
+				singlePeriodSleep();
 			}
 		}
 
@@ -263,35 +263,35 @@ namespace enh
 			\brief The constructor of the class.
 
 
-			The timer constructor also invokes enh::timer::start_timer.
+			The Timer constructor also invokes enh::Timer::startTimerLoop.
 
 			Constructor fails assert if it is not a time type > ms.
 		*/
-		inline timer() noexcept
+		inline Timer() noexcept
 		{
-			static_assert(isGoodTimer_v<unit>, "unit type must be std::chrono::milliseconds, seconds or hours");
-			isTimerActive = false;
-			clear_stop();
-			elapsed_cycles = 0;
-			start_timer();
+			static_assert(isGoodTimer<TimeUnit>, "TimeUnit type must be std::chrono::milliseconds, seconds or hours");
+			_isTimerActive = false;
+			clearStopSignal();
+			_elapsedCycles = 0;
+			startTimerLoop();
 		}
 		
 
 		/**
 			\brief destructor of the class.
 
-			invokes enh::timer::force_join, waits till the timer Thread joins.
+			invokes enh::Timer::immediateTimerJoin, waits till the Timer Thread joins.
 		*/
-		inline ~timer() noexcept
+		inline ~Timer() noexcept
 		{
-			force_join();
+			immediateTimerJoin();
 		}
 
 		/**
 			\brief The Functions blocks execution till the number of cycles 
 			elapsed is greater than or equal to the expected value.
 
-			Invokes enh::timer::start_timer if timer is not active.
+			Invokes enh::Timer::startTimerLoop if Timer is not active.
 
 			<h3>Return</h3>
 			The difference between elapsed 
@@ -302,14 +302,14 @@ namespace enh
 										count to wait till.*/
 		) noexcept
 		{
-			if (!isTimerActive)
-				start_timer();
-			std::unique_lock<std::mutex> lock(mtxTimer);
-			cvTimer.wait(lock,
+			if (!_isTimerActive)
+				startTimerLoop();
+			std::unique_lock<std::mutex> lock(_elapsedCyclesSyncMutex);
+			_notifyTimerPeriodEnd.wait(lock,
 				[expected, this]() {
-					return elapsed_cycles >= expected;
+					return _elapsedCycles >= expected;
 				});
-			return (elapsed_cycles - expected);
+			return (_elapsedCycles - expected);
 		}
 
 		/**
@@ -323,7 +323,7 @@ namespace enh
 		*/
 		inline unsigned long long wait() noexcept
 		{
-			return wait(elapsed_cycles + 1);
+			return wait(_elapsedCycles + 1);
 		}
 
 		/**
@@ -339,83 +339,83 @@ namespace enh
 
 
 		*/
-		inline long long wait_for(
+		inline long long waitFor(
 			unsigned mult_count /**< : <i>in</i> : The amount of cycles to 
 								wait.*/,
 			std::function<bool()> condition /**< : <i>in</i> : The condition
 											to exit immediately.*/
 		) noexcept
 		{
-			unsigned long long expected = elapsed_cycles + mult_count;
-			while (elapsed_cycles < expected)
+			unsigned long long expected = _elapsedCycles + mult_count;
+			while (_elapsedCycles < expected)
 			{
 				if (!condition())
 					return -1;
 				wait();
 			}
-			return elapsed_cycles - expected;
+			return _elapsedCycles - expected;
 		}
 		
 		/**
-			\brief sets stopTimer to true.
+			\brief sets _shouldStopTimer to true.
 		*/
-		inline void stop() noexcept { stopTimer = true; }
+		inline void stop() noexcept { _shouldStopTimer = true; }
 
 		/**
-			\brief sets stopTimer to false.
+			\brief sets _shouldStopTimer to false.
 		*/
-		inline void clear_stop() noexcept { stopTimer = false; }
+		inline void clearStopSignal() noexcept { _shouldStopTimer = false; }
 
 		/**
-			\brief returns the start @ref time_pt of the program.
+			\brief returns the start @ref TimePoint of the program.
 		*/
-		inline static time_pt program_start_point() noexcept 
-		{ return program_start; }
+		inline static TimePoint logProgramStartPoint() noexcept 
+		{ return _programStartTimePoint; }
 
 		/**
 			\brief Returns the duration elapsed from program start in the type 
 			passed through the template.
 		*/
-		inline static unit program_elapsed() noexcept
+		inline static TimeUnit getProgramTimeElapsed() noexcept
 		{
-			return std::chrono::duration_cast<unit>(high_res::now()
-				- program_start);
+			return std::chrono::duration_cast<TimeUnit>(HighResClock::now()
+				- _programStartTimePoint);
 		}
 
 		/**
-			\brief Returns the number of cycles elapsed from timer start.
+			\brief Returns the number of cycles elapsed from Timer start.
 		*/
-		inline unsigned long long elapsed() noexcept { return elapsed_cycles; }
+		inline unsigned long long getElapsedCycles() noexcept { return _elapsedCycles; }
 
 		/**
 			\brief blocks function execution for mult_count number of cycles.
 
 			Returns the overshoot from the expected value.
 		*/
-		inline unsigned long long wait_for(
+		inline unsigned long long waitFor(
 			unsigned long mult_count /**< : <i>in</i> : The cycles to wait for.*/
 		)noexcept
 		{
-			return wait(elapsed_cycles + mult_count);
+			return wait(_elapsedCycles + mult_count);
 		}
 
 		/**
-			\brief Checks if timer is running.
+			\brief Checks if Timer is running.
 
 			<h3>Return</h3>
-			If timer is running it returns true.
+			If Timer is running it returns true.
 			Else it returns false;
 		*/
 		inline bool isTimerCounting()
 		{
-			if (isTimerActive)
+			if (_isTimerActive)
 			{
 				// isTimer Active is true, thread has finished but thread has 
 				// not been joined.
-				if (timerThread.joinable())
+				if (_timerThread.joinable())
 				{
-					timerThread.join();
-					isTimerActive = false;
+					_timerThread.join();
+					_isTimerActive = false;
 					return false;
 				}
 				else
@@ -426,28 +426,28 @@ namespace enh
 		}
 
 		/**
-			\brief The function to start timer.
+			\brief The function to start Timer.
 
-			The function clears the stopTimer flag, sets elapsed_cycles to 
-			0 and then allocates a thread for the timer.
+			The function clears the _shouldStopTimer flag, sets _elapsedCycles to 
+			0 and then allocates a thread for the Timer.
 
 			<h3>Return</h3>
-			Returns false if timer is already running.
+			Returns false if Timer is already running.
 		*/
-		inline bool start_timer() noexcept
+		inline bool startTimerLoop() noexcept
 		{
 			if (isTimerCounting())
 				return false;
 			O3_LIB_LOG_LINE;
-			clear_stop();
-			elapsed_cycles = 0;
-			timerThread = std::thread(&timer<period, unit>::loop, this);
-			isTimerActive = true;
+			clearStopSignal();
+			_elapsedCycles = 0;
+			_timerThread = std::thread(&Timer<period, TimeUnit>::timerLoop, this);
+			_isTimerActive = true;
 			return true;
 		}
 
 		/**
-			\brief overloaded operator !, returns true if the timer Thread 
+			\brief overloaded operator !, returns true if the Timer Thread 
 			is not allocated.
 		*/
 		inline bool operator !() noexcept
@@ -456,70 +456,70 @@ namespace enh
 		}
 
 		/**
-			\brief Waits till timerThread finishes execution.
+			\brief Waits till _timerThread finishes execution.
 
-			The function blocks till the timer Thread joins.
+			The function blocks till the Timer Thread joins.
 			
-			If the timer Thread is empty, it returns immediately.
+			If the Timer Thread is empty, it returns immediately.
 		*/
-		inline void join() noexcept
+		inline void waitForTimerStop() noexcept
 		{
 			if (isTimerCounting())
 			{
-				timerThread.join();
-				isTimerActive = false;
+				_timerThread.join();
+				_isTimerActive = false;
 			}
 		}
 
 		/**
-			\brief sets stopTimer flag to true, then waits for thread to 
-			join via enh::timer::join.
+			\brief sets _shouldStopTimer flag to true, then waits for thread to 
+			join via enh::Timer::waitForTimerStop.
 		*/
-		inline void force_join() noexcept
+		inline void immediateTimerJoin() noexcept
 		{
 			stop();
-			join();
+			waitForTimerStop();
 			return ;
 		}
 	};
 
 	template<unsigned a, class b>
-	time_pt timer<a,b>::program_start = high_res::now();
+	TimePoint Timer<a,b>::_programStartTimePoint = HighResClock::now();
 
 	/**
-		\brief The enh::timer class with unit <code>std::chrono::
+		\brief The enh::Timer class with TimeUnit <code>std::chrono::
 		nanoseconds</code> 
 		
 		
-		The alias of a timer class template instanciated with 
+		The alias of a Timer class template instanciated with 
 		<code>std::chrono::nanoseconds</code> to measure time elapsed in 
 		nanoseconds from program start.
 
 		<b>NOTE : </b> An object of this type cannot be created, it would 
 		fail an assert in the constructor.
 	*/
-	using nanos = timer<50, std::chrono::nanoseconds>;
+	using nanos = Timer<50, std::chrono::nanoseconds>;
 
 	/**
-		\brief The enh::timer class with unit <code>std::chrono::
+		\brief The enh::Timer class with TimeUnit <code>std::chrono::
 		microseconds</code>
 
 
-		The alias of a timer class template instanciated with
+		The alias of a Timer class template instanciated with
 		<code>std::chrono::microseconds</code> to measure time elapsed in
 		microseconds from program start.
 
 		<b>NOTE : </b> An object of this type cannot be created, it would
 		fail an assert in the constructor.
 	*/
-	using micros = timer<50, std::chrono::microseconds>;
+	using micros = Timer<50, std::chrono::microseconds>;
 
 	/**
-		\brief The enh::timer class with unit <code>std::chrono::
+		\brief The enh::Timer class with TimeUnit <code>std::chrono::
 		milliseconds</code>
 
 
-		The alias of a timer class template instanciated with
+		The alias of a Timer class template instanciated with
 		<code>std::chrono::milliseconds</code>.
 
 		<b>NOTE : </b> An instance of this template cannot be created with 
@@ -527,56 +527,56 @@ namespace enh
 		instanciation.
 
 		<h3>Template</h3>
-		<code>unsigned period</code> : The period of one cycle in the timer, 
+		<code>unsigned period</code> : The period of one cycle in the Timer, 
 		cannot be less than 5, default value 50.
 	*/
 	template<unsigned period = 50U>
-	using millis = timer<period, std::chrono::milliseconds>;
+	using millis = Timer<period, std::chrono::milliseconds>;
 
 	/**
-		\brief The enh::timer class with unit <code>std::chrono::
+		\brief The enh::Timer class with TimeUnit <code>std::chrono::
 		seconds</code>
 
 
-		The alias of a timer class template instanciated with
+		The alias of a Timer class template instanciated with
 		<code>std::chrono::seconds</code>.
 
 		<h3>Template</h3>
-		<code>unsigned period</code> : The period of one cycle in the timer,
+		<code>unsigned period</code> : The period of one cycle in the Timer,
 		default value 50.
 	*/
 	template<unsigned period = 50U>
-	using seconds = timer<period, std::chrono::seconds>;
+	using seconds = Timer<period, std::chrono::seconds>;
 
 	/**
-		\brief The enh::timer class with unit <code>std::chrono::
+		\brief The enh::Timer class with TimeUnit <code>std::chrono::
 		minutes</code>
 
 
-		The alias of a timer class template instanciated with
+		The alias of a Timer class template instanciated with
 		<code>std::chrono::minutes</code>.
 
 		<h3>Template</h3>
-		<code>unsigned period</code> : The period of one cycle in the timer,
+		<code>unsigned period</code> : The period of one cycle in the Timer,
 		default value 50.
 	*/
 	template<unsigned period = 50U>
-	using minutes = timer<period, std::chrono::minutes>;
+	using minutes = Timer<period, std::chrono::minutes>;
 
 	/**
-		\brief The enh::timer class with unit <code>std::chrono::
+		\brief The enh::Timer class with TimeUnit <code>std::chrono::
 		hours</code>
 
 
-		The alias of a timer class template instanciated with
+		The alias of a Timer class template instanciated with
 		<code>std::chrono::hours</code>.
 
 		<h3>Template</h3>
-		<code>unsigned period</code> : The period of one cycle in the timer,
+		<code>unsigned period</code> : The period of one cycle in the Timer,
 		default value 50.
 	*/
 	template<unsigned period = 50U>
-	using hours = timer<period, std::chrono::hours>;
+	using hours = Timer<period, std::chrono::hours>;
 
 }
 

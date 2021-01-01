@@ -25,13 +25,13 @@
 ******************************************************************************/
 
 #include <iostream>
-#include <error_base.enh.h>
+#include <ErrorTracker.enh.h>
 #include "test.base.h"
 
 namespace testCase
 {
 
-	class ErrorTest : public enh::error_base<unsigned char>
+	class ErrorTest : public enh::ErrorTracker<unsigned char>
 	{
 	public:
 		constexpr static unsigned char CUSTOM = 0x08;

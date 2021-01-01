@@ -4,13 +4,13 @@
 
 int main()
 {
-	enh::timer<1, std::chrono::seconds> test;
+	enh::Timer<1, std::chrono::seconds> test;
 	for (int i = 0; i < 10; ++i)
 	{
 		test.wait();
-		auto start = enh::high_res::now();
-		test.wait_for(2);
-		auto end = enh::high_res::now();
+		auto start = enh::HighResClock::now();
+		test.waitFor(2);
+		auto end = enh::HighResClock::now();
 
 		std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
@@ -23,9 +23,9 @@ int main()
 	for (int i = 0; i < 10; ++i)
 	{
 		test2.wait();
-		auto start = enh::high_res::now();
-		test2.wait_for(5);
-		auto end = enh::high_res::now();
+		auto start = enh::HighResClock::now();
+		test2.waitFor(5);
+		auto end = enh::HighResClock::now();
 
 		std::chrono::microseconds ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 
