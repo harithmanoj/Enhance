@@ -167,40 +167,40 @@ namespace enh
 			\brief The variable that is initialized at the begining of program
 			to the time at that point. Approximately the program begining time.
 		*/
-		static TimePoint program_start;
+		static TimePoint _programStartTimePoint;
 
 		/**
 			\brief The variable that is initialized at the begining of Timer
 			thread start, the begining time point of the Timer.
 		*/
-		TimePoint timer_start;
+		TimePoint _timerStartPoint;
 
 		/**
 			\brief The time at which next notification is to be sent.
 
-			Value is @ref timer_start + period*@ref elapsed_cycles.
+			Value is @ref _timerStartPoint + period*@ref _elapsedCycles.
 		*/
-		TimePoint timer_next;
+		TimePoint _nextTimerPoint;
 
 
 		/**
-			\brief The mutex to hold ownership over @ref elapsed_cycles and
+			\brief The mutex to hold ownership over @ref _elapsedCycles and
 			the notifier.
 		*/
-		std::mutex mtxTimer;
+		std::mutex _mtxElapsedCycles;
 
 		/**
 			\brief The condition_variable to notify all client threads about 
 			the end of that period.
 		*/
-		std::condition_variable cvTimer;
+		std::condition_variable _cvTimerPeriodSignal;
 
 		/**
 			\brief The variable to signal the end of the Timer loop, set by 
 			any control thread and read by the Timer thread to stop execution
 			and return.
 		*/
-		std::atomic<bool> stopTimer;
+		std::atomic<bool> _shouldStopTimer;
 
 		/**
 			\brief The variable that tracks the cycles elapsed since Timer
@@ -208,52 +208,52 @@ namespace enh
 
 			The product of this and period gives time elapsed.
 		*/
-		unsigned long long elapsed_cycles;
+		unsigned long long _elapsedCycles;
 
 
 		/**
 			\brief the thread handle to the thread running the Timer function.
 		*/
-		std::thread timerThread;
+		std::thread _timerThread;
 
 		/**
 			\brief true if Timer thread is running.
 		*/
-		bool isTimerActive;
+		bool _isTimerActive;
 
 
 
 		/**
 			\brief Blocks execution till the time point described in 
-			timer_next.
+			_nextTimerPoint.
 
 			And then notifies the waiting threads.
 		*/
-		inline void single_period() noexcept
+		inline void singlePeriodSleep() noexcept
 		{
-			std::this_thread::sleep_until(timer_next);
+			std::this_thread::sleep_until(_nextTimerPoint);
 			{
-				std::lock_guard<std::mutex> lock(mtxTimer);
-				++elapsed_cycles;
-				timer_next += TimeUnit(period);
+				std::lock_guard<std::mutex> lock(_mtxElapsedCycles);
+				++_elapsedCycles;
+				_nextTimerPoint += TimeUnit(period);
 			}
-			cvTimer.notify_all();
+			_cvTimerPeriodSignal.notify_all();
 		}
 
 
 		/**
-			\brief keeps on executing single_period until the time when 
-			stopTimer is set.
+			\brief keeps on executing singlePeriodSleep until the time when 
+			_shouldStopTimer is set.
 		*/
-		void loop() noexcept
+		void timerLoop() noexcept
 		{
-			clear_stop();
-			elapsed_cycles = 0;
-			timer_start = HighResClock::now();
-			timer_next = timer_start + TimeUnit(period);
-			while (!stopTimer.load())
+			clearStopSignal();
+			_elapsedCycles = 0;
+			_timerStartPoint = HighResClock::now();
+			_nextTimerPoint = _timerStartPoint + TimeUnit(period);
+			while (!_shouldStopTimer.load())
 			{
-				single_period();
+				singlePeriodSleep();
 			}
 		}
 
@@ -263,35 +263,35 @@ namespace enh
 			\brief The constructor of the class.
 
 
-			The Timer constructor also invokes enh::Timer::start_timer.
+			The Timer constructor also invokes enh::Timer::startTimerLoop.
 
 			Constructor fails assert if it is not a time type > ms.
 		*/
 		inline Timer() noexcept
 		{
 			static_assert(isGoodTimer<TimeUnit>, "TimeUnit type must be std::chrono::milliseconds, seconds or hours");
-			isTimerActive = false;
-			clear_stop();
-			elapsed_cycles = 0;
-			start_timer();
+			_isTimerActive = false;
+			clearStopSignal();
+			_elapsedCycles = 0;
+			startTimerLoop();
 		}
 		
 
 		/**
 			\brief destructor of the class.
 
-			invokes enh::Timer::force_join, waits till the Timer Thread joins.
+			invokes enh::Timer::immediateTimerJoin, waits till the Timer Thread joins.
 		*/
 		inline ~Timer() noexcept
 		{
-			force_join();
+			immediateTimerJoin();
 		}
 
 		/**
 			\brief The Functions blocks execution till the number of cycles 
 			elapsed is greater than or equal to the expected value.
 
-			Invokes enh::Timer::start_timer if Timer is not active.
+			Invokes enh::Timer::startTimerLoop if Timer is not active.
 
 			<h3>Return</h3>
 			The difference between elapsed 
@@ -302,14 +302,14 @@ namespace enh
 										count to wait till.*/
 		) noexcept
 		{
-			if (!isTimerActive)
-				start_timer();
-			std::unique_lock<std::mutex> lock(mtxTimer);
-			cvTimer.wait(lock,
+			if (!_isTimerActive)
+				startTimerLoop();
+			std::unique_lock<std::mutex> lock(_mtxElapsedCycles);
+			_cvTimerPeriodSignal.wait(lock,
 				[expected, this]() {
-					return elapsed_cycles >= expected;
+					return _elapsedCycles >= expected;
 				});
-			return (elapsed_cycles - expected);
+			return (_elapsedCycles - expected);
 		}
 
 		/**
@@ -323,7 +323,7 @@ namespace enh
 		*/
 		inline unsigned long long wait() noexcept
 		{
-			return wait(elapsed_cycles + 1);
+			return wait(_elapsedCycles + 1);
 		}
 
 		/**
@@ -339,64 +339,64 @@ namespace enh
 
 
 		*/
-		inline long long wait_for(
+		inline long long waitFor(
 			unsigned mult_count /**< : <i>in</i> : The amount of cycles to 
 								wait.*/,
 			std::function<bool()> condition /**< : <i>in</i> : The condition
 											to exit immediately.*/
 		) noexcept
 		{
-			unsigned long long expected = elapsed_cycles + mult_count;
-			while (elapsed_cycles < expected)
+			unsigned long long expected = _elapsedCycles + mult_count;
+			while (_elapsedCycles < expected)
 			{
 				if (!condition())
 					return -1;
 				wait();
 			}
-			return elapsed_cycles - expected;
+			return _elapsedCycles - expected;
 		}
 		
 		/**
-			\brief sets stopTimer to true.
+			\brief sets _shouldStopTimer to true.
 		*/
-		inline void stop() noexcept { stopTimer = true; }
+		inline void stop() noexcept { _shouldStopTimer = true; }
 
 		/**
-			\brief sets stopTimer to false.
+			\brief sets _shouldStopTimer to false.
 		*/
-		inline void clear_stop() noexcept { stopTimer = false; }
+		inline void clearStopSignal() noexcept { _shouldStopTimer = false; }
 
 		/**
 			\brief returns the start @ref TimePoint of the program.
 		*/
-		inline static TimePoint program_start_point() noexcept 
-		{ return program_start; }
+		inline static TimePoint logProgramStartPoint() noexcept 
+		{ return _programStartTimePoint; }
 
 		/**
 			\brief Returns the duration elapsed from program start in the type 
 			passed through the template.
 		*/
-		inline static TimeUnit program_elapsed() noexcept
+		inline static TimeUnit getProgramTimeElapsed() noexcept
 		{
 			return std::chrono::duration_cast<TimeUnit>(HighResClock::now()
-				- program_start);
+				- _programStartTimePoint);
 		}
 
 		/**
 			\brief Returns the number of cycles elapsed from Timer start.
 		*/
-		inline unsigned long long elapsed() noexcept { return elapsed_cycles; }
+		inline unsigned long long getElapsedCycles() noexcept { return _elapsedCycles; }
 
 		/**
 			\brief blocks function execution for mult_count number of cycles.
 
 			Returns the overshoot from the expected value.
 		*/
-		inline unsigned long long wait_for(
+		inline unsigned long long waitFor(
 			unsigned long mult_count /**< : <i>in</i> : The cycles to wait for.*/
 		)noexcept
 		{
-			return wait(elapsed_cycles + mult_count);
+			return wait(_elapsedCycles + mult_count);
 		}
 
 		/**
@@ -408,14 +408,14 @@ namespace enh
 		*/
 		inline bool isTimerCounting()
 		{
-			if (isTimerActive)
+			if (_isTimerActive)
 			{
 				// isTimer Active is true, thread has finished but thread has 
 				// not been joined.
-				if (timerThread.joinable())
+				if (_timerThread.joinable())
 				{
-					timerThread.join();
-					isTimerActive = false;
+					_timerThread.join();
+					_isTimerActive = false;
 					return false;
 				}
 				else
@@ -428,21 +428,21 @@ namespace enh
 		/**
 			\brief The function to start Timer.
 
-			The function clears the stopTimer flag, sets elapsed_cycles to 
+			The function clears the _shouldStopTimer flag, sets _elapsedCycles to 
 			0 and then allocates a thread for the Timer.
 
 			<h3>Return</h3>
 			Returns false if Timer is already running.
 		*/
-		inline bool start_timer() noexcept
+		inline bool startTimerLoop() noexcept
 		{
 			if (isTimerCounting())
 				return false;
 			O3_LIB_LOG_LINE;
-			clear_stop();
-			elapsed_cycles = 0;
-			timerThread = std::thread(&Timer<period, TimeUnit>::loop, this);
-			isTimerActive = true;
+			clearStopSignal();
+			_elapsedCycles = 0;
+			_timerThread = std::thread(&Timer<period, TimeUnit>::timerLoop, this);
+			_isTimerActive = true;
 			return true;
 		}
 
@@ -456,35 +456,35 @@ namespace enh
 		}
 
 		/**
-			\brief Waits till timerThread finishes execution.
+			\brief Waits till _timerThread finishes execution.
 
 			The function blocks till the Timer Thread joins.
 			
 			If the Timer Thread is empty, it returns immediately.
 		*/
-		inline void join() noexcept
+		inline void waitForTimerStop() noexcept
 		{
 			if (isTimerCounting())
 			{
-				timerThread.join();
-				isTimerActive = false;
+				_timerThread.join();
+				_isTimerActive = false;
 			}
 		}
 
 		/**
-			\brief sets stopTimer flag to true, then waits for thread to 
-			join via enh::Timer::join.
+			\brief sets _shouldStopTimer flag to true, then waits for thread to 
+			join via enh::Timer::waitForTimerStop.
 		*/
-		inline void force_join() noexcept
+		inline void immediateTimerJoin() noexcept
 		{
 			stop();
-			join();
+			waitForTimerStop();
 			return ;
 		}
 	};
 
 	template<unsigned a, class b>
-	TimePoint Timer<a,b>::program_start = HighResClock::now();
+	TimePoint Timer<a,b>::_programStartTimePoint = HighResClock::now();
 
 	/**
 		\brief The enh::Timer class with TimeUnit <code>std::chrono::
