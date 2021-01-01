@@ -1,5 +1,5 @@
 /** ***************************************************************************
-	\file error_base.enh.h
+	\file ErrorTracker.enh.h
 	
 	\brief The file to declare Error Handling classes and functions
  
@@ -26,9 +26,9 @@
 
 
 
-#ifndef ERROR_BASE_ENH_H
+#ifndef ERROR_TRACKER_ENH_H
 
-#define ERROR_BASE_ENH_H				error_base.enh.h
+#define ERROR_TRACKER_ENH_H				ErrorTracker.enh.h
 
 #include <atomic>
 #include "general.enh.h"
@@ -87,7 +87,7 @@ namespace enh
 
 		<h3>Example</h3>
 
-		\include{lineno} error_base_ex.cpp
+		\include{lineno} ErrorTracker_ex.cpp
 	*/
 	template<class type>
 	class ErrorTracker
@@ -252,7 +252,7 @@ namespace enh
 
 		
 
-#ifdef ERROR_BASE_LOG
+#ifdef ErrorTracker_LOG
 
 
 		/*
@@ -261,7 +261,7 @@ namespace enh
 			<h3>Return</h3>
 			The name of the class.\n
 		*/
-		virtual std::string derived_class() const noexcept
+		virtual std::string derivedClassName() const noexcept
 		{
 			return "ErrorTracker";
 		}
@@ -283,7 +283,7 @@ namespace enh
 								 error holder.*/
 		) const noexcept
 		{
-			debug::log(file, function, line, derived_class() + " " + variable 
+			debug::log(file, function, line, derivedClassName() + " " + variable 
 				+ " flag : " + toString());
 		}
 #endif
