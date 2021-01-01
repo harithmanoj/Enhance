@@ -39,7 +39,7 @@ namespace enh
 		-# <code>integral upper</code> : The upper limit for the value.\n
 	*/
 	template<class integral, integral upper>
-	class NumericSystem : public ConfinedValue<integral>
+	class UnsignedLimitedNumber : public ConfinedValue<integral>
 	{
 	public:
 		
@@ -51,7 +51,7 @@ namespace enh
 		/**
 			\brief The constructor the class initialises value to 0.
 		*/
-		constexpr inline NumericSystem() noexcept
+		constexpr inline UnsignedLimitedNumber() noexcept
 			: ConfinedValue<integral>::ConfinedValue(
 				[&](long long a) {return a < limit; },
 				[&](long long a) { return a >= 0; },
@@ -67,7 +67,7 @@ namespace enh
 			Throws <code>std::invalid_argument</code> if value is greater 
 			than or equal to upper.
 		*/
-		constexpr inline NumericSystem(
+		constexpr inline UnsignedLimitedNumber(
 			ConfinedValue<integral>::value_type val
 		) : ConfinedValue<integral>::ConfinedValue(
 				[&](long long a) {return a < limit; },
@@ -87,27 +87,27 @@ namespace enh
 		/**
 			\brief Type with upper limit at 10.
 		*/
-		using dec = NumericSystem<unsigned short, 10U>;
+		using dec = UnsignedLimitedNumber<unsigned short, 10U>;
 		
 		/**
 			\brief Type with upper limit at 100.
 		*/
-		using cent = NumericSystem<unsigned short, 100U>;
+		using cent = UnsignedLimitedNumber<unsigned short, 100U>;
 		
 		/**
 			\brief Type with upper limit at 1000.
 		*/
-		using kilo = NumericSystem<unsigned short, 1000U>;
+		using kilo = UnsignedLimitedNumber<unsigned short, 1000U>;
 		
 		/**
 			\brief Type with upper limit at 1000000.
 		*/
-		using mill = NumericSystem<unsigned long, 1000000UL>;
+		using mill = UnsignedLimitedNumber<unsigned long, 1000000UL>;
 
 		/**
 			\brief Type with upper limit at 1000000000.
 		*/
-		using bill = NumericSystem<unsigned long, 1000000000ULL>;
+		using bill = UnsignedLimitedNumber<unsigned long, 1000000000ULL>;
 	}
 
 }

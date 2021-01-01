@@ -148,13 +148,13 @@ namespace enh
 			\brief Numerical value confined to ones that month can take 
 			[0,11].
 		*/
-		using month_t = NumericSystem<unsigned short, 12>;
+		using month_t = UnsignedLimitedNumber<unsigned short, 12>;
 
 		/**
 			\brief Numerical value confined to ones that week day can take
 			[0,6].
 		*/
-		using weekday_t = NumericSystem<unsigned short, 7>;
+		using weekday_t = UnsignedLimitedNumber<unsigned short, 7>;
 
 		/**
 			\brief Neumerical type that is confined to interval 

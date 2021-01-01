@@ -37,17 +37,17 @@ namespace enh
 		/**
 			\brief The confined type for seconds.
 		*/
-		using sec_t = enh::NumericSystem<unsigned short, 60>;
+		using sec_t = enh::UnsignedLimitedNumber<unsigned short, 60>;
 		
 		/**
 			\brief The confined type for minutes.
 		*/
-		using min_t = enh::NumericSystem<unsigned short, 60>;
+		using min_t = enh::UnsignedLimitedNumber<unsigned short, 60>;
 		
 		/**
 			\brief The confined type for hours.
 		*/
-		using hr_t = enh::NumericSystem<unsigned short, 24>;
+		using hr_t = enh::UnsignedLimitedNumber<unsigned short, 24>;
 	}
 
 	/**
