@@ -28,7 +28,7 @@
 
 #define QUEUED_PROCESS_ENH_H						QueuedProcess.enh.h
 
-#include "error_base.enh.h"
+#include "ErrorTracker.enh.h"
 
 #include <mutex>
 #include <queue>
@@ -70,7 +70,7 @@ namespace enh
 		\brief The type to add as place-holder in passing template arguments
 		to templates which may not require all types to be valid.
 	*/
-	class Blank_t {};
+	class BlankType {};
 
 	/**
 		\brief The class to implement a structure which executes instructions
@@ -138,7 +138,7 @@ namespace enh
 		/**
 			\brief The synchronising mutex for Queue.
 		*/
-		std::mutex _mtxQueue;
+		std::mutex _QueueSyncMutex;
 
 		/**
 			\brief The Queue to pass instruction from main to instruction processor.
@@ -148,7 +148,7 @@ namespace enh
 		/**
 			\brief The object to notify update to queue.
 		*/
-		std::condition_variable _cvQueueHandler;
+		std::condition_variable _QueueUpdateNotifier;
 
 		/**
 			\brief The bool value which indicates whether queue has been
@@ -201,8 +201,8 @@ namespace enh
 				O3_LIB_LOG_LINE;
 				while (!(_isUpdated.load()))
 				{
-					std::unique_lock<std::mutex> lock(_mtxQueue);
-					_cvQueueHandler.wait(lock);
+					std::unique_lock<std::mutex> lock(_QueueSyncMutex);
+					_QueueUpdateNotifier.wait(lock);
 					bool empty = _queuedMessage.empty();
 					lock.unlock();
 					if (!(_isUpdated.load()) && _shouldStopQueue.load() && empty)
@@ -212,20 +212,20 @@ namespace enh
 				_isUpdated = false;
 				bool shouldStopNow = false;
 				{
-					std::lock_guard<std::mutex> lock(_mtxQueue);
+					std::lock_guard<std::mutex> lock(_QueueSyncMutex);
 					shouldStopNow = _queuedMessage.empty() || _shouldStopQueue.load();
 				}
 				while (!shouldStopNow)
 				{
 					O3_LIB_LOG_LINE;
-					_mtxQueue.lock();
+					_QueueSyncMutex.lock();
 					InfoType front = _queuedMessage.front();
 					_queuedMessage.pop();
-					_mtxQueue.unlock();
+					_QueueSyncMutex.unlock();
 					Tristate ret = _messageHandlerFunction(front);
 					if (!ret)
 						return (Tristate::ERROR);
-					std::lock_guard<std::mutex> temp_lock(_mtxQueue);
+					std::lock_guard<std::mutex> temp_lock(_QueueSyncMutex);
 					shouldStopNow = _queuedMessage.empty() || _shouldStopQueue.load();
 				}
 
@@ -324,11 +324,11 @@ namespace enh
 		)
 		{
 			{
-				std::lock_guard<std::mutex> lock(_mtxQueue);
+				std::lock_guard<std::mutex> lock(_QueueSyncMutex);
 				_queuedMessage.push(Message);
 				_isUpdated = true;
 			}
-			_cvQueueHandler.notify_all();
+			_QueueUpdateNotifier.notify_all();
 			return;
 		}
 
@@ -340,7 +340,7 @@ namespace enh
 		inline void stopQueueExecution() noexcept
 		{
 			_shouldStopQueue = true;
-			_cvQueueHandler.notify_all();
+			_QueueUpdateNotifier.notify_all();
 		}
 
 
@@ -365,7 +365,7 @@ namespace enh
 				O4_LIB_LOG_LINE;
 				_isQueueActive = false;
 				_shouldStopQueue = false;
-				std::lock_guard<std::mutex> lock(_mtxQueue);
+				std::lock_guard<std::mutex> lock(_QueueSyncMutex);
 				_queuedMessage = std::queue<Instruct>();
 			}
 
@@ -414,7 +414,7 @@ namespace enh
 				std::this_thread::sleep_for(ns);
 				bool ret = false;
 				{
-					std::lock_guard<std::mutex> lock(_mtxQueue);
+					std::lock_guard<std::mutex> lock(_QueueSyncMutex);
 					ret = _queuedMessage.empty();
 				}
 				if (ret)
