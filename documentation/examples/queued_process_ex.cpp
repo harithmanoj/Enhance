@@ -20,12 +20,12 @@ enh::tristate process(enh::GenInstruct<int, std::string, std::string> msg)
 int main()
 {
 	enh::QueuedProcess<enh::GenInstruct<int, std::string, std::string>> prc(process);
-	prc.start_queue_process();
+	prc.startQueueExecution();
 	prc.postMessage({ 0,"con","cat" });
 	prc.postMessage({ 1,"1this only","not this" });
 	prc.postMessage({ 2,"not this ","2this only" });
 	prc.postMessage({ 4,"","" });
-	prc.safe_join(std::chrono::milliseconds(1));
+	prc.joinAfterQueueEmpty(std::chrono::milliseconds(1));
 	return 0;
 }
 
