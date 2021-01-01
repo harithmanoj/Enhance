@@ -91,24 +91,24 @@ namespace enh
 
 		- Create a structure that contains information to be sequentially 
 		processed. Let it be `struct info`. You can use structures 
-		`gen_instruct` and `quad_instruct` to merge different types easily.
+		`GenInstruct` and `QuadInstruct` to merge different types easily.
 		The type must be copy-constructible. Let it be `info`.
 
 		- Create a Function of type QueuedProcess::MessageHandlerType returns 
-		`tristate`, takes `info` as argument. The function should return 
+		`Tristate`, takes `info` as argument. The function should return 
 		something other than Tristate::GOOD if a fatal error occurs. Let it 
 		be `proc`.
 
-		- Create object of `queued_process<info>`, construct by passing `proc`
-		 or default construct then call `Register(proc)`.
+		- Create object of `QueuedProcess<info>`, construct by passing `proc`
+		 or default construct then call `registerHandlerFunction(proc)`.
 
-		- Call `start_queue_process` to start waiting on messages.
+		- Call `startQueueExecution` to start waiting on messages.
 
 		- Call `postMessage` and pass the message to add message to queue.
 
-		- Call `stopQueue` to stop processing.
+		- Call `stopQueueExecution` to stop processing.
 
-		- Call `WaitForQueueStop` to wait till queued execution thread stops.
+		- Call `WaitForQueueExecutionStop` to wait till queued execution thread stops.
 		Will only stop after executing full queue unless function returns 
 		error.
 
@@ -284,9 +284,7 @@ namespace enh
 
 			<h3>Return</h3>
 			Returns Tristate::ERROR if no procedure was set, or queue is
-			already running or if thread allocation failed.\n
-			Returns Tristate::PREV_ERROR if error was flagged in any previous
-			function calls.\n
+			already running.\n
 		*/
 		Tristate startQueueExecution() noexcept
 		{
@@ -305,11 +303,10 @@ namespace enh
 		}
 
 		/**
-			\brief check if queue is updated.
+			\brief Check if queue is updated.
 
 			<h3>Return</h3>
 			Returns _isUpdated.\n
-
 		*/
 		inline bool isQueueUpdated() noexcept
 		{
@@ -411,7 +408,6 @@ namespace enh
 			while (true)
 			{
 				O3_LIB_LOG_LINE;
-				std::this_thread::sleep_for(ns);
 				bool ret = false;
 				{
 					std::lock_guard<std::mutex> lock(_QueueSyncMutex);
@@ -419,6 +415,7 @@ namespace enh
 				}
 				if (ret)
 					return;
+				std::this_thread::sleep_for(ns);
 				O3_LIB_LOG_LINE;
 			}
 			return;
