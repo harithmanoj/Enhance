@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Enable Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1.2.0
+      uses: ilammy/msvc-dev-cmd@v1.5.0
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
@@ -34,7 +34,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Enable Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1.2.0
+      uses: ilammy/msvc-dev-cmd@v1.5.0
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
@@ -51,7 +51,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Enable Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1.2.0
+      uses: ilammy/msvc-dev-cmd@v1.5.0
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
@@ -69,7 +69,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Enable Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1.2.0
+      uses: ilammy/msvc-dev-cmd@v1.5.0
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
@@ -86,7 +86,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Enable Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1.2.0
+      uses: ilammy/msvc-dev-cmd@v1.5.0
     
     - name: compile QProc Test Program
       working-directory: ./auto-test
