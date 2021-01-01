@@ -187,13 +187,13 @@ namespace enh
 			\brief The mutex to hold ownership over @ref _elapsedCycles and
 			the notifier.
 		*/
-		std::mutex _mtxElapsedCycles;
+		std::mutex _elapsedCyclesSyncMutex;
 
 		/**
 			\brief The condition_variable to notify all client threads about 
 			the end of that period.
 		*/
-		std::condition_variable _cvTimerPeriodSignal;
+		std::condition_variable _notifyTimerPeriodEnd;
 
 		/**
 			\brief The variable to signal the end of the Timer loop, set by 
@@ -233,11 +233,11 @@ namespace enh
 		{
 			std::this_thread::sleep_until(_nextTimerPoint);
 			{
-				std::lock_guard<std::mutex> lock(_mtxElapsedCycles);
+				std::lock_guard<std::mutex> lock(_elapsedCyclesSyncMutex);
 				++_elapsedCycles;
 				_nextTimerPoint += TimeUnit(period);
 			}
-			_cvTimerPeriodSignal.notify_all();
+			_notifyTimerPeriodEnd.notify_all();
 		}
 
 
@@ -304,8 +304,8 @@ namespace enh
 		{
 			if (!_isTimerActive)
 				startTimerLoop();
-			std::unique_lock<std::mutex> lock(_mtxElapsedCycles);
-			_cvTimerPeriodSignal.wait(lock,
+			std::unique_lock<std::mutex> lock(_elapsedCyclesSyncMutex);
+			_notifyTimerPeriodEnd.wait(lock,
 				[expected, this]() {
 					return _elapsedCycles >= expected;
 				});
