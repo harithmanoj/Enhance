@@ -79,6 +79,59 @@ namespace enh
 	};
 
 	/**
+		\brief The class for a value that stays between lower and upper 
+		constant numbers.
+
+		<h3>template</h3>
+		-# <code>integral</code> : The type of value.\n
+		-# <code>integral upper</code> : The upper limit for the value.\n
+	*/
+	template<class integral, integral lower, integral upper>
+	class LimitedNumber : public ConfinedValue<integral>
+	{
+	public:
+
+		/**
+			\brief The upper limit for values of this type.
+		*/
+		static constexpr ConfinedValue<integral>::value_type upperLimit = upper;
+
+		/**
+			\brief The upper limit for values of this type.
+		*/
+		static constexpr ConfinedValue<integral>::value_type lowerLimit = lower;
+
+		/**
+			\brief The constructor the class initialises value to 0.
+		*/
+		constexpr inline LimitedNumber() noexcept
+			: ConfinedValue<integral>::ConfinedValue(
+				[&](long long a) {return a < upperLimit; },
+				[&](long long a) { return a > lowerLimit; },
+				[&]() {return upperLimit - 1; },
+				[&]() {return lowerLimit + 1; },
+				(upperLimit + lowerLimit)/2)
+		{}
+
+		/**
+			\brief The constructor initiliases with the value of parameter.
+
+			<h3>Exception</h3>
+			Throws <code>std::invalid_argument</code> if value is greater
+			than or equal to upper.
+		*/
+		constexpr inline UnsignedLimitedNumber(
+			ConfinedValue<integral>::value_type val
+		) : ConfinedValue<integral>::ConfinedValue(
+			[&](long long a) {return a < upperLimit; },
+			[&](long long a) { return a > lowerLimit; },
+			[&]() {return upperLimit - 1; },
+			[&]() {return lowerLimit + 1; },
+			val)
+		{}
+	};
+
+	/**
 		\brief The namespace for all aliases for 
 		different upper limited systems.
 	*/
