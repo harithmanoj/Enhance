@@ -86,7 +86,7 @@ Exists in `namespace enh`.
 * signExtend extends the string format of a numeral by prepending '0' s
 * ConfinedValue class for storing a value within bounds
 * NumericSystem class for storing a value within 0 and an upper limit.
-* Class to hold values which has different denominations. (money)
+* Class to hold values which has different denominations. (eg money)
  
 _______________________________________________________________________________
 ## Diagnose
@@ -191,6 +191,7 @@ project.
 * `general.enh.h` depends only on standard c++ headers.
 * `logger.enh.h` depends only on standard c++ headers but requires 
 compilation of `logger.cpp`.
+* `WeightedField.enh.h` depends only on standard c++ headers.
 * `error_base.enh.h` depends on `general.enh.h`, `logger.enh.h`.
 * `QueuedProcess.enh.h` depends on `error_base.enh.h`, `general.enh.h`, 
 `logger.enh.h`.
@@ -209,7 +210,7 @@ compilation of `logger.cpp`.
                      |       |             |                   |
                      |   logger.cpp        |                   |                       counter.enh.h 
                      |                     |                   |
-         +-----------+------+    +---------+---------+  numeral_system.enh
+         +-----------+------+    +---------+---------+  numeral_system.enh            WeightedField.enh.h
          |                  |    |                   |     |
      timer.enh.h        error_base.enh.h             |     |
                               |                     date.enh.h
