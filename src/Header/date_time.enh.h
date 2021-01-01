@@ -39,7 +39,7 @@ namespace enh
 
 		\include{lineno} DateTime_ex.cpp
 	*/
-	class DateTime : public Date, public time_stamp
+	class DateTime : public Date, public TimeStamp
 	{
 	
 	public:
@@ -111,7 +111,7 @@ namespace enh
 			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
 			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
 			unsigned short hr /**< : <i>in</i> : The hours field [0,59].*/
-		) : Date(dy, mnth, yr, week, ydy), time_stamp(sec, min, hr) {}
+		) : Date(dy, mnth, yr, week, ydy), TimeStamp(sec, min, hr) {}
 
 		/**
 			\brief Sets the time and date to the time and date indicated by
@@ -120,7 +120,7 @@ namespace enh
 		inline DateTime(
 			time_t stamp /**< : <i>in</i> : The time stamp which
 							 contains the date and time.*/
-		) : Date(1,0,0,0,0), time_stamp(0,0,0) 
+		) : Date(1,0,0,0,0), TimeStamp(0,0,0) 
 		{
 			set(stamp);
 		}
@@ -128,7 +128,7 @@ namespace enh
 		/**
 			\brief Sets the time and date to the current time and date.
 		*/
-		inline DateTime() : Date(1, 0, 0, 0, 0), time_stamp(0, 0, 0) 
+		inline DateTime() : Date(1, 0, 0, 0, 0), TimeStamp(0, 0, 0) 
 		{
 			set();
 		}
@@ -183,7 +183,7 @@ namespace enh
 			unsigned long long hr /**< : <i>in</i> : The hours to add.*/
 		) noexcept
 		{
-			addDay(time_stamp::addHours(hr));
+			addDay(TimeStamp::addHours(hr));
 		}
 
 		/**
@@ -193,7 +193,7 @@ namespace enh
 			unsigned long long min /**< : <i>in</i> : The minutes to add.*/
 		) noexcept
 		{
-			addDay(time_stamp::addMinutes(min));
+			addDay(TimeStamp::addMinutes(min));
 		}
 
 		/**
@@ -203,7 +203,7 @@ namespace enh
 			unsigned long long sec  /**< : <i>in</i> : The seconds to add.*/
 		) noexcept
 		{
-			addDay(time_stamp::addSeconds(sec));
+			addDay(TimeStamp::addSeconds(sec));
 		}
 
 		/**
@@ -213,7 +213,7 @@ namespace enh
 			unsigned long long hr /**< : <i>in</i> : The hours to reduce.*/
 		) noexcept
 		{
-			subDay(time_stamp::subHours(hr));
+			subDay(TimeStamp::subHours(hr));
 		}
 
 		/**
@@ -223,7 +223,7 @@ namespace enh
 			unsigned long long min /**< : <i>in</i> : The minutes to reduce.*/
 		) noexcept
 		{
-			subDay(time_stamp::subMinutes(min));
+			subDay(TimeStamp::subMinutes(min));
 		}
 
 		/**
@@ -233,7 +233,7 @@ namespace enh
 			unsigned long long sec /**< : <i>in</i> : The seconds to reduce.*/
 		) noexcept
 		{
-			subDay(time_stamp::subSeconds(sec));
+			subDay(TimeStamp::subSeconds(sec));
 		}
 
 		/**
@@ -247,7 +247,7 @@ namespace enh
 			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
 		) const noexcept
 		{
-			return Date::isEqualTo(dt) && time_stamp::isEqualTo(dt);
+			return Date::isEqualTo(dt) && TimeStamp::isEqualTo(dt);
 		}
 
 		/**
@@ -274,7 +274,7 @@ namespace enh
 			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
 		) const noexcept
 		{
-			return Date::isLesserThan(dt) && time_stamp::isLesserThan(dt);
+			return Date::isLesserThan(dt) && TimeStamp::isLesserThan(dt);
 		}
 
 		/**
@@ -287,7 +287,7 @@ namespace enh
 			const DateTime &dt /**< : <i>in</i> : The DateTime to compare with.*/
 		) const noexcept
 		{
-			return Date::isLesserThanEq(dt) && time_stamp::isLesserThanEq(dt);
+			return Date::isLesserThanEq(dt) && TimeStamp::isLesserThanEq(dt);
 		}
 
 		/**
