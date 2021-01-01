@@ -29,7 +29,7 @@
 #define DATE_ENH_H							date.enh.h
 
 #include "general.enh.h"
-#include "UnsignedLimitedNumber.enh.h"
+#include "LimitedNumber.enh.h"
 #include <string_view>
 #include <ctime>
 #include <exception>
