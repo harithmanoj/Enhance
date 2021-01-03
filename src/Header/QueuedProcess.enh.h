@@ -43,6 +43,10 @@ namespace enh
 	/**
 		\brief The structure to encapsulate an instruction passed to the
 		queue as 3 components.
+
+		Message op code.
+
+		lower and upper arguments.
 	*/
 	template< class Msg, class Lower, class Upper>
 	struct GenInstruct
@@ -55,6 +59,11 @@ namespace enh
 	/**
 		\brief The structure to encapsulate an instruction passed to the
 		queue as 4 components.
+
+		Message op code.
+
+		lower, upper and another fourth argument.
+
 	*/
 	template< class Msg, class Lower, class Upper, class Fourth>
 	struct QuadInstruct
