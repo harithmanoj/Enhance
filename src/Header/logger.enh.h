@@ -328,30 +328,6 @@ namespace debug
 */
 #define LIB_REPLACE_AS(x,y)		x
 
-/**
-	\brief The Macro to log line completion for library in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
-*/
-#define LIB_LOG_LINE			debug::log(INFO_FOR_LOG)
-
-/**
-	\brief The Macro to log a string for library in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
-*/
-#define LIB_LOG_DESC(x)			debug::log(INFO_FOR_LOG,x)
-
-/**
-	\brief The Macro to log a variable state for library in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
-*/
-#define LIB_LOG_VAL(x)			debug::log(INFO_FOR_LOG,#x,x)
-
 
 #else
 
@@ -384,31 +360,7 @@ namespace debug
 	\brief The non-diagnostic version of LIB_REPLACE_AS(x,y).
 */
 #define NDBG_LIB_REPLACE_AS(x,y)		y
-
-
-/**
-	\brief The Macro to log line completion for library in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
-*/
-#define LIB_LOG_LINE			
-
-/**
-	\brief The Macro to log a string for library in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
-*/
-#define LIB_LOG_DESC(x)			
-
-/**
-	\brief The Macro to log a variable state for library in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
-*/
-#define LIB_LOG_VAL(x)		
+	
 
 #endif
 
@@ -432,6 +384,25 @@ namespace debug
 */
 #define REPLACE_AS_E(x, y)			REPLACE_AS(x, y)
 
+/**
+	\brief The Macro to execute a statement only in debug-error mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_E(x)			LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-error mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_E(x, y)		LIB_REPLACE_AS(x,y)
+
 #else
 
 /**
@@ -450,6 +421,27 @@ namespace debug
 	ENH_CLEAR_OP__ is defined.
 */
 #define REPLACE_AS_E(x, y)			NDBG_REPLACE_AS(x, y)
+
+
+/**
+	\brief The Macro to execute a statement only in debug-error mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_E(x)			NDBG_LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-error mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_E(x, y)		NDBG_LIB_REPLACE_AS(x,y)
+
 
 #endif // !DISABLE_ERROR_LOGS
 
@@ -473,6 +465,27 @@ namespace debug
 */
 #define REPLACE_AS_W(x, y)			REPLACE_AS(x, y)
 
+
+/**
+	\brief The Macro to execute a statement only in debug-warning mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_W(x)			LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-warning mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_W(x, y)		LIB_REPLACE_AS(x,y)
+
+
 #else
 
 /**
@@ -491,6 +504,27 @@ namespace debug
 	ENH_CLEAR_OP__ is defined.
 */
 #define REPLACE_AS_W(x, y)			NDBG_REPLACE_AS(x, y)
+
+
+/**
+	\brief The Macro to execute a statement only in debug-warning mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_W(x)			NDBG_LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-warning mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_W(x, y)		NDBG_LIB_REPLACE_AS(x,y)
+
 
 #endif // !DISABLE_WARNING_LOGS
 
@@ -513,6 +547,25 @@ namespace debug
 */
 #define REPLACE_AS_I(x, y)			REPLACE_AS(x, y)
 
+
+/**
+	\brief The Macro to execute a statement only in debug-info mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_I(x)			LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-info mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_I(x, y)		LIB_REPLACE_AS(x,y)
 #else
 
 /**
@@ -531,6 +584,27 @@ namespace debug
 	ENH_CLEAR_OP__ is defined.
 */
 #define REPLACE_AS_I(x, y)			NDBG_REPLACE_AS(x, y)
+
+
+
+/**
+	\brief The Macro to execute a statement only in debug-info mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_W(x)			NDBG_LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-info mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_W(x, y)		NDBG_LIB_REPLACE_AS(x,y)
 
 #endif // !DISABLE_INFO_FLAGS
 
@@ -553,6 +627,25 @@ namespace debug
 */
 #define REPLACE_AS_FE(x, y)			REPLACE_AS(x, y)
 
+/**
+	\brief The Macro to execute a statement only in debug-fatal-error mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_FE(x)			LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-fatal-error mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_FE(x, y)		LIB_REPLACE_AS(x,y)
+
 #else
 
 /**
@@ -572,20 +665,29 @@ namespace debug
 */
 #define REPLACE_AS_FE(x, y)			NDBG_REPLACE_AS(x, y)
 
+
+
+/**
+	\brief The Macro to execute a statement only in debug-fatal-error mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_FE(x)			NDBG_LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-fatal-error mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_FE(x, y)		NDBG_LIB_REPLACE_AS(x,y)
 #endif // !DISABLE_FATAL_FLAGS
 
 
-
-
-
-
-
-
-#define LINE_LOG_E					(REPLACE_E(LOG_LINE))
-
-#define DESC_LOG_E(x)				(REPLACE_E(LOG_DESC(x)))
-
-#define VALUE_LOG_E(x)				(REPLACE_E(LOG_VAL(x)))
 
 
 #endif // !LOGGER_ENH_H
