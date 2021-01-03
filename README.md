@@ -187,16 +187,15 @@ project.
 
 ### Dependencies
 
-* `framework.enh.h` depends only on standard c++ headers.
+* `VersionInfo.enh.h` depends only on standard c++ headers.
 * `general.enh.h` depends only on standard c++ headers.
 * `logger.enh.h` depends only on standard c++ headers but requires 
 compilation of `logger.cpp`.
 * `WeightedField.enh.h` depends only on standard c++ headers.
 * `error_base.enh.h` depends on `general.enh.h`, `logger.enh.h`.
-* `QueuedProcess.enh.h` depends on `error_base.enh.h`, `general.enh.h`, 
-`logger.enh.h`.
+* `QueuedProcess.enh.h` depends on `Tristate.enh.h`.
 * `counter.enh.h` depends only on standard c++ headers.
-* `timer.enh.h` depends on `logger.enh.h`.
+* `timer.enh.h` depends only on standard c++ headers.
 * `date.enh.h` depends on `general.enh.h`, `numerical_system.enh.h`, 
 `ConfinedValue.enh.h`.
 * `time_stamp.enh.h` depends on `date.enh.h`, `general.enh.h`, 
@@ -206,15 +205,15 @@ compilation of `logger.cpp`.
 
 ### Dependency Graph
 
-                   logger.enh.h      general.enh.h       ConfinedValue.enh.h          framework.enh.h 
-                     |       |             |                   |
-                     |   logger.cpp        |                   |                       counter.enh.h 
-                     |                     |                   |
-         +-----------+------+    +---------+---------+  numeral_system.enh            WeightedField.enh.h
-         |                  |    |                   |     |
-     timer.enh.h        error_base.enh.h             |     |
-                              |                     date.enh.h
-                      QueuedProcess.enh.h               |
+   Tristate.enh.h   logger.enh.h      general.enh.h       ConfinedValue.enh.h          VersionInfo.enh.h 
+       |             |       |             |                   |
+       |             |   logger.cpp        |                   |                       counter.enh.h 
+       |             |                     |                   |
+       +------+          +-----------------+---------+  numeral_system.enh            WeightedField.enh.h
+       |      |    |     |                           |     |        
+       |    error_base.enh.h                         |     |                             timer.enh.h 
+       |                                            date.enh.h
+QueuedProcess.enh.h                                     |
                                                  time_stamp.enh.h
                                                         |
                                                   date_time.enh.h

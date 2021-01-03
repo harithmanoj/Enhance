@@ -66,3 +66,5 @@ namespace enh
 		return (e != Tristate::GOOD);
 	}
 }
+
+#endif

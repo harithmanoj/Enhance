@@ -28,7 +28,7 @@
 
 #define QUEUED_PROCESS_ENH_H						QueuedProcess.enh.h
 
-#include "ErrorTracker.enh.h"
+#include "Tristate.enh.h"
 
 #include <mutex>
 #include <queue>

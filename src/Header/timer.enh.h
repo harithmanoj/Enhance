@@ -28,7 +28,6 @@
 
 #define TIMER_ENH_H						timer.enh.h
 
-#include "logger.enh.h"
 
 #include <chrono>
 #include <type_traits>
