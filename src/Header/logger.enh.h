@@ -148,7 +148,8 @@ namespace debug
 						 present.*/,
 		std::string function/**< : <i>in</i> : Logging function name.*/,
 		unsigned long line /**< : <i>in</i> : The line of file in which 
-						   logging code is present.*/
+						   logging code is present.*/,
+		char type /**< : <i>in</i> : The type of log E, I, W, F */
 	);
 
 	/**
@@ -161,7 +162,8 @@ namespace debug
 		std::string function /**< : <i>in</i> : Logging function name.*/,
 		unsigned long line /**< : <i>in</i> : The line of file in which 
 						   logging code is present.*/,
-		std::string descr /**< : <i>in</i> : The string to log.*/
+		std::string descr /**< : <i>in</i> : The string to log.*/,
+		char type /**< : <i>in</i> : The type of log E, I, W, F */
 	);
 
 	/**
@@ -178,11 +180,14 @@ namespace debug
 		unsigned long line /**< : <i>in</i> : The line of file in which 
 						   logging code is present.*/,
 		std::string var /**< : <i>in</i> : The name of variable.*/,
-		const T& val /**< : <i>in</i> : The value of the variable.*/
+		const T& val /**< : <i>in</i> : The value of the variable.*/,
+		char type /**< : <i>in</i> : The type of log E, I, W, F */
 	)
 	{
 		std::ostringstream out;
-		out << std::setw(80) << file << " : " << std::setw(6) << line << "   " << std::setw(15) << function << "  " << var << " = " << val;
+		out << " " << type << "/: " << std::setw(20) << function << "/" 
+			<< std::setw(80) << file << "(" << std::setw(6) 
+			<< line << ") : " << var << " = " << var;
 		log(out.str(),function);
 	}
 
@@ -232,7 +237,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_LINE			debug::log(INFO_FOR_LOG)
+#define LOG_LINE(t)			debug::log(INFO_FOR_LOG, t)
 
 /**
 	\brief The Macro to log a string in debug mode.
@@ -240,7 +245,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_DESC(x)			debug::log(INFO_FOR_LOG,x)
+#define LOG_DESC(x, t)		debug::log(INFO_FOR_LOG,x,t)
 
 /**
 	\brief The Macro to log a variable state in debug mode.
@@ -248,7 +253,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_VAL(x)			debug::log(INFO_FOR_LOG,#x,x)
+#define LOG_VAL(x, t)			debug::log(INFO_FOR_LOG,#x,x, t)
 
 #else
 
@@ -286,7 +291,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_LINE			
+#define LOG_LINE(t)			
 
 /**
 	\brief The Macro to log a string in debug mode.
@@ -294,7 +299,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_DESC(x)			
+#define LOG_DESC(x, t)			
 
 /**
 	\brief The Macro to log a variable state in debug mode.
@@ -302,7 +307,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_VAL(x)			
+#define LOG_VAL(x, t)			
 
 #endif
 
@@ -693,7 +698,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_LINE_E					REPLACE_E(LOG_LINE)
+#define LOG_LINE_E					REPLACE_E(LOG_LINE('E'))
 
 /**
 	\brief The Macro to log a string in debug-error mode.
@@ -701,7 +706,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_DESC_E(x)				REPLACE_E(LOG_DESC(x))
+#define LOG_DESC_E(x)				REPLACE_E(LOG_DESC(x,'E'))
 
 /**
 	\brief The Macro to log a variable state in debug-error mode.
@@ -709,7 +714,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_VALUE_E(x)				REPLACE_E(LOG_VAL(x))
+#define LOG_VALUE_E(x)				REPLACE_E(LOG_VAL(x,'E'))
 
 /**
 	\brief The Macro to log line completion in debug-error mode for library 
@@ -718,7 +723,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_LINE_E				LIB_REPLACE_E(LOG_LINE)
+#define LIB_LOG_LINE_E				LIB_REPLACE_E(LOG_LINE('E'))
 
 /**
 	\brief The Macro to log a string in debug-error mode for library 
@@ -727,7 +732,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_DESC_E(x)			LIB_REPLACE_E(LOG_DESC(x))
+#define LIB_LOG_DESC_E(x)			LIB_REPLACE_E(LOG_DESC(x,'E'))
 
 /**
 	\brief The Macro to log a variable state in debug-error mode for library 
@@ -736,7 +741,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_VALUE_E(x)			LIB_REPLACE_E(LOG_VAL(x))
+#define LIB_LOG_VALUE_E(x)			LIB_REPLACE_E(LOG_VAL(x,'E'))
 
 
 /**
@@ -745,7 +750,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_LINE_W					REPLACE_W(LOG_LINE)
+#define LOG_LINE_W					REPLACE_W(LOG_LINE('W'))
 
 /**
 	\brief The Macro to log a string in debug-warning mode.
@@ -753,7 +758,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_DESC_W(x)				REPLACE_W(LOG_DESC(x))
+#define LOG_DESC_W(x)				REPLACE_W(LOG_DESC(x,'W'))
 
 /**
 	\brief The Macro to log a variable state in debug-warning mode.
@@ -761,7 +766,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_VALUE_W(x)				REPLACE_W(LOG_VAL(x))
+#define LOG_VALUE_W(x)				REPLACE_W(LOG_VAL(x,'W'))
 
 /**
 	\brief The Macro to log line completion in debug-warning mode for library
@@ -770,7 +775,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_LINE_W				LIB_REPLACE_W(LOG_LINE)
+#define LIB_LOG_LINE_W				LIB_REPLACE_W(LOG_LINE('W'))
 
 /**
 	\brief The Macro to log a string in debug-warning mode for library
@@ -779,7 +784,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_DESC_W(x)			LIB_REPLACE_W(LOG_DESC(x))
+#define LIB_LOG_DESC_W(x)			LIB_REPLACE_W(LOG_DESC(x,'W'))
 
 /**
 	\brief The Macro to log a variable state in debug-warning mode for library
@@ -788,7 +793,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_VALUE_W(x)			LIB_REPLACE_W(LOG_VAL(x))
+#define LIB_LOG_VALUE_W(x)			LIB_REPLACE_W(LOG_VAL(x,'W'))
 
 
 /**
@@ -797,7 +802,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_LINE_I					REPLACE_I(LOG_LINE)
+#define LOG_LINE_I					REPLACE_I(LOG_LINE('I'))
 
 /**
 	\brief The Macro to log a string in debug-info mode.
@@ -805,7 +810,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_DESC_I(x)				REPLACE_I(LOG_DESC(x))
+#define LOG_DESC_I(x)				REPLACE_I(LOG_DESC(x,'I'))
 
 /**
 	\brief The Macro to log a variable state in debug-info mode.
@@ -813,7 +818,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_VALUE_I(x)				REPLACE_I(LOG_VAL(x))
+#define LOG_VALUE_I(x)				REPLACE_I(LOG_VAL(x,'I'))
 
 /**
 	\brief The Macro to log line completion in debug-info mode for library
@@ -822,7 +827,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_LINE_I				LIB_REPLACE_I(LOG_LINE)
+#define LIB_LOG_LINE_I				LIB_REPLACE_I(LOG_LINE('I'))
 
 /**
 	\brief The Macro to log a string in debug-info mode for library
@@ -831,7 +836,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_DESC_I(x)			LIB_REPLACE_I(LOG_DESC(x))
+#define LIB_LOG_DESC_I(x)			LIB_REPLACE_I(LOG_DESC(x,'I'))
 
 /**
 	\brief The Macro to log a variable state in debug-info mode for library
@@ -840,7 +845,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_VALUE_I(x)			LIB_REPLACE_I(LOG_VAL(x))
+#define LIB_LOG_VALUE_I(x)			LIB_REPLACE_I(LOG_VAL(x,'I'))
 
 
 /**
@@ -849,7 +854,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_LINE_FE					REPLACE_FE(LOG_LINE)
+#define LOG_LINE_FE					REPLACE_FE(LOG_LINE('F'))
 
 /**
 	\brief The Macro to log a string in debug-fatal-error mode.
@@ -857,7 +862,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_DESC_FE(x)				REPLACE_FE(LOG_DESC(x))
+#define LOG_DESC_FE(x)				REPLACE_FE(LOG_DESC(x,'F'))
 
 /**
 	\brief The Macro to log a variable state in debug-fatal-error mode.
@@ -865,7 +870,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LOG_VALUE_FE(x)				REPLACE_FE(LOG_VAL(x))
+#define LOG_VALUE_FE(x)				REPLACE_FE(LOG_VAL(x,'F'))
 
 /**
 	\brief The Macro to log line completion in debug-fatal-error mode for library
@@ -874,7 +879,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_LINE_FE				LIB_REPLACE_FE(LOG_LINE)
+#define LIB_LOG_LINE_FE				LIB_REPLACE_FE(LOG_LINE('F'))
 
 /**
 	\brief The Macro to log a string in debug-fatal-error mode for library
@@ -883,7 +888,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_DESC_FE(x)			LIB_REPLACE_FE(LOG_DESC(x))
+#define LIB_LOG_DESC_FE(x)			LIB_REPLACE_FE(LOG_DESC(x,'F'))
 
 /**
 	\brief The Macro to log a variable state in debug-fatal-error mode for library
@@ -892,7 +897,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
 */
-#define LIB_LOG_VALUE_FE(x)			LIB_REPLACE_FE(LOG_VAL(x))
+#define LIB_LOG_VALUE_FE(x)			LIB_REPLACE_FE(LOG_VAL(x,'F'))
 
 #endif // !LOGGER_ENH_H
 

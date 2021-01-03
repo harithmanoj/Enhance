@@ -78,17 +78,19 @@ void debug::log(std::string lg, std::string function)
 	write(lg, getLoggingFilePath(std::this_thread::get_id(), function));
 }
 
-void debug::log(std::string file, std::string function, unsigned long line)
+void debug::log(std::string file, std::string function, unsigned long line, char type)
 {
 	std::ostringstream out;
-	out << std::setw(80) << file << " : " << std::setw(6) << line << "   " << std::setw(15) << function;
+	out << " " << type << "/: " << std::setw(20) << function << "/" << std::setw(80) << file 
+		<< "(" << std::setw(6) << line << ") : COMPLETE";
 	log(out.str(), function);
 }
 
-void debug::log(std::string file, std::string function, unsigned long line, std::string descr)
+void debug::log(std::string file, std::string function, unsigned long line, std::string descr, char type)
 {
 	std::ostringstream out;
-	out << std::setw(80) << file << " : " << std::setw(6) << line << "   " << std::setw(15) << function << " ::   " << descr;
+	out << " " << type << "/: " << std::setw(20) << function << "/" << std::setw(80) << file 
+		<< "(" << std::setw(6) << line << ") : " << descr;
 	log(out.str(), function);
 }
 
