@@ -93,7 +93,8 @@ namespace enh
 		before starting the queue process.\n\n
 
 		<h3>Template arguments</h3>
-		-#  <code>class Instruct</code> : The type to store the instruction.\n
+		 
+		 -#  <code>class Instruct</code> : The type to tore the instruction.\n
 
 		
 		<h3> How To Use </h3>
@@ -205,16 +206,18 @@ namespace enh
 			if (!_messageHandlerFunction)
 				return Tristate::ERROR;
 			O1_LIB_LOG_LINE;
-			while (!(_shouldStopQueue.load()))
+			while (!(_shouldStopQueue.load()))  // If should stop is asserted, quit.
 			{
 				O3_LIB_LOG_LINE;
-				while (!(_isUpdated.load()))
+				while (!(isQueueUpdated()))   // Continue waiting till queue is updated
 				{
 					std::unique_lock<std::mutex> lock(_QueueSyncMutex);
 					_QueueUpdateNotifier.wait(lock);
 					bool empty = _queuedMessage.empty();
 					lock.unlock();
-					if (!(_isUpdated.load()) && _shouldStopQueue.load() && empty)
+					if (!(isQueueUpdated()) && _shouldStopQueue.load() && empty)  
+						// if update is asserted but queue is empty and stop 
+						// is asserted, quit
 						return (Tristate::GOOD);
 
 				}
@@ -223,7 +226,7 @@ namespace enh
 				{
 					std::lock_guard<std::mutex> lock(_QueueSyncMutex);
 					shouldStopNow = _queuedMessage.empty() || _shouldStopQueue.load();
-				}
+				} // stop if queue us empty or shouldStop is asserted.
 				while (!shouldStopNow)
 				{
 					O3_LIB_LOG_LINE;
@@ -279,7 +282,7 @@ namespace enh
 		QueuedProcess& operator = (const QueuedProcess&) = delete;
 
 		/**
-			\brief The Function to set a function as the instruction processor.
+			\brief set a function as the instruction processor.
 		*/
 		inline void registerHandlerFunction(
 			MessageHandlerType in /**< : <i>in</i> : The procedure.*/
