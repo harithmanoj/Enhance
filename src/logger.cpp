@@ -7,7 +7,7 @@
 
 	This file is part of project Enhance C++ Libraries.
 
-	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+	Copyright 2020-2021 Harith Manoj <harithpub@gmail.com>
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
