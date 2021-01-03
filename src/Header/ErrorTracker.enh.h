@@ -1,7 +1,7 @@
 /** ***************************************************************************
 	\file ErrorTracker.enh.h
 	
-	\brief The file to declare Error Handling classes and functions
+	\brief The file to declare ErrorTracker class.
  
 	Created 24 March 2020	
 		
@@ -33,6 +33,7 @@
 #include <atomic>
 #include "general.enh.h"
 #include "logger.enh.h"
+#include "Tristate.enh.h"
 
 
 /*
@@ -41,37 +42,6 @@
 namespace enh
 {
 	
-		
-	/**
-		\brief A byte long type that takes 3 values, true (1), error(0),
-		previous_error(-1).
-
-		<h3> Examples</h3>
-
-		\include{lineno} tristate_ex.cpp
-	*/
-	enum class Tristate : char
-	{
-		GOOD = 1 /**< : <i>1</i> : No error flag set. */,
-		ERROR = 0 /**< : <i>0</i> : Error flag set now. */,
-		PREV_ERR = -1 /**< : <i>-1</i> : Error flag was set by some
-					  previous function. */
-	};
-
-	/**
-		\brief checks if input is not safe (not GOOD).
-
-		<h3>Return</h3>
-		Returns false if e is Tristate::GOOD and true
-		else.\n
-	*/
-	inline bool operator !(
-		Tristate e /**< : <i>in</i> : The Tristate to check.*/
-		) noexcept
-	{
-		return (e != Tristate::GOOD);
-	}
-
 	/**
 		\brief The class for inheriting error tracking Functionality.
 
