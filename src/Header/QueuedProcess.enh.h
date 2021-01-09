@@ -202,13 +202,10 @@ namespace enh
 		*/
 		Tristate queueExecutionFunction() noexcept
 		{
-			O1_LIB_LOG_LINE;
 			if (!_messageHandlerFunction)
 				return Tristate::ERROR;
-			O1_LIB_LOG_LINE;
 			while (!(_shouldStopQueue.load()))  // If should stop is asserted, quit.
 			{
-				O3_LIB_LOG_LINE;
 				while (!(isQueueUpdated()))   // Continue waiting till queue is updated
 				{
 					std::unique_lock<std::mutex> lock(_QueueSyncMutex);
@@ -229,7 +226,6 @@ namespace enh
 				} // stop if queue us empty or shouldStop is asserted.
 				while (!shouldStopNow)
 				{
-					O3_LIB_LOG_LINE;
 					_QueueSyncMutex.lock();
 					InfoType front = _queuedMessage.front();
 					_queuedMessage.pop();
@@ -242,7 +238,6 @@ namespace enh
 				}
 
 			}
-			O4_LIB_LOG_LINE;
 			return (Tristate::GOOD);
 		}
 
@@ -300,17 +295,14 @@ namespace enh
 		*/
 		Tristate startQueueExecution() noexcept
 		{
-			O3_LIB_LOG_LINE;
 			if (!_messageHandlerFunction)
 				return Tristate::ERROR;
 			if (isQueueRunning())
 				return Tristate::ERROR;
-			O2_LIB_LOG_LINE;
 			_shouldStopQueue = false;
 			_queueHandlerThread = std::thread(
 				&QueuedProcess::queueExecutionFunction, this);
 			_isQueueActive = true;
-			O2_LIB_LOG_LINE;
 			return (Tristate::GOOD);
 		}
 
@@ -369,9 +361,7 @@ namespace enh
 		{
 			if (_queueHandlerThread.joinable() || isQueueRunning() )
 			{
-				O3_LIB_LOG_LINE;
 				_queueHandlerThread.join();
-				O4_LIB_LOG_LINE;
 				_isQueueActive = false;
 				_shouldStopQueue = false;
 				std::lock_guard<std::mutex> lock(_QueueSyncMutex);
@@ -419,7 +409,6 @@ namespace enh
 		{
 			while (true)
 			{
-				O3_LIB_LOG_LINE;
 				bool ret = false;
 				{
 					std::lock_guard<std::mutex> lock(_QueueSyncMutex);
@@ -428,7 +417,6 @@ namespace enh
 				if (ret)
 					return;
 				std::this_thread::sleep_for(ns);
-				O3_LIB_LOG_LINE;
 			}
 			return;
 		}

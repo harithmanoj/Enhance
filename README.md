@@ -209,7 +209,7 @@ compilation of `logger.cpp`.
        |             |       |             |                   |
        |             |   logger.cpp        |                   |                       counter.enh.h 
        |             |                     |                   |
-       +------+          +-----------------+---------+  numeral_system.enh            WeightedField.enh.h
+       +------+    +-+   +-----------------+---------+  numeral_system.enh            WeightedField.enh.h
        |      |    |     |                           |     |        
        |    ErrorTracker.enh.h                         |     |                             timer.enh.h 
        |                                            date.enh.h
