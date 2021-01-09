@@ -437,7 +437,6 @@ namespace enh
 		{
 			if (isTimerCounting())
 				return false;
-			O3_LIB_LOG_LINE;
 			clearStopSignal();
 			_elapsedCycles = 0;
 			_timerThread = std::thread(&Timer<period, TimeUnit>::timerLoop, this);
