@@ -211,7 +211,7 @@ compilation of `logger.cpp`.
        |             |                     |                   |
        +------+          +-----------------+---------+  numeral_system.enh            WeightedField.enh.h
        |      |    |     |                           |     |        
-       |    error_base.enh.h                         |     |                             timer.enh.h 
+       |    ErrorTracker.enh.h                         |     |                             timer.enh.h 
        |                                            date.enh.h
 QueuedProcess.enh.h                                     |
                                                  time_stamp.enh.h
