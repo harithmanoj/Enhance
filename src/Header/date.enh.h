@@ -42,7 +42,7 @@ namespace enh
 	/**
 			\brief wrapper over unsafe localtime function.
 
-			The Microsoft version localtime_s is called. Please Edit if not working.
+			Calls localtime_s if using MSVC, std::localtime else.
 		*/
 	inline void localTime(
 		tm *str_tm /**< : <i>in</i> : The pointer to tm structure to 
@@ -51,7 +51,11 @@ namespace enh
 				   assign time values.*/
 	)
 	{
+#ifdef _MSC_VER
 		localtime_s(str_tm, arith_tm);
+#else
+		*str_tm = *std::localtime(arith_tm);
+#endif
 	}
 
 	/**
