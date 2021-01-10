@@ -1,7 +1,8 @@
 /** ***************************************************************************
 	\file QueuedProcess.enh.h
 
-	\brief The file to declare class QueuedProcess
+	\brief The file to declare class QueuedProcess for concurrent info 
+		processing
 
 	Created 11 April 2020
 
@@ -44,15 +45,36 @@ namespace enh
 		\brief The structure to encapsulate an instruction passed to the
 		queue as 3 components.
 
+		Fields: 
+
 		Message op code.
 
 		lower and upper arguments.
+		
+		<h3>Template arguments</h3>
+		 -# <code>class Msg</code> : The type to store instruction op.\n
+		 -# <code>class Lower</code> : The type to store first operand.\n
+		 -# <code>class Upper</code> : The type to store second operand.\n
+
+		
 	*/
 	template< class Msg, class Lower, class Upper>
 	struct GenInstruct
 	{
+	public:
+		/**
+			\brief The field to store a general op code or instruction type.
+		*/
 		Msg op;
+
+		/**
+			\brief The field to store a first operand / lower Parameter.
+		*/
 		Lower lParam;
+
+		/**
+			\brief The field to store a second operand / upper Parameter.
+		*/
 		Upper uParam;
 	};
 
@@ -60,17 +82,42 @@ namespace enh
 		\brief The structure to encapsulate an instruction passed to the
 		queue as 4 components.
 
+		Fields: 
+
 		Message op code.
 
 		lower, upper and another fourth argument.
+
+
+		<h3>Template arguments</h3>
+		 -# <code>class Msg</code> : The type to store instruction op.\n
+		 -# <code>class Lower</code> : The type to store first operand.\n
+		 -# <code>class Upper</code> : The type to store second operand.\n
+		 -# <code>class Fourth</code> : The type to store last operand.\n
 
 	*/
 	template< class Msg, class Lower, class Upper, class Fourth>
 	struct QuadInstruct
 	{
+	public:
+		/**
+			\brief The field to store a general op code or instruction type.
+		*/
 		Msg op;
+
+		/**
+			\brief The field to store a first operand / lower Parameter.
+		*/
 		Lower lParam;
+
+		/**
+			\brief The field to store a second operand / upper Parameter.
+		*/
 		Upper uParam;
+
+		/**
+			\brief The field to store a third operand / last Parameter.
+		*/
 		Fourth last;
 	};
 
