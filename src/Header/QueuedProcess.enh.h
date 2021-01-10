@@ -37,6 +37,7 @@
 #include <functional>
 #include <chrono>
 #include <new>
+#include <type_traits>
 
 namespace enh
 {
@@ -136,6 +137,9 @@ namespace enh
 		The function registerHandlerFunction must be called to setup the processing function
 		before starting the queue process.\n\n
 
+		Construction fails if the type is not copy assignable or copy constructible 
+		according to type traits.
+
 		<h3>Template arguments</h3>
 		 
 		 -#  <code>class Instruct</code> : The type to store the instruction.\n
@@ -175,12 +179,16 @@ namespace enh
 	template< class Instruct>
 	class QueuedProcess 
 	{
+
 	public:
 
 		/**
 			\brief The type of object to be processed
 		*/
 		using InfoType = Instruct;
+
+		static_assert(std::is_copy_assignable_v(InfoType), "Message type must be copy assignable");
+		static_assert(std::is_copy_constructible_v(InfoType), "Message type must be copy constructible");
 
 		/**
 			\brief The function type that processes the infomation passed.
