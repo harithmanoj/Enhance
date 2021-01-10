@@ -1,7 +1,7 @@
 /** ***************************************************************************
 	\file ErrorTracker.enh.h
 	
-	\brief The file to declare Error Handling classes and functions
+	\brief The file to declare ErrorTracker class.
  
 	Created 24 March 2020	
 		
@@ -33,6 +33,7 @@
 #include <atomic>
 #include "general.enh.h"
 #include "logger.enh.h"
+#include "Tristate.enh.h"
 
 
 /*
@@ -41,37 +42,6 @@
 namespace enh
 {
 	
-		
-	/**
-		\brief A byte long type that takes 3 values, true (1), error(0),
-		previous_error(-1).
-
-		<h3> Examples</h3>
-
-		\include{lineno} tristate_ex.cpp
-	*/
-	enum class Tristate : char
-	{
-		GOOD = 1 /**< : <i>1</i> : No error flag set. */,
-		ERROR = 0 /**< : <i>0</i> : Error flag set now. */,
-		PREV_ERR = -1 /**< : <i>-1</i> : Error flag was set by some
-					  previous function. */
-	};
-
-	/**
-		\brief checks if input is not safe (not GOOD).
-
-		<h3>Return</h3>
-		Returns false if e is Tristate::GOOD and true
-		else.\n
-	*/
-	inline bool operator !(
-		Tristate e /**< : <i>in</i> : The Tristate to check.*/
-		) noexcept
-	{
-		return (e != Tristate::GOOD);
-	}
-
 	/**
 		\brief The class for inheriting error tracking Functionality.
 
@@ -294,32 +264,125 @@ namespace enh
 }
 
 /**
-	\brief Log error flags within enhance library.
+	\brief Log error flags (error mode) within enhance library.
 	x must be a type that inherits publically from ErrorTracker or an object of 
 	ErrorTracker.
 */
-#define LIB_ERROR_FLAG_LOG(x)		O2_LIB_REPLACE(x.log(INFO_FOR_LOG,#x))
+#define LIB_FLAG_LOG_E(x)			LIB_REPLACE_E(x.log(INFO_FOR_LOG,#x))
 
 /**
-	\brief Log error flags.
+	\brief Log error flags (warning mode) within enhance library.
 	x must be a type that inherits publically from ErrorTracker or an object of
 	ErrorTracker.
 */
-#define ERROR_FLAG_LOG(x)			O2_REPLACE(x.log(INFO_FOR_LOG,#x))
+#define LIB_FLAG_LOG_W(x)			LIB_REPLACE_W(x.log(INFO_FOR_LOG,#x))
 
 /**
-	\brief Log error flags within enhance library using pointer (in class 
+	\brief Log error flags (info mode) within enhance library.
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define LIB_FLAG_LOG_I(x)			LIB_REPLACE_I(x.log(INFO_FOR_LOG,#x))
+
+/**
+	\brief Log error flags (fatal-error mode) within enhance library.
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define LIB_FLAG_LOG_FE(x)			LIB_REPLACE_FE(x.log(INFO_FOR_LOG,#x))
+
+/**
+	\brief Log error flags (error mode).
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define FLAG_LOG_E(x)				REPLACE_E(x.log(INFO_FOR_LOG,#x))
+
+/**
+	\brief Log error flags (warning mode).
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define FLAG_LOG_W(x)				REPLACE_W(x.log(INFO_FOR_LOG,#x))
+
+/**
+	\brief Log error flags (info mode).
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define FLAG_LOG_I(x)				REPLACE_I(x.log(INFO_FOR_LOG,#x))
+
+/**
+	\brief Log error flags (fatal-error mode).
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define FLAG_LOG_FE(x)				REPLACE_FE(x.log(INFO_FOR_LOG,#x))
+
+
+
+/**
+	\brief Log error flags (error mode) within enhance library using pointer (in class 
 	logging using this pointer).
 	x must be a type that inherits publically from ErrorTracker or an object of
 	ErrorTracker.
 */
-#define LIB_ERROR_FLAG_LOGP(x)		O2_LIB_REPLACE(x->log(INFO_FOR_LOG,#x))
+#define LIB_FLAG_LOGP_E(x)			LIB_REPLACE_E(x->log(INFO_FOR_LOG,#x))
 
 /**
-	\brief Log error flags using pointer (in class logging using this pointer).
+	\brief Log error flags (warning mode) within enhance library using pointer (in class 
+	logging using this pointer).
 	x must be a type that inherits publically from ErrorTracker or an object of
 	ErrorTracker.
 */
-#define ERROR_FLAG_LOGP(x)			O2_REPLACE(x->log(INFO_FOR_LOG,#x))
+#define LIB_FLAG_LOGP_W(x)			LIB_REPLACE_W(x->log(INFO_FOR_LOG,#x))
+
+/**
+	\brief Log error flags (info mode) within enhance library using pointer (in class 
+	logging using this pointer).
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define LIB_FLAG_LOGP_I(x)			LIB_REPLACE_I(x->log(INFO_FOR_LOG,#x))
+
+/**
+	\brief Log error flags (fatal-error mode) within enhance library using pointer (in class 
+	logging using this pointer).
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define LIB_FLAG_LOGP_FE(x)			LIB_REPLACE_FE(x->log(INFO_FOR_LOG,#x))
+
+/**
+	\brief Log error flags (error mode) using pointer (in class 
+	logging using this pointer).
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define FLAG_LOGP_E(x)				REPLACE_E(x->log(INFO_FOR_LOG,#x))
+
+/**
+	\brief Log error flags (warning mode) using pointer (in class 
+	logging using this pointer).
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define FLAG_LOGP_W(x)				REPLACE_W(x->log(INFO_FOR_LOG,#x))
+
+/**
+	\brief Log error flags (info mode) using pointer (in class 
+	logging using this pointer).
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define FLAG_LOGP_I(x)				REPLACE_I(x->log(INFO_FOR_LOG,#x))
+
+/**
+	\brief Log error flags (fatal-error mode) using pointer (in class 
+	logging using this pointer).
+	x must be a type that inherits publically from ErrorTracker or an object of
+	ErrorTracker.
+*/
+#define FLAG_LOGP_FE(x)				REPLACE_FE(x->og(INFO_FOR_LOG,#x))
 
 #endif

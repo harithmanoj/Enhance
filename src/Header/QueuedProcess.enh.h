@@ -28,7 +28,7 @@
 
 #define QUEUED_PROCESS_ENH_H						QueuedProcess.enh.h
 
-#include "ErrorTracker.enh.h"
+#include "Tristate.enh.h"
 
 #include <mutex>
 #include <queue>
@@ -43,6 +43,10 @@ namespace enh
 	/**
 		\brief The structure to encapsulate an instruction passed to the
 		queue as 3 components.
+
+		Message op code.
+
+		lower and upper arguments.
 	*/
 	template< class Msg, class Lower, class Upper>
 	struct GenInstruct
@@ -55,6 +59,11 @@ namespace enh
 	/**
 		\brief The structure to encapsulate an instruction passed to the
 		queue as 4 components.
+
+		Message op code.
+
+		lower, upper and another fourth argument.
+
 	*/
 	template< class Msg, class Lower, class Upper, class Fourth>
 	struct QuadInstruct
@@ -84,31 +93,32 @@ namespace enh
 		before starting the queue process.\n\n
 
 		<h3>Template arguments</h3>
-		-#  <code>class Instruct</code> : The type to store the instruction.\n
+		 
+		 -#  <code>class Instruct</code> : The type to tore the instruction.\n
 
 		
 		<h3> How To Use </h3>
 
 		- Create a structure that contains information to be sequentially 
 		processed. Let it be `struct info`. You can use structures 
-		`gen_instruct` and `quad_instruct` to merge different types easily.
+		`GenInstruct` and `QuadInstruct` to merge different types easily.
 		The type must be copy-constructible. Let it be `info`.
 
 		- Create a Function of type QueuedProcess::MessageHandlerType returns 
-		`tristate`, takes `info` as argument. The function should return 
+		`Tristate`, takes `info` as argument. The function should return 
 		something other than Tristate::GOOD if a fatal error occurs. Let it 
 		be `proc`.
 
-		- Create object of `queued_process<info>`, construct by passing `proc`
-		 or default construct then call `Register(proc)`.
+		- Create object of `QueuedProcess<info>`, construct by passing `proc`
+		 or default construct then call `registerHandlerFunction(proc)`.
 
-		- Call `start_queue_process` to start waiting on messages.
+		- Call `startQueueExecution` to start waiting on messages.
 
 		- Call `postMessage` and pass the message to add message to queue.
 
-		- Call `stopQueue` to stop processing.
+		- Call `stopQueueExecution` to stop processing.
 
-		- Call `WaitForQueueStop` to wait till queued execution thread stops.
+		- Call `WaitForQueueExecutionStop` to wait till queued execution thread stops.
 		Will only stop after executing full queue unless function returns 
 		error.
 
@@ -192,20 +202,19 @@ namespace enh
 		*/
 		Tristate queueExecutionFunction() noexcept
 		{
-			O1_LIB_LOG_LINE;
 			if (!_messageHandlerFunction)
 				return Tristate::ERROR;
-			O1_LIB_LOG_LINE;
-			while (!(_shouldStopQueue.load()))
+			while (!(_shouldStopQueue.load()))  // If should stop is asserted, quit.
 			{
-				O3_LIB_LOG_LINE;
-				while (!(_isUpdated.load()))
+				while (!(isQueueUpdated()))   // Continue waiting till queue is updated
 				{
 					std::unique_lock<std::mutex> lock(_QueueSyncMutex);
 					_QueueUpdateNotifier.wait(lock);
 					bool empty = _queuedMessage.empty();
 					lock.unlock();
-					if (!(_isUpdated.load()) && _shouldStopQueue.load() && empty)
+					if (!(isQueueUpdated()) && _shouldStopQueue.load() && empty)  
+						// if update is asserted but queue is empty and stop 
+						// is asserted, quit
 						return (Tristate::GOOD);
 
 				}
@@ -214,10 +223,9 @@ namespace enh
 				{
 					std::lock_guard<std::mutex> lock(_QueueSyncMutex);
 					shouldStopNow = _queuedMessage.empty() || _shouldStopQueue.load();
-				}
+				} // stop if queue us empty or shouldStop is asserted.
 				while (!shouldStopNow)
 				{
-					O3_LIB_LOG_LINE;
 					_QueueSyncMutex.lock();
 					InfoType front = _queuedMessage.front();
 					_queuedMessage.pop();
@@ -230,7 +238,6 @@ namespace enh
 				}
 
 			}
-			O4_LIB_LOG_LINE;
 			return (Tristate::GOOD);
 		}
 
@@ -270,7 +277,7 @@ namespace enh
 		QueuedProcess& operator = (const QueuedProcess&) = delete;
 
 		/**
-			\brief The Function to set a function as the instruction processor.
+			\brief set a function as the instruction processor.
 		*/
 		inline void registerHandlerFunction(
 			MessageHandlerType in /**< : <i>in</i> : The procedure.*/
@@ -284,32 +291,26 @@ namespace enh
 
 			<h3>Return</h3>
 			Returns Tristate::ERROR if no procedure was set, or queue is
-			already running or if thread allocation failed.\n
-			Returns Tristate::PREV_ERROR if error was flagged in any previous
-			function calls.\n
+			already running.\n
 		*/
 		Tristate startQueueExecution() noexcept
 		{
-			O3_LIB_LOG_LINE;
 			if (!_messageHandlerFunction)
 				return Tristate::ERROR;
 			if (isQueueRunning())
 				return Tristate::ERROR;
-			O2_LIB_LOG_LINE;
 			_shouldStopQueue = false;
 			_queueHandlerThread = std::thread(
 				&QueuedProcess::queueExecutionFunction, this);
 			_isQueueActive = true;
-			O2_LIB_LOG_LINE;
 			return (Tristate::GOOD);
 		}
 
 		/**
-			\brief check if queue is updated.
+			\brief Check if queue is updated.
 
 			<h3>Return</h3>
 			Returns _isUpdated.\n
-
 		*/
 		inline bool isQueueUpdated() noexcept
 		{
@@ -360,9 +361,7 @@ namespace enh
 		{
 			if (_queueHandlerThread.joinable() || isQueueRunning() )
 			{
-				O3_LIB_LOG_LINE;
 				_queueHandlerThread.join();
-				O4_LIB_LOG_LINE;
 				_isQueueActive = false;
 				_shouldStopQueue = false;
 				std::lock_guard<std::mutex> lock(_QueueSyncMutex);
@@ -410,8 +409,6 @@ namespace enh
 		{
 			while (true)
 			{
-				O3_LIB_LOG_LINE;
-				std::this_thread::sleep_for(ns);
 				bool ret = false;
 				{
 					std::lock_guard<std::mutex> lock(_QueueSyncMutex);
@@ -419,7 +416,7 @@ namespace enh
 				}
 				if (ret)
 					return;
-				O3_LIB_LOG_LINE;
+				std::this_thread::sleep_for(ns);
 			}
 			return;
 		}

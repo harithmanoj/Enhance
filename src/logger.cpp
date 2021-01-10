@@ -7,7 +7,7 @@
 
 	This file is part of project Enhance C++ Libraries.
 
-	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+	Copyright 2020-2021 Harith Manoj <harithpub@gmail.com>
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -78,17 +78,19 @@ void debug::log(std::string lg, std::string function)
 	write(lg, getLoggingFilePath(std::this_thread::get_id(), function));
 }
 
-void debug::log(std::string file, std::string function, unsigned long line)
+void debug::log(std::string file, std::string function, unsigned long line, char type)
 {
 	std::ostringstream out;
-	out << std::setw(80) << file << " : " << std::setw(6) << line << "   " << std::setw(15) << function;
+	out << " " << type << "/: " << std::setw(20) << function << "/" << std::setw(80) << file 
+		<< "(" << std::setw(6) << line << ") : COMPLETE";
 	log(out.str(), function);
 }
 
-void debug::log(std::string file, std::string function, unsigned long line, std::string descr)
+void debug::log(std::string file, std::string function, unsigned long line, std::string descr, char type)
 {
 	std::ostringstream out;
-	out << std::setw(80) << file << " : " << std::setw(6) << line << "   " << std::setw(15) << function << " ::   " << descr;
+	out << " " << type << "/: " << std::setw(20) << function << "/" << std::setw(80) << file 
+		<< "(" << std::setw(6) << line << ") : " << descr;
 	log(out.str(), function);
 }
 

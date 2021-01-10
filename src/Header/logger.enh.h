@@ -7,7 +7,7 @@
 
 	This file is part of project Enhance C++ Libraries.
 
-	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+	Copyright 2020-2021 Harith Manoj <harithpub@gmail.com>
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@
 	optimisation 0, all logging O5, O4, O3, O2, O1 is active but for 
 	optimisation 5 none is active.
 
-	- Define `ENH_CLEAR_OP__` to use no logging (automatic if `_DEBUG` is not
+	- Define `ENH_CLEAR_OP_` to use no logging (automatic if `_DEBUG` is not
 	defined).
 
 	- Define `IGNORE_ENHANCE_DIAGNOSTICS` to remove all logging calls from 
@@ -88,31 +88,32 @@
 #ifdef _DEBUG
 #ifndef ENH_DEBUG_CONTROL
 #define ENH_DEBUG_CONTROL				true
-#endif
-#ifndef ENH_OPTIMISATION
-#define ENH_OPTIMISATION				0
-#endif
-#endif
+#endif	// !ENH_DEBUG_CONTROL
 
-#ifdef ENH_CLEAR_OP__
+#ifdef ENH_CLEAR_OP_
+
 #ifdef ENH_DEBUG_CONTROL 
 #undef ENH_DEBUG_CONTROL
-#endif
+#endif //ENH_DEBUG_CONTROL
 
 #ifdef ENH_OPTIMISATION
 #undef ENH_OPTIMISATION
-#endif
+#endif //ENH_OPTIMISATION
 
 #define ENH_OPTIMISATION				10
 
-#endif
+#endif // ENH_CLEAR_OP_
+
+#endif // _DEBUG
 
 
-#if defined(ENH_DEBUG_CONTROL) && (ENH_OPTIMISATION < 5) && !defined(IGNORE_ENHANCE_DIAGNOSTICS)
+#if defined(ENH_DEBUG_CONTROL) && !defined(IGNORE_ENHANCE_DIAGNOSTICS)
+
 #define ERROR_BASE_LOG
-#endif
 
-#if  defined(ENH_DEBUG_CONTROL) && (ENH_OPTIMISATION < 5)
+#endif // defined(ENH_DEBUG_CONTROL) && !defined(IGNORE_ENHANCE_DIAGNOSTICS)
+
+#if  defined(ENH_DEBUG_CONTROL)
 /**
 	\brief The namespace for diagnostics
 */
@@ -152,7 +153,8 @@ namespace debug
 						 present.*/,
 		std::string function/**< : <i>in</i> : Logging function name.*/,
 		unsigned long line /**< : <i>in</i> : The line of file in which 
-						   logging code is present.*/
+						   logging code is present.*/,
+		char type /**< : <i>in</i> : The type of log E, I, W, F */
 	);
 
 	/**
@@ -165,7 +167,8 @@ namespace debug
 		std::string function /**< : <i>in</i> : Logging function name.*/,
 		unsigned long line /**< : <i>in</i> : The line of file in which 
 						   logging code is present.*/,
-		std::string descr /**< : <i>in</i> : The string to log.*/
+		std::string descr /**< : <i>in</i> : The string to log.*/,
+		char type /**< : <i>in</i> : The type of log E, I, W, F */
 	);
 
 	/**
@@ -182,16 +185,19 @@ namespace debug
 		unsigned long line /**< : <i>in</i> : The line of file in which 
 						   logging code is present.*/,
 		std::string var /**< : <i>in</i> : The name of variable.*/,
-		const T& val /**< : <i>in</i> : The value of the variable.*/
+		const T& val /**< : <i>in</i> : The value of the variable.*/,
+		char type /**< : <i>in</i> : The type of log E, I, W, F */
 	)
 	{
 		std::ostringstream out;
-		out << std::setw(80) << file << " : " << std::setw(6) << line << "   " << std::setw(15) << function << "  " << var << " = " << val;
+		out << " " << type << "/: " << std::setw(20) << function << "/" 
+			<< std::setw(80) << file << "(" << std::setw(6) 
+			<< line << ") : " << var << " = " << var;
 		log(out.str(),function);
 	}
 
 }
-#endif
+#endif defined(ENH_DEBUG_CONTROL)
 
 
 #ifdef ENH_DEBUG_CONTROL
@@ -200,7 +206,7 @@ namespace debug
 	\brief The Macro to execute a statement only in debug mode.
 
 	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
 #define REPLACE(x)			x
 
@@ -209,7 +215,7 @@ namespace debug
 
 	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
 	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined.
+	ENH_CLEAR_OP_ is defined.
 */
 #define REPLACE_AS(x,y)		x
 
@@ -224,13 +230,43 @@ namespace debug
 */
 #define NDBG_REPLACE_AS(x,y)		y
 
+
+/**
+	\brief The info that is commonly passed to all logging functions.
+*/
+#define INFO_FOR_LOG		__FILE__,__func__,__LINE__
+
+/**
+	\brief The Macro to log line completion in debug mode.
+
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LOG_LINE(t)			debug::log(INFO_FOR_LOG, t)
+
+/**
+	\brief The Macro to log a string in debug mode.
+
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LOG_DESC(x, t)		debug::log(INFO_FOR_LOG,x,t)
+
+/**
+	\brief The Macro to log a variable state in debug mode.
+
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LOG_VAL(x, t)			debug::log(INFO_FOR_LOG,#x,x, t)
+
 #else
 
 /**
 	\brief The Macro to execute a statement only in debug mode.
 
 	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
 #define REPLACE(x)		
 
@@ -239,7 +275,7 @@ namespace debug
 
 	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
 	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined.
+	ENH_CLEAR_OP_ is defined.
 */
 #define REPLACE_AS(x,y)		y
 
@@ -254,226 +290,31 @@ namespace debug
 */
 #define NDBG_REPLACE_AS(x,y)		y
 
-#endif
+/**
+	\brief The Macro to log line completion in debug mode.
 
-
-#if ENH_OPTIMISATION < 5
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LOG_LINE(t)			
 
 /**
-	\brief The Macro to execute a statement only in debug mode.
+	\brief The Macro to log a string in debug mode.
 
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	 or if ENH_OPTIMISATION is greater than 5.
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O5_REPLACE(x)			REPLACE(x)
+#define LOG_DESC(x, t)			
 
 /**
-	\brief The Macro to execute a statement in debug mode and another if not.
+	\brief The Macro to log a variable state in debug mode.
 
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if ENH_OPTIMISATION is greater than 5.
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O5_REPLACE_AS(x,y)		REPLACE_AS(x,y)
+#define LOG_VAL(x, t)			
 
-#else
-
-/**
-	\brief The Macro to execute a statement only in debug mode.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	 or if ENH_OPTIMISATION is greater than 5.
-*/
-#define O5_REPLACE(x)			NDBG_REPLACE(x)
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if ENH_OPTIMISATION is greater than 5.
-*/
-#define O5_REPLACE_AS(x,y)		NDBG_REPLACE_AS(x,y)
-
-#endif
-
-
-#if ENH_OPTIMISATION < 4
-
-/**
-	\brief The Macro to execute a statement only in debug mode.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	 or if ENH_OPTIMISATION is greater than 4.
-*/
-#define O4_REPLACE(x)			REPLACE(x)
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if ENH_OPTIMISATION is greater than 4.
-*/
-#define O4_REPLACE_AS(x,y)		REPLACE_AS(x,y)
-
-#else
-
-/**
-	\brief The Macro to execute a statement only in debug mode.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	 or if ENH_OPTIMISATION is greater than 4.
-*/
-#define O4_REPLACE(x)			NDBG_REPLACE(x)
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if ENH_OPTIMISATION is greater than 4.
-*/
-#define O4_REPLACE_AS(x,y)		NDBG_REPLACE_AS(x,y)
-
-#endif
-
-
-#if ENH_OPTIMISATION < 3
-
-/**
-	\brief The Macro to execute a statement only in debug mode.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	 or if ENH_OPTIMISATION is greater than 3.
-*/
-#define O3_REPLACE(x)			REPLACE(x)
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if ENH_OPTIMISATION is greater than 3.
-*/
-#define O3_REPLACE_AS(x,y)		REPLACE_AS(x,y)
-
-#else
-
-/**
-	\brief The Macro to execute a statement only in debug mode.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	 or if ENH_OPTIMISATION is greater than 3.
-*/
-#define O3_REPLACE(x)			NDBG_REPLACE(x)
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if ENH_OPTIMISATION is greater than 3.
-*/
-#define O3_REPLACE_AS(x,y)		NDBG_REPLACE_AS(x,y)
-
-#endif
-
-
-
-#if ENH_OPTIMISATION < 2
-
-/**
-	\brief The Macro to execute a statement only in debug mode.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	 or if ENH_OPTIMISATION is greater than 2.
-*/
-#define O2_REPLACE(x)			REPLACE(x)
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if ENH_OPTIMISATION is greater than 2.
-*/
-#define O2_REPLACE_AS(x,y)		REPLACE_AS(x,y)
-
-#else
-
-/**
-	\brief The Macro to execute a statement only in debug mode.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	 or if ENH_OPTIMISATION is greater than 2.
-*/
-#define O2_REPLACE(x)			NDBG_REPLACE(x)
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if ENH_OPTIMISATION is greater than 2.
-*/
-#define O2_REPLACE_AS(x,y)		NDBG_REPLACE_AS(x,y)
-
-#endif
-
-
-#if ENH_OPTIMISATION < 1
-
-/**
-	\brief The Macro to execute a statement only in debug mode.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	 or if ENH_OPTIMISATION is greater than 1.
-*/
-#define O1_REPLACE(x)			REPLACE(x)
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if ENH_OPTIMISATION is greater than 1.
-*/
-#define O1_REPLACE_AS(x,y)		REPLACE_AS(x,y)
-
-#else
-
-/**
-	\brief The Macro to execute a statement only in debug mode.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	 or if ENH_OPTIMISATION is greater than 1.
-*/
-#define O1_REPLACE(x)			NDBG_REPLACE(x)
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if ENH_OPTIMISATION is greater than 1.
-*/
-#define O1_REPLACE_AS(x,y)		NDBG_REPLACE_AS(x,y)
-
-#endif
-
-
-
+#endif // ENH_DEBUG_CONTROL
 
 
 #if !defined(IGNORE_ENHANCE_DIAGNOSTICS) && defined(ENH_DEBUG_CONTROL)
@@ -482,7 +323,7 @@ namespace debug
 	\brief The Macro to execute a statement only in debug mode, library call.
 
 	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
 */
 #define LIB_REPLACE(x)			x
@@ -493,9 +334,10 @@ namespace debug
 
 	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
 	Evaluates to seconds macro argument if DEBUG is not defined or if 
-	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+	ENH_CLEAR_OP_ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
 */
 #define LIB_REPLACE_AS(x,y)		x
+
 
 #else
 
@@ -503,7 +345,7 @@ namespace debug
 	\brief The Macro to execute a statement only in debug mode, library call.
 
 	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
 */
 #define LIB_REPLACE(x)		
@@ -513,7 +355,7 @@ namespace debug
 
 	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
 	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined
+	ENH_CLEAR_OP_ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
 */
 #define LIB_REPLACE_AS(x,y)		y
@@ -528,463 +370,540 @@ namespace debug
 	\brief The non-diagnostic version of LIB_REPLACE_AS(x,y).
 */
 #define NDBG_LIB_REPLACE_AS(x,y)		y
-#endif
+	
+
+#endif  //!defined(IGNORE_ENHANCE_DIAGNOSTICS) && defined(ENH_DEBUG_CONTROL)
+
+
+#ifndef DISABLE_ERROR_LOGS
 
 /**
-	\brief The Macro to execute a statement only in debug mode, library call.
+	\brief The Macro to execute a statement only in debug-error mode.
 
 	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined or if ENH_OPTIMISATION is less
-	than 4.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O5_LIB_REPLACE(x)		O5_REPLACE(LIB_REPLACE(x))
+#define REPLACE_E(x)				REPLACE(x)
 
 /**
-	\brief The Macro to execute a statement only in debug mode, library call.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined or if ENH_OPTIMISATION is less
-	than 3.
-*/
-#define O4_LIB_REPLACE(x)		O4_REPLACE(LIB_REPLACE(x))
-
-/**
-	\brief The Macro to execute a statement only in debug mode, library call.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined or if ENH_OPTIMISATION is less
-	than 2.
-*/
-#define O3_LIB_REPLACE(x)		O3_REPLACE(LIB_REPLACE(x))
-
-/**
-	\brief The Macro to execute a statement only in debug mode, library call.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined or if ENH_OPTIMISATION is less
-	than 1.
-*/
-#define O2_LIB_REPLACE(x)		O2_REPLACE(LIB_REPLACE(x))
-
-/**
-	\brief The Macro to execute a statement only in debug mode, library call.
-
-	Evaluates to the macro argument passed if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined or if ENH_OPTIMISATION is less
-	than 0.
-*/
-#define O1_LIB_REPLACE(x)		O1_REPLACE(LIB_REPLACE(x))
-
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not,
-	library call.
+	\brief The Macro to execute a statement in debug-error mode and another if not.
 
 	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
 	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined
-	or if ENH_OPTIMISATION is less
-	than 4.
+	ENH_CLEAR_OP_ is defined.
 */
-#define O5_LIB_REPLACE_AS(x,y)		O5_REPLACE(LIB_REPLACE_AS(x,y))
+#define REPLACE_AS_E(x, y)			REPLACE_AS(x, y)
 
 /**
-	\brief The Macro to execute a statement in debug mode and another if not,
-	library call.
+	\brief The Macro to execute a statement only in debug-error mode, library call.
 
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined
-	or if ENH_OPTIMISATION is less
-	than 3.
-*/
-#define O4_LIB_REPLACE_AS(x,y)		O4_REPLACE(LIB_REPLACE_AS(x,y))
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not,
-	library call.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined
-	 or if ENH_OPTIMISATION is less
-	than 2.
-*/
-#define O3_LIB_REPLACE_AS(x,y)		O3_REPLACE(LIB_REPLACE_AS(x,y))
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not,
-	library call.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined
-	or if ENH_OPTIMISATION is less
-	than 1.
-*/
-#define O2_LIB_REPLACE_AS(x,y)		O2_REPLACE(LIB_REPLACE_AS(x,y))
-
-/**
-	\brief The Macro to execute a statement in debug mode and another if not,
-	library call.
-
-	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
-	Evaluates to seconds macro argument if DEBUG is not defined or if
-	ENH_CLEAR_OP__ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined
-	or if ENH_OPTIMISATION is less
-	than 0.
-*/
-#define O1_LIB_REPLACE_AS(x,y)		O1_REPLACE(LIB_REPLACE_AS(x,y))
-
-
-
-/**
-	\brief The info that is commonly passed to all logging functions.
-*/
-#define INFO_FOR_LOG		__FILE__,__func__,__LINE__
-
-/**
-	\brief The Macro to log line completion in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
-*/
-#define LOG_LINE REPLACE(debug::log(INFO_FOR_LOG))
-
-/**
-	\brief The Macro to log a string in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
-*/
-#define LOG_DESC(x) REPLACE(debug::log(INFO_FOR_LOG,x))
-
-/**
-	\brief The Macro to log a variable state in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined.
-*/
-#define LOG_VAL(x) REPLACE(debug::log(INFO_FOR_LOG,#x,x))
-
-/**
-	\brief The Macro to log line completion in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined 
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
 */
-#define LIB_LOG_LINE LIB_REPLACE(debug::log(INFO_FOR_LOG))
+#define LIB_REPLACE_E(x)			LIB_REPLACE(x)
 
 /**
-	\brief The Macro to log a string in debug mode.
+	\brief The Macro to execute a statement in debug-error mode and another if not,
+	library call.
 
-	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined 
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_E(x, y)		LIB_REPLACE_AS(x,y)
+
+#else
+
+/**
+	\brief The Macro to execute a statement only in debug-error mode.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_E(x)				NDBG_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-error mode and another if not.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_AS_E(x, y)			NDBG_REPLACE_AS(x, y)
+
+
+/**
+	\brief The Macro to execute a statement only in debug-error mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
 */
-#define LIB_LOG_DESC(x) LIB_REPLACE(debug::log(INFO_FOR_LOG,x))
+#define LIB_REPLACE_E(x)			NDBG_LIB_REPLACE(x)
 
 /**
-	\brief The Macro to log a variable state in debug mode.
+	\brief The Macro to execute a statement in debug-error mode and another if not,
+	library call.
 
-	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined 
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_E(x, y)		NDBG_LIB_REPLACE_AS(x,y)
+
+
+#endif // !DISABLE_ERROR_LOGS
+
+#ifndef DISABLE_WARNING_LOGS
+
+/**
+	\brief The Macro to execute a statement only in debug-warning mode.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+
+#define REPLACE_W(x)				REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-warning mode and another if not.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_AS_W(x, y)			REPLACE_AS(x, y)
+
+
+/**
+	\brief The Macro to execute a statement only in debug-warning mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined
 	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
 */
-#define LIB_LOG_VAL(x) LIB_REPLACE(debug::log(INFO_FOR_LOG,#x,x))
+#define LIB_REPLACE_W(x)			LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-warning mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_W(x, y)		LIB_REPLACE_AS(x,y)
+
+
+#else
+
+/**
+	\brief The Macro to execute a statement only in debug-warning mode.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_W(x)				NDBG_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-warning mode and another if not.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_AS_W(x, y)			NDBG_REPLACE_AS(x, y)
 
 
 /**
-	\brief The Macro to log line completion in debug mode.
+	\brief The Macro to execute a statement only in debug-warning mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_W(x)			NDBG_LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-warning mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_W(x, y)		NDBG_LIB_REPLACE_AS(x,y)
+
+
+#endif // !DISABLE_WARNING_LOGS
+
+#ifndef DISABLE_INFO_FLAGS
+
+/**
+	\brief The Macro to execute a statement only in debug-info mode.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_I(x)				REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-info mode and another if not.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_AS_I(x, y)			REPLACE_AS(x, y)
+
+
+/**
+	\brief The Macro to execute a statement only in debug-info mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_I(x)			LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-info mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_I(x, y)		LIB_REPLACE_AS(x,y)
+#else
+
+/**
+	\brief The Macro to execute a statement only in debug-info mode.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_I(x)				NDBG_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-info mode and another if not.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_AS_I(x, y)			NDBG_REPLACE_AS(x, y)
+
+
+
+/**
+	\brief The Macro to execute a statement only in debug-info mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_W(x)			NDBG_LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-info mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_W(x, y)		NDBG_LIB_REPLACE_AS(x,y)
+
+#endif // !DISABLE_INFO_FLAGS
+
+#ifndef DISABLE_FATAL_FLAGS
+
+/**
+	\brief The Macro to execute a statement only in debug-fatal-error mode.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_FE(x)				REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-fatal-error mode and another if not.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_AS_FE(x, y)			REPLACE_AS(x, y)
+
+/**
+	\brief The Macro to execute a statement only in debug-fatal-error mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_FE(x)			LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-fatal-error mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_FE(x, y)		LIB_REPLACE_AS(x,y)
+
+#else
+
+/**
+	\brief The Macro to execute a statement only in debug-fatal-error mode.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_FE(x)				NDBG_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-fatal-error mode and another if not.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined.
+*/
+#define REPLACE_AS_FE(x, y)			NDBG_REPLACE_AS(x, y)
+
+
+
+/**
+	\brief The Macro to execute a statement only in debug-fatal-error mode, library call.
+
+	Evaluates to the macro argument passed if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined
+	or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_FE(x)			NDBG_LIB_REPLACE(x)
+
+/**
+	\brief The Macro to execute a statement in debug-fatal-error mode and another if not,
+	library call.
+
+	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
+	Evaluates to seconds macro argument if DEBUG is not defined or if
+	ENH_CLEAR_OP_ is defined or if IGNORE_ENHANCE_DIAGNOSTICS is defined.
+*/
+#define LIB_REPLACE_AS_FE(x, y)		NDBG_LIB_REPLACE_AS(x,y)
+#endif // !DISABLE_FATAL_FLAGS
+
+/**
+	\brief The Macro to log line completion in debug-error mode.
 
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 4.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O5_LOG_LINE		O5_REPLACE(LOG_LINE)
+#define LOG_LINE_E					REPLACE_E(LOG_LINE('E'))
 
 /**
-	\brief The Macro to log a string in debug mode.
+	\brief The Macro to log a string in debug-error mode.
 
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 4.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O5_LOG_DESC(x)	O5_REPLACE(LOG_DESC(x))
+#define LOG_DESC_E(x)				REPLACE_E(LOG_DESC(x,'E'))
 
 /**
-	\brief The Macro to log a variable state in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 4.
-*/
-#define O5_LOG_VAL(x)	O5_REPLACE(LOG_VAL(x))
-
-/**
-	\brief The Macro to log line completion in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 3.
-*/
-#define O4_LOG_LINE		O4_REPLACE(LOG_LINE)
-
-/**
-	\brief The Macro to log a string in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 3.
-*/
-#define O4_LOG_DESC(x)	O4_REPLACE(LOG_DESC(x))
-
-/**
-	\brief The Macro to log a variable state in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 3.
-*/
-#define O4_LOG_VAL(x)	O4_REPLACE(LOG_VAL(x))
-
-/**
-	\brief The Macro to log line completion in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 2.
-*/
-#define O3_LOG_LINE		O3_REPLACE(LOG_LINE)
-
-/**
-	\brief The Macro to log a string in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 2.
-*/
-#define O3_LOG_DESC(x)	O3_REPLACE(LOG_DESC(x))
-
-/**
-	\brief The Macro to log a variable state in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 2.
-*/
-#define O3_LOG_VAL(x)	O3_REPLACE(LOG_VAL(x))
-
-/**
-	\brief The Macro to log line completion in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 1.
-*/
-#define O2_LOG_LINE		O2_REPLACE(LOG_LINE)
-
-/**
-	\brief The Macro to log a string in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 1.
-*/
-#define O2_LOG_DESC(x)	O2_REPLACE(LOG_DESC(x))
-
-/**
-	\brief The Macro to log a variable state in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 1.
-*/
-#define O2_LOG_VAL(x)	O2_REPLACE(LOG_VAL(x))
-
-/**
-	\brief The Macro to log line completion in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 0.
-*/
-#define O1_LOG_LINE		O1_REPLACE(LOG_LINE)
-
-/**
-	\brief The Macro to log a string in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 0.
-*/
-#define O1_LOG_DESC(x)	O1_REPLACE(LOG_DESC(x))
-
-/**
-	\brief The Macro to log a variable state in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG, #x, x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if ENH_OPTIMISATION is greater than 0.
-*/
-#define O1_LOG_VAL(x)	O1_REPLACE(LOG_VAL(x))
-
-/**
-	\brief The Macro to log line completion in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is 
-	greater than 4.
-*/
-#define O5_LIB_LOG_LINE		O5_LIB_REPLACE(LIB_LOG_LINE)
-
-/**
-	\brief The Macro to log a string in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is 
-	greater than 4.
-*/
-#define O5_LIB_LOG_DESC(x)	O5_LIB_REPLACE(LIB_LOG_DESC(x))
-
-/**
-	\brief The Macro to log a variable state in debug mode.
+	\brief The Macro to log a variable state in debug-error mode.
 
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is 
-	greater than 4.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O5_LIB_LOG_VAL(x)	O5_LIB_REPLACE(LIB_LOG_VAL(x))
+#define LOG_VALUE_E(x)				REPLACE_E(LOG_VAL(x,'E'))
 
 /**
-	\brief The Macro to log line completion in debug mode.
+	\brief The Macro to log line completion in debug-error mode for library 
+	functions.
 
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 3.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O4_LIB_LOG_LINE		O4_LIB_REPLACE(LIB_LOG_LINE)
-
+#define LIB_LOG_LINE_E				LIB_REPLACE_E(LOG_LINE('E'))
 
 /**
-	\brief The Macro to log a string in debug mode.
+	\brief The Macro to log a string in debug-error mode for library 
+	functions.
 
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 3.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O4_LIB_LOG_DESC(x)	O4_LIB_REPLACE(LIB_LOG_DESC(x))
+#define LIB_LOG_DESC_E(x)			LIB_REPLACE_E(LOG_DESC(x,'E'))
 
 /**
-	\brief The Macro to log a variable state in debug mode.
+	\brief The Macro to log a variable state in debug-error mode for library 
+	functions.
 
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 3.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O4_LIB_LOG_VAL(x)	O4_LIB_REPLACE(LIB_LOG_VAL(x))
+#define LIB_LOG_VALUE_E(x)			LIB_REPLACE_E(LOG_VAL(x,'E'))
+
 
 /**
-	\brief The Macro to log line completion in debug mode.
+	\brief The Macro to log line completion in debug-warning mode.
 
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 2.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O3_LIB_LOG_LINE		O3_LIB_REPLACE(LIB_LOG_LINE)
+#define LOG_LINE_W					REPLACE_W(LOG_LINE('W'))
 
 /**
-	\brief The Macro to log a string in debug mode.
+	\brief The Macro to log a string in debug-warning mode.
 
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 2.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O3_LIB_LOG_DESC(x)	O3_LIB_REPLACE(LIB_LOG_DESC(x))
+#define LOG_DESC_W(x)				REPLACE_W(LOG_DESC(x,'W'))
 
 /**
-	\brief The Macro to log a variable state in debug mode.
+	\brief The Macro to log a variable state in debug-warning mode.
 
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 2.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O3_LIB_LOG_VAL(x)	O3_LIB_REPLACE(LIB_LOG_VAL(x))
+#define LOG_VALUE_W(x)				REPLACE_W(LOG_VAL(x,'W'))
 
 /**
-	\brief The Macro to log line completion in debug mode.
+	\brief The Macro to log line completion in debug-warning mode for library
+	functions.
 
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 1.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O2_LIB_LOG_LINE		O2_LIB_REPLACE(LIB_LOG_LINE)
+#define LIB_LOG_LINE_W				LIB_REPLACE_W(LOG_LINE('W'))
 
 /**
-	\brief The Macro to log a string in debug mode.
+	\brief The Macro to log a string in debug-warning mode for library
+	functions.
 
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 1.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O2_LIB_LOG_DESC(x)	O2_LIB_REPLACE(LIB_LOG_DESC(x))
+#define LIB_LOG_DESC_W(x)			LIB_REPLACE_W(LOG_DESC(x,'W'))
 
 /**
-	\brief The Macro to log a variable state in debug mode.
+	\brief The Macro to log a variable state in debug-warning mode for library
+	functions.
 
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 1.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O2_LIB_LOG_VAL(x)	O2_LIB_REPLACE(LIB_LOG_VAL(x))
+#define LIB_LOG_VALUE_W(x)			LIB_REPLACE_W(LOG_VAL(x,'W'))
+
 
 /**
-	\brief The Macro to log line completion in debug mode.
+	\brief The Macro to log line completion in debug-info mode.
 
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 0.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O1_LIB_LOG_LINE		O1_LIB_REPLACE(LIB_LOG_LINE)
+#define LOG_LINE_I					REPLACE_I(LOG_LINE('I'))
 
 /**
-	\brief The Macro to log a string in debug mode.
+	\brief The Macro to log a string in debug-info mode.
 
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 0.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O1_LIB_LOG_DESC(x)	O1_LIB_REPLACE(LIB_LOG_DESC(x))
+#define LOG_DESC_I(x)				REPLACE_I(LOG_DESC(x,'I'))
 
 /**
-	\brief The Macro to log a variable state in debug mode.
+	\brief The Macro to log a variable state in debug-info mode.
 
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP__ is defined
-	or if IGNORE_ENHANCE_DIAGNOSTICS is defined	or if ENH_OPTIMISATION is
-	greater than 0.
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#define O1_LIB_LOG_VAL(x)	O1_LIB_REPLACE(LIB_LOG_VAL(x))
+#define LOG_VALUE_I(x)				REPLACE_I(LOG_VAL(x,'I'))
+
+/**
+	\brief The Macro to log line completion in debug-info mode for library
+	functions.
+
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LIB_LOG_LINE_I				LIB_REPLACE_I(LOG_LINE('I'))
+
+/**
+	\brief The Macro to log a string in debug-info mode for library
+	functions.
+
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LIB_LOG_DESC_I(x)			LIB_REPLACE_I(LOG_DESC(x,'I'))
+
+/**
+	\brief The Macro to log a variable state in debug-info mode for library
+	functions.
+
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LIB_LOG_VALUE_I(x)			LIB_REPLACE_I(LOG_VAL(x,'I'))
+
+
+/**
+	\brief The Macro to log line completion in debug-fatal-error mode.
+
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LOG_LINE_FE					REPLACE_FE(LOG_LINE('F'))
+
+/**
+	\brief The Macro to log a string in debug-fatal-error mode.
+
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LOG_DESC_FE(x)				REPLACE_FE(LOG_DESC(x,'F'))
+
+/**
+	\brief The Macro to log a variable state in debug-fatal-error mode.
+
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LOG_VALUE_FE(x)				REPLACE_FE(LOG_VAL(x,'F'))
+
+/**
+	\brief The Macro to log line completion in debug-fatal-error mode for library
+	functions.
+
+	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LIB_LOG_LINE_FE				LIB_REPLACE_FE(LOG_LINE('F'))
+
+/**
+	\brief The Macro to log a string in debug-fatal-error mode for library
+	functions.
+
+	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LIB_LOG_DESC_FE(x)			LIB_REPLACE_FE(LOG_DESC(x,'F'))
+
+/**
+	\brief The Macro to log a variable state in debug-fatal-error mode for library
+	functions.
+
+	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
+	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
+*/
+#define LIB_LOG_VALUE_FE(x)			LIB_REPLACE_FE(LOG_VAL(x,'F'))
+
 #endif // !LOGGER_ENH_H
 
 

@@ -12,8 +12,9 @@ private:
 	{
 		return "derived_type";
 	}
-
-	virtual std::string error_string()  const
+#endif
+public:
+	virtual std::string toString()  const
 	{
 		std::string ret = ErrorTracker::toString();
 		if (ret == "SAFE")
@@ -23,7 +24,6 @@ private:
 			ret += " + USER_DEF";
 		return ret;
 	}
-#endif
 public:
 	void setFlag__(UnderlyingErrorType fl)
 	{
@@ -33,7 +33,7 @@ public:
 
 int main()
 {
-	LOG_LINE;
+	LOG_LINE_I;
 
 	derived_type t;
 

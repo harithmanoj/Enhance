@@ -2,29 +2,27 @@
 #define _DEBUG
 #endif
 
-#define ENH_OPTIMISATION  0
-
 #include <logger.enh.h>
 #include <iostream>
 
 int foo()
 {
 	int i = 0;
-	O4_LOG_VAL(i);		
-	O3_LOG_LINE;
-	O2_LOG_DESC("now returning");
+	LOG_VALUE_E(i);		
+	LOG_LINE_W;
+	LOG_DESC_I("now returning");
 	return i;
 }
 
 int main()
 {
-	O3_LOG_LINE;
+	LOG_LINE_FE;
 	foo();
-	O4_LOG_LINE;
-	O3_LOG_DESC("dfghh");
+	LOG_LINE_E;
+	LOG_DESC_W("dfghh");
 	foo();
-	std::cout O5_REPLACE(<< "debug now") << " now\n";
-	std::cout << O5_REPLACE_AS("debug", "not");
+	std::cout REPLACE_I(<< "debug now") << " now\n";
+	std::cout << REPLACE_AS_I("debug", "not");
 	return 0;
 }
 
