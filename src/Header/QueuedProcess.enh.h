@@ -130,25 +130,22 @@ namespace enh
 
 	/**
 		\brief The class to implement a structure which executes instructions
-		concurently after fetching them through a queue for final use
-		including debug calls.
+		concurently after fetching them through a queue for final use.
 
-
-		hasErrorHandlers        = false;\n
 
 		The function registerHandlerFunction must be called to setup the processing function
 		before starting the queue process.\n\n
 
 		<h3>Template arguments</h3>
 		 
-		 -#  <code>class Instruct</code> : The type to tore the instruction.\n
+		 -#  <code>class Instruct</code> : The type to store the instruction.\n
 
 		
 		<h3> How To Use </h3>
 
 		- Create a structure that contains information to be sequentially 
-		processed. Let it be `struct info`. You can use structures 
-		`GenInstruct` and `QuadInstruct` to merge different types easily.
+		processed. Let it be `struct info`. You can use any type. `GenInstruct` 
+		and `QuadInstruct` to merge different types easily.
 		The type must be copy-constructible. Let it be `info`.
 
 		- Create a Function of type QueuedProcess::MessageHandlerType returns 
@@ -279,9 +276,13 @@ namespace enh
 					_QueueSyncMutex.unlock();
 					Tristate ret = _messageHandlerFunction(front);
 					if (!ret)
-						return (Tristate::ERROR);
+					{
+						_isQueueActive = false;
+						return (Tristate::ERROR); // Handler Fail
+					}
 					std::lock_guard<std::mutex> temp_lock(_QueueSyncMutex);
 					shouldStopNow = _queuedMessage.empty() || _shouldStopQueue.load();
+							// stop if queue us empty or shouldStop is asserted.
 				}
 
 			}
