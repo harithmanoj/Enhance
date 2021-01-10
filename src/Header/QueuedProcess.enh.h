@@ -295,6 +295,8 @@ namespace enh
 
 		/**
 			\brief The default constructor.
+			
+			Queue execution cannot be started until handler function is registered.
 		*/
 		QueuedProcess() noexcept : _queueHandlerThread()
 		{
@@ -335,13 +337,13 @@ namespace enh
 		}
 
 		/**
-			\brief starts the function queue_process in another thread.
+			\brief starts the function queueExecutionFunction in another thread.
 
 			<h3>Return</h3>
 			Returns Tristate::ERROR if no procedure was set, or queue is
 			already running.\n
 		*/
-		Tristate startQueueExecution() noexcept
+		[[nodiscard]] Tristate startQueueExecution() noexcept
 		{
 			if (!_messageHandlerFunction)
 				return Tristate::ERROR;
@@ -424,7 +426,7 @@ namespace enh
 		inline void joinAfterQueueEmpty(
 			std::chrono::nanoseconds ns /**< : <i>in</i> : The amount of time
 							to wait between each cecks to the queues size.*/
-		)
+		) noexcept
 		{
 			if (!isQueueRunning())
 				return;
@@ -439,7 +441,7 @@ namespace enh
 			<b>Note</b> : Even if queue has messages left over, it will exit 
 			and messages will be destroyed.
 		*/
-		inline void forceImmediateJoin()
+		inline void forceImmediateJoin() noexcept
 		{
 			if (!isQueueRunning())
 				return;
