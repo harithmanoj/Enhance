@@ -1,7 +1,7 @@
 /** ***************************************************************************
-	\file ErrorTracker.enh.h
+	\file Tristate.enh.h
 
-	\brief The file to declare Error Handling classes and functions
+	\brief The file to declare enumeration for static error status. 
 
 	Created 03 January 2021
 
@@ -27,7 +27,7 @@
 
 #ifndef TRISTATE_ENH_H
 
-#define TRISTATE_ENH_H				ErrorTracker.enh.h
+#define TRISTATE_ENH_H				Tristate.enh.h
 
 /*
 	\brief The namespace for all the functions and classes of this library
@@ -37,7 +37,7 @@ namespace enh
 
 
 	/**
-		\brief A byte long type that takes 3 values, true (1), error(0),
+		\brief A byte long type that takes 3 values, good (0), error(1),
 		previous_error(-1).
 
 		<h3> Examples</h3>
@@ -46,8 +46,8 @@ namespace enh
 	*/
 	enum class Tristate : char
 	{
-		GOOD = 1 /**< : <i>1</i> : No error flag set. */,
-		ERROR = 0 /**< : <i>0</i> : Error flag set now. */,
+		GOOD = 0 /**< : <i>1</i> : No error flag set. */,
+		ERROR = 1 /**< : <i>0</i> : Error flag set now. */,
 		PREV_ERR = -1 /**< : <i>-1</i> : Error flag was set by some
 					  previous function. */
 	};
