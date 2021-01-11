@@ -26,13 +26,13 @@
 #ifndef WEIGHTED_FIELD_ENH_H
 
 
-#define WEIGHTED_FIELD_ENH_H
+#	define WEIGHTED_FIELD_ENH_H							WeightedField.enh.h
 
-#include <type_traits>
-#include <stdexcept>
-#include <array>
-#include <algorithm>
-#include <execution>
+#	include <type_traits>
+#	include <stdexcept>
+#	include <array>
+#	include <algorithm>
+#	include <execution>
 
 namespace enh
 {
@@ -52,6 +52,7 @@ namespace enh
 		// Underlying type must be integral.
 		static_assert(std::is_integral_v<integral>, "underlying type for "
 			"WeightedField must be integral");
+
 		// Cannot have field size < 2 
 		static_assert(field_c >= 2, "field count must be minimum of 2");
 	public:
@@ -74,7 +75,8 @@ namespace enh
 	private:
 
 		/**
-			\brief Underlying value stored as compounded weighted sum of all fields.
+			\brief Underlying value stored as compounded weighted sum of all 
+			fields.
 		*/
 		value_type _rawValue;
 
@@ -85,7 +87,8 @@ namespace enh
 			Index 0 will have lowest weight, with compounded weights as 
 			index increases.
 
-			1(implied) , 10, 20 will mean that it is a 3 field value with lowest weight
+			1(implied) , 10, 20 will mean that it is a 3 field value with 
+			lowest weight
 			of 1, middle 10 and highest 200. 
 		*/
 		std::array<unsigned, weightCount> _fieldWeight;
@@ -358,7 +361,8 @@ namespace enh
 			value_type val /**< : <i>in</i> : The value to be added.*/
 		) const noexcept
 		{
-			return WeightedField<value_type, fieldCount>{val + getRaw(), std::move(_fieldWeight)};
+			return WeightedField<value_type, fieldCount>{val + getRaw(), 
+				std::move(_fieldWeight)};
 		}
 
 		/**
@@ -457,7 +461,8 @@ namespace enh
 			value_type val /**< : <i>in</i> : The value to be subtracted.*/
 		) const noexcept
 		{
-			return WeightedField<value_type, fieldCount>{ getRaw() - val, _fieldWeight};
+			return WeightedField<value_type, fieldCount>{ getRaw() - val,
+				_fieldWeight};
 		}
 
 		/**
@@ -503,7 +508,8 @@ namespace enh
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (_fieldWeight[i] != rhs._fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return sub(rhs.getRaw());
 		}
 
@@ -523,7 +529,8 @@ namespace enh
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (_fieldWeight[i] != rhs._fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return saveSub(rhs.getRaw());
 		}
 
@@ -606,7 +613,8 @@ namespace enh
 
 			value_type temp = val + getRaw();
 			if ((temp < val) || (temp < getRaw()))
-				return WeightedField<value_type, fieldCount>{type_max, _fieldWeight};
+				return WeightedField<value_type, fieldCount>{type_max,
+				_fieldWeight};
 			else
 				return add(val);
 		}
@@ -653,7 +661,8 @@ namespace enh
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (_fieldWeight[i] != rhs._fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return addu(rhs.getRaw(), type_max);
 		}
 
@@ -673,7 +682,8 @@ namespace enh
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (_fieldWeight[i] != rhs._fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return saveAddu(rhs.getRaw(), type_max);
 		}
 
@@ -693,7 +703,8 @@ namespace enh
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (_fieldWeight[i] != rhs._fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return subu(rhs.getRaw(), type_max);
 		}
 
@@ -713,7 +724,8 @@ namespace enh
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (_fieldWeight[i] != rhs._fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return saveSubu(rhs.getRaw(), type_max);
 		}
 
@@ -729,7 +741,8 @@ namespace enh
 								  multiplied by.*/
 		) const noexcept
 		{
-			return WeightedField<value_type, fieldCount>{getRaw() * multiplier, _fieldWeight};
+			return WeightedField<value_type, fieldCount>{getRaw() * multiplier,
+				_fieldWeight};
 		}
 
 		/**
@@ -775,7 +788,8 @@ namespace enh
 								  divided by.*/
 		) const
 		{
-			return WeightedField<value_type, fieldCount>{getRaw() / divisor, _fieldWeight};
+			return WeightedField<value_type, fieldCount>{getRaw() / divisor,
+				_fieldWeight};
 		}
 
 		/**
@@ -838,7 +852,8 @@ namespace enh
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (_fieldWeight[i] != rhs._fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return (getRaw() < rhs.getRaw());
 		}
 
@@ -905,7 +920,8 @@ namespace enh
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (_fieldWeight[i] != rhs._fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return (getRaw() > rhs.getRaw());
 		}
 
@@ -938,7 +954,8 @@ namespace enh
 		{
 			for (unsigned i = 0; i < weightCount; ++i)
 				if (_fieldWeight[i] != rhs._fieldWeight[i])
-					throw std::invalid_argument("Operand must be of same weight");
+					throw std::invalid_argument("Operand must be of same "
+						"weight");
 			return (getRaw() >= rhs.getRaw());
 		}
 
