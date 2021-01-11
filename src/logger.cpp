@@ -33,7 +33,8 @@
 
 
 // setup will indicate if no file existed previously
-std::string retrieveThreadStarter(bool& setup, std::string function, std::thread::id id = std::this_thread::get_id())
+std::string retrieveThreadStarter(bool& setup, std::string function,
+	std::thread::id id = std::this_thread::get_id())
 {
 	static std::map<std::thread::id, std::string> call_info; // To store thread id based log-file
 	std::string ret;
@@ -57,17 +58,20 @@ void write(std::string buff, std::filesystem::path file)
 	out << buff << "\n";
 }
 
-std::filesystem::path debug::getLoggingFilePath(std::thread::id id, std::string function)
+std::filesystem::path debug::getLoggingFilePath(std::thread::id id,
+	std::string function)
 {
 	auto file = std::filesystem::path("");
 	std::ostringstream out;
 	bool setup = false;
-	out << id << "_thread_fn_" << retrieveThreadStarter(setup, function, id) << ".log";
+	out << id << "_thread_fn_" << retrieveThreadStarter(setup, function, id) 
+		<< ".log";
 	file = out.str();
 	if (setup)
 	{
 		std::ostringstream buff;
-		buff << "Thread id : " << id << "\n\t\tthread first logging function " << function;
+		buff << "Thread id : " << id << "\n\t\tthread first logging function " 
+			<< function;
 		write(buff.str(), file);
 	}
 	return file;
@@ -78,18 +82,22 @@ void debug::log(std::string lg, std::string function)
 	write(lg, getLoggingFilePath(std::this_thread::get_id(), function));
 }
 
-void debug::log(std::string file, std::string function, unsigned long line, char type)
+void debug::log(std::string file, std::string function, unsigned long line, 
+	char type)
 {
 	std::ostringstream out;
-	out << " " << type << "/: " << std::setw(20) << function << "/" << std::setw(80) << file 
+	out << " " << type << "/: " << std::setw(20) << function << "/" 
+		<< std::setw(80) << file 
 		<< "(" << std::setw(6) << line << ") : COMPLETE";
 	log(out.str(), function);
 }
 
-void debug::log(std::string file, std::string function, unsigned long line, std::string descr, char type)
+void debug::log(std::string file, std::string function, unsigned long line,
+	std::string descr, char type)
 {
 	std::ostringstream out;
-	out << " " << type << "/: " << std::setw(20) << function << "/" << std::setw(80) << file 
+	out << " " << type << "/: " << std::setw(20) << function << "/" 
+		<< std::setw(80) << file 
 		<< "(" << std::setw(6) << line << ") : " << descr;
 	log(out.str(), function);
 }

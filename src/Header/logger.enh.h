@@ -351,7 +351,8 @@ namespace debug
 #define LIB_REPLACE(x)		
 
 /**
-	\brief The Macro to execute a statement in debug mode and another if not, library call.
+	\brief The Macro to execute a statement in debug mode and another if not, 
+	library call.
 
 	Evaluates to the first macro argument passed if DEBUG is defined.\n\n
 	Evaluates to seconds macro argument if DEBUG is not defined or if
