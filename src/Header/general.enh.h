@@ -97,7 +97,9 @@ namespace enh
 		if argument is 0
 	*/
 	template<class arithmetic>
-	constexpr short signumFunction(arithmetic arg)
+	constexpr short signumFunction(
+		arithmetic arg /**< <i>in</i> : The input for signum function */
+	)
 	{
 		static_assert(std::is_arithmetic_v<arithmetic>, "signum function takes"
 			" an arithmetic type");
@@ -247,7 +249,9 @@ namespace enh
 				
 	*/
 	template<class Integral>
-	constexpr inline std::string_view getOrdinalIndicator(Integral value)
+	constexpr inline std::string_view getOrdinalIndicator(
+		Integral value /**< <i>in</i> : The value to get ordinal for. */
+	)
 	{
 		static_assert(std::is_integral_v<Integral>, "Ordinal Indicator is "
 										"for integral types");
