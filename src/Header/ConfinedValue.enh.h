@@ -40,7 +40,7 @@ namespace enh
 		The interval check is done by other function set during construction.
 
 		<h3>template</h3>
-		<code>Integral</code> : The Integral type of the _value.
+		<code>Integral</code> : The Integral type of the value.
 
 		<h3>Example</h3>
 
