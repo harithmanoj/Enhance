@@ -148,8 +148,8 @@ namespace enh
 		<h3> How To Use </h3>
 
 		- Create a structure that contains information to be sequentially 
-		processed. Let it be `struct info`. You can use any type. `GenericMessage` 
-		and `QuadMessage` to merge different types easily.
+		processed. Let it be `struct info`. You can use any type. 
+		`GenericMessage` and `QuadMessage` to merge different types easily.
 		The type must be copy-constructible. Let it be `info`.
 
 		- Create a Function of type QueuedHandler::MessageHandlerType returns 
@@ -187,8 +187,10 @@ namespace enh
 		*/
 		using MessageType = Message;
 
-		static_assert(std::is_copy_assignable_v(MessageType), "Message type must be copy assignable");
-		static_assert(std::is_copy_constructible_v(MessageType), "Message type must be copy constructible");
+		static_assert(std::is_copy_assignable_v(MessageType), 
+			"Message type must be copy assignable");
+		static_assert(std::is_copy_constructible_v(MessageType), 
+			"Message type must be copy constructible");
 
 		/**
 			\brief The function type that processes the message passed.
@@ -257,15 +259,18 @@ namespace enh
 		{
 			if (!_messageHandlerFunction)
 				return Tristate::ERROR;
-			while (!(_shouldStopQueue.load()))  // If should stop is asserted, quit.
+			while (!(_shouldStopQueue.load()))  // If should stop is asserted,
+												// quit.
 			{
-				while (!(isQueueUpdated()))   // Continue waiting till queue is updated
+				while (!(isQueueUpdated()))   // Continue waiting till queue 
+											  // is updated
 				{
 					std::unique_lock<std::mutex> lock(_QueueSyncMutex);
 					_QueueUpdateNotifier.wait(lock);
 					bool empty = _queuedMessage.empty();
 					lock.unlock();
-					if (!(isQueueUpdated()) && _shouldStopQueue.load() && empty)  
+					if (!(isQueueUpdated()) && _shouldStopQueue.load() 
+						&& empty)  
 						// if update is asserted but queue is empty and stop 
 						// is asserted, quit
 						return (Tristate::GOOD);
@@ -275,7 +280,8 @@ namespace enh
 				bool shouldStopNow = false;
 				{
 					std::lock_guard<std::mutex> lock(_QueueSyncMutex);
-					shouldStopNow = _queuedMessage.empty() || _shouldStopQueue.load();
+					shouldStopNow = _queuedMessage.empty() 
+						|| _shouldStopQueue.load();
 				} // stop if queue us empty or shouldStop is asserted.
 				while (!shouldStopNow)
 				{
@@ -290,7 +296,8 @@ namespace enh
 						return (Tristate::ERROR); // Handler Fail
 					}
 					std::lock_guard<std::mutex> temp_lock(_QueueSyncMutex);
-					shouldStopNow = _queuedMessage.empty() || _shouldStopQueue.load();
+					shouldStopNow = _queuedMessage.empty() 
+						|| _shouldStopQueue.load();
 							// stop if queue us empty or shouldStop is asserted.
 				}
 
@@ -305,7 +312,8 @@ namespace enh
 		/**
 			\brief The default constructor.
 			
-			Queue execution cannot be started until handler function is registered.
+			Queue execution cannot be started until handler function is 
+			registered.
 		*/
 		QueuedHandler() noexcept : _queueHandlerThread()
 		{
@@ -318,7 +326,7 @@ namespace enh
 			\brief Registers the processing method while constructing.
 		*/
 		explicit QueuedHandler(
-			MessageHandlerType msgHandler /**< : <i>in</i> : The procedure.*/
+			MessageHandlerType msgHandler /**< : <i>in</i> : The procedure. */
 		) noexcept : _queueHandlerThread()
 		{
 			_isUpdated = false;
@@ -410,7 +418,10 @@ namespace enh
 		  true if dispatcher is running.\n
 
 		*/
-		inline bool isDispatcherRunning() noexcept { return _isQueueActive.load(); };
+		inline bool isDispatcherRunning() noexcept 
+		{ 
+			return _isQueueActive.load(); 
+		};
 
 		/**
 			\brief Waits till dispatcher exits, then empties queue.
