@@ -212,7 +212,8 @@ namespace enh
 
 		*/
 		inline Tristate clearErrorFlag(
-			UnderlyingErrorType bitClear /**< : <i>in</i> : flag to be removed.*/
+			UnderlyingErrorType bitClear /**< : <i>in</i> : flag to be 
+										 removed.*/
 		) noexcept
 		{
 			if (!checkBitField(flag.load(), bitClear))
@@ -254,8 +255,8 @@ namespace enh
 								 error holder.*/
 		) const noexcept
 		{
-			debug::log(file, function, line, derivedClassName() + " " + variable 
-				+ " flag : " + toString());
+			debug::log(file, function, line, derivedClassName() + " " 
+				+ variable + " flag : " + toString());
 		}
 #endif
 	};
