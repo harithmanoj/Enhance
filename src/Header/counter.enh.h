@@ -25,7 +25,7 @@
 
 #ifndef COUNTER_ENH_H
 
-#define COUNTER_ENH_H			Counter.enh.h
+#define COUNTER_ENH_H			counter.enh.h
 
 #include <atomic>
 #include <string>
@@ -88,7 +88,8 @@ namespace enh
 		/**
 			\brief The constructor of the class sets all to 0.
 		*/
-		inline Counter() noexcept : _seconds(0), _minutes(0), _hours(0), _days(0)
+		inline Counter() noexcept : _seconds(0), _minutes(0), _hours(0),
+			_days(0)
 		{}
 
 		/**
@@ -211,7 +212,8 @@ namespace enh
 			_hours, _days	also.\n\n
 		*/
 		void addSeconds(
-			unsigned long long sec /**< : <i>in</i> : The _seconds to be added.*/
+			unsigned long long sec /**< : <i>in</i> : The _seconds to be
+								   added.*/
 		) noexcept
 		{
 			if ((sec + _seconds.load()) >= 60)
@@ -250,7 +252,8 @@ namespace enh
 			_hours, _days	also.\n\n
 		*/
 		void addMinutes(
-			unsigned long long min /**< : <i>in</i> : The _minutes to be added.*/
+			unsigned long long min /**< : <i>in</i> : The _minutes to be 
+								   added.*/
 		) noexcept
 		{
 			if ((min + _minutes.load()) >= 60)
@@ -462,7 +465,8 @@ namespace enh
 		*/
 		static constexpr unsigned getRawSize()
 		{
-			return getSecondsSize() + getMinutesSize() + getHoursSize() + getDaysSize();
+			return getSecondsSize() + getMinutesSize() + getHoursSize() 
+				+ getDaysSize();
 		}
 
 		/**
@@ -487,7 +491,8 @@ namespace enh
 		}
 
 		/**
-			\brief get string holding raw data stream representation of the objects state.
+			\brief get string holding raw data stream representation of the 
+			objects state.
 		*/
 		std::string getRaw() const
 		{
@@ -567,7 +572,8 @@ namespace enh
 		}
 
 		/**
-			\brief Checks if current object is at equal time count than parameter.
+			\brief Checks if current object is at equal time count than 
+			parameter.
 
 			<h3> Return </h3>
 			Returns true if current state is equal to parameter.
