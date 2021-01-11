@@ -47,7 +47,7 @@ namespace enh
 
 
 		hasErrorHandlers        = false;\n\n\n
-
+		 
 		Value 0x00 is reserved for Safe.\n
 		Value 0x01 is reserved for unknown errors.\n
 		Value 0x02 is reserved for invalid argument errors.\n\n
@@ -64,7 +64,8 @@ namespace enh
 	{
 	public:
 
-		static_assert(std::is_integral_v<type>, "ErrorTracker should have integral error type");
+		static_assert(std::is_integral_v<type>, "ErrorTracker should have \
+						integral error type");
 		
 		/**
 			\brief The alias to hold constants for error reporting.
@@ -72,7 +73,7 @@ namespace enh
 		using UnderlyingErrorType = type;
 
 		/**
-			\brief <i>0x00</i> : No error after last clear. 
+			\brief <i>0x00</i> : No error after last clearErrorFlag. 
 		*/
 		static constexpr UnderlyingErrorType SAFE = 0x00;
 
@@ -108,7 +109,7 @@ namespace enh
 			\brief The function to clear error flag.
 
 		*/
-		inline void clear() noexcept
+		inline void clearErrorFlag() noexcept
 		{
 			flag = SAFE;
 		}
@@ -119,7 +120,7 @@ namespace enh
 			<h3> Return </h3>
 			The error flag.\n
 		*/
-		inline UnderlyingErrorType getError() const noexcept
+		inline UnderlyingErrorType getErrorFlag() const noexcept
 		{
 			return flag;
 		}
@@ -145,7 +146,7 @@ namespace enh
 			true if no error flags are set.\n
 
 		*/
-		inline bool isSafe() const noexcept
+		inline bool isErrorFlagClear() const noexcept
 		{
 			return (flag.load() == SAFE);
 		}
@@ -159,7 +160,7 @@ namespace enh
 		virtual std::string toString() const
 		{
 			std::string ret = "";
-			if (isSafe())
+			if (isErrorFlagClear())
 				return "SAFE";
 			bool prev = false;
 			bool unkwn = checkFlag(UNKNOWN);
@@ -192,7 +193,7 @@ namespace enh
 			Returns value Tristate::ERROR.\n
 
 		*/
-		inline Tristate setFlag(
+		inline Tristate setErrorFlag(
 			UnderlyingErrorType set /**< : <i>in</i> : flag to be added.*/
 		) noexcept
 		{
@@ -210,7 +211,7 @@ namespace enh
 			not set, Tristate::GOOD else.\n
 
 		*/
-		inline Tristate clearFlag(
+		inline Tristate clearErrorFlag(
 			UnderlyingErrorType bitClear /**< : <i>in</i> : flag to be removed.*/
 		) noexcept
 		{
