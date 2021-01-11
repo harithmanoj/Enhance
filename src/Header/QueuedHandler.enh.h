@@ -25,9 +25,9 @@
 
 ******************************************************************************/
 
-#ifndef QUEUED_PROCESS_ENH_H
+#ifndef QUEUED_HANDLER_ENH_H
 
-#define QUEUED_PROCESS_ENH_H						QueuedProcess.enh.h
+#define QUEUED_HANDLER_ENH_H						QueuedHandler.enh.h
 
 #include "Tristate.enh.h"
 
