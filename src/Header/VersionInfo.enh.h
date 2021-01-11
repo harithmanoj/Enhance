@@ -24,9 +24,9 @@
 ******************************************************************************/
 
 
-#ifndef FRAMEWORK_ENH_H
+#ifndef VERSION_INFO_ENH_H
 
-#define FRAMEWORK_ENH_H						framework.enh.h
+#define VERSION_INFO_ENH_H						VersionInfo.enh.h
 
 /**
 	\brief Convert version numbers to a format that can be taken as argument by 
@@ -123,8 +123,8 @@ namespace enh
 			-# <code>inline VersionInfo(unsigned, unsigned, unsigned, unsigned,
 			enh::ReleaseType, std::string_view) noexcept;</code>\n
 		*/
-		constexpr inline VersionInfo() noexcept :_major(0), _minor(0), _revision(0),
-			_build(0), _releaseType(ReleaseType::BETA) { }
+		constexpr inline VersionInfo() noexcept :_major(0), _minor(0),
+			_revision(0), _build(0), _releaseType(ReleaseType::BETA) { }
 
 		/**
 			\brief The constructor initialises to argument passed (no default 
@@ -203,7 +203,8 @@ namespace enh
 			<h3>Return</h3>
 			Release _releaseType.\n
 		*/
-		inline constexpr ReleaseType getReleaseType() const noexcept { return _releaseType; }
+		inline constexpr ReleaseType getReleaseType() const noexcept 
+		{ return _releaseType; }
 
 		/*
 			\brief The function to get version as a string.
@@ -215,9 +216,10 @@ namespace enh
 		{
 			if (!_constStringRepresentation.empty())
 				return _constStringRepresentation.data();
-			std::string ret = std::to_string(_major) + "." + std::to_string(_minor) + "."
-				+ std::to_string(_revision) + "." + std::to_string(_build)
-				+ ".";
+			std::string ret = std::to_string(_major) + "." 
+				+ std::to_string(_minor) + "." + std::to_string(_revision) 
+				+ "." + std::to_string(_build) + ".";
+
 			switch (_releaseType)
 			{
 			case ReleaseType::BETA:
@@ -248,7 +250,8 @@ namespace enh
 	/**
 		\brief The version of enhance library.
 	*/
-	constexpr VersionInfo enhanceVersion = VersionInfo(VERSION_INFO_FIN(1,3,1,7));
+	constexpr VersionInfo enhanceVersion 
+		= VersionInfo(VERSION_INFO_FIN(1,3,1,7));
 }
 
 #endif
