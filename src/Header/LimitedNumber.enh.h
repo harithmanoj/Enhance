@@ -26,9 +26,9 @@
 
 #ifndef NUMERAL_SYSTEM_ENH_H
 
-#define NUMERAL_SYSTEM_ENH_H					numeral_system.enh.h
+#	define NUMERAL_SYSTEM_ENH_H					numeral_system.enh.h
 
-#include "ConfinedValue.enh.h"
+#	include "ConfinedValue.enh.h"
 
 namespace enh
 {

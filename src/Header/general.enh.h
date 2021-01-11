@@ -28,11 +28,11 @@
 
 #ifndef GENERAL_ENH_H
 
-#define GENERAL_ENH_H				general.enh.h
+#	define GENERAL_ENH_H				general.enh.h
 
-#include <atomic>
-#include <type_traits>
-#include <string>
+#	include <atomic>
+#	include <type_traits>
+#	include <string>
 
 
 namespace enh

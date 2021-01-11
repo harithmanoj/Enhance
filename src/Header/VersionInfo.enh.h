@@ -26,23 +26,23 @@
 
 #ifndef VERSION_INFO_ENH_H
 
-#define VERSION_INFO_ENH_H						VersionInfo.enh.h
+#	define VERSION_INFO_ENH_H						VersionInfo.enh.h
 
 /**
 	\brief Convert version numbers to a format that can be taken as argument by 
 	`enh::VersionInfo` (beta release).
 */
-#define VERSION_INFO_BETA(mj,mn,re,bl)		mj,mn,re,bl,enh::ReleaseType::BETA,\
+#	define VERSION_INFO_BETA(mj,mn,re,bl)		mj,mn,re,bl,enh::ReleaseType::BETA,\
 											#mj "." #mn "." #re "." #bl ".beta"
 
 /**
 	\brief Convert version numbers to a format that can be taken as argument by
 	`enh::VersionInfo` (final release).
 */
-#define VERSION_INFO_FIN(mj,mn,re,bl)		mj,mn,re,bl,enh::ReleaseType::RELEASE\
+#	define VERSION_INFO_FIN(mj,mn,re,bl)		mj,mn,re,bl,enh::ReleaseType::RELEASE\
 											,#mj "." #mn "." #re "." #bl ".fin"
 
-#include <string>
+#	include <string>
 
 /**
 	\brief The namespace for all the functions and classes of this library.

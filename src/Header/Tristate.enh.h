@@ -26,9 +26,9 @@
 
 #ifndef TRISTATE_ENH_H
 
-#define TRISTATE_ENH_H				Tristate.enh.h
+#	define TRISTATE_ENH_H				Tristate.enh.h
 
-#include<cstdint>
+#	include<cstdint>
 
 /*
 	\brief The namespace for all the functions and classes of this library

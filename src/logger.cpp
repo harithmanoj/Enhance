@@ -27,9 +27,10 @@
 #include "header/logger.enh.h"
 
 #if  defined(ENH_DEBUG_CONTROL) && (ENH_OPTIMISATION < 5)
-#include <map>
-#include <fstream>
-#include <exception>
+
+#	include <map>
+#	include <fstream>
+#	include <exception>
 
 
 // setup will indicate if no file existed previously
