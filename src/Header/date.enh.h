@@ -45,13 +45,13 @@ namespace enh
 			Calls localtime_s if using MSVC, std::localtime else.
 		*/
 	inline void localTime(
-		tm *str_tm /**< : <i>in</i> : The pointer to tm structure to 
+		tm *& str_tm /**< : <i>in</i> : The pointer to tm structure to 
 				   assign time values.*/,
 		time_t *arith_tm /**< : <i>in</i> : The pointer to tm structure to 
 				   assign time values.*/
 	)
 	{
-
+		 
 #	ifdef _MSC_VER
 		localtime_s(str_tm, arith_tm);
 #	else
@@ -63,9 +63,9 @@ namespace enh
 	/**
 			\brief The maximum date for that month.
 	*/
-	inline constexpr unsigned short monthTotalDays(
-		unsigned short mnth /**< : <i>in</i> : The month count.*/,
-		long long yr /**< : <i>in</i> : The year count.*/
+	inline constexpr std::uint8_t monthTotalDays(
+		std::uint8_t mnth /**< : <i>in</i> : The month count.*/,
+		std::int32_t yr /**< : <i>in</i> : The year count.*/
 	) noexcept
 	{
 		switch (mnth)
@@ -105,8 +105,8 @@ namespace enh
 	/**
 		\brief The maximum date for that year.
 	*/
-	inline constexpr unsigned yearTotalDays(
-		long long yr /**< : <i>in</i> : The year count.*/
+	inline constexpr std::uint16_t yearTotalDays(
+		std::int32_t yr /**< : <i>in</i> : The year count.*/
 	) noexcept
 	{
 		if (yr % 4 == 0)
@@ -118,15 +118,17 @@ namespace enh
 	/**
 		\brief The week day after day_count number of days from week.
 	*/
-	inline constexpr unsigned short weekDayAfter(
-		unsigned short week /*< : <i>in</i> : The current week day.*/,
-		unsigned long day_count /*< : <i>in</i> : The number of days to
+	inline constexpr std::uint8_t weekDayAfter(
+		std::uint8_t week /*< : <i>in</i> : The current week day.*/,
+		std::int64_t day_count /*< : <i>in</i> : The number of days to
 								add.*/
 	) noexcept
 	{
-		unsigned long long tmp = day_count;
-		tmp += week;
-		return tmp % 7;
+		auto day = std::uint64_t(0);
+
+		day = 7 + signumFunction(day_count) * (day_count + week);
+
+		return day % 7;
 	}
 
 	namespace numeric
@@ -135,16 +137,16 @@ namespace enh
 			\brief Numerical value confined to ones that month can take 
 			[0,11].
 		*/
-		using MonthNumber = UnsignedLimitedNumber<unsigned short, 12>;
+		using MonthNumber = UnsignedLimitedNumber<std::uint8_t, 12>;
 
 		/**
 			\brief Numerical value confined to ones that week day can take
 			[0,6].
 		*/
-		using WeekDayNumber = UnsignedLimitedNumber<unsigned short, 7>;
+		using WeekDayNumber = UnsignedLimitedNumber<std::uint8_t, 7>;
 
 		/**
-			\brief Neumerical type that is confined to interval 
+			\brief Numerical type that is confined to interval 
 			[1,monthTotalDays].
 
 			<b>NOTE</b> : The argument references lifetime must be longer or 
@@ -152,7 +154,7 @@ namespace enh
 			upper limit for date.
 
 		*/
-		class MonthDayNumber : public ConfinedValue<unsigned short>
+		class MonthDayNumber : public ConfinedValue<std::uint8_t>
 		{
 			
 		public:
@@ -165,14 +167,14 @@ namespace enh
 			*/
 			constexpr inline MonthDayNumber(
 				const MonthNumber &mnth /**< : <i>in</i> : The value of month.*/,
-				const long long &yr /**< : <i>in</i> : The value of year.*/,
-				unsigned short dy /**< : <i>in</i> : The value of day.*/
+				const std::int32_t &yr /**< : <i>in</i> : The value of year.*/,
+				std::uint8_t dy /**< : <i>in</i> : The value of day.*/
 			) : ConfinedValue(
-					[&mnth, &yr](long long a) 
+					[&mnth, &yr](value_type a) 
 					{
 						return (a <= monthTotalDays(mnth.get(), yr));
 					},
-					[](long long a)
+					[](value_type a)
 					{
 						return (a >= 1);
 					},
@@ -198,7 +200,7 @@ namespace enh
 			upper limit for date.
 
 		*/
-		class YearDayNumber : public ConfinedValue<unsigned short>
+		class YearDayNumber : public ConfinedValue<std::uint16_t>
 		{
 
 		public:
@@ -210,27 +212,27 @@ namespace enh
 				destructs.
 			*/
 			constexpr inline YearDayNumber(
-				const long long &yr /**< : <i>in</i> : The value of year.*/,
-				unsigned short yrdy /**< : <i>in</i> : The value of year 
+				const std::int32_t &yr /**< : <i>in</i> : The value of year.*/,
+				std::uint16_t yrdy /**< : <i>in</i> : The value of year
 									day.*/
 			) : ConfinedValue(
-				[&yr](long long a)
+				[&yr](value_type a)
 				{
 					return (a < yearTotalDays(yr));
 				},
-				[](long long a)
+				[](value_type a)
 				{
 					return (a >= 0);
 				},
-					[&yr]()
+				[&yr]()
 				{
 					return yearTotalDays(yr) - 1;
 				},
-					[]()
+				[]()
 				{
 					return 0;
 				},
-					yrdy)
+				yrdy)
 			{}
 		};
 	}
@@ -238,7 +240,7 @@ namespace enh
 
 	class Date
 	{
-		long _year; 
+		std::int32_t _year; 
 		numeric::MonthNumber _month;
 		numeric::MonthDayNumber _monthDay;
 		numeric::WeekDayNumber _weekDay;
@@ -251,18 +253,20 @@ namespace enh
 			
 			<h3>Exception</h3>
 			Throws <code>std::invalid_argument</code> if dy, mnth, week, ydy is
-			not within bounds. [0,monthTotalDays], [0,11], [0,6], [0,yearTotalDays)
+			not within bounds. [0,monthTotalDays], [0,11], [0,6], 
+			[0,yearTotalDays)
 			respectively.
 		*/
 		constexpr inline void setDate(
-			unsigned short dy /**< : <i>in</i> : The day of the month
+			std::uint8_t dy /**< : <i>in</i> : The day of the month
 							  [1,monthTotalDays].*/,
-			unsigned short mnth /**< : <i>in</i> : The number of months after
+			std::uint8_t mnth /**< : <i>in</i> : The number of months after
 								January [0,11].*/,
-			long yr /**< : <i>in</i> : The Year.*/,
-			unsigned short week /**< : <i>in</i> : The day of the week after
+			std::int32_t yr /**< : <i>in</i> : The Year.*/,
+			std::uint8_t week /**< : <i>in</i> : The day of the week after
 								Sunday [0,6].*/,
-			unsigned ydy /**< : <i>in</i> : The number of day after 01 January
+			std::uint16_t ydy /**< : <i>in</i> : The number of day after 01 
+							  January
 						 of that year [1,yearTotalDays).*/
 		)
 		{
@@ -283,8 +287,8 @@ namespace enh
 		{
 			tm temp;
 			enh::localTime(&temp, &timeStamp);
-			setDate(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, 
-				temp.tm_wday, temp.tm_yday);
+			setDate(temp.tm_mday, temp.tm_mon, std::int64_t(temp.tm_year) 
+				+ 1900, temp.tm_wday, temp.tm_yday);
 		}
 
 		/**
@@ -300,21 +304,23 @@ namespace enh
 
 			<h3>Exception</h3>
 			Throws <code>std::invalid_argument</code> if dy, mnth, week, ydy is
-			not within bounds. [0,monthTotalDays], [0,11], [0,6], [0,yearTotalDays)
+			not within bounds. [0,monthTotalDays], [0,11], [0,6], 
+			[0,yearTotalDays)
 			respectively.
 		*/
 		constexpr inline Date(
-			unsigned short dy /**< : <i>in</i> : The day of the month
+			std::uint8_t dy /**< : <i>in</i> : The day of the month
 							  [1,monthTotalDays].*/,
-			unsigned short mnth /**< : <i>in</i> : The number of months after
+			std::uint8_t mnth /**< : <i>in</i> : The number of months after
 								January [0,11].*/,
-			long yr /**< : <i>in</i> : The Year.*/,
-			unsigned short week /**< : <i>in</i> : The day of the week after
+			std::int32_t yr /**< : <i>in</i> : The Year.*/,
+			std::uint8_t week /**< : <i>in</i> : The day of the week after
 								Sunday [0,6].*/,
-			unsigned ydy /**< : <i>in</i> : The number of day after 01 January
+			std::int16_t ydy /**< : <i>in</i> : The number of day after 01 
+							 January
 						 of that year [1,yearTotalDays).*/
-		) : _year(yr), _month(mnth), _monthDay(_month, _year, dy), _weekDay(week),
-			_yearDay(_year, ydy) {}
+		) : _year(yr), _month(mnth), _monthDay(_month, _year, dy), 
+			_weekDay(week), _yearDay(_year, ydy) {}
 
 		/**
 			\brief Sets the date to the date indicated by argument.
@@ -331,8 +337,8 @@ namespace enh
 		/**
 			\brief Sets the date to the date current date.
 		*/
-		inline Date() : _year(2020), _month(0), _monthDay(_month, _year, 1), _weekDay(0),
-			_yearDay(_year, 0)
+		inline Date() : _year(2020), _month(0), _monthDay(_month, _year, 1),
+			_weekDay(0), _yearDay(_year, 0)
 		{
 			setDate();
 		}
@@ -340,7 +346,7 @@ namespace enh
 		/**
 			\brief The day of this month.
 		*/
-		constexpr inline unsigned short getDayOfMonth() const noexcept 
+		constexpr inline std::uint8_t getDayOfMonth() const noexcept 
 		{
 			return _monthDay.get(); 
 		}
@@ -348,7 +354,7 @@ namespace enh
 		/**
 			\brief The number of months after January of this year.
 		*/
-		constexpr inline unsigned short getMonth() const noexcept 
+		constexpr inline std::uint8_t getMonth() const noexcept
 		{ 
 			return _month.get(); 
 		}
@@ -402,12 +408,13 @@ namespace enh
 		/**
 			\brief The Year.
 		*/
-		constexpr inline long long getYear() const noexcept { return _year; }
+		constexpr inline std::uint32_t getYear() const noexcept 
+		{ return _year; }
 
 		/**
 			\brief The number of days after last Sunday.
 		*/
-		constexpr inline unsigned short getDayOfWeek() const noexcept 
+		constexpr inline std::uint8_t getDayOfWeek() const noexcept
 		{ 
 			return _weekDay.get();
 		}
@@ -416,7 +423,7 @@ namespace enh
 		/**
 			\brief The number of days after 1st of January this year.
 		*/
-		constexpr inline unsigned getDayOfYear() const noexcept 
+		constexpr inline std::uint16_t getDayOfYear() const noexcept
 		{ 
 			return _yearDay.get();
 		}
@@ -424,7 +431,7 @@ namespace enh
 		/**
 			\brief The name of the day.
 		*/
-		inline std::string getDayOfWeekString() const
+		constexpr inline std::string_view getDayOfWeekString() const
 		{
 			switch (_weekDay.get())
 			{
@@ -467,9 +474,10 @@ namespace enh
 		*/
 		inline std::string getStringDate() const
 		{
-			return getDayOfWeekString() + ", " + std::to_string(_monthDay.get()) 
-				+ getOrdinalIndicator(_monthDay.get()).data() + " " 
-				+ getMonthString().data() + " " + std::to_string(_year);
+			return std::string(getDayOfWeekString()) + ", " 
+				+ std::to_string(_monthDay.get()) 
+				+ std::string(getOrdinalIndicator(_monthDay.get())) + " " 
+				+ std::string(getMonthString()) + " " + std::to_string(_year);
 		}
 
 		/**
@@ -506,12 +514,13 @@ namespace enh
 			pddth = format.find("ddth");
 			if (pddth != std::string::npos)
 				format.replace(pddth, 4, signExtendValue(_monthDay.get(), 2) +
-					getOrdinalIndicator(_monthDay.get()).data());
+					std::string(getOrdinalIndicator(_monthDay.get())));
 			else
 			{
 				pdd = format.find("dd");
 				if (pdd != std::string::npos)
-					format.replace(pdd, 2, signExtendValue(_monthDay.get(), 2));
+					format.replace(pdd, 2, 
+						signExtendValue(_monthDay.get(), 2));
 			}
 
 			pshMonth = format.find("shMonth");
@@ -547,7 +556,8 @@ namespace enh
 			const Date &dt /**< : <i>in</i> : The date to compare with.*/
 		) const noexcept
 		{
-			return (_year == dt._year) && (_month == dt._month) && (_monthDay == dt._monthDay);
+			return (_year == dt._year) && (_month == dt._month) 
+				&& (_monthDay == dt._monthDay);
 		}
 
 		/**
@@ -640,9 +650,11 @@ namespace enh
 		}
 
 		/**
-			\brief Checks if current date is greater than or equal to argument.
+			\brief Checks if current date is greater than or equal to
+			argument.
 			<h3>Return</h3>
-			Returns true if current date is greater than or equal to argument.
+			Returns true if current date is greater than or equal to 
+			argument.
 		*/
 		constexpr inline bool isGreaterThanEq(
 			const Date &dt /**< : <i>in</i> : The date to compare with.*/
