@@ -26,14 +26,14 @@
 
 #ifndef DATE_ENH_H
 
-#define DATE_ENH_H							date.enh.h
+#	define DATE_ENH_H							date.enh.h
 
-#include "general.enh.h"
-#include "LimitedNumber.enh.h"
-#include <string_view>
-#include <ctime>
-#include <exception>
-#include <stdexcept>
+#	include "general.enh.h"
+#	include "LimitedNumber.enh.h"
+#	include <string_view>
+#	include <ctime>
+#	include <exception>
+#	include <stdexcept>
 
 
 
@@ -51,11 +51,13 @@ namespace enh
 				   assign time values.*/
 	)
 	{
-#ifdef _MSC_VER
+
+#	ifdef _MSC_VER
 		localtime_s(str_tm, arith_tm);
-#else
+#	else
 		*str_tm = *std::localtime(arith_tm);
-#endif
+#	endif
+
 	}
 
 	/**
@@ -69,46 +71,30 @@ namespace enh
 		switch (mnth)
 		{
 
-		case 0:
+		case 0: [[fallthrough]]
+		case 2: [[fallthrough]]
+		case 4: [[fallthrough]]
+		case 6: [[fallthrough]]
+		case 7: [[fallthrough]]
+		case 9: [[fallthrough]]
+		case 11:
 			return 31;
+
+		case 3: [[fallthrough]]
+		case 5: [[fallthrough]]
+		case 8: [[fallthrough]]
+		case 10:
+			return 30;
+
 
 		case 1:
 		{
 			if ((yr % 4) == 0)
-				return 29;
-			else
-				return 28;
+				if ((yr % 100) == 0)
+					if ((yr % 400) == 0)
+						return 29;
+			return 28;
 		}
-
-		case 2:
-			return 31;
-
-		case 3:
-			return 30;
-
-		case 4:
-			return 31;
-
-		case 5:
-			return 30;
-
-		case 6:
-			return 31;
-
-		case 7:
-			return 31;
-
-		case 8:
-			return 30;
-
-		case 9:
-			return 31;
-
-		case 10:
-			return 30;
-
-		case 11:
-			return 31;
 
 		default:
 			return 165;
