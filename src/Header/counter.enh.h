@@ -25,13 +25,13 @@
 
 #ifndef COUNTER_ENH_H
 
-#define COUNTER_ENH_H			counter.enh.h
+#	define COUNTER_ENH_H			counter.enh.h
 
-#include <atomic>
-#include <string>
-#include <exception>
-#include <ostream>
-#include <utility>
+#	include <atomic>
+#	include <string>
+#	include <exception>
+#	include <ostream>
+#	include <utility>
 
 
 namespace enh
