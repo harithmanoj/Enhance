@@ -64,11 +64,11 @@
 	
 	Debug active :
 
-	\include{lineno} logger_dbg_ex.cpp
+	\include{lineno} logger.dbg.ex.cpp
 
 	Debug not active :
 
-	\include{lineno} logger_ndbg_ex.cpp
+	\include{lineno} logger.ndbg.ex.cpp
 
 
 ******************************************************************************/
