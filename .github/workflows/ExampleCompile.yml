@@ -24,4 +24,18 @@ jobs:
     - name: compile ConfinedValue example
       working-directory: ./documentation/examples
       run: compile ConfinedValue.ex.cpp
-      
+    
+  DateTimeExamples:
+    runs-on: windows-latest
+
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: Enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.5.0
+    
+    - name: compile Counter example
+      working-directory: ./documentation/examples
+      run: compile Counter.ex.cpp
+    

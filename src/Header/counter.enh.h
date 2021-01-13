@@ -47,7 +47,7 @@ namespace enh
 
 		<h3>Example</h3>
 
-		\include{lineno} counter_ex.cpp
+		\include{lineno} Counter.ex.cpp
 
 	*/
 	class Counter
