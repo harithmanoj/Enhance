@@ -19,7 +19,7 @@ jobs:
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
-      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" General.test.cpp
+      run: compile General.test.cpp
       
     - name: Run Test Program
       run: auto-test/General.test.exe
@@ -36,7 +36,7 @@ jobs:
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
-      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" Confined.test.cpp
+      run: compile Confined.test.cpp
       
     - name: Run Test Program
       run: auto-test/Confined.test.exe
@@ -53,7 +53,7 @@ jobs:
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
-      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" Error.test.cpp
+      run: compile Error.test.cpp
       
     - name: Run Test Program
       run: auto-test/Error.test.exe
@@ -71,7 +71,7 @@ jobs:
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
-      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" Timer.test.cpp
+      run: compile Timer.test.cpp
       
     - name: Run Test Program
       run: auto-test/Timer.test.exe
@@ -88,7 +88,7 @@ jobs:
     
     - name: compile QProc Test Program
       working-directory: ./auto-test
-      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" QProc.test.cpp
+      run: compile QProc.test.cpp
       
     - name: Run Test Program
       run: auto-test/QProc.test.exe
