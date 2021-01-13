@@ -187,6 +187,7 @@ project.
 
 ### Dependency Graph
 
+```
    Tristate.enh.h   logger.enh.h      general.enh.h       ConfinedValue.enh.h          VersionInfo.enh.h 
        |             |       |             |                   |
        |             |   logger.cpp        |                   |                       counter.enh.h 
@@ -199,6 +200,7 @@ QueuedProcess.enh.h                                     |
                                                  TimeStamp.enh.h
                                                         |
                                                   DateTime.enh.h
+```
 
 ## Contribution
 
