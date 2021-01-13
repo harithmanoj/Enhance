@@ -132,7 +132,7 @@ namespace enh
 			Returns true if passed error exists in tag.
 
 		*/
-		inline bool checkFlag(
+		inline bool checkErrorFlag(
 			UnderlyingErrorType check_flag /**< : <i>in</i> : flag to check if raised.*/
 		) const noexcept
 		{
@@ -157,20 +157,20 @@ namespace enh
 			<h3>Return</h3>
 			All error flag(s) set.\n
 		*/
-		virtual std::string toString() const
+		virtual std::string errorToString() const
 		{
 			std::string ret = "";
 			if (isErrorFlagClear())
 				return "SAFE";
 			bool prev = false;
-			bool unkwn = checkFlag(UNKNOWN);
+			bool unkwn = checkErrorFlag(UNKNOWN);
 			if (unkwn)
 			{
 				ret = "UNKNOWN";
 				prev = true;
 			}
 
-			bool inv = checkFlag(INVALID_ARG);	
+			bool inv = checkErrorFlag(INVALID_ARG);	
 			if (inv)
 			{
 				if (prev)
@@ -256,7 +256,7 @@ namespace enh
 		) const noexcept
 		{
 			debug::log(file, function, line, derivedClassName() + " " 
-				+ variable + " flag : " + toString());
+				+ variable + " flag : " + errorToString());
 		}
 #	endif // ERROR_TRACKER_LOG
 	};
