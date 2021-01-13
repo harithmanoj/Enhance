@@ -43,7 +43,7 @@ namespace enh
 
 		<h3> Examples</h3>
 
-		\include{lineno} tristate_ex.cpp
+		\include{lineno} Tristate.ex.cpp
 	*/
 	enum class Tristate : std::uint8_t
 	{

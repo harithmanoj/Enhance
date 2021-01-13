@@ -83,6 +83,10 @@ jobs:
     - name: compile ErrorTracker example
       working-directory: ./documentation/examples
       run: compile ErrorTracker.ex.cpp
+    
+    - name: compile Tristate example
+      working-directory: ./documentation/examples
+      run: compile Tristate.ex.cpp
 
 
   DiagnosticExamples:
