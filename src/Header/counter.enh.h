@@ -43,8 +43,7 @@ namespace enh
 		hasErrorHandlers        = false;\n
 
 
-		Make sure to compile `counter.cpp` also.
-
+		
 		<h3>Example</h3>
 
 		\include{lineno} Counter.ex.cpp

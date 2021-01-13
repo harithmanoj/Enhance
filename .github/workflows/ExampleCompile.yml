@@ -39,3 +39,6 @@ jobs:
       working-directory: ./documentation/examples
       run: compile Counter.ex.cpp
     
+    - name: compile Date example
+      working-directory: ./documentation/examples
+      run: compile Date.ex.cpp

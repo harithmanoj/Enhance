@@ -237,7 +237,13 @@ namespace enh
 		};
 	}
 
+	/**
+		\brief Class for date manipulation and representation.
 
+		<h3>Example</h3>
+
+		\include{lineno} Date.ex.cpp
+	*/
 	class Date
 	{
 		std::int32_t _year; 
