@@ -64,6 +64,10 @@ jobs:
     - name: compile TimeStamp example
       working-directory: ./documentation/examples
       run: compile TimeStamp.ex.cpp
+
+    - name: compile Timer example
+      working-directory: ./documentation/examples
+      run: compile Timer.ex.cpp
  
 
   ErrorHandlerExamples:

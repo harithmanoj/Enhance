@@ -133,7 +133,7 @@ namespace enh
 
 		<h3>Example</h3>
 
-		\include{lineno} timer_ex.cpp
+		\include{lineno} Timer.ex.cpp
 
 	*/
 	template<std::uint32_t periodPassed = 50U, class TimeUnitPassed = std::chrono::milliseconds>
