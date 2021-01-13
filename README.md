@@ -173,17 +173,45 @@ Exists in `namespace enh`.
 
 _______________________________________________________________________________
 
-
-## HOW TO INSTALL 
-
-* Download all required headers and source files, and add them to dependancy 
-project.
-
-* Make sure to compile in `C++17`.
-
 ### Dependencies
 
+All headers and source files uses standard c++ headers ( c++17 ).
+The library uses exceptions.
 
+#### Generic Utilities
+
+* `general.enh.h` uses only standard c++ headers ( c++17 ).
+* `ConfinedValue.enh.h` uses only standard c++ headers ( c++17 ).
+* `LimitedNumber.enh.h` uses `ConfinedValue.enh.h` and standard c++ 
+headers ( c++17 ).
+* `VersionInfo.enh.h` uses only standard c++ headers ( c++17 ).
+* `WeightedField.enh.h` uses only standard c++ headers ( c++17 ).
+
+#### Diagnostics
+
+* `logger.enh.h` requires compilation of `logger.cpp` which is compiled with 
+c++17 and uses standard c++ headers ( c++17 ).
+
+#### Error Handling 
+
+* `Tristate.enh.h` uses only standard c++ headers ( c++17 ).
+* `ErrorTracker.enh.h` uses `Tristate.enh.h`, `logger.enh.h`, `general.enh.h`
+and requires compilation of `logger.cpp` and standard c++ headers ( c++17 ).
+
+#### Concurrency
+
+* `QueuedHandler.enh.h` uses `Tristate.enh.h` and standard c++ headers ( c++17 ).
+
+#### Date and Time
+
+* `counter.enh.h` only uses standard c++ headers ( c++17 ).
+* `timer.enh.h` only uses standard c++ headers ( c++17 ).
+* `date.enh.h` uses `LimitedNumber.enh.h`, `ConfinedValue.enh.h` and 
+`general.enh.h` and standard c++ headers ( c++17 ).
+* `TimeStamp.enh.h` uses `date.enh.h`, `LimitedNumber.enh.h`, 
+`ConfinedValue.enh.h` and `general.enh.h` and standard c++ headers ( c++17 ).
+* `DateTime.enh.h` uses `TimeStamp.enh.h`, `date.enh.h`, `LimitedNumber.enh.h`, 
+`ConfinedValue.enh.h` and `general.enh.h` and standard c++ headers ( c++17 ).
 
 ### Dependency Graph
 
@@ -196,11 +224,22 @@ project.
        |      |    |     |                           |      |        
        |    ErrorTracker.enh.h                       |      |                             timer.enh.h 
        |                                            date.enh.h
-QueuedProcess.enh.h                                     |
+QueuedHandler.enh.h                                     |
                                                  TimeStamp.enh.h
                                                         |
                                                   DateTime.enh.h
 ```
+
+
+## HOW TO USE 
+
+* Download required headers and source files (lookup the dependancy list above).
+* For header only parts, compile with dependant code using c++17 with 
+exceptions turned on.
+* For the source files must be compile with c++17 and exceptions turned on.
+* Refer Documentation for directions to use each class or functions, or 
+MACRO (logging).
+
 
 ## Contribution
 
