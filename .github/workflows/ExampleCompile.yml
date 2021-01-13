@@ -11,6 +11,20 @@ on:
       - develop
 
 jobs:
+  ConcurrencyExamples:
+    runs-on: windows-latest
+
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: Enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.5.0
+    
+    - name: compile QueuedHandler example
+      working-directory: ./documentation/examples
+      run: compile QueuedHandler.ex.cpp
+
   GenericUtilityExamples:
     runs-on: windows-latest
 

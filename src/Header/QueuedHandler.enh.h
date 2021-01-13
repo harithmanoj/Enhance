@@ -173,7 +173,7 @@ namespace enh
 
 		<h3>Example</h3>
 		
-		\include{lineno} queued_process_ex.cpp
+		\include{lineno} QueuedHandler.ex.cpp
 
 	*/
 	template<class Message>
