@@ -60,6 +60,10 @@ jobs:
     - name: compile DateTime example
       working-directory: ./documentation/examples
       run: compile DateTime.ex.cpp
+
+    - name: compile TimeStamp example
+      working-directory: ./documentation/examples
+      run: compile TimeStamp.ex.cpp
  
 
   ErrorHandlerExamples:

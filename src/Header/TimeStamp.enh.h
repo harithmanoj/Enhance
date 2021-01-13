@@ -55,7 +55,7 @@ namespace enh
 
 		<h3> Examples </h3>
 
-		\include{lineno} time_stamp_ex.cpp
+		\include{lineno} TimeStamp.ex.cpp
 	*/
 	class TimeStamp
 	{
