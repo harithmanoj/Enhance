@@ -37,7 +37,7 @@ namespace enh
 
 		<h3> Examples </h3>
 
-		\include{lineno} DateTime_ex.cpp
+		\include{lineno} DateTime.ex.cpp
 	*/
 	class DateTime : public Date, public TimeStamp
 	{

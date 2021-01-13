@@ -42,3 +42,7 @@ jobs:
     - name: compile Date example
       working-directory: ./documentation/examples
       run: compile Date.ex.cpp
+
+    - name: compile DateTime example
+      working-directory: ./documentation/examples
+      run: compile DateTime.ex.cpp
