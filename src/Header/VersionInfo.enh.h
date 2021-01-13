@@ -76,7 +76,7 @@ namespace enh
 
 		<h3>Example</h3>
 
-		\include{lineno} version_info_ex.cpp
+		\include{lineno} VersionInfo.ex.cpp
 
 	*/
 	class VersionInfo

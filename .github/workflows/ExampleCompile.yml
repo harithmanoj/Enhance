@@ -39,6 +39,10 @@ jobs:
       working-directory: ./documentation/examples
       run: compile ConfinedValue.ex.cpp
     
+    - name: compile ConfinedValue example
+      working-directory: ./documentation/examples
+      run: compile VersionInfo.ex.cpp
+    
   DateTimeExamples:
     runs-on: windows-latest
 
