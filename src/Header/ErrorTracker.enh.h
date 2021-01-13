@@ -57,7 +57,7 @@ namespace enh
 
 		<h3>Example</h3>
 
-		\include{lineno} ErrorTracker_ex.cpp
+		\include{lineno} ErrorTracker.ex.cpp
 	*/
 	template<class type>
 	class ErrorTracker
