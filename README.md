@@ -18,7 +18,7 @@ Including but not limited to :
 * Diagnostics.
 * Time and related tracking and synchronisation.
 * Date Time manipulation
-* Error Tracking.qu
+* Error Tracking.
 * Version info to be used inside programs.
 * Concurrent execution.
 
@@ -38,7 +38,7 @@ bugfixes etc, see develop branch.
 Documentation of pre-release bug fixes and features can also be found [here](https://harithmanoj.github.io/Enhance-cpp-libraries/nav/doc.html)
 
 <details>
-<summary> Concurrent </summary>
+<summary> <h2> Concurrent </h2> </summary>
 
 Library for ease of concurrent programming.
 
@@ -55,7 +55,7 @@ Exists in `namespace enh`.
 </details>
 
 <details>
-<summary> Diagnose </summary>
+<summary> <h2> Diagnose </h2> </summary>
 
 Diagnose is a diagnostics library to log to file during sequential code 
 execution.
@@ -76,7 +76,7 @@ See `logger.enh.h` documentation for usage.
 </details>
 
 <details>
-<summary> Error Handling </summary>
+<summary> <h2> Error Handling </h2> </summary>
 
 Error Handling Library is a library that contains functions and classes for 
 various error handling uses.
@@ -101,7 +101,7 @@ previous error) for functions.
 </details>
 
 <details>
-<summary> Time </summary>
+<summary> <h2> Time </h2> </summary>
 
 Library for date-time encapsulation, periodic signaling timer.
 
@@ -133,8 +133,10 @@ Exists in `namespace enh`.
 
 * Store and manipulate date and time simultaneously.
 
+</details>
+
 <details>
-<summary> General Utility</summary>
+<summary> <h2> General Utility </h2> </summary>
 
 The library consists of some utility functions, classes, class for versioning 
 encapsulation, class for a value confined within dynamic and static limits, 
