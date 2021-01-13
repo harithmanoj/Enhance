@@ -37,7 +37,7 @@ bugfixes etc, see develop branch.
 
 Documentation of pre-release bug fixes and features can also be found [here](https://harithmanoj.github.io/Enhance-cpp-libraries/nav/doc.html)
 
-<detail>
+<details>
 <summary> Concurrent </summary>
 
 Library for ease of concurrent programming.
@@ -52,9 +52,9 @@ Exists in `namespace enh`.
 
 * Class to asynchronously handle messages.
 
-</detail>
+</details>
 
-<detail>
+<details>
 <summary> Diagnose </summary>
 
 Diagnose is a diagnostics library to log to file during sequential code 
@@ -73,9 +73,9 @@ See `logger.enh.h` documentation for usage.
 * Functions that log information to a file unique to each thread
 * (E)rror, (W)arning, (I)nfo, (F)atal-(E)rror types of logging.
 
-</detail>
+</details>
 
-<detail>
+<details>
 <summary> Error Handling </summary>
 
 Error Handling Library is a library that contains functions and classes for 
@@ -98,9 +98,9 @@ Exists in `namespace enh`.
 * Enumeration to provide 3 possible outcomes (good, error, blocked due to 
 previous error) for functions.
 
-</detail>
+</details>
 
-<detail>
+<details>
 <summary> Time </summary>
 
 Library for date-time encapsulation, periodic signaling timer.
@@ -133,7 +133,7 @@ Exists in `namespace enh`.
 
 * Store and manipulate date and time simultaneously.
 
-<detail>
+<details>
 <summary> General Utility</summary>
 
 The library consists of some utility functions, classes, class for versioning 
@@ -167,7 +167,7 @@ Exists in `namespace enh`.
 * NumericSystem class for storing a value within 0 and an upper limit.
 * Class to hold values which has different denominations. (eg money)
  
-</detail>
+</details>
 
 _______________________________________________________________________________
 
