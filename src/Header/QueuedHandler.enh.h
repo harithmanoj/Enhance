@@ -187,9 +187,9 @@ namespace enh
 		*/
 		using MessageType = Message;
 
-		static_assert(std::is_copy_assignable_v(MessageType), 
+		static_assert(std::is_copy_assignable_v<MessageType>, 
 			"Message type must be copy assignable");
-		static_assert(std::is_copy_constructible_v(MessageType), 
+		static_assert(std::is_copy_constructible_v<MessageType>, 
 			"Message type must be copy constructible");
 
 		/**
