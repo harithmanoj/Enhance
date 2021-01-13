@@ -1,0 +1,27 @@
+name: ExampleCompile
+
+on:
+  pull_request:
+    branches: 
+      - master
+      - develop
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  GenericUtilityExamples:
+    runs-on: windows-latest
+
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: Enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.5.0
+    
+    - name: compile ConfinedValue example
+      working-directory: ./documentation/examples
+      run: compile ConfinedValue.ex.cpp
+      
