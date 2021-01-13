@@ -28,11 +28,11 @@
 
 #ifndef GENERAL_ENH_H
 
-#define GENERAL_ENH_H				general.enh.h
+#	define GENERAL_ENH_H				general.enh.h
 
-#include <atomic>
-#include <type_traits>
-#include <string>
+#	include <atomic>
+#	include <type_traits>
+#	include <string>
 
 
 namespace enh
@@ -45,7 +45,7 @@ namespace enh
 		Returns true if all bits high in 'toCheckFor' are high in 'base'.\n
 
 		<h3>Template</h3>
-		-#  <code>enumT</code> : The enumeration type (preffered) that is to
+		-#  <code>enumT</code> : The enumeration type (prefered) that is to
 		be compared.\n
 
 	*/
@@ -59,17 +59,19 @@ namespace enh
 	}
 
 	/**
-		\brief [[deprecated]] The signum function, value is 0 if val is 0, 1 if val > 0,
-		-1 if  val < 0.
+		\brief [[deprecated]] The signum function, value is 0 if val is 0, 1 
+		if val > 0, -1 if  val < 0.
 
 		<b> DEPRECATED </b> : Use constexpr function signumFunction.
 	*/
 	template<long long val>
-	[[deprecated("use template<class arithmetic> enh::signumFunction(arithmetic)")]]
+	[[deprecated("use template<class arithmetic> "
+		"enh::signumFunction(arithmetic)")]]
 	constexpr short signum = (val > 0) ? 1 : -1;
 
 	template<>
-	[[deprecated("use template<class arithmetic> enh::signumFunction(arithmetic)")]]
+	[[deprecated("use template<class arithmetic> \
+		enh::signumFunction(arithmetic)")]]
 	constexpr short signum<0> = 0;
 
 	/**
@@ -78,7 +80,8 @@ namespace enh
 		<b> DEPRECATED </b> : Use constexpr function inclusiveRatio.
 	*/
 	template<unsigned long long num, unsigned long long denom>
-	[[deprecated("use template<class integral> enh::inclusiveRatio(integral, integral)")]]
+	[[deprecated("use template<class integral> enh::inclusiveRatio(integral, "
+		"integral)")]]
 	constexpr unsigned long long inclusive_ratio = num / denom +
 		signum<num %denom>;
 
@@ -94,9 +97,12 @@ namespace enh
 		if argument is 0
 	*/
 	template<class arithmetic>
-	constexpr short signumFunction(arithmetic arg)
+	constexpr short signumFunction(
+		arithmetic arg /**< <i>in</i> : The input for signum function */
+	)
 	{
-		static_assert(std::is_arithmetic_v<arithmetic>, "signum function takes an arithmetic type");
+		static_assert(std::is_arithmetic_v<arithmetic>, "signum function takes"
+			" an arithmetic type");
 		if (arg > 0)
 			return 1;
 		else if (arg < 0)
@@ -122,7 +128,8 @@ namespace enh
 		Integral denom /*< : <i>base</i> : The denominator of fraction.*/
 	)
 	{
-		static_assert(std::is_integral_v<Integral>, "inclusive ratio is for integral types");
+		static_assert(std::is_integral_v<Integral>, "inclusive ratio is "
+			"for integral types");
 		return (num / denom) + signumFunction(num % denom);
 	}
 
@@ -202,7 +209,8 @@ namespace enh
 		if (value.size() < length)
 		{
 			if (value[0] == '-')
-				return '-' + std::string(length - value.size() , '0') + &value.c_str()[1];
+				return '-' + std::string(length - value.size() , '0') 
+				+ &value.c_str()[1];
 			else
 				return std::string(length - value.size(), '0') + value;
 		}
@@ -241,10 +249,12 @@ namespace enh
 				
 	*/
 	template<class Integral>
-	constexpr inline std::string_view getOrdinalIndicator(Integral value)
+	constexpr inline std::string_view getOrdinalIndicator(
+		Integral value /**< <i>in</i> : The value to get ordinal for. */
+	)
 	{
-		static_assert(std::is_integral_v<Integral>, "Ordinal Indicator is \
-										for integral types");
+		static_assert(std::is_integral_v<Integral>, "Ordinal Indicator is "
+										"for integral types");
 		if ((value / 10) % 10 == 1)
 			return "th";
 		if (value % 10 == 1)

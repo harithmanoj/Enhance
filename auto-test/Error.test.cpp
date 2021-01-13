@@ -31,39 +31,39 @@
 namespace testCase
 {
 
-	class ErrorTest : public enh::ErrorTracker<unsigned char>
+	class ErrorTest : public enh::ErrorTracker<std::uint8_t>
 	{
 	public:
 		constexpr static unsigned char CUSTOM = 0x08;
 		
 		bool BasicTest()
 		{
-			setFlag(UNKNOWN);
-			ASSERT_CONTINUE(getError() == UNKNOWN, "error not set");
-			clear();
-			setFlag(INVALID_ARG);
-			ASSERT_LOG_CONTINUE(getError() == INVALID_ARG, "error not set", "Basic Test passed");
-			clear();
+			setErrorFlag(UNKNOWN);
+			ASSERT_CONTINUE(getErrorFlag() == UNKNOWN, "error not set");
+			clearErrorFlag();
+			setErrorFlag(INVALID_ARG);
+			ASSERT_LOG_CONTINUE(getErrorFlag() == INVALID_ARG, "error not set", "Basic Test passed");
+			clearErrorFlag();
 			return true;
 		}
 
 		bool CheckFlagTest()
 		{
-			setFlag(UNKNOWN);
-			setFlag(CUSTOM);
-			ASSERT_CONTINUE(checkFlag(CUSTOM), "could not detect custom flag");
-			ASSERT_LOG_CONTINUE(checkFlag(UNKNOWN), "could not detect UNKNOWN flag", "CheckFlag Test passed");
-			clear();
+			setErrorFlag(UNKNOWN);
+			setErrorFlag(CUSTOM);
+			ASSERT_CONTINUE(checkErrorFlag(CUSTOM), "could not detect custom flag");
+			ASSERT_LOG_CONTINUE(checkErrorFlag(UNKNOWN), "could not detect UNKNOWN flag", "CheckFlag Test passed");
+			clearErrorFlag();
 			return true;
 		}
 
 		bool ClearFlagTest()
 		{
-			setFlag(CUSTOM);
-			setFlag(UNKNOWN);
-			clearFlag(UNKNOWN);
-			ASSERT_LOG_CONTINUE(!checkFlag(UNKNOWN), "could not clear flag", "ClearFlag Test passed");
-			clear();
+			setErrorFlag(CUSTOM);
+			setErrorFlag(UNKNOWN);
+			clearErrorFlag(UNKNOWN);
+			ASSERT_LOG_CONTINUE(!checkErrorFlag(UNKNOWN), "could not clear flag", "ClearFlag Test passed");
+			clearErrorFlag();
 			return true;
 		}
 

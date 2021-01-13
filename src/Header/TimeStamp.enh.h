@@ -37,17 +37,17 @@ namespace enh
 		/**
 			\brief The confined type for seconds.
 		*/
-		using Seconds = enh::UnsignedLimitedNumber<unsigned short, 60>;
+		using Seconds = enh::UnsignedLimitedNumber<std::uint8_t, 60>;
 		
 		/**
 			\brief The confined type for minutes.
 		*/
-		using Minutes = enh::UnsignedLimitedNumber<unsigned short, 60>;
+		using Minutes = enh::UnsignedLimitedNumber<std::uint8_t, 60>;
 		
 		/**
 			\brief The confined type for hours.
 		*/
-		using Hours = enh::UnsignedLimitedNumber<unsigned short, 24>;
+		using Hours = enh::UnsignedLimitedNumber<std::uint8_t, 24>;
 	}
 
 	/**
@@ -84,9 +84,9 @@ namespace enh
 			not within bounds. [0,60], [0,59], [0,23] respectively.
 		*/
 		constexpr inline void setTime(
-			unsigned short sec /**< : <i>in</i> : The seconds field [0,59].*/,
-			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
-			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
+			std::uint8_t sec /**< : <i>in</i> : The seconds field [0,59].*/,
+			std::uint8_t min /**< : <i>in</i> : The minutes field [0,59].*/,
+			std::uint8_t hr  /**< : <i>in</i> : The hours field [0,59].*/
 		)
 		{
 			_seconds.set(sec);
@@ -125,9 +125,9 @@ namespace enh
 			not within bounds. [0,60], [0,59], [0,23] respectively.
 		*/
 		constexpr inline TimeStamp(
-			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
-			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
-			unsigned short hr  /**< : <i>in</i> : The hours field [0,59].*/
+			std::uint8_t sec /**< : <i>in</i> : The seconds field [0,60].*/,
+			std::uint8_t min /**< : <i>in</i> : The minutes field [0,59].*/,
+			std::uint8_t hr  /**< : <i>in</i> : The hours field [0,59].*/
 		) : _seconds(sec), _minutes(min), _hours(hr) {}
 
 		/**
@@ -155,8 +155,8 @@ namespace enh
 			Returns the number of days passed (hr/24).
 
 		*/
-		constexpr inline unsigned long long addHours(
-			unsigned long long hr /**< : <i>in</i> : The hours to add.*/
+		constexpr inline std::uint64_t addHours(
+			std::uint64_t hr /**< : <i>in</i> : The hours to add.*/
 		) noexcept
 		{
 			return _hours.add(hr);
@@ -169,22 +169,22 @@ namespace enh
 			Returns the number of days passed (min/(24*60)).
 
 		*/
-		constexpr inline unsigned long long addMinutes(
-			unsigned long long min /**< : <i>in</i> : The minutes to add.*/
+		constexpr inline std::uint64_t addMinutes(
+			std::uint64_t min /**< : <i>in</i> : The minutes to add.*/
 		) noexcept
 		{
 			return addHours(_minutes.add(min));
 		}
 
 		/**
-			\brief Adds to the second part of time held (also hour).
+			\brief Adds to the second part of time held (also minute, hour).
 
 			<h3>Return</h3>
 			Returns the number of days passed (sec/(24*60*60)).
 
 		*/
-		constexpr inline unsigned long long addSeconds(
-			unsigned long long sec  /**< : <i>in</i> : The seconds to add.*/
+		constexpr inline std::uint64_t addSeconds(
+			std::uint64_t sec  /**< : <i>in</i> : The seconds to add.*/
 		) noexcept
 		{
 			return addMinutes(_seconds.add(sec));
@@ -197,8 +197,8 @@ namespace enh
 			Returns the number of days reduced (hr/24).
 
 		*/
-		constexpr inline unsigned long long subHours(
-			unsigned long long hr /**< : <i>in</i> : The hours to reduce.*/
+		constexpr inline std::uint64_t subHours(
+			std::uint64_t hr /**< : <i>in</i> : The hours to reduce.*/
 		) noexcept
 		{
 			return _hours.sub(hr);
@@ -211,8 +211,8 @@ namespace enh
 			Returns the number of days passed (min/(24*60)).
 
 		*/
-		constexpr inline unsigned long long subMinutes(
-			unsigned long long min /**< : <i>in</i> : The minutes to reduce.*/
+		constexpr inline std::uint64_t subMinutes(
+			std::uint64_t min /**< : <i>in</i> : The minutes to reduce.*/
 		) noexcept
 		{
 			return subHours(_minutes.sub(min));
@@ -225,8 +225,8 @@ namespace enh
 			Returns the number of days passed (sec/(24*60*60)).
 
 		*/
-		constexpr inline unsigned long long subSeconds(
-			unsigned long long sec /**< : <i>in</i> : The seconds to reduce.*/
+		constexpr inline std::uint64_t subSeconds(
+			std::uint64_t sec /**< : <i>in</i> : The seconds to reduce.*/
 		) noexcept
 		{
 			return subMinutes(_seconds.sub(sec));
@@ -235,17 +235,17 @@ namespace enh
 		/**
 			\brief Get Seconds field.
 		*/
-		constexpr inline unsigned short getSeconds() const noexcept { return _seconds.get(); }
+		constexpr inline std::uint8_t getSeconds() const noexcept { return _seconds.get(); }
 
 		/**
 			\brief Get Minutes field.
 		*/
-		constexpr inline unsigned short getMinutes() const noexcept { return _minutes.get(); }
+		constexpr inline std::uint8_t getMinutes() const noexcept { return _minutes.get(); }
 
 		/**
 			\brief Get Hours field.
 		*/
-		constexpr inline unsigned short getHours() const noexcept { return _hours.get(); }
+		constexpr inline std::uint8_t getHours() const noexcept { return _hours.get(); }
 
 		/**
 			\brief Get The time as a string in default format.

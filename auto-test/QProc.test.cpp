@@ -25,7 +25,7 @@
 ******************************************************************************/
 
 #include <iostream>
-#include <QueuedProcess.enh.h>
+#include <QueuedHandler.enh.h>
 #include "test.base.h"
 
 namespace testCase
@@ -33,14 +33,14 @@ namespace testCase
 	bool basicTest()
 	{
 		unsigned t = 0;
-		enh::QueuedProcess<unsigned> tQ;
+		enh::QueuedHandler<unsigned> tQ;
 		tQ.registerHandlerFunction(
 			[&](unsigned a) -> enh::Tristate {
 				t += a; 
 				return enh::Tristate::GOOD;
 			}
 		);
-		tQ.startQueueExecution();
+		tQ.startDispatcherExecution();
 		unsigned exp = 0;
 
 		for (unsigned i = 0; i < 5; ++i)
@@ -57,7 +57,7 @@ namespace testCase
 	bool forceStopTest()
 	{
 		unsigned t = 0;
-		enh::QueuedProcess<unsigned> tQ;
+		enh::QueuedHandler<unsigned> tQ;
 		tQ.registerHandlerFunction(
 			[&](unsigned a) -> enh::Tristate {
 				std::this_thread::sleep_for(std::chrono::milliseconds(5));
@@ -65,7 +65,7 @@ namespace testCase
 				return enh::Tristate::GOOD; 
 			}
 		);
-		tQ.startQueueExecution();
+		tQ.startDispatcherExecution();
 		unsigned exp = 0;
 
 		for (unsigned i = 0; i < 10; ++i)
@@ -85,14 +85,14 @@ namespace testCase
 	bool restartTest()
 	{
 		unsigned t = 0;
-		enh::QueuedProcess<unsigned> tQ;
+		enh::QueuedHandler<unsigned> tQ;
 		tQ.registerHandlerFunction(
 			[&](unsigned a) -> enh::Tristate {
 				t += a; 
 				return enh::Tristate::GOOD; 
 			}
 		);
-		tQ.startQueueExecution();
+		tQ.startDispatcherExecution();
 		unsigned exp = 0;
 
 		for (unsigned i = 0; i < 5; ++i)
@@ -103,7 +103,7 @@ namespace testCase
 
 		tQ.joinAfterQueueEmpty(std::chrono::milliseconds(1));
 
-		tQ.startQueueExecution();
+		tQ.startDispatcherExecution();
 		for (unsigned i = 0; i < 5; ++i)
 		{
 			exp += i;

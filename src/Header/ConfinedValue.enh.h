@@ -25,10 +25,10 @@
 
 #ifndef CONFINED_ENH_H
 
-#define CONFINED_ENH_H							ConfinedValue.enh.h
+#	define CONFINED_ENH_H							ConfinedValue.enh.h
 
-#include <functional>
-#include <stdexcept>
+#	include <functional>
+#	include <stdexcept>
 
 
 namespace enh
@@ -40,7 +40,7 @@ namespace enh
 		The interval check is done by other function set during construction.
 
 		<h3>template</h3>
-		<code>Integral</code> : The Integral type of the _value.
+		<code>Integral</code> : The Integral type of the value.
 
 		<h3>Example</h3>
 
@@ -60,7 +60,7 @@ namespace enh
 		/**
 			\brief The function type of limit checker.
 		*/
-		using PredicateType = std::function<bool(long long)>;
+		using PredicateType = std::function<bool(value_type)>;
 
 		/**
 			\brief The function type of the limit getter.
@@ -68,7 +68,7 @@ namespace enh
 		using limitGetterType = std::function<value_type()>;
 	private:
 
-		static_assert(std::is_integral_v<Integral>, "underlying type for "
+		static_assert(std::is_integral_v<value_type>, "underlying type for "
 			"enh::ConfinedValue must be integral");
 
 		/**
@@ -206,18 +206,18 @@ namespace enh
 			\brief Adds single unit to the _value held.
 
 			<h3>Return</h3>
-			Returns 1 if _value goes above upper limit and _value is set to 
+			Returns true if _value goes above upper limit and _value is set to 
 			lower limit.
 		*/
-		constexpr inline unsigned add() noexcept
+		constexpr inline bool add() noexcept
 		{
 			++_value;
 			if (!_upperLimitPredicate(_value))
 			{
 				_value = _lowerLimitGetter();
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 
 		/**
@@ -230,17 +230,17 @@ namespace enh
 			for confining between 2 and 9 (inclusive),
 			from  _value 6, add(20) will return 3 and sets _value to 5.
 		*/
-		constexpr inline unsigned long long add(
-			unsigned long long additional /**< : <i>in</i> : The number of units to
+		constexpr inline std::uint64_t add(
+			std::uint64_t additional /**< : <i>in</i> : The number of units to
 								  add.*/
 		) noexcept
 		{
 			if (additional == 0)
 				return 0;
-			unsigned long long rem = additional % (_upperLimitGetter() - _lowerLimitGetter());
-			unsigned long long ret = additional / (_upperLimitGetter() - _lowerLimitGetter());
+			std::uint64_t rem = additional % (_upperLimitGetter() - _lowerLimitGetter());
+			std::uint64_t ret = additional / (_upperLimitGetter() - _lowerLimitGetter());
 
-			if (!_upperLimitPredicate((unsigned long long)(_value) + rem))
+			if (!_upperLimitPredicate((std::uint64_t)(_value) + rem))
 			{
 				_value = _value + rem + _lowerLimitGetter() - _upperLimitGetter() - 1;
 				++ret;
@@ -280,7 +280,7 @@ namespace enh
 			current object.
 		*/
 		constexpr inline ConfinedValue<value_type> &operator += (
-			unsigned long long val /**< : <i>in</i> : The number of units to
+			std::uint64_t val /**< : <i>in</i> : The number of units to
 								  add.*/
 		)
 		{
@@ -295,15 +295,15 @@ namespace enh
 			Returns 1 if _value goes below lower limit and _value is set to
 			upper limit.
 		*/
-		constexpr inline unsigned sub() noexcept
+		constexpr inline bool sub() noexcept
 		{
 			--_value;
 			if (!_lowerLimitPredicate(_value))
 			{
 				_value = _upperLimitGetter();
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 
 		/**
@@ -316,15 +316,15 @@ namespace enh
 			for confining between 2 and 9 (inclusive),
 			from  _value 6, sub(20) will return 3 and set _value to 7.
 		*/
-		constexpr inline unsigned long long sub(
-			unsigned long long difference /**< : <i>in</i> : The number of units to
+		constexpr inline std::uint64_t sub(
+			std::uint64_t difference /**< : <i>in</i> : The number of units to
 								 subtract.*/
 		) noexcept
 		{
 			if (difference == 0)
 				return 0;
-		    unsigned long long rem = difference % (_upperLimitGetter() - _lowerLimitGetter());
-			unsigned long long ret = difference / (_upperLimitGetter() - _lowerLimitGetter());
+			std::uint64_t rem = difference % (_upperLimitGetter() - _lowerLimitGetter());
+			std::uint64_t ret = difference / (_upperLimitGetter() - _lowerLimitGetter());
 
 			if (!_lowerLimitPredicate(_value - rem))
 			{
@@ -366,7 +366,7 @@ namespace enh
 			to the current object.
 		*/
 		constexpr inline ConfinedValue<value_type> &operator -= (
-			unsigned long long val /**< : <i>in</i> : The number of units to
+			std::uint64_t val /**< : <i>in</i> : The number of units to
 								  subtract.*/
 		)
 		{
@@ -386,7 +386,8 @@ namespace enh
 			lambda that captures by reference.
 
 			<h3>Return</h3>
-			Returns true if any change happend.
+			Returns true if any change happend (current value is not 
+			within limit, set to limit).
 		*/
 		constexpr inline bool reValidateValue() noexcept
 		{
@@ -412,7 +413,7 @@ namespace enh
 	constexpr inline ConfinedValue<Integral> operator +(
 		const ConfinedValue<Integral> &lhs /**< : <i>in</i> : LHS argument 
 										   of operator.*/,
-		const unsigned long long &rhs /**< : <i>in</i> : RHS argument of operator.*/
+		const std::uint64_t &rhs /**< : <i>in</i> : RHS argument of operator.*/
 	) noexcept
 	{
 		auto t =(lhs);
@@ -425,7 +426,7 @@ namespace enh
 	*/
 	template<class Integral>
 	constexpr inline ConfinedValue<Integral> operator +(
-		const unsigned long long &lhs  /**< : <i>in</i> : LHS argument of operator.*/,
+		const std::uint64_t &lhs  /**< : <i>in</i> : LHS argument of operator.*/,
 		const ConfinedValue<Integral> &rhs /**< : <i>in</i> : RHS argument
 										   of operator.*/
 	) noexcept
@@ -442,7 +443,7 @@ namespace enh
 	constexpr inline ConfinedValue<Integral> operator -(
 		const ConfinedValue<Integral> &lhs /**< : <i>in</i> : LHS argument
 										   of operator.*/,
-		const unsigned long long &rhs /**< : <i>in</i> : RHS argument of operator.*/
+		const std::uint64_t &rhs /**< : <i>in</i> : RHS argument of operator.*/
 		) noexcept
 	{
 		auto t = (lhs);
@@ -455,7 +456,7 @@ namespace enh
 	*/
 	template<class Integral>
 	constexpr inline ConfinedValue<Integral> operator -(
-		const unsigned long long &lhs  /**< : <i>in</i> : LHS argument of operator.*/,
+		const std::uint64_t &lhs  /**< : <i>in</i> : LHS argument of operator.*/,
 		const ConfinedValue<Integral> &rhs /**< : <i>in</i> : RHS argument
 										   of operator.*/
 		) noexcept
@@ -562,7 +563,7 @@ namespace enh
 	constexpr inline bool operator == (
 		const ConfinedValue<Integral> &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
-		const long long &rhs /**< : <i>in</i> : The right hand
+		const std::uint64_t &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/
 		) noexcept
 	{
@@ -576,7 +577,7 @@ namespace enh
 	constexpr inline bool operator != (
 		const ConfinedValue<Integral> &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
-		const long long &rhs /**< : <i>in</i> : The right hand
+		const std::uint64_t &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/
 		) noexcept
 	{
@@ -590,7 +591,7 @@ namespace enh
 	constexpr inline bool operator > (
 		const ConfinedValue<Integral> &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
-		const long long &rhs /**< : <i>in</i> : The right hand
+		const std::uint64_t &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/
 		) noexcept
 	{
@@ -604,7 +605,7 @@ namespace enh
 	constexpr inline bool operator >= (
 		const ConfinedValue<Integral> &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
-		const long long &rhs /**< : <i>in</i> : The right hand
+		const std::uint64_t &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/
 		) noexcept
 	{
@@ -618,7 +619,7 @@ namespace enh
 	constexpr inline bool operator < (
 		const ConfinedValue<Integral> &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
-		const long long &rhs /**< : <i>in</i> : The right hand
+		const std::uint64_t &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/
 		) noexcept
 	{
@@ -632,7 +633,7 @@ namespace enh
 	constexpr inline bool operator <= (
 		const ConfinedValue<Integral> &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
-		const long long &rhs /**< : <i>in</i> : The right hand
+		const std::uint64_t &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/
 		) noexcept
 	{
@@ -646,7 +647,7 @@ namespace enh
 	*/
 	template<class Integral>
 	constexpr inline bool operator == (
-		const long long &lhs /**< : <i>in</i> : The left hand
+		const std::uint64_t &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
 		const ConfinedValue<Integral> &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/
@@ -660,7 +661,7 @@ namespace enh
 	*/
 	template<class Integral>
 	constexpr inline bool operator != (
-		const long long &lhs /**< : <i>in</i> : The left hand
+		const std::uint64_t &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
 		const ConfinedValue<Integral> &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/
@@ -674,7 +675,7 @@ namespace enh
 	*/
 	template<class Integral>
 	constexpr inline bool operator > (
-		const long long &lhs /**< : <i>in</i> : The left hand
+		const std::uint64_t &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
 		const ConfinedValue<Integral> &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/
@@ -688,7 +689,7 @@ namespace enh
 	*/
 	template<class Integral>
 	constexpr inline bool operator >= (
-		const long long &lhs /**< : <i>in</i> : The left hand
+		const std::uint64_t  &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
 		const ConfinedValue<Integral> &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/
@@ -702,7 +703,7 @@ namespace enh
 	*/
 	template<class Integral>
 	constexpr inline bool operator < (
-		const long long &lhs /**< : <i>in</i> : The left hand
+		const std::uint64_t &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
 		const ConfinedValue<Integral> &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/
@@ -716,7 +717,7 @@ namespace enh
 	*/
 	template<class Integral>
 	constexpr inline bool operator <= (
-		const long long &lhs /**< : <i>in</i> : The left hand
+		const std::uint64_t &lhs /**< : <i>in</i> : The left hand
 										   side of the expression.*/,
 		const ConfinedValue<Integral> &rhs /**< : <i>in</i> : The right hand
 										   side of the expression.*/

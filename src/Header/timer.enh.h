@@ -136,7 +136,7 @@ namespace enh
 		\include{lineno} timer_ex.cpp
 
 	*/
-	template<unsigned periodPassed = 50U, class TimeUnitPassed = std::chrono::milliseconds>
+	template<std::uint32_t periodPassed = 50U, class TimeUnitPassed = std::chrono::milliseconds>
 	class Timer
 	{
 	
@@ -145,7 +145,7 @@ namespace enh
 		/**
 			\brief The period of Timer.
 		*/
-		static constexpr unsigned period = periodPassed;
+		static constexpr std::uint32_t period = periodPassed;
 
 		/**
 			\brief The TimeUnit of measurement.
@@ -207,7 +207,7 @@ namespace enh
 
 			The product of this and period gives time elapsed.
 		*/
-		unsigned long long _elapsedCycles;
+		std::uint64_t _elapsedCycles;
 
 
 		/**
@@ -296,8 +296,8 @@ namespace enh
 			The difference between elapsed 
 			cycles and expected (the "overshoot").\n
 		*/
-		inline unsigned long long wait(
-			unsigned long long expected /**< : <i>in</i> : The expected cycle 
+		inline std::uint64_t wait(
+			std::uint64_t expected /**< : <i>in</i> : The expected cycle
 										count to wait till.*/
 		) noexcept
 		{
@@ -320,7 +320,7 @@ namespace enh
 			The difference between elapsed
 			cycles and expected (the "overshoot").\n
 		*/
-		inline unsigned long long wait() noexcept
+		inline std::uint64_t wait() noexcept
 		{
 			return wait(_elapsedCycles + 1);
 		}
@@ -338,14 +338,14 @@ namespace enh
 
 
 		*/
-		inline long long waitFor(
-			unsigned mult_count /**< : <i>in</i> : The amount of cycles to 
+		inline std::int64_t waitFor(
+			std::uint32_t mult_count /**< : <i>in</i> : The amount of cycles to
 								wait.*/,
 			std::function<bool()> condition /**< : <i>in</i> : The condition
 											to exit immediately.*/
 		) noexcept
 		{
-			unsigned long long expected = _elapsedCycles + mult_count;
+			std::uint64_t expected = _elapsedCycles + mult_count;
 			while (_elapsedCycles < expected)
 			{
 				if (!condition())
@@ -384,15 +384,15 @@ namespace enh
 		/**
 			\brief Returns the number of cycles elapsed from Timer start.
 		*/
-		inline unsigned long long getElapsedCycles() noexcept { return _elapsedCycles; }
+		inline std::uint64_t getElapsedCycles() noexcept { return _elapsedCycles; }
 
 		/**
 			\brief blocks function execution for mult_count number of cycles.
 
 			Returns the overshoot from the expected value.
 		*/
-		inline unsigned long long waitFor(
-			unsigned long mult_count /**< : <i>in</i> : The cycles to wait for.*/
+		inline std::uint64_t waitFor(
+			std::uint64_t mult_count /**< : <i>in</i> : The cycles to wait for.*/
 		)noexcept
 		{
 			return wait(_elapsedCycles + mult_count);
@@ -528,7 +528,7 @@ namespace enh
 		<code>unsigned period</code> : The period of one cycle in the Timer, 
 		cannot be less than 5, default value 50.
 	*/
-	template<unsigned period = 50U>
+	template<std::uint32_t period = 50U>
 	using millis = Timer<period, std::chrono::milliseconds>;
 
 	/**
@@ -543,7 +543,7 @@ namespace enh
 		<code>unsigned period</code> : The period of one cycle in the Timer,
 		default value 50.
 	*/
-	template<unsigned period = 50U>
+	template<std::uint32_t period = 50U>
 	using seconds = Timer<period, std::chrono::seconds>;
 
 	/**
@@ -558,7 +558,7 @@ namespace enh
 		<code>unsigned period</code> : The period of one cycle in the Timer,
 		default value 50.
 	*/
-	template<unsigned period = 50U>
+	template<std::uint32_t period = 50U>
 	using minutes = Timer<period, std::chrono::minutes>;
 
 	/**
@@ -573,7 +573,7 @@ namespace enh
 		<code>unsigned period</code> : The period of one cycle in the Timer,
 		default value 50.
 	*/
-	template<unsigned period = 50U>
+	template<std::uint32_t period = 50U>
 	using hours = Timer<period, std::chrono::hours>;
 
 }

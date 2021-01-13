@@ -25,7 +25,7 @@
 
 #ifndef DATE_TIME_ENH_H
 
-#define DATE_TIME_ENH_H					date_time.enh.h
+#define DATE_TIME_ENH_H					DateTime.enh.h
 
 
 #include "TimeStamp.enh.h"
@@ -49,18 +49,18 @@ namespace enh
 			argument.
 		*/
 		constexpr inline void set(
-			unsigned short dy /**< : <i>in</i> : The day of the month 
+			std::uint8_t dy /**< : <i>in</i> : The day of the month 
 							  [1,monthTotalDays].*/,
-			unsigned short mnth /**< : <i>in</i> : The number of months after
+			std::uint8_t mnth /**< : <i>in</i> : The number of months after
 								January [0,11].*/,
-			long yr /**< : <i>in</i> : The Year.*/,
-			unsigned short week /**< : <i>in</i> : The day of the week after
+			std::int32_t yr /**< : <i>in</i> : The Year.*/,
+			std::uint8_t week /**< : <i>in</i> : The day of the week after
 								Sunday [0,6].*/,
-			unsigned short ydy /**< : <i>in</i> : The number of day after 01 January
+			std::uint8_t ydy /**< : <i>in</i> : The number of day after 01 January
 						 of that year [1,yearTotalDays).*/,
-			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
-			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
-			unsigned short hr /**< : <i>in</i> : The hours field [0,59].*/
+			std::uint8_t sec /**< : <i>in</i> : The seconds field [0,60].*/,
+			std::uint8_t min /**< : <i>in</i> : The minutes field [0,59].*/,
+			std::uint8_t hr /**< : <i>in</i> : The hours field [0,59].*/
 		)
 		{
 			setDate(dy, mnth, yr, week, ydy);
@@ -99,18 +99,18 @@ namespace enh
 			argument.
 		*/
 		constexpr inline DateTime(
-			unsigned short dy /**< : <i>in</i> : The day of the month
+			std::uint8_t dy /**< : <i>in</i> : The day of the month
 							  [1,monthTotalDays].*/,
-			unsigned short mnth /**< : <i>in</i> : The number of months after
+			std::uint8_t mnth /**< : <i>in</i> : The number of months after
 								January [0,11].*/,
-			long yr /**< : <i>in</i> : The Year.*/,
-			unsigned short week /**< : <i>in</i> : The day of the week after
+			std::int32_t yr /**< : <i>in</i> : The Year.*/,
+			std::uint8_t week /**< : <i>in</i> : The day of the week after
 								Sunday [0,6].*/,
-			unsigned short ydy /**< : <i>in</i> : The number of day after 01 January
+			std::uint8_t ydy /**< : <i>in</i> : The number of day after 01 January
 						 of that year [1,yearTotalDays).*/,
-			unsigned short sec /**< : <i>in</i> : The seconds field [0,60].*/,
-			unsigned short min /**< : <i>in</i> : The minutes field [0,59].*/,
-			unsigned short hr /**< : <i>in</i> : The hours field [0,59].*/
+			std::uint8_t sec /**< : <i>in</i> : The seconds field [0,60].*/,
+			std::uint8_t min /**< : <i>in</i> : The minutes field [0,59].*/,
+			std::uint8_t hr /**< : <i>in</i> : The hours field [0,59].*/
 		) : Date(dy, mnth, yr, week, ydy), TimeStamp(sec, min, hr) {}
 
 		/**
@@ -180,7 +180,7 @@ namespace enh
 			\brief Adds to the hour part of time held.
 		*/
 		constexpr inline void addHours(
-			unsigned long long hr /**< : <i>in</i> : The hours to add.*/
+			std::uint64_t hr /**< : <i>in</i> : The hours to add.*/
 		) noexcept
 		{
 			addDay(TimeStamp::addHours(hr));
@@ -190,7 +190,7 @@ namespace enh
 			\brief Adds to the minute part of time held (also hour).
 		*/
 		constexpr inline void addMinutes(
-			unsigned long long min /**< : <i>in</i> : The minutes to add.*/
+			std::uint64_t min /**< : <i>in</i> : The minutes to add.*/
 		) noexcept
 		{
 			addDay(TimeStamp::addMinutes(min));
@@ -200,7 +200,7 @@ namespace enh
 			\brief Adds to the second part of time held (also hour).
 		*/
 		constexpr inline void addSeconds(
-			unsigned long long sec  /**< : <i>in</i> : The seconds to add.*/
+			std::uint64_t sec  /**< : <i>in</i> : The seconds to add.*/
 		) noexcept
 		{
 			addDay(TimeStamp::addSeconds(sec));
@@ -210,7 +210,7 @@ namespace enh
 			\brief Reduce the hour part of time held.
 		*/
 		constexpr inline void subHours(
-			unsigned long long hr /**< : <i>in</i> : The hours to reduce.*/
+			std::uint64_t hr /**< : <i>in</i> : The hours to reduce.*/
 		) noexcept
 		{
 			subDay(TimeStamp::subHours(hr));
@@ -220,7 +220,7 @@ namespace enh
 			\brief Reduce the minute part of time held (also hour).
 		*/
 		constexpr inline void subMinutes(
-			unsigned long long min /**< : <i>in</i> : The minutes to reduce.*/
+			std::uint64_t min /**< : <i>in</i> : The minutes to reduce.*/
 		) noexcept
 		{
 			subDay(TimeStamp::subMinutes(min));
@@ -230,7 +230,7 @@ namespace enh
 			\brief Reduces the second part of time held (also hour).
 		*/
 		constexpr inline void subSeconds(
-			unsigned long long sec /**< : <i>in</i> : The seconds to reduce.*/
+			std::uint64_t sec /**< : <i>in</i> : The seconds to reduce.*/
 		) noexcept
 		{
 			subDay(TimeStamp::subSeconds(sec));

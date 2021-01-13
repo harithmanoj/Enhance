@@ -1,7 +1,8 @@
 /** ***************************************************************************
 	\file numeral_system.enh.h
 
-	\brief The file to declare class for a custom numeral system
+	\brief The file to declare class for encapsulating a value within static
+	limits
 
 	Created 16 May 2020
 
@@ -25,9 +26,9 @@
 
 #ifndef NUMERAL_SYSTEM_ENH_H
 
-#define NUMERAL_SYSTEM_ENH_H					numeral_system.enh.h
+#	define NUMERAL_SYSTEM_ENH_H					numeral_system.enh.h
 
-#include "ConfinedValue.enh.h"
+#	include "ConfinedValue.enh.h"
 
 namespace enh
 {
@@ -120,7 +121,7 @@ namespace enh
 			Throws <code>std::invalid_argument</code> if value is greater
 			than or equal to upper.
 		*/
-		constexpr inline UnsignedLimitedNumber(
+		constexpr inline LimitedNumber(
 			ConfinedValue<integral>::value_type val
 		) : ConfinedValue<integral>::ConfinedValue(
 			[&](long long a) {return a < upperLimit; },
@@ -133,34 +134,34 @@ namespace enh
 
 	/**
 		\brief The namespace for all aliases for 
-		different upper limited systems.
+		different limited systems.
 	*/
 	namespace numeric
 	{
 		/**
 			\brief Type with upper limit at 10.
 		*/
-		using Decade = UnsignedLimitedNumber<unsigned short, 10U>;
+		using Decade = UnsignedLimitedNumber<std::uint8_t, 10U>;
 		
 		/**
 			\brief Type with upper limit at 100.
 		*/
-		using Centuary = UnsignedLimitedNumber<unsigned short, 100U>;
+		using Centuary = UnsignedLimitedNumber<std::uint8_t, 100U>;
 		
 		/**
 			\brief Type with upper limit at 1000.
 		*/
-		using Kilo = UnsignedLimitedNumber<unsigned short, 1000U>;
+		using Kilo = UnsignedLimitedNumber<std::uint16_t, 1000U>;
 		
 		/**
 			\brief Type with upper limit at 1000000.
 		*/
-		using Million = UnsignedLimitedNumber<unsigned long, 1000000UL>;
+		using Million = UnsignedLimitedNumber<std::uint32_t, 1000000UL>;
 
 		/**
 			\brief Type with upper limit at 1000000000.
 		*/
-		using Billion = UnsignedLimitedNumber<unsigned long, 1000000000ULL>;
+		using Billion = UnsignedLimitedNumber<std::uint32_t, 1000000000ULL>;
 	}
 
 }

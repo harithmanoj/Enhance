@@ -1,12 +1,10 @@
 ## Enhance C++ Libraries ##
 
-
-
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/harithmanoj/Enhance?label=stable%20release)
-![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/harithmanoj/enhance-develop?include_prereleases&label=develop%20release)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/harithmanoj/Enhance?include_prereleases&label=develop%20release)
 ![GitHub](https://img.shields.io/github/license/harithmanoj/Enhance)
 ![GitHub Release Date](https://img.shields.io/github/release-date/harithmanoj/Enhance?label=Stable%20Release%20Date)
-![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/harithmanoj/enhance-develop?label=develop%20alpha%20release)
+![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/harithmanoj/Enhance?label=develop%20alpha%20release)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/harithmanoj/Enhance/Test)
 
 Develop Release v1.3.2.8.d1 alpha
@@ -32,65 +30,32 @@ Source code is Hosted in [GitHub](https://github.com/harithmanoj/Enhance)
 
 Stable Releases can be found [here](https://github.com/harithmanoj/Enhance/releases)
 
-Code Documentation is Hosted by GitHub Pages [here](https://harithmanoj.github.io/Enhance/index.html)
+Code Documentation is Hosted by GitHub Pages [here](https://harithmanoj.github.io/Enhance-cpp-libraries/nav/doc.html)
 
 The branch master of Enhance repository contains last stable release code. For latest features, 
-bugfixes etc, see develop branch or [enhance-develop](https://github.com/harithmanoj/enhance-develop).
+bugfixes etc, see develop branch.
 
-Documentation of Latest bug fixes and features can be found [here](https://harithmanoj.github.io/enhance-develop/index.html)
+Documentation of pre-release bug fixes and features can also be found [here](https://harithmanoj.github.io/Enhance-cpp-libraries/nav/doc.html)
 
-_______________________________________________________________________________
-## Framework
-_______________________________________________________________________________
+<detail>
+<summary> Concurrent </summary>
 
-Framework is a library that defines The version of Enhance C++ Library and 
-class to store version info.
+Library for ease of concurrent programming.
 
 Exists in `namespace enh`.
 
 ### Headers 
 
-`framework.enh.h`
+`QueuedProcess.enh.h`
 
 ### The Library 
 
-* Class to be used for storing version information.
+* Class to asynchronously handle messages.
 
-* Version of the Enhance C++ library
+</detail>
 
-
-_______________________________________________________________________________
-## General
-_______________________________________________________________________________
-
-General is a library of functions for general use.
-
-Exists in `namespace enh`.
-
-### Headers 
-
-`general.enh.h`
-
-`ConfinedValue.enh.h`
-
-`numeral_system.enh.h`
-
-`WeightedField.enh.h`
-
-### The Library 
-
-* Check if bits are high in a variable (also constexpr).
-* Check if value is within bounds (also constexpr).
-* Signum function and inclusive_ration (also constexpr).
-* getOrdinalIndicator returns "th", "st", "nd" "rd" according to argument passed.
-* signExtend extends the string format of a numeral by prepending '0' s
-* ConfinedValue class for storing a value within bounds
-* NumericSystem class for storing a value within 0 and an upper limit.
-* Class to hold values which has different denominations. (eg money)
- 
-_______________________________________________________________________________
-## Diagnose
-_______________________________________________________________________________
+<detail>
+<summary> Diagnose </summary>
 
 Diagnose is a diagnostics library to log to file during sequential code 
 execution.
@@ -106,21 +71,25 @@ See `logger.enh.h` documentation for usage.
 ### The Library 
 
 * Functions that log information to a file unique to each thread
-* 5 optimisation levels
+* (E)rror, (W)arning, (I)nfo, (F)atal-(E)rror types of logging.
 
+</detail>
 
-_______________________________________________________________________________
-## Error Handling
-_______________________________________________________________________________
+<detail>
+<summary> Error Handling </summary>
 
 Error Handling Library is a library that contains functions and classes for 
 various error handling uses.
+
+Error tracking functionality and error signaling functionality.
 
 Exists in `namespace enh`.
 
 ### Headers 
 
-`error_base.enh.h`
+`ErrorTracker.enh.h`
+
+`Tristate.enh.h`
 
 ### The Library 
 
@@ -129,26 +98,12 @@ Exists in `namespace enh`.
 * Enumeration to provide 3 possible outcomes (good, error, blocked due to 
 previous error) for functions.
 
-_______________________________________________________________________________
-## Concurrent
-_______________________________________________________________________________
+</detail>
 
-Library for ease of concurrent programming.
+<detail>
+<summary> Time </summary>
 
-Exists in `namespace enh`.
-
-### Headers 
-
-`QueuedProcess.enh.h`
-
-### The Library 
-
-* Class that executes a function by passing messages pushed to a queue.
-_______________________________________________________________________________
-## Time
-_______________________________________________________________________________
-
-Library for time tracking, synchronisation etc. 
+Library for date-time encapsulation, periodic signaling timer.
 
 Exists in `namespace enh`.
 
@@ -158,11 +113,11 @@ Exists in `namespace enh`.
 
 `counter.enh.h`
 
-`time_stamp.enh.h`
+`TimeStamp.enh.h`
 
 `date.enh.h`
 
-`date_time.enh.h`
+`DateTime.enh.h`
 
 ### The Library 
 
@@ -178,6 +133,45 @@ Exists in `namespace enh`.
 
 * Store and manipulate date and time simultaneously.
 
+<detail>
+<summary> General Utility</summary>
+
+The library consists of some utility functions, classes, class for versioning 
+encapsulation, class for a value confined within dynamic and static limits, 
+value which spans different fields of different denominations.
+
+Exists in `namespace enh`.
+
+### Headers 
+
+`general.enh.h`
+
+`ConfinedValue.enh.h`
+
+`LimitedNumber.enh.h`
+
+`WeightedField.enh.h`
+
+`VersionInfo.enh.h`
+
+### The Library 
+
+* Class to be used for storing version information.
+* Version of the Enhance C++ library
+* Check if bits are high in a variable (also constexpr).
+* Check if value is within bounds (also constexpr).
+* Signum function and inclusive_ration (also constexpr).
+* getOrdinalIndicator returns "th", "st", "nd" "rd" according to argument passed.
+* signExtend extends the string format of a numeral by prepending '0' s
+* ConfinedValue class for storing a value within bounds
+* NumericSystem class for storing a value within 0 and an upper limit.
+* Class to hold values which has different denominations. (eg money)
+ 
+</detail>
+
+_______________________________________________________________________________
+
+
 ## HOW TO INSTALL 
 
 * Download all required headers and source files, and add them to dependancy 
@@ -187,21 +181,7 @@ project.
 
 ### Dependencies
 
-* `VersionInfo.enh.h` depends only on standard c++ headers.
-* `general.enh.h` depends only on standard c++ headers.
-* `logger.enh.h` depends only on standard c++ headers but requires 
-compilation of `logger.cpp`.
-* `WeightedField.enh.h` depends only on standard c++ headers.
-* `error_base.enh.h` depends on `general.enh.h`, `logger.enh.h`.
-* `QueuedProcess.enh.h` depends on `Tristate.enh.h`.
-* `counter.enh.h` depends only on standard c++ headers.
-* `timer.enh.h` depends only on standard c++ headers.
-* `date.enh.h` depends on `general.enh.h`, `numerical_system.enh.h`, 
-`ConfinedValue.enh.h`.
-* `time_stamp.enh.h` depends on `date.enh.h`, `general.enh.h`, 
-`numeral_system.enh.h`, `ConfinedValue.enh.h`.
-* `date_time.enh.h` depends on `time_stamp.enh.h`, `date.enh.h`, 
-`general.enh.h`, `numerical_system.enh.h`, `ConfinedValue.enh.h`.
+
 
 ### Dependency Graph
 
@@ -209,17 +189,16 @@ compilation of `logger.cpp`.
        |             |       |             |                   |
        |             |   logger.cpp        |                   |                       counter.enh.h 
        |             |                     |                   |
-       +------+    +-+   +-----------------+---------+  numeral_system.enh            WeightedField.enh.h
-       |      |    |     |                           |     |        
-       |    ErrorTracker.enh.h                         |     |                             timer.enh.h 
+       +------+    +-+   +-----------------+---------+  LimitedNumber.enh            WeightedField.enh.h
+       |      |    |     |                           |      |        
+       |    ErrorTracker.enh.h                       |      |                             timer.enh.h 
        |                                            date.enh.h
 QueuedProcess.enh.h                                     |
-                                                 time_stamp.enh.h
+                                                 TimeStamp.enh.h
                                                         |
-                                                  date_time.enh.h
+                                                  DateTime.enh.h
 
 ## Contribution
-
 
 Code contribution is welcome. Refer [Contributing.md]
 (https://github.com/harithmanoj/Enhance/blob/master/Contributing.md) 
