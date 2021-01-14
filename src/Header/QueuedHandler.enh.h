@@ -346,11 +346,16 @@ namespace enh
 		/**
 			\brief set a function as the instruction processor.
 		*/
-		inline void registerHandlerFunction(
+		inline Tristate registerHandlerFunction(
 			MessageHandlerType in /**< : <i>in</i> : The procedure.*/
 		) noexcept
 		{
-			_messageHandlerFunction = in;
+			if (isDispatcherRunning())
+				_messageHandlerFunction = in;
+			else
+				return Tristate::ERROR;
+
+			return Tristate::GOOD;
 		}
 
 		/**

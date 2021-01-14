@@ -114,6 +114,40 @@ namespace testCase
 
 		ASSERT_TEST(t == exp, "Restart queue failed");
 	}
+
+	bool changeHandlerTest()
+	{
+		unsigned t = 0;
+		enh::QueuedHandler<unsigned> tQ;
+		tQ.registerHandlerFunction(
+			[&t](unsigned a) {
+				t += a;
+				return enh::Tristate::GOOD;
+			}
+		);
+
+		tQ.startDispatcherExecution();
+		unsigned exp = 0;
+
+		for (unsigned i = 0; i < 10; ++i)
+		{
+			exp += i;
+			tQ.postMessage(i);
+		}
+
+		bool _register = tQ.registerHandlerFunction(
+			[&t](unsigned a) {
+				t += a + 3;
+				return enh::Tristate::GOOD;
+			}
+		);
+
+		ASSERT_TEST_CLEANUP(tQ.isDispatcherRunning(), "Dispatcher quit due to error", tQ.joinAfterQueueEmpty(std::chrono::milliseconds(1)));
+
+		tQ.joinAfterQueueEmpty(std::chrono::milliseconds(1));
+
+		ASSERT_TEST(t > exp, "Handler reset failed");
+	}
 }
 
 int main()
