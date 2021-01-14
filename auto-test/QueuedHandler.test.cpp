@@ -144,7 +144,7 @@ namespace testCase
 			}
 		);
 
-		ASSERT_CONTINUE(!result, "Dispatcher pause failed");
+		ASSERT_CONTINUE(!!result, "Dispatcher pause failed");
 
 		tQ.joinAfterQueueEmpty(std::chrono::milliseconds(1));
 
