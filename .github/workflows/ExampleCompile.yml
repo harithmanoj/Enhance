@@ -86,7 +86,7 @@ jobs:
     
     - name: compile ErrorTracker example
       working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  ErrorTracker.ex.cpp
+      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  ErrorTracker.ex.cpp ..\..\src\logger.cpp
     
     - name: compile Tristate example
       working-directory: ./documentation/examples
@@ -105,8 +105,8 @@ jobs:
     
     - name: compile Debug Logger example
       working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  logger.dbg.ex.cpp
+      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  logger.dbg.ex.cpp ..\..\src\logger.cpp
 
     - name: compile Not Debug Logger example
       working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  logger.ndbg.ex.cpp
+      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  logger.ndbg.ex.cpp ..\..\src\logger.cpp

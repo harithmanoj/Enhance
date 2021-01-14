@@ -107,11 +107,6 @@
 #	endif // _DEBUG
 
 
-#	if defined(ENH_DEBUG_CONTROL) && !defined(IGNORE_ENHANCE_DIAGNOSTICS)
-
-#		define ERROR_TRACKER_LOG
-
-#	endif // defined(ENH_DEBUG_CONTROL) && !defined(IGNORE_ENHANCE_DIAGNOSTICS)
 
 #	if  defined(ENH_DEBUG_CONTROL)
 /**

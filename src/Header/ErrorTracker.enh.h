@@ -224,7 +224,7 @@ namespace enh
 
 		
 
-#	ifdef ERROR_TRACKER_LOG
+#	ifdef ENH_DEBUG_CONTROL
 
 
 		/*
@@ -258,7 +258,7 @@ namespace enh
 			debug::log(file, function, line, derivedClassName() + " " 
 				+ variable + " flag : " + errorToString());
 		}
-#	endif // ERROR_TRACKER_LOG
+#	endif // ENH_DEBUG_CONTROL
 	};
 
 	
