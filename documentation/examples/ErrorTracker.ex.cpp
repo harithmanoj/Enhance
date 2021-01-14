@@ -24,6 +24,7 @@ public:
 			ret += " + USER_DEF";
 		return ret;
 	}
+	using ErrorTracker<UnderlyingErrorType>::setErrorFlag;
 };
 
 int main()
