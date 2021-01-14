@@ -137,12 +137,15 @@ namespace testCase
 
 		tQ.joinAfterDispatcherPause();
 
+
 		auto result = tQ.registerHandlerFunction(
 			[&t](unsigned a) {
 				t += a + 3;
 				return enh::Tristate::GOOD;
 			}
 		);
+
+		tQ.startDispatcherExecution();
 
 		ASSERT_CONTINUE(!!result, "Dispatcher pause failed");
 
