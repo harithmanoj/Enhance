@@ -8,26 +8,21 @@ public:
 
 #ifdef ERROR_BASE_LOG
 private:
-	virtual std::string derived_class() const noexcept
+	virtual std::string derivedClassName() const noexcept
 	{
 		return "derived_type";
 	}
 #endif
 public:
-	virtual std::string toString()  const
+	virtual std::string errorToString()  const
 	{
-		std::string ret = ErrorTracker::toString();
+		std::string ret = ErrorTracker::errorToString();
 		if (ret == "SAFE")
 			return ret;
 		
-		if (checkFlag(USER_DEF))
+		if (checkErrorFlag(USER_DEF))
 			ret += " + USER_DEF";
 		return ret;
-	}
-public:
-	void setFlag__(UnderlyingErrorType fl)
-	{
-		setFlag(fl);
 	}
 };
 
@@ -37,17 +32,17 @@ int main()
 
 	derived_type t;
 
-	t.setFlag__(derived_type::INVALID_ARG);
+	t.setErrorFlag(derived_type::INVALID_ARG);
 
-	std::cout << std::boolalpha << t.checkFlag(derived_type::INVALID_ARG);
+	std::cout << std::boolalpha << t.checkErrorFlag(derived_type::INVALID_ARG);
 
-	ERROR_FLAG_LOG(t);
+	FLAG_LOG_E(t);
 
-	t.setFlag__(derived_type::USER_DEF);
+	t.setErrorFlag(derived_type::USER_DEF);
 
-	std::cout << std::boolalpha << t.checkFlag(derived_type::USER_DEF);
+	std::cout << std::boolalpha << t.checkErrorFlag(derived_type::USER_DEF);
 
-	ERROR_FLAG_LOG(t);
+	FLAG_LOG_E(t);
 	return 0;
 }
 
