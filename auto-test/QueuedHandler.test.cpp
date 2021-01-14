@@ -1,5 +1,5 @@
 /** ***************************************************************************
-	\file QProc.test.cpp
+	\file QueuedHandler.test.cpp
 
 	\brief The file to test parts of module QProc
 

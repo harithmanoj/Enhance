@@ -80,7 +80,7 @@ jobs:
     - name: Run Test Program
       run: auto-test/Timer.test.exe
 
-  QProcTest:
+  QueuedHandlerTest:
     runs-on: windows-latest
    
     steps:
@@ -90,9 +90,9 @@ jobs:
     - name: Enable Developer Command Prompt
       uses: ilammy/msvc-dev-cmd@v1.5.0
     
-    - name: compile QProc Test Program
+    - name: compile QueuedHandler Test Program
       working-directory: ./auto-test
-      run: compile QProc.test.cpp
+      run: compile QueuedHandler.test.cpp
       
     - name: Run Test Program
-      run: auto-test/QProc.test.exe
+      run: auto-test/QueuedHandler.test.exe
