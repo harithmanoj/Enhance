@@ -135,14 +135,16 @@ namespace testCase
 			tQ.postMessage(i);
 		}
 
-		bool _register = tQ.registerHandlerFunction(
+		tQ.joinAfterDispatcherPause();
+
+		auto result = tQ.registerHandlerFunction(
 			[&t](unsigned a) {
 				t += a + 3;
 				return enh::Tristate::GOOD;
 			}
 		);
 
-		ASSERT_TEST_CLEANUP(tQ.isDispatcherRunning(), "Dispatcher quit due to error", tQ.joinAfterQueueEmpty(std::chrono::milliseconds(1)));
+		ASSERT_CONTINUE(!result, "Dispatcher pause failed");
 
 		tQ.joinAfterQueueEmpty(std::chrono::milliseconds(1));
 
@@ -155,5 +157,6 @@ int main()
 	REGISTER_TEST(testCase::basicTest);
 	REGISTER_TEST(testCase::forceStopTest);
 	REGISTER_TEST(testCase::restartTest);
+	REGISTER_TEST(testCase::changeHandlerTest);
 	return call_main();
 }

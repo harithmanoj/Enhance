@@ -350,7 +350,7 @@ namespace enh
 			MessageHandlerType in /**< : <i>in</i> : The procedure.*/
 		) noexcept
 		{
-			if (isDispatcherRunning())
+			if (!isDispatcherRunning())
 				_messageHandlerFunction = in;
 			else
 				return Tristate::ERROR;
@@ -484,7 +484,6 @@ namespace enh
 			waitForDispatcherExit();
 			std::lock_guard<std::mutex> lock(_QueueSyncMutex);
 			_queuedMessage = std::queue<MessageType>();
-
 		}
 
 		/**
