@@ -295,7 +295,6 @@ namespace enh
 			tm temp = enh::localTime(&timeStamp);
 			setDate(temp.tm_mday, temp.tm_mon, std::int64_t(temp.tm_year) 
 				+ 1900, temp.tm_wday, temp.tm_yday);
-			delete temp;
 		}
 
 		/**
