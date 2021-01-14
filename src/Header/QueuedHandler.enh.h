@@ -429,7 +429,7 @@ namespace enh
 		};
 
 		/**
-			\brief Waits till dispatcher exits, then empties queue.
+			\brief Waits till dispatcher exits
 		*/
 		inline void waitForDispatcherExit() noexcept
 		{
@@ -438,8 +438,6 @@ namespace enh
 				_queueHandlerThread.join();
 				_isQueueActive = false;
 				_shouldStopQueue = false;
-				std::lock_guard<std::mutex> lock(_QueueSyncMutex);
-				_queuedMessage = std::queue<MessageType>();
 			}
 
 		}
@@ -461,6 +459,18 @@ namespace enh
 		}
 
 		/**
+			\brief Signals dispatcher exit
+			then waits for it to exit.
+		*/
+		inline void joinAfterDispatcherPause()
+		{
+			if (!isDispatcherRunning())
+				return;
+			signalDispatcherStop();
+			waitForDispatcherExit();
+		}
+
+		/**
 			\brief Issues immediate exit signal and waits for exit.
 
 			<b>Note</b> : Even if queue has messages left over, it will exit 
@@ -472,6 +482,9 @@ namespace enh
 				return;
 			signalDispatcherStop();
 			waitForDispatcherExit();
+			std::lock_guard<std::mutex> lock(_QueueSyncMutex);
+			_queuedMessage = std::queue<MessageType>();
+
 		}
 
 		/**
