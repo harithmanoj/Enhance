@@ -24,12 +24,18 @@ cmake_minimum_required(VERSION 3.10)
 project(EnhanceCPPLibrary VERSION 2.0.0.8)
 
 
-option(ENABLE_DEBUG_LOG "enable ENH_DEBUG_CONTROL and linking to logger compilation" ON)
-option(ENABLE_UNIT_TESTS "enable unit testing" ON)
-option(ENABLE_EXAMPLE "enable example compile test" ON)
+option(ENABLE_DEBUG_LOG "enable ENH_DEBUG_CONTROL and linking to logger compilation" OFF)
+option(ENABLE_UNIT_TESTS "enable unit testing" OFF)
+option(ENABLE_EXAMPLE "enable example compile test" OFF)
 
 
 #	individual example compile test options
+option(CONCURRENCY_EX_TEST "enable concurrency example compile test" OFF)
+option(GENERIC_EX_TEST "enable generic utility example compile test" OFF)
+option(DATE_TIME_EX_TEST "enable Date Time example compile test" OFF)
+option(ERROR_EX_TEST "enable Error Handling example compile test" OFF)
+option(DIAGNOSTIC_EX_TEST "enable Diagnostics example compile test" OFF)
+
 
 
 if(ENABLE_DEBUG_LOG)
