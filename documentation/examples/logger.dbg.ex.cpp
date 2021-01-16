@@ -1,6 +1,3 @@
-#ifndef _DEBUG
-#define _DEBUG
-#endif
 
 #include <logger.enh.h>
 #include <iostream>
