@@ -23,6 +23,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(EnhanceCPPLibrary VERSION 2.0.0.8)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 option(ENABLE_DEBUG_LOG "enable ENH_DEBUG_CONTROL and linking to logger compilation" OFF)
 option(ENABLE_UNIT_TESTS "enable unit testing" OFF)
@@ -50,11 +52,31 @@ endif()
 target_include_directories(EnhanceCPPLibrary INTERFACE src/Header/)
 
 if(ENABLE_EXAMPLE)
-	if(CONCURRENCY_EX_TEST)
+	if(CONCURRENCY_EX_TEST) # Concurrency Example
 		message( STATUS "add concurrency example")
+		
+		# QueuedHandler example
 		add_executable(ConcurrencyExample documentation/examples/QueuedHandler.ex.cpp)
 		target_include_directories(ConcurrencyExample PUBLIC src/Header/)
+		
 	endif()
 	
-		
+	if(DIAGNOSTIC_EX_TEST)
+		if(ENABLE_DEBUG_LOG)
+			message( STATUS "add diagnostic example")
+			
+			# Debug logging with logging explicitely unset example
+			add_executable(NDebugLoggerExample documentation/examples/logger.ndbg.ex.cpp)
+			target_include_directories(NDebugLoggerExample PUBLIC src/Header/)
+			target_link_libraries(NDebugLoggerExample PUBLIC EnhanceCPPLibrary)
+			
+			# Debug logging example
+			add_executable(DebugLoggerExample documentation/examples/logger.dbg.ex.cpp)
+			target_include_directories(DebugLoggerExample PUBLIC src/Header/)
+			target_link_libraries(DebugLoggerExample PUBLIC EnhanceCPPLibrary)
+		else()
+			message( FATAL_ERROR "cannot compile diagnostic example without ENABLE_DEBUG_LOG")
+		endif()
+	endif()
+	
 endif()
