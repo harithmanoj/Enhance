@@ -39,15 +39,19 @@ option(DIAGNOSTIC_EX_TEST "enable Diagnostics example compile test" OFF)
 
 
 if(ENABLE_DEBUG_LOG)
-	add_library(EnhanceCPPLibrary INTERFACE)
-else()
+	message( STATUS "add header + logger.cpp")
 	add_library(EnhanceCPPLibrary src/logger.cpp)
+else()
+	message( STATUS "add header only library")
+	add_library(EnhanceCPPLibrary INTERFACE)
 endif()
 
 target_include_directories(EnhanceCPPLibrary INTERFACE src/Header/)
 
 if(ENABLE_EXAMPLE)
 	if(CONCURRENCY_EX_TEST)
+		message( STATUS "add concurrency example")
 		add_executable(ConcurrencyExample documentation/examples/QueuedHandler.ex.cpp)
+		target_include_directories(ConcurrencyExample PUBLIC src/Header/)
 	endif()
 endif()
