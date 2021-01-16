@@ -19,3 +19,10 @@
 #	See the License for the specific language governing permissions and
 #	limitations under the License.
 #
+cmake_minimum_required(VERSION 3.10)
+
+project(EnhanceCPPLibrary VERSION 2.0.0.8)
+
+add_library(EnhanceCPPLibrary INTERFACE)
+
+target_include_directories(EnhanceCPPLibrary INTERFACE src/Header/)
