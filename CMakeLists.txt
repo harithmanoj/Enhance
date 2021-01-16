@@ -142,6 +142,26 @@ if(ENABLE_UNIT_TESTS)
 		target_include_directories(ConfinedValueUnitTest PUBLIC src/Header/)
 	endif()
 	
+	if(ERROR_TRACKER_UNIT_TEST)
+		add_executable(ErrorTrackerUnitTest auto-test/Error.test.cpp)
+		target_include_directories(ErrorTrackerUnitTest PUBLIC src/Header/)
+	endif()
+	
+	if(GENERIC_UNIT_TEST)
+		add_executable(GenericUnitTest auto-test/General.test.cpp)
+		target_include_directories(GenericUnitTest PUBLIC src/Header/)
+	endif()
+	
+	if(QUEUED_HANDLER_UNIT_TEST)
+		add_executable(QueuedHandlerUnitTest auto-test/QueuedHandler.test.cpp)
+		target_include_directories(QueuedHandlerUnitTest PUBLIC src/Header/)
+	endif()
+	
+	if(TIMER_UNIT_TEST)
+		add_executable(TimerUnitTest auto-test/Timer.test.cpp)
+		target_include_directories(TimerUnitTest PUBLIC src/Header/)
+	endif()
+	
 	enable_testing()
 	
 	function(unit_test target)
@@ -152,4 +172,21 @@ if(ENABLE_UNIT_TESTS)
 	if(CONFINED_UNIT_TEST)
 		unit_test(ConfinedValueUnitTest)
 	endif()
+	
+	if(ERROR_TRACKER_UNIT_TEST)
+		unit_test(ErrorTrackerUnitTest)
+	endif()
+	
+	if(GENERIC_UNIT_TEST)
+		unit_test(GenericUnitTest)
+	endif()
+	
+	if(QUEUED_HANDLER_UNIT_TEST)
+		unit_test(QueuedHandlerUnitTest)
+	endif()
+	
+	if(TIMER_UNIT_TEST)
+		unit_test(TimerUnitTest)
+	endif()
+	
 endif()
