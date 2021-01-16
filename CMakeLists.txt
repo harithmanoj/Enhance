@@ -23,6 +23,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(EnhanceCPPLibrary VERSION 2.0.0.8)
 
-add_library(EnhanceCPPLibrary INTERFACE)
 
-target_include_directories(EnhanceCPPLibrary INTERFACE src/Header/)
+option(ENABLE_DEBUG_LOG "enable ENH_DEBUG_CONTROL and linking to logger compilation" ON)
+option(ENABLE_UNIT_TESTS "enable unit testing" ON)
+option(ENABLE_EXAMPLE "enable example compile test" ON)
+
