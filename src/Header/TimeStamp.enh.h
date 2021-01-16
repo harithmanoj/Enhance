@@ -55,7 +55,7 @@ namespace enh
 
 		<h3> Examples </h3>
 
-		\include{lineno} time_stamp_ex.cpp
+		\include{lineno} TimeStamp.ex.cpp
 	*/
 	class TimeStamp
 	{
@@ -101,8 +101,7 @@ namespace enh
 			time_t timeStamp /**< : <i>in</i> : The time to set.*/
 		)
 		{
-			tm tm_str;
-			enh::localTime(&tm_str, &timeStamp);
+			tm tm_str = enh::localTime( &timeStamp);
 			if (tm_str.tm_sec <= 59)
 				setTime(tm_str.tm_sec, tm_str.tm_min, tm_str.tm_hour);
 			else

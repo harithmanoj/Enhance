@@ -64,11 +64,11 @@
 	
 	Debug active :
 
-	\include{lineno} logger_dbg_ex.cpp
+	\include{lineno} logger.dbg.ex.cpp
 
 	Debug not active :
 
-	\include{lineno} logger_ndbg_ex.cpp
+	\include{lineno} logger.ndbg.ex.cpp
 
 
 ******************************************************************************/
@@ -107,11 +107,6 @@
 #	endif // _DEBUG
 
 
-#	if defined(ENH_DEBUG_CONTROL) && !defined(IGNORE_ENHANCE_DIAGNOSTICS)
-
-#		define ERROR_TRACKER_LOG
-
-#	endif // defined(ENH_DEBUG_CONTROL) && !defined(IGNORE_ENHANCE_DIAGNOSTICS)
 
 #	if  defined(ENH_DEBUG_CONTROL)
 /**

@@ -1,10 +1,12 @@
-
 name: UnitTest
-
 
 on:
   pull_request:
     branches: 
+      - master
+      - develop
+  push:
+    branches:
       - master
       - develop
 
@@ -21,7 +23,7 @@ jobs:
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
-      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" General.test.cpp
+      run: cl /EHsc /std:c++17 /I "..\src\Header" General.test.cpp
       
     - name: Run Test Program
       run: auto-test/General.test.exe
@@ -38,7 +40,7 @@ jobs:
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
-      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" Confined.test.cpp
+      run: cl /EHsc /std:c++17 /I "..\src\Header" Confined.test.cpp
       
     - name: Run Test Program
       run: auto-test/Confined.test.exe
@@ -55,7 +57,7 @@ jobs:
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
-      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" Error.test.cpp
+      run: cl /EHsc /std:c++17 /I "..\src\Header" Error.test.cpp
       
     - name: Run Test Program
       run: auto-test/Error.test.exe
@@ -73,12 +75,12 @@ jobs:
     
     - name: compile Timer Test Program
       working-directory: ./auto-test
-      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" Timer.test.cpp
+      run: cl /EHsc /std:c++17 /I "..\src\Header" Timer.test.cpp
       
     - name: Run Test Program
       run: auto-test/Timer.test.exe
 
-  QProcTest:
+  QueuedHandlerTest:
     runs-on: windows-latest
    
     steps:
@@ -88,9 +90,9 @@ jobs:
     - name: Enable Developer Command Prompt
       uses: ilammy/msvc-dev-cmd@v1.5.0
     
-    - name: compile QProc Test Program
+    - name: compile QueuedHandler Test Program
       working-directory: ./auto-test
-      run: cl.exe /EHsc /std:c++17 /I "..\src\Header" QProc.test.cpp
+      run: cl /EHsc /std:c++17 /I "..\src\Header" QueuedHandler.test.cpp
       
     - name: Run Test Program
-      run: auto-test/QProc.test.exe
+      run: auto-test/QueuedHandler.test.exe

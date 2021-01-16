@@ -1,5 +1,5 @@
 /** ***************************************************************************
-	\file QProc.test.cpp
+	\file QueuedHandler.test.cpp
 
 	\brief The file to test parts of module QProc
 
@@ -114,6 +114,45 @@ namespace testCase
 
 		ASSERT_TEST(t == exp, "Restart queue failed");
 	}
+
+	bool changeHandlerTest()
+	{
+		unsigned t = 0;
+		enh::QueuedHandler<unsigned> tQ;
+		tQ.registerHandlerFunction(
+			[&t](unsigned a) {
+				t += a;
+				return enh::Tristate::GOOD;
+			}
+		);
+
+		tQ.startDispatcherExecution();
+		unsigned exp = 0;
+
+		for (unsigned i = 0; i < 10; ++i)
+		{
+			exp += i;
+			tQ.postMessage(i);
+		}
+
+		tQ.joinAfterDispatcherPause();
+
+
+		auto result = tQ.registerHandlerFunction(
+			[&t](unsigned a) {
+				t += a + 3;
+				return enh::Tristate::GOOD;
+			}
+		);
+
+		tQ.startDispatcherExecution();
+
+		ASSERT_CONTINUE(!!result, "Dispatcher pause failed");
+
+		tQ.joinAfterQueueEmpty(std::chrono::milliseconds(1));
+
+		ASSERT_TEST(t > exp, "Handler reset failed");
+	}
 }
 
 int main()
@@ -121,5 +160,6 @@ int main()
 	REGISTER_TEST(testCase::basicTest);
 	REGISTER_TEST(testCase::forceStopTest);
 	REGISTER_TEST(testCase::restartTest);
+	REGISTER_TEST(testCase::changeHandlerTest);
 	return call_main();
 }

@@ -16,9 +16,7 @@ int main()
 
 		std::cout << "wait time : 2s, measured : " << ms.count() << "ms ; error : " << ms.count() - 2000 << "\n";
 	}
-	LOG_LINE;
 	test.stop();
-	LOG_LINE;
 	enh::millis<10> test2;
 	for (int i = 0; i < 10; ++i)
 	{

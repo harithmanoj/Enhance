@@ -37,7 +37,7 @@ namespace enh
 
 		<h3> Examples </h3>
 
-		\include{lineno} DateTime_ex.cpp
+		\include{lineno} DateTime.ex.cpp
 	*/
 	class DateTime : public Date, public TimeStamp
 	{
@@ -76,8 +76,7 @@ namespace enh
 							 contains the date and time.*/
 		)
 		{
-			tm temp;
-			localTime(&temp, &stamp);
+			tm temp = localTime(&stamp);
 			if (temp.tm_sec <= 59)
 				set(temp.tm_mday, temp.tm_mon, temp.tm_year + 1900, temp.tm_wday,
 					temp.tm_yday, temp.tm_sec, temp.tm_min, temp.tm_hour);

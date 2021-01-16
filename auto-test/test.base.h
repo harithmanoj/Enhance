@@ -68,6 +68,11 @@ inline int call_main()
 #define ASSERT_TEST(condition, fail_message)						return testBase::assertTest(condition, \
 																	#condition, fail_message, __func__, __FILE__ )
 
+#define ASSERT_TEST_CLEANUP(condition, fail_message, cleanup)		bool _test_macro_ret_ = testBase::assertTest(condition, \
+																	#condition, fail_message, __func__, __FILE__ );\
+																	cleanup\
+																	return _test_macro_ret_
+
 #define ASSERT_CONTINUE(condition, fail_message)					if(!(condition))\
 																	{\
 																		std::cerr << "FAIL : " << __FILE__ \
@@ -75,7 +80,8 @@ inline int call_main()
 																			<< #condition << " : " << fail_message << "\n";\
 																		return false;\
 																	}
-												
+
+
 #define ASSERT_LOG_CONTINUE(condition, fail_message, pass_message)	if(!(condition))\
 																	{\
 																		std::cerr << "FAIL : " << __FILE__ \

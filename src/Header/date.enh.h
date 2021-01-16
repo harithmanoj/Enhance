@@ -43,21 +43,22 @@ namespace enh
 			\brief wrapper over unsafe localtime function.
 
 			Calls localtime_s if using MSVC, std::localtime else.
+
+			<h3> Return </h3>
+			Returns structure filled with current time and date.
 		*/
-	inline void localTime(
-		tm *& str_tm /**< : <i>in</i> : The pointer to tm structure to 
-				   assign time values.*/,
+	inline tm localTime(
 		time_t *arith_tm /**< : <i>in</i> : The pointer to tm structure to 
 				   assign time values.*/
 	)
 	{
-		 
+		tm str_tm;
 #	ifdef _MSC_VER
-		localtime_s(str_tm, arith_tm);
+		localtime_s(&str_tm, arith_tm);
 #	else
-		*str_tm = *std::localtime(arith_tm);
+		str_tm = *std::localtime(arith_tm);
 #	endif
-
+		return str_tm;
 	}
 
 	/**
@@ -71,18 +72,18 @@ namespace enh
 		switch (mnth)
 		{
 
-		case 0: [[fallthrough]]
-		case 2: [[fallthrough]]
-		case 4: [[fallthrough]]
-		case 6: [[fallthrough]]
-		case 7: [[fallthrough]]
-		case 9: [[fallthrough]]
+		case 0: [[fallthrough]];
+		case 2: [[fallthrough]];
+		case 4: [[fallthrough]];
+		case 6: [[fallthrough]];
+		case 7: [[fallthrough]];
+		case 9: [[fallthrough]];
 		case 11:
 			return 31;
 
-		case 3: [[fallthrough]]
-		case 5: [[fallthrough]]
-		case 8: [[fallthrough]]
+		case 3: [[fallthrough]];
+		case 5: [[fallthrough]];
+		case 8: [[fallthrough]];
 		case 10:
 			return 30;
 
@@ -237,7 +238,13 @@ namespace enh
 		};
 	}
 
+	/**
+		\brief Class for date manipulation and representation.
 
+		<h3>Example</h3>
+
+		\include{lineno} Date.ex.cpp
+	*/
 	class Date
 	{
 		std::int32_t _year; 
@@ -285,8 +292,7 @@ namespace enh
 							 contains the date.*/
 		)
 		{
-			tm temp;
-			enh::localTime(&temp, &timeStamp);
+			tm temp = enh::localTime(&timeStamp);
 			setDate(temp.tm_mday, temp.tm_mon, std::int64_t(temp.tm_year) 
 				+ 1900, temp.tm_wday, temp.tm_yday);
 		}

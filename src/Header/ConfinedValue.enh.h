@@ -44,7 +44,7 @@ namespace enh
 
 		<h3>Example</h3>
 
-		\include{lineno} confined_base_ex.cpp
+		\include{lineno} ConfinedValue.ex.cpp
 
 	*/
 	template<class Integral>
