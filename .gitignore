@@ -16,4 +16,7 @@ Enhance.sln
 *.exe
 *.obj
 
+#CMake
+/build
+
 
