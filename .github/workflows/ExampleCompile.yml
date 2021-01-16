@@ -23,7 +23,7 @@ jobs:
 
     - name: generate QueuedHandler example
       working-directory: ./build
-      run: cmake -S .. -B . -DENABLE_EXAMPLE -DCONCURRENCY_EX_TEST
+      run: cmake -S .. -B . -DENABLE_EXAMPLE=ON -DCONCURRENCY_EX_TEST=ON
 
     - name: compile QueuedHandler example
       working-directory: ./build
@@ -35,17 +35,14 @@ jobs:
     steps:
     
     - uses: actions/checkout@v2
+    
+    - name: generate GenericUtility example
+      working-directory: ./build
+      run: cmake -S .. -B . -DENABLE_EXAMPLE=ON -DGENERIC_EX_TEST=ON
 
-    - name: Enable Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1.5.0
-    
-    - name: compile ConfinedValue example
-      working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  ConfinedValue.ex.cpp
-    
-    - name: compile ConfinedValue example
-      working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  VersionInfo.ex.cpp
+    - name: compile GenericUtility example
+      working-directory: ./build
+      run: cmake --build .
     
   DateTimeExamples:
     runs-on: windows-latest
@@ -53,29 +50,14 @@ jobs:
     steps:
     
     - uses: actions/checkout@v2
-
-    - name: Enable Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1.5.0
     
-    - name: compile Counter example
-      working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  Counter.ex.cpp
-    
-    - name: compile Date example
-      working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  Date.ex.cpp
+    - name: generate Date Time  example
+      working-directory: ./build
+      run: cmake -S .. -B . -DENABLE_EXAMPLE=ON -DDATE_TIME_EX_TEST=ON
 
-    - name: compile DateTime example
-      working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  DateTime.ex.cpp
-
-    - name: compile TimeStamp example
-      working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  TimeStamp.ex.cpp
-
-    - name: compile Timer example
-      working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  Timer.ex.cpp
+    - name: compile Date Time  example
+      working-directory: ./build
+      run: cmake --build .
  
 
   ErrorHandlerExamples:
@@ -84,17 +66,14 @@ jobs:
     steps:
     
     - uses: actions/checkout@v2
+    
+    - name: generate Error Handler  example
+      working-directory: ./build
+      run: cmake -S .. -B . -DENABLE_EXAMPLE=ON -DERROR_EX_TEST=ON
 
-    - name: Enable Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1.5.0
-    
-    - name: compile ErrorTracker example
-      working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  ErrorTracker.ex.cpp ..\..\src\logger.cpp /DENH_DEBUG_CONTROL
-    
-    - name: compile Tristate example
-      working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  Tristate.ex.cpp
+    - name: compile Error Handler  example
+      working-directory: ./build
+      run: cmake --build .
 
 
   DiagnosticExamples:
@@ -103,14 +82,11 @@ jobs:
     steps:
     
     - uses: actions/checkout@v2
-
-    - name: Enable Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1.5.0
     
-    - name: compile Debug Logger example
-      working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  logger.dbg.ex.cpp ..\..\src\logger.cpp /DENH_DEBUG_CONTROL
+    - name: generate Diagnostic (logging)  example
+      working-directory: ./build
+      run: cmake -S .. -B . -DENABLE_EXAMPLE=ON -DDIAGNOSTIC_EX_TEST=ON
 
-    - name: compile Not Debug Logger example
-      working-directory: ./documentation/examples
-      run: cl /EHsc /std:c++17 /I "..\..\src\Header"  logger.ndbg.ex.cpp ..\..\src\logger.cpp /DENH_DEBUG_CONTROL
+    - name: compile Diagnostic (logging)  example
+      working-directory: ./build
+      run: cmake --build .

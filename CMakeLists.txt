@@ -184,7 +184,7 @@ enable_testing()
 		target_include_directories(${target} PUBLIC src/Header/)
 		
 		add_test(NAME ${target}UnitTest COMMAND ${target})
-		set_tests_properties( ${target}UnitTest PROPERTIES FAIL_REGULAR_EXPRESSION "*FAIL*")
+		set_tests_properties( ${target}UnitTest PROPERTIES FAIL_REGULAR_EXPRESSION "FAIL*")
 	endfunction(unitTest)
 
 	if(CONFINED_UNIT_TEST)
