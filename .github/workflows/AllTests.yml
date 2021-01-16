@@ -1,0 +1,52 @@
+name: ExampleCompile
+
+on:
+  pull_request:
+    branches: 
+      - master
+      - develop
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  ExampleCompileTest:
+    runs-on: windows-latest
+    
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: mkdir build
+      run: mkdir build
+
+    - name: generate All examples
+      working-directory: ./build
+      run: cmake -S .. -B . -DALL_EXAMPLE=ON
+
+    - name: compile all example
+      working-directory: ./build
+      run: cmake --build .
+      
+  UnitTests:
+    runs-on: windows-latest
+
+    steps:
+    
+    - uses: actions/checkout@v2
+
+    - name: mkdir build
+      run: mkdir build
+
+    - name: generate All Unit Test
+      working-directory: ./build
+      run: cmake -S .. -B . -DALL_UNIT_TESTS=ON
+
+    - name: compile All unit tests
+      working-directory: ./build
+      run: cmake --build .
+      
+    - name: run tests
+      working-directory: ./build
+      run: ctest -C Debug -VV
