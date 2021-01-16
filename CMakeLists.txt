@@ -26,7 +26,8 @@ project(EnhanceCPPLibrary VERSION 2.0.0.8)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-option(ENABLE_DEBUG_LOG "enable ENH_DEBUG_CONTROL and linking to logger compilation" OFF)
+option(ENABLE_DEBUG_LOG 
+		"enable ENH_DEBUG_CONTROL and linking to logger compilation" OFF)
 option(ENABLE_UNIT_TESTS "enable unit testing" OFF)
 option(ENABLE_EXAMPLE "enable example compile test" OFF)
 
@@ -45,8 +46,12 @@ option(GENERIC_UNIT_TEST "enable Generic Utility unit test" OFF)
 option(QUEUED_HANDLER_UNIT_TEST "enable QueuedHandler unit test" OFF)
 option(TIMER_UNIT_TEST "enable Timer unit test" OFF)
 
-option(ALL_BUILD "build all" OFF)
+# configure model options
+option(ALL_BUILD "build all" OFF)   # build with ENH_DEBUG_CONTROL enabled 
+									# and build all examples, execute all tests
 
+set(TEST_EXAMPLE "NULL" CACHE STRING "build and test example")
+set(UNIT_TEST "NULL" CACHE STRING "build and test unit tests")
 
 if(ALL_BUILD)
 	
