@@ -98,6 +98,18 @@ if(ENABLE_EXAMPLE)
 		target_include_directories(TimerExample PUBLIC src/Header/)
 	endif()
 	
+	if(ERROR_EX_TEST)
+		message( STATUS "add error module examples")
+		
+		# ErrorTracker example
+		add_executable(ErrorTrackerExample documentation/examples/ErrorTracker.ex.cpp)
+		target_include_directories(ErrorTrackerExample PUBLIC src/Header/)
+		
+		# Tristate example
+		add_executable(TristateExample documentation/examples/Tristate.ex.cpp)
+		target_include_directories(TristateExample PUBLIC src/Header/)
+	endif()
+	
 	if(DIAGNOSTIC_EX_TEST)
 		if(ENABLE_DEBUG_LOG)
 			message( STATUS "add diagnostic example")
