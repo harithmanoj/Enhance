@@ -101,7 +101,7 @@ target_include_directories(EnhanceCPPLibrary INTERFACE src/Header/)
 if(ENABLE_EXAMPLE)
 
 	function(exampleTest target)
-		message(STATUS "add ${target} example")
+		message( STATUS "Individual add ${target} example")
 		
 		add_executable(${target} documentation/examples/main.ex.cpp)
 		target_compile_definitions(${target} PUBLIC ${target})
