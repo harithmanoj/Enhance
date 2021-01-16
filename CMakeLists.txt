@@ -28,3 +28,14 @@ option(ENABLE_DEBUG_LOG "enable ENH_DEBUG_CONTROL and linking to logger compilat
 option(ENABLE_UNIT_TESTS "enable unit testing" ON)
 option(ENABLE_EXAMPLE "enable example compile test" ON)
 
+
+#	individual example compile test options
+
+
+if(ENABLE_DEBUG_LOG)
+	add_library(EnhanceCPPLibrary INTERFACE)
+else()
+	add_library(EnhanceCPPLibrary src/logger.cpp)
+endif()
+
+target_include_directories(EnhanceCPPLibrary INTERFACE src/Header/)
