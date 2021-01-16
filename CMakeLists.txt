@@ -45,3 +45,9 @@ else()
 endif()
 
 target_include_directories(EnhanceCPPLibrary INTERFACE src/Header/)
+
+if(ENABLE_EXAMPLE)
+	if(CONCURRENCY_EX_TEST)
+		add_executable(ConcurrencyExample documentation/examples/QueuedHandler.ex.cpp)
+	endif()
+endif()
