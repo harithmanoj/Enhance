@@ -45,6 +45,31 @@ option(GENERIC_UNIT_TEST "enable Generic Utility unit test" OFF)
 option(QUEUED_HANDLER_UNIT_TEST "enable QueuedHandler unit test" OFF)
 option(TIMER_UNIT_TEST "enable Timer unit test" OFF)
 
+option(ALL_BUILD "build all" OFF)
+
+
+if(ALL_BUILD)
+	
+	set(ENABLE_DEBUG_LOG "enable ENH_DEBUG_CONTROL and linking to logger compilation" ON)
+	set(ENABLE_UNIT_TESTS "enable unit testing" ON)
+	set(ENABLE_EXAMPLE "enable example compile test" ON)
+
+
+	# individual example compile test sets
+	set(CONCURRENCY_EX_TEST "enable concurrency example compile test" ON)
+	set(GENERIC_EX_TEST "enable generic utility example compile test" ON)
+	set(DATE_TIME_EX_TEST "enable Date Time example compile test" ON)
+	set(ERROR_EX_TEST "enable Error Handling example compile test" ON)
+	set(DIAGNOSTIC_EX_TEST "enable Diagnostics example compile test" ON)
+
+	# individual unit test compile sets
+	set(CONFINED_UNIT_TEST "enable ConfinedValue unit test" ON)
+	set(ERROR_TRACKER_UNIT_TEST "enable ErrorTracker unit test" ON)
+	set(GENERIC_UNIT_TEST "enable Generic Utility unit test" ON)
+	set(QUEUED_HANDLER_UNIT_TEST "enable QueuedHandler unit test" ON)
+	set(TIMER_UNIT_TEST "enable Timer unit test" ON)
+endif()
+
 if(ENABLE_DEBUG_LOG)
 	message( STATUS "add header + logger.cpp")
 	add_library(EnhanceCPPLibrary src/logger.cpp)
@@ -138,26 +163,31 @@ endif()
 if(ENABLE_UNIT_TESTS)
 
 	if(CONFINED_UNIT_TEST)
+		message( STATUS "CONFINED_UNIT_TEST executable")
 		add_executable(ConfinedValueUnitTest auto-test/Confined.test.cpp)
 		target_include_directories(ConfinedValueUnitTest PUBLIC src/Header/)
 	endif()
 	
 	if(ERROR_TRACKER_UNIT_TEST)
+		message(STATUS "ERROR_TRACKER_UNIT_TEST executable")
 		add_executable(ErrorTrackerUnitTest auto-test/Error.test.cpp)
 		target_include_directories(ErrorTrackerUnitTest PUBLIC src/Header/)
 	endif()
 	
 	if(GENERIC_UNIT_TEST)
+		message(STATUS "GENERIC_UNIT_TEST executable")
 		add_executable(GenericUnitTest auto-test/General.test.cpp)
 		target_include_directories(GenericUnitTest PUBLIC src/Header/)
 	endif()
 	
 	if(QUEUED_HANDLER_UNIT_TEST)
+		message(STATUS "QUEUED_HANDLER_UNIT_TEST executable")
 		add_executable(QueuedHandlerUnitTest auto-test/QueuedHandler.test.cpp)
 		target_include_directories(QueuedHandlerUnitTest PUBLIC src/Header/)
 	endif()
 	
 	if(TIMER_UNIT_TEST)
+		message(STATUS "TIMER_UNIT_TEST executable")
 		add_executable(TimerUnitTest auto-test/Timer.test.cpp)
 		target_include_directories(TimerUnitTest PUBLIC src/Header/)
 	endif()
