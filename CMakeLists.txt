@@ -50,6 +50,7 @@ option(TIMER_UNIT_TEST "enable Timer unit test" OFF)
 option(ALL_BUILD "build all" OFF)   # build with ENH_DEBUG_CONTROL enabled 
 									# and build all examples, execute all tests
 option(ALL_EXAMPLE "build all examples" OFF)
+option(ALL_UNIT_TEST "build all unit test" OFF)
 
 if(ALL_BUILD)
 	
@@ -65,6 +66,18 @@ if(ALL_BUILD)
 	set(DIAGNOSTIC_EX_TEST "enable Diagnostics example compile test" ON)
 
 
+	# individual unit test compile sets
+	set(CONFINED_UNIT_TEST "enable ConfinedValue unit test" ON)
+	set(ERROR_TRACKER_UNIT_TEST "enable ErrorTracker unit test" ON)
+	set(GENERIC_UNIT_TEST "enable Generic Utility unit test" ON)
+	set(QUEUED_HANDLER_UNIT_TEST "enable QueuedHandler unit test" ON)
+	set(TIMER_UNIT_TEST "enable Timer unit test" ON)
+endif()
+
+if(ALL_UNIT_TEST)
+	
+	set(ENABLE_UNIT_TESTS "enable unit testing" ON)
+	
 	# individual unit test compile sets
 	set(CONFINED_UNIT_TEST "enable ConfinedValue unit test" ON)
 	set(ERROR_TRACKER_UNIT_TEST "enable ErrorTracker unit test" ON)
@@ -101,7 +114,7 @@ target_include_directories(EnhanceCPPLibrary INTERFACE src/Header/)
 if(ENABLE_EXAMPLE)
 
 	function(exampleTest target)
-		message( STATUS "Individual add ${target} example")
+		message( STATUS "	Individual add ${target} example")
 		
 		add_executable(${target} documentation/examples/main.ex.cpp)
 		target_compile_definitions(${target} PUBLIC ${target})
@@ -162,62 +175,41 @@ endif()
 
 
 if(ENABLE_UNIT_TESTS)
+enable_testing()
+	function(unitTest target)
+		message( STATUS "	Individual Unit Test ${target}")
+		
+		add_executable(${target} auto-test/main.test.cpp)
+		target_compile_definitions(${target} PUBLIC ${target})
+		target_include_directories(${target} PUBLIC src/Header/)
+		
+		add_test(NAME ${target}UnitTest COMMAND ${target})
+		set_tests_properties( ${target}UnitTest PROPERTIES FAIL_REGULAR_EXPRESSION "*FAIL*")
+	endfunction(unitTest)
 
 	if(CONFINED_UNIT_TEST)
 		message( STATUS "CONFINED_UNIT_TEST executable")
-		add_executable(ConfinedValueUnitTest auto-test/Confined.test.cpp)
-		target_include_directories(ConfinedValueUnitTest PUBLIC src/Header/)
+		unitTest("ConfinedValueUnitTest")
 	endif()
 	
 	if(ERROR_TRACKER_UNIT_TEST)
 		message(STATUS "ERROR_TRACKER_UNIT_TEST executable")
-		add_executable(ErrorTrackerUnitTest auto-test/Error.test.cpp)
-		target_include_directories(ErrorTrackerUnitTest PUBLIC src/Header/)
+		unitTest("ErrorModuleUnitTest")
 	endif()
 	
 	if(GENERIC_UNIT_TEST)
 		message(STATUS "GENERIC_UNIT_TEST executable")
-		add_executable(GenericUnitTest auto-test/General.test.cpp)
-		target_include_directories(GenericUnitTest PUBLIC src/Header/)
+		unitTest("GenericModuleUnitTest")
 	endif()
 	
 	if(QUEUED_HANDLER_UNIT_TEST)
 		message(STATUS "QUEUED_HANDLER_UNIT_TEST executable")
-		add_executable(QueuedHandlerUnitTest auto-test/QueuedHandler.test.cpp)
-		target_include_directories(QueuedHandlerUnitTest PUBLIC src/Header/)
+		unitTest("QueuedHandlerUnitTest")
 	endif()
 	
 	if(TIMER_UNIT_TEST)
 		message(STATUS "TIMER_UNIT_TEST executable")
-		add_executable(TimerUnitTest auto-test/Timer.test.cpp)
-		target_include_directories(TimerUnitTest PUBLIC src/Header/)
-	endif()
-	
-	enable_testing()
-	
-	function(unit_test target)
-		add_test(NAME ${target}UnitTest COMMAND ${target})
-		set_tests_properties( ${target}UnitTest PROPERTIES FAIL_REGULAR_EXPRESSION "*FAIL*")
-	endfunction(unit_test)
-	
-	if(CONFINED_UNIT_TEST)
-		unit_test(ConfinedValueUnitTest)
-	endif()
-	
-	if(ERROR_TRACKER_UNIT_TEST)
-		unit_test(ErrorTrackerUnitTest)
-	endif()
-	
-	if(GENERIC_UNIT_TEST)
-		unit_test(GenericUnitTest)
-	endif()
-	
-	if(QUEUED_HANDLER_UNIT_TEST)
-		unit_test(QueuedHandlerUnitTest)
-	endif()
-	
-	if(TIMER_UNIT_TEST)
-		unit_test(TimerUnitTest)
+		unitTest("TimerUnitTest")
 	endif()
 	
 endif()
