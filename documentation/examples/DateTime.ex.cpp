@@ -6,16 +6,14 @@ int main()
 {
 	enh::DateTime dt[] = {
 		{}, {}, {}, {std::time(nullptr)}, {
-			22,6,2020,0,300,25,16,21
+			std::uint8_t(22),std::uint8_t(6),
+			std::int32_t(2020),std::uint8_t(0),
+			std::uint8_t(300),
+			std::uint8_t(25),std::uint8_t(16),
+			std::uint8_t(21)
 		}
 	};
 
-	dt[0].addHours(25);
-
-	dt[1].addDay(200);
-
-	dt[2].addDay(50);
-	dt[2].addMinutes(360);
 
 	for (auto i : dt)
 	{
