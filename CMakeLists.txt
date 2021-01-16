@@ -50,8 +50,6 @@ option(TIMER_UNIT_TEST "enable Timer unit test" OFF)
 option(ALL_BUILD "build all" OFF)   # build with ENH_DEBUG_CONTROL enabled 
 									# and build all examples, execute all tests
 
-set(TEST_EXAMPLE "NULL" CACHE STRING "build and test example")
-set(UNIT_TEST "NULL" CACHE STRING "build and test unit tests")
 
 if(ALL_BUILD)
 	
@@ -59,13 +57,6 @@ if(ALL_BUILD)
 	set(ENABLE_UNIT_TESTS "enable unit testing" ON)
 	set(ENABLE_EXAMPLE "enable example compile test" ON)
 
-
-	# individual example compile test sets
-	set(CONCURRENCY_EX_TEST "enable concurrency example compile test" ON)
-	set(GENERIC_EX_TEST "enable generic utility example compile test" ON)
-	set(DATE_TIME_EX_TEST "enable Date Time example compile test" ON)
-	set(ERROR_EX_TEST "enable Error Handling example compile test" ON)
-	set(DIAGNOSTIC_EX_TEST "enable Diagnostics example compile test" ON)
 
 	# individual unit test compile sets
 	set(CONFINED_UNIT_TEST "enable ConfinedValue unit test" ON)
@@ -88,82 +79,66 @@ target_include_directories(EnhanceCPPLibrary INTERFACE src/Header/)
 
 if(ENABLE_EXAMPLE)
 
+	function(exampleTest target)
+		message(STATUS "add ${target} example")
+		
+		add_executable(${target} documentation/examples/main.ex.cpp)
+		target_compile_definitions(${target} PUBLIC ${target})
+		target_include_directories(${target} PUBLIC src/Header/)
+		
+	endfunction(exampleTest)
+	
 	if(CONCURRENCY_EX_TEST) # Concurrency Example
-		message( STATUS "add concurrency example")
+		message( STATUS "add all concurrency example")
 		
-		# QueuedHandler example
-		add_executable(ConcurrencyExample documentation/examples/QueuedHandler.ex.cpp)
-		target_include_directories(ConcurrencyExample PUBLIC src/Header/)
-		
+		exampleTest("QueuedHandlerExample")
 	endif()
 	
 	if(GENERIC_EX_TEST)
 		message( STATUS "add generic utility example")
 		
-		# ConfinedValue example
-		add_executable(ConfinedValueExample documentation/examples/ConfinedValue.ex.cpp)
-		target_include_directories(ConfinedValueExample PUBLIC src/Header/)
-		
-		# VersionInfo example
-		add_executable(VersionInfoExample documentation/examples/VersionInfo.ex.cpp)
-		target_include_directories(VersionInfoExample PUBLIC src/Header/)
+		exampleTest("ConfinedValueExample")		
+		exampleTest("VersionInfoExample")
 	endif()
 	
 	if(DATE_TIME_EX_TEST)
 		message( STATUS "add date time module examples")
 		
-		# Counter example
-		add_executable(CounterExample documentation/examples/Counter.ex.cpp)
-		target_include_directories(CounterExample PUBLIC src/Header/)
-		
-		# Date example
-		add_executable(DateExample documentation/examples/Date.ex.cpp)
-		target_include_directories(DateExample PUBLIC src/Header/)
-		
-		# TimeStamp example
-		add_executable(TimeStampExample documentation/examples/TimeStamp.ex.cpp)
-		target_include_directories(TimeStampExample PUBLIC src/Header/)
-		
-		# DateTime example
-		add_executable(DateTimeExample documentation/examples/DateTime.ex.cpp)
-		target_include_directories(DateTimeExample PUBLIC src/Header/)
-		
-		# Timer example
-		add_executable(TimerExample documentation/examples/Timer.ex.cpp)
-		target_include_directories(TimerExample PUBLIC src/Header/)
+		exampleTest("CounterExample")		
+		exampleTest("DateExample")		
+		exampleTest("TimeStampExample")		
+		exampleTest("DateTimeExample")		
+		exampleTest("TimerExample")
 	endif()
 	
 	if(ERROR_EX_TEST)
-		message( STATUS "add error module examples")
+		if(ENABLE_DEBUG_LOG)
+			message( STATUS "add error module examples")
+			
+			exampleTest("ErrorTrackerExample")
+			target_link_libraries("ErrorTrackerExample" PUBLIC EnhanceCPPLibrary)
+		else()
+			message( FATAL_ERROR "cannot compile diagnostic example without ENABLE_DEBUG_LOG")
+		endif()
 		
-		# ErrorTracker example
-		add_executable(ErrorTrackerExample documentation/examples/ErrorTracker.ex.cpp)
-		target_include_directories(ErrorTrackerExample PUBLIC src/Header/)
-		
-		# Tristate example
-		add_executable(TristateExample documentation/examples/Tristate.ex.cpp)
-		target_include_directories(TristateExample PUBLIC src/Header/)
+		exampleTest("TristateExample")
 	endif()
 	
 	if(DIAGNOSTIC_EX_TEST)
 		if(ENABLE_DEBUG_LOG)
 			message( STATUS "add diagnostic example")
 			
-			# Debug logging with logging explicitely unset example
-			add_executable(NDebugLoggerExample documentation/examples/logger.ndbg.ex.cpp)
-			target_include_directories(NDebugLoggerExample PUBLIC src/Header/)
-			target_link_libraries(NDebugLoggerExample PUBLIC EnhanceCPPLibrary)
-			
-			# Debug logging example
-			add_executable(DebugLoggerExample documentation/examples/logger.dbg.ex.cpp)
-			target_include_directories(DebugLoggerExample PUBLIC src/Header/)
-			target_link_libraries(DebugLoggerExample PUBLIC EnhanceCPPLibrary)
+			exampleTest("LoggerNDebugExample")
+			target_link_libraries("LoggerNDebugExample" PUBLIC EnhanceCPPLibrary)
+			exampleTest("LoggerDebugExample")
+			target_link_libraries("LoggerDebugExample" PUBLIC EnhanceCPPLibrary)
 		else()
 			message( FATAL_ERROR "cannot compile diagnostic example without ENABLE_DEBUG_LOG")
 		endif()
 	endif()
 	
 endif()
+
 
 if(ENABLE_UNIT_TESTS)
 
