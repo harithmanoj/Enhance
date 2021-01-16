@@ -3,7 +3,10 @@
 
 int main()
 {
-	enh::TimeStamp time_array[] = { {}, {std::time(nullptr)}, {25,36,12} };
+	enh::TimeStamp time_array[] = { {}, {std::time(nullptr)}, {
+		std::uint8_t(25),
+		std::uint8_t(36),
+		std::uint8_t(12)} };
 
 	time_array[1].addHours(230);
 	time_array[1].addHours(230);
