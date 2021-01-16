@@ -142,6 +142,14 @@ if(ENABLE_UNIT_TESTS)
 		target_include_directories(ConfinedValueUnitTest PUBLIC src/Header/)
 	endif()
 	
+	enable_testing()
 	
-
+	function(unit_test target)
+		add_test(NAME ${target}UnitTest COMMAND ${target})
+		set_tests_properties( ${target}UnitTest PROPERTIES FAIL_REGULAR_EXPRESSION "*FAIL*")
+	endfunction(unit_test)
+	
+	if(CONFINED_UNIT_TEST)
+		unit_test(ConfinedValueUnitTest)
+	endif()
 endif()
