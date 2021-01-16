@@ -52,6 +52,7 @@ endif()
 target_include_directories(EnhanceCPPLibrary INTERFACE src/Header/)
 
 if(ENABLE_EXAMPLE)
+
 	if(CONCURRENCY_EX_TEST) # Concurrency Example
 		message( STATUS "add concurrency example")
 		
@@ -59,6 +60,42 @@ if(ENABLE_EXAMPLE)
 		add_executable(ConcurrencyExample documentation/examples/QueuedHandler.ex.cpp)
 		target_include_directories(ConcurrencyExample PUBLIC src/Header/)
 		
+	endif()
+	
+	if(GENERIC_EX_TEST)
+		message( STATUS "add generic utility example")
+		
+		# ConfinedValue example
+		add_executable(ConfinedValueExample documentation/examples/ConfinedValue.ex.cpp)
+		target_include_directories(ConfinedValueExample PUBLIC src/Header/)
+		
+		# VersionInfo example
+		add_executable(VersionInfoExample documentation/examples/VersionInfo.ex.cpp)
+		target_include_directories(VersionInfoExample PUBLIC src/Header/)
+	endif()
+	
+	if(DATE_TIME_EX_TEST)
+		message( STATUS "add date time module examples")
+		
+		# Counter example
+		add_executable(CounterExample documentation/examples/Counter.ex.cpp)
+		target_include_directories(CounterExample PUBLIC src/Header/)
+		
+		# Date example
+		add_executable(DateExample documentation/examples/Date.ex.cpp)
+		target_include_directories(DateExample PUBLIC src/Header/)
+		
+		# TimeStamp example
+		add_executable(TimeStampExample documentation/examples/TimeStamp.ex.cpp)
+		target_include_directories(TimeStampExample PUBLIC src/Header/)
+		
+		# DateTime example
+		add_executable(DateTimeExample documentation/examples/DateTime.ex.cpp)
+		target_include_directories(DateTimeExample PUBLIC src/Header/)
+		
+		# Timer example
+		add_executable(TimerExample documentation/examples/Timer.ex.cpp)
+		target_include_directories(TimerExample PUBLIC src/Header/)
 	endif()
 	
 	if(DIAGNOSTIC_EX_TEST)
