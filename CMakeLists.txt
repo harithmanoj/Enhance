@@ -100,16 +100,16 @@ if(ALL_EXAMPLE)
 
 endif()
 
+add_library(EnhanceCPPLibrary src/logger.cpp)
+	
 if(ENABLE_DEBUG_LOG)
 	message( STATUS "add header + logger.cpp")
-	add_library(EnhanceCPPLibrary src/logger.cpp)
 	target_compile_definitions(EnhanceCPPLibrary PUBLIC ENH_DEBUG_CONTROL)
 else()
 	message( STATUS "add header only library")
-	add_library(EnhanceCPPLibrary INTERFACE)
 endif()
 
-target_include_directories(EnhanceCPPLibrary INTERFACE src/Header/)
+target_include_directories(EnhanceCPPLibrary INTERFACE ./src/Header/)
 
 if(ENABLE_EXAMPLE)
 
