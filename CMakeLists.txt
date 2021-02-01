@@ -50,7 +50,7 @@ option(TIMER_UNIT_TEST "enable Timer unit test" OFF)
 option(ALL_BUILD "build all" OFF)   # build with ENH_DEBUG_CONTROL enabled 
 									# and build all examples, execute all tests
 option(ALL_EXAMPLE "build all examples" OFF)
-option(ALL_UNIT_TEST "build all unit test" OFF)
+option(ALL_UNIT_TESTS "build all unit test" OFF)
 option(FORCE_DISABLE_LOGGING "force disable logging regardless of build modes" OFF)
 
 if(ALL_BUILD)
@@ -75,7 +75,7 @@ if(ALL_BUILD)
 	set(TIMER_UNIT_TEST "enable Timer unit test" ON)
 endif()
 
-if(ALL_UNIT_TEST)
+if(ALL_UNIT_TESTS)
 	
 	set(ENABLE_UNIT_TESTS "enable unit testing" ON)
 	
@@ -111,7 +111,7 @@ endif()
 if(ALL_EXAMPLE)
 	message(STATUS "All example build enabled: logging enabled, example compile test")
 endif()
-if(ALL_UNIT_TEST)
+if(ALL_UNIT_TESTS)
 	message(STATUS "All Unit test build enabled: unit test definitions")
 endif()
 
