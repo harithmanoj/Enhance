@@ -26,7 +26,7 @@
 
 #include "header/logger.enh.h"
 
-#if  defined(ENH_DEBUG_CONTROL) && (ENH_OPTIMISATION < 5)
+#if  defined(ENH_DEBUG_CONTROL)
 
 #	include <map>
 #	include <fstream>

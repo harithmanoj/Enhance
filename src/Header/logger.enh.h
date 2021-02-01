@@ -90,21 +90,15 @@
 #			define ENH_DEBUG_CONTROL				true
 #		endif	// !ENH_DEBUG_CONTROL
 
-#		ifdef ENH_CLEAR_OP_
-
-#			ifdef ENH_DEBUG_CONTROL 
-#				undef ENH_DEBUG_CONTROL
-#			endif //ENH_DEBUG_CONTROL
-
-#			ifdef ENH_OPTIMISATION
-#				undef ENH_OPTIMISATION
-#			endif //ENH_OPTIMISATION
-
-#			define ENH_OPTIMISATION				10
-
-#		endif // ENH_CLEAR_OP_
-
 #	endif // _DEBUG
+
+#	ifdef ENH_CLEAR_OP_
+
+#		ifdef ENH_DEBUG_CONTROL 
+#			undef ENH_DEBUG_CONTROL
+#		endif //ENH_DEBUG_CONTROL
+
+#	endif // ENH_CLEAR_OP_
 
 
 
@@ -215,45 +209,6 @@ namespace debug
 #		define REPLACE_AS(x,y)		x
 
 
-/**
-	\brief The non-diagnostic version of REPLACE(x).
-*/
-#		define NDBG_REPLACE(x)	
-
-/**
-	\brief The non-diagnostic version of REPLACE_AS(x,y).
-*/
-#		define NDBG_REPLACE_AS(x,y)		y
-
-
-/**
-	\brief The info that is commonly passed to all logging functions.
-*/
-#		define INFO_FOR_LOG		__FILE__,__func__,__LINE__
-
-/**
-	\brief The Macro to log line completion in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
-*/
-#		define LOG_LINE(t)			debug::log(INFO_FOR_LOG, t)
-
-/**
-	\brief The Macro to log a string in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
-*/
-#		define LOG_DESC(x, t)		debug::log(INFO_FOR_LOG,x,t)
-
-/**
-	\brief The Macro to log a variable state in debug mode.
-
-	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
-	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
-*/
-#		define LOG_VAL(x, t)			debug::log(INFO_FOR_LOG,#x,x, t)
 #	else
 
 /**
@@ -271,18 +226,26 @@ namespace debug
 	Evaluates to seconds macro argument if DEBUG is not defined or if
 	ENH_CLEAR_OP_ is defined.
 */
-#		define REPLACE_AS(x,y)		y
+#		define REPLACE_AS(x,y)		y		
+
+#	endif // ENH_DEBUG_CONTROL
+
 
 
 /**
 	\brief The non-diagnostic version of REPLACE(x).
 */
-#		define NDBG_REPLACE(x)	
+#	define NDBG_REPLACE(x)	
 
 /**
 	\brief The non-diagnostic version of REPLACE_AS(x,y).
 */
-#		define NDBG_REPLACE_AS(x,y)		y
+#	define NDBG_REPLACE_AS(x,y)		y
+
+/**
+	\brief The info that is commonly passed to all logging functions.
+*/
+#	define INFO_FOR_LOG		__FILE__,__func__,__LINE__
 
 /**
 	\brief The Macro to log line completion in debug mode.
@@ -290,7 +253,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#		define LOG_LINE(t)			
+#	define LOG_LINE(t)			debug::log(INFO_FOR_LOG, t)
 
 /**
 	\brief The Macro to log a string in debug mode.
@@ -298,7 +261,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#		define LOG_DESC(x, t)			
+#	define LOG_DESC(x, t)		debug::log(INFO_FOR_LOG,x,t)
 
 /**
 	\brief The Macro to log a variable state in debug mode.
@@ -306,9 +269,7 @@ namespace debug
 	Evaluates to debug::log(INFO_FOR_LOG,#x,x) if DEBUG is defined.\n\n
 	Evaluates to blank if DEBUG is not defined or if ENH_CLEAR_OP_ is defined.
 */
-#		define LOG_VAL(x, t)			
-
-#	endif // ENH_DEBUG_CONTROL
+#	define LOG_VAL(x, t)			debug::log(INFO_FOR_LOG,#x,x, t)
 
 
 #	if !defined(IGNORE_ENHANCE_DIAGNOSTICS) && defined(ENH_DEBUG_CONTROL)
