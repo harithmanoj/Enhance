@@ -1,5 +1,5 @@
 
-#define ENH_CLEAR_OP__
+#define ENH_CLEAR_OP_
 
 #include <logger.enh.h>
 #include <iostream>

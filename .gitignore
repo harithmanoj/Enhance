@@ -3,6 +3,7 @@
 # Visual Studio files
 /.vs
 Enhance.sln
+/out
 
 # Test projects
 /test
@@ -15,5 +16,8 @@ Enhance.sln
 # Binaries
 *.exe
 *.obj
+
+#CMake
+/build/
 
 

@@ -1,5 +1,3 @@
-#define ENH_DEBUG_CONTROL
-
 #include <ErrorTracker.enh.h>
 #include <iostream>
 
