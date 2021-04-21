@@ -263,52 +263,52 @@ namespace enh
 		*/
 
 		/**
-			\brief Mask for year day part of raw integer date.
+			\brief Mask for year day part of raw date.
 		*/
 		constexpr std::bitset<32> yearDayMask	= 0x00'00'01'ffu;
 
 		/**
-			\brief Position of year day in raw integer date.
+			\brief Position of year day in raw date.
 		*/
 		constexpr std::uint8_t yearDayPosition	= 0u;
 
 		/**
-			\brief Mask for week day part of raw integer date.
+			\brief Mask for week day part of raw date.
 		*/
 		constexpr std::bitset<32> weekDayMask	= 0x00'00'0e'00u;
 
 		/**
-			\brief Position of week day in raw integer date.
+			\brief Position of week day in raw date.
 		*/
 		constexpr std::uint8_t weekDayPosition	= 9u;
 
 		/**
-			\brief Mask for year part of raw integer date.
+			\brief Mask for year part of raw date.
 		*/
 		constexpr std::bitset<32> yearMask		= 0x00'7f'f0'00u;
 
 		/**
-			\brief Position of year in raw integer date.
+			\brief Position of year in raw date.
 		*/
 		constexpr std::uint8_t yearPosition		= 12u;
 
 		/**
-			\brief Mask for month part of raw integer date.
+			\brief Mask for month part of raw date.
 		*/
 		constexpr std::bitset<32> monthMask		= 0x07'80'00'00u;
 
 		/**
-			\brief Position of month in raw integer date.
+			\brief Position of month in raw date.
 		*/
 		constexpr std::uint8_t monthPosition	= 23u;
 
 		/**
-			\brief Mask for month day part of raw integer date.
+			\brief Mask for month day part of raw date.
 		*/
 		constexpr std::bitset<32> dayMask		= 0xf8'00'00'00u;
 
 		/**
-			\brief Position of month day in raw integer date.
+			\brief Position of month day in raw date.
 		*/
 		constexpr std::uint8_t dayPosition		= 27u;
 		
@@ -318,13 +318,15 @@ namespace enh
 		*/
 		constexpr inline std::bitset<32> getDateRaw() const noexcept
 		{
-			return (
-				(_yearDay.get())
-				| (_weekDay.get()	<< weekDayPosition )
-				| (_year			<< yearPosition )
-				| (_month.get()		<< monthPosition )
-				| (_monthDay.get()) << dayPosition
-				);
+			std::bitset<32> ret;
+			ret.reset();
+
+			ret |= static_cast<std::uint32_t>(_yearDay.get());
+			ret |= static_cast<std::uint32_t>(_weekDay.get()) << 9;
+			ret |= static_cast<std::uint32_t>(_year) << 12;
+			ret |= static_cast<std::uint32_t>(_month.get()) << 23;
+			ret |= static_cast<std::uint32_t>(_monthDay.get()) << 27;
+			return ret;
 		}
 
 		/**
@@ -336,11 +338,11 @@ namespace enh
 							   representation. */
 		) noexcept
 		{
-			_yearDay.set	((data	& yearDayMask).to_ulong());
-			_weekDay.set	((data	& weekDayMask)	>> weekDayPosition);
-			_year =			(data	& yearMask)		>> yearPosition;
-			_month.set		((data	& monthMask)	>> monthPosition);
-			_monthDay.set	((data	& dayMask)		>> dayPosition);
+			_yearDay.set	((data	& yearDayMask)						.to_ulong());
+			_weekDay.set	(((data	& weekDayMask)	>> weekDayPosition)	.to_ulong());
+			_year =			(((data	& yearMask)		>> yearPosition)	.to_ulong());
+			_month.set		(((data	& monthMask)	>> monthPosition)	.to_ulong());
+			_monthDay.set	(((data	& dayMask)		>> dayPosition)		.to_ulong());
 		}
 
 		/**
