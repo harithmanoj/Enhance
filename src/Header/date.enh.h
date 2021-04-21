@@ -7,7 +7,7 @@
 
 	This file is part of project Enhance C++ Libraries.
 
-	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+	Copyright 2020-2021 Harith Manoj <harithpub@gmail.com>
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@
 #	include <ctime>
 #	include <exception>
 #	include <stdexcept>
+#	include <bitset>
 
 
 
@@ -264,7 +265,7 @@ namespace enh
 		/**
 			\brief Mask for year day part of raw integer date.
 		*/
-		constexpr std::uint32_t yearDayMask		= 0x00'00'01'ffu;
+		constexpr std::bitset<32> yearDayMask	= 0x00'00'01'ffu;
 
 		/**
 			\brief Position of year day in raw integer date.
@@ -274,7 +275,7 @@ namespace enh
 		/**
 			\brief Mask for week day part of raw integer date.
 		*/
-		constexpr std::uint32_t weekDayMask		= 0x00'00'0e'00u;
+		constexpr std::bitset<32> weekDayMask	= 0x00'00'0e'00u;
 
 		/**
 			\brief Position of week day in raw integer date.
@@ -284,7 +285,7 @@ namespace enh
 		/**
 			\brief Mask for year part of raw integer date.
 		*/
-		constexpr std::uint32_t yearMask		= 0x00'7f'f0'00u;
+		constexpr std::bitset<32> yearMask		= 0x00'7f'f0'00u;
 
 		/**
 			\brief Position of year in raw integer date.
@@ -294,7 +295,7 @@ namespace enh
 		/**
 			\brief Mask for month part of raw integer date.
 		*/
-		constexpr std::uint32_t monthMask		= 0x07'80'00'00u;
+		constexpr std::bitset<32> monthMask		= 0x07'80'00'00u;
 
 		/**
 			\brief Position of month in raw integer date.
@@ -304,7 +305,7 @@ namespace enh
 		/**
 			\brief Mask for month day part of raw integer date.
 		*/
-		constexpr std::uint32_t dayMask			= 0xf8'00'00'00u;
+		constexpr std::bitset<32> dayMask		= 0xf8'00'00'00u;
 
 		/**
 			\brief Position of month day in raw integer date.
@@ -312,10 +313,10 @@ namespace enh
 		constexpr std::uint8_t dayPosition		= 27u;
 		
 		/**
-			\brief Get the date as a 32 bit integer
+			\brief Get the date as a 32 bit stream
 			 (for use as bitstream, storage or transmit date).
 		*/
-		constexpr inline std::uint32_t getDateRaw() const noexcept
+		constexpr inline std::bitset<32> getDateRaw() const noexcept
 		{
 			return (
 				(_yearDay.get())
@@ -327,15 +328,15 @@ namespace enh
 		}
 
 		/**
-			\brief Use 32 bit Integer Date representation 
+			\brief Use 32 bit stream Date representation 
 			( from enh::Date::getDateRaw() ) to set Date.
 		*/
 		constexpr inline void setDateRaw(
-			std::uint32_t data /**< : <i>in</i> : The 32 bit date
+			std::bitset<32> data /**< : <i>in</i> : The 32 bit date
 							   representation. */
 		) noexcept
 		{
-			_yearDay.set	(data	& yearDayMask);
+			_yearDay.set	((data	& yearDayMask).to_ulong());
 			_weekDay.set	((data	& weekDayMask)	>> weekDayPosition);
 			_year =			(data	& yearMask)		>> yearPosition;
 			_month.set		((data	& monthMask)	>> monthPosition);
