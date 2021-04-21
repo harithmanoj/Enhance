@@ -7,7 +7,7 @@
 
 	This file is part of project Enhance C++ Libraries.
 
-	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+	Copyright 2020-2021 Harith Manoj <harithpub@gmail.com>
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -43,6 +43,36 @@ namespace enh
 	{
 	
 	public:
+
+
+		/**
+			\brief Get the Date time as a 52 bit stream
+			 (for use as bitstream, storage or transmit Date time).
+		*/
+		constexpr inline std::bitset<52> getDateTimeRaw() const noexcept
+		{
+			std::bitset<52> ret;
+			ret.reset();
+
+			ret |= getDateRaw().to_ulong();
+			ret |= getTimeRaw().to_ulong() << 32;
+			
+			return ret;
+		}
+
+		/**
+			\brief Use 52 bit stream Date Time representation
+			( from enh::DateTime::getDateTimeRaw() ) to set Time.
+		*/
+		constexpr inline void setDateTimeRaw(
+			std::bitset<52> data /**< : <i>in</i> : The 52 bit date time
+							   representation. */
+		) noexcept
+		{
+			setDateRaw((data & std::bitset<52>(0x0'00'00'ff'ff'ff'ffull)).to_ullong());
+			setTimeRaw(((data) >> 32).to_ullong());
+		}
+
 		
 		/**
 			\brief Sets the time and date to the time and date indicated by 
