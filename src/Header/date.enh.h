@@ -255,6 +255,93 @@ namespace enh
 
 	public:
 
+		/*
+			
+			| dddd dmmm | myyy yyyy | yyyy wwwY | YYYY YYYY |
+		
+		*/
+
+		/**
+			\brief Mask for year day part of raw integer date.
+		*/
+		constexpr std::uint32_t yearDayMask		= 0x00'00'01'ffu;
+
+		/**
+			\brief Position of year day in raw integer date.
+		*/
+		constexpr std::uint8_t yearDayPosition	= 0u;
+
+		/**
+			\brief Mask for week day part of raw integer date.
+		*/
+		constexpr std::uint32_t weekDayMask		= 0x00'00'0e'00u;
+
+		/**
+			\brief Position of week day in raw integer date.
+		*/
+		constexpr std::uint8_t weekDayPosition	= 9u;
+
+		/**
+			\brief Mask for year part of raw integer date.
+		*/
+		constexpr std::uint32_t yearMask		= 0x00'7f'f0'00u;
+
+		/**
+			\brief Position of year in raw integer date.
+		*/
+		constexpr std::uint8_t yearPosition		= 12u;
+
+		/**
+			\brief Mask for month part of raw integer date.
+		*/
+		constexpr std::uint32_t monthMask		= 0x07'80'00'00u;
+
+		/**
+			\brief Position of month in raw integer date.
+		*/
+		constexpr std::uint8_t monthPosition	= 23u;
+
+		/**
+			\brief Mask for month day part of raw integer date.
+		*/
+		constexpr std::uint32_t dayMask			= 0xf8'00'00'00u;
+
+		/**
+			\brief Position of month day in raw integer date.
+		*/
+		constexpr std::uint8_t dayPosition		= 27u;
+		
+		/**
+			\brief Get the date as a 32 bit integer
+			 (for use as bitstream, storage or transmit date).
+		*/
+		constexpr inline std::uint32_t getDateRaw() const noexcept
+		{
+			return (
+				(_yearDay.get())
+				| (_weekDay.get()	<< weekDayPosition )
+				| (_year			<< yearPosition )
+				| (_month.get()		<< monthPosition )
+				| (_monthDay.get()) << dayPosition
+				);
+		}
+
+		/**
+			\brief Use 32 bit Integer Date representation 
+			( from enh::Date::getDateRaw() ) to set Date.
+		*/
+		constexpr inline void setDateRaw(
+			std::uint32_t data /**< : <i>in</i> : The 32 bit date
+							   representation. */
+		) noexcept
+		{
+			_yearDay.set	(data	& yearDayMask);
+			_weekDay.set	((data	& weekDayMask)	>> weekDayPosition);
+			_year =			(data	& yearMask)		>> yearPosition;
+			_month.set		((data	& monthMask)	>> monthPosition);
+			_monthDay.set	((data	& dayMask)		>> dayPosition);
+		}
+
 		/**
 			\brief Sets the date to the date indicated by arguments.
 			
@@ -296,6 +383,13 @@ namespace enh
 			setDate(temp.tm_mday, temp.tm_mon, std::int64_t(temp.tm_year) 
 				+ 1900, temp.tm_wday, temp.tm_yday);
 		}
+
+
+		/**
+			\brief Sets date from integer date representation (number of days after epoch 1/1/1970 UTC).
+
+
+		*/
 
 		/**
 			\brief Sets the date to the date current date.
