@@ -79,32 +79,32 @@ namespace enh
 		/**
 			\brief Mask for Hours part of raw time.
 		*/
-		constexpr std::bitset<20> hourMask = 0x0'00'3fu;
+		static constexpr std::bitset<20> hourMask = 0x0'00'3fu;
 
 		/**
 			\brief Position of Hours in raw time.
 		*/
-		constexpr std::uint8_t hourPosition = 0u;
+		static constexpr std::uint8_t hourPosition = 0u;
 
 		/**
 			\brief Mask for minutes part of raw time.
 		*/
-		constexpr std::bitset<20> minuteMask = 0x0'0f'c0u;
+		static constexpr std::bitset<20> minuteMask = 0x0'0f'c0u;
 
 		/**
 			\brief Position of minutes in raw time.
 		*/
-		constexpr std::uint8_t minutePosition = 6u;
+		static constexpr std::uint8_t minutePosition = 6u;
 
 		/**
 			\brief Mask for seconds part of raw time.
 		*/
-		constexpr std::bitset<20> secondsMask = 0x3'f0'00u;
+		static constexpr std::bitset<20> secondsMask = 0x3'f0'00u;
 
 		/**
 			\brief Position of seconds in raw time.
 		*/
-		constexpr std::uint8_t secondsPosition = 12u;
+		static constexpr std::uint8_t secondsPosition = 12u;
 
 
 		/**

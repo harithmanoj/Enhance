@@ -265,52 +265,52 @@ namespace enh
 		/**
 			\brief Mask for year day part of raw date.
 		*/
-		constexpr std::bitset<32> yearDayMask	= 0x00'00'01'ffu;
+		static constexpr std::bitset<32> yearDayMask    = 0x00'00'01'ffull;
 
 		/**
 			\brief Position of year day in raw date.
 		*/
-		constexpr std::uint8_t yearDayPosition	= 0u;
+		static constexpr std::uint8_t yearDayPosition	= 0ull;
 
 		/**
 			\brief Mask for week day part of raw date.
 		*/
-		constexpr std::bitset<32> weekDayMask	= 0x00'00'0e'00u;
+		static constexpr std::bitset<32> weekDayMask	= 0x00'00'0e'00ull;
 
 		/**
 			\brief Position of week day in raw date.
 		*/
-		constexpr std::uint8_t weekDayPosition	= 9u;
+		static constexpr std::uint8_t weekDayPosition	= 9ull;
 
 		/**
 			\brief Mask for year part of raw date.
 		*/
-		constexpr std::bitset<32> yearMask		= 0x00'7f'f0'00u;
+		static constexpr std::bitset<32> yearMask		= 0x00'7f'f0'00ull;
 
 		/**
 			\brief Position of year in raw date.
 		*/
-		constexpr std::uint8_t yearPosition		= 12u;
+		static constexpr std::uint8_t yearPosition		= 12ull;
 
 		/**
 			\brief Mask for month part of raw date.
 		*/
-		constexpr std::bitset<32> monthMask		= 0x07'80'00'00u;
+		static constexpr std::bitset<32> monthMask		= 0x07'80'00'00ull;
 
 		/**
 			\brief Position of month in raw date.
 		*/
-		constexpr std::uint8_t monthPosition	= 23u;
+		static constexpr std::uint8_t monthPosition	= 23ull;
 
 		/**
 			\brief Mask for month day part of raw date.
 		*/
-		constexpr std::bitset<32> dayMask		= 0xf8'00'00'00u;
+		static constexpr std::bitset<32> dayMask		= 0xf8'00'00'00ull;
 
 		/**
 			\brief Position of month day in raw date.
 		*/
-		constexpr std::uint8_t dayPosition		= 27u;
+		static constexpr std::uint8_t dayPosition		= 27ull;
 		
 		/**
 			\brief Get the date as a 32 bit stream
