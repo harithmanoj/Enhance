@@ -111,7 +111,7 @@ namespace enh
 			\brief Get the time as a 20 bit stream
 			 (for use as bitstream, storage or transmit time).
 		*/
-		constexpr inline std::bitset<20> getTimeRaw() const noexcept
+		inline std::bitset<20> getTimeRaw() const noexcept
 		{
 			std::bitset<20> ret;
 			ret.reset();
@@ -126,7 +126,7 @@ namespace enh
 			\brief Use 20 bit stream Time representation
 			( from enh::TimeStamp::getTimeRaw() ) to set Time.
 		*/
-		constexpr inline void setTimeRaw(
+		inline void setTimeRaw(
 			std::bitset<20> data /**< : <i>in</i> : The 20 bit time
 							   representation. */
 		) noexcept

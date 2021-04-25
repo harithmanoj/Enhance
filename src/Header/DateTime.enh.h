@@ -49,7 +49,7 @@ namespace enh
 			\brief Get the Date time as a 52 bit stream
 			 (for use as bitstream, storage or transmit Date time).
 		*/
-		constexpr inline std::bitset<52> getDateTimeRaw() const noexcept
+		inline std::bitset<52> getDateTimeRaw() const noexcept
 		{
 			std::bitset<52> ret;
 			ret.reset();
@@ -64,7 +64,7 @@ namespace enh
 			\brief Use 52 bit stream Date Time representation
 			( from enh::DateTime::getDateTimeRaw() ) to set Time.
 		*/
-		constexpr inline void setDateTimeRaw(
+		inline void setDateTimeRaw(
 			std::bitset<52> data /**< : <i>in</i> : The 52 bit date time
 							   representation. */
 		) noexcept

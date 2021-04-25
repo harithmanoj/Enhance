@@ -316,7 +316,7 @@ namespace enh
 			\brief Get the date as a 32 bit stream
 			 (for use as bitstream, storage or transmit date).
 		*/
-		constexpr inline std::bitset<32> getDateRaw() const noexcept
+		inline std::bitset<32> getDateRaw() const noexcept
 		{
 			std::bitset<32> ret;
 			ret.reset();
@@ -333,7 +333,7 @@ namespace enh
 			\brief Use 32 bit stream Date representation 
 			( from enh::Date::getDateRaw() ) to set Date.
 		*/
-		constexpr inline void setDateRaw(
+		inline void setDateRaw(
 			std::bitset<32> data /**< : <i>in</i> : The 32 bit date
 							   representation. */
 		) noexcept
