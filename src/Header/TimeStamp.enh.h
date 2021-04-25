@@ -7,7 +7,7 @@
 
 	This file is part of project Enhance C++ Libraries.
 
-	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+	Copyright 2020-2021 Harith Manoj <harithpub@gmail.com>
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -75,6 +75,66 @@ namespace enh
 		numeric::Hours _hours;
 
 	public:
+
+		/**
+			\brief Mask for Hours part of raw time.
+		*/
+		static constexpr std::bitset<20> hourMask = 0x0'00'3fu;
+
+		/**
+			\brief Position of Hours in raw time.
+		*/
+		static constexpr std::uint8_t hourPosition = 0u;
+
+		/**
+			\brief Mask for minutes part of raw time.
+		*/
+		static constexpr std::bitset<20> minuteMask = 0x0'0f'c0u;
+
+		/**
+			\brief Position of minutes in raw time.
+		*/
+		static constexpr std::uint8_t minutePosition = 6u;
+
+		/**
+			\brief Mask for seconds part of raw time.
+		*/
+		static constexpr std::bitset<20> secondsMask = 0x3'f0'00u;
+
+		/**
+			\brief Position of seconds in raw time.
+		*/
+		static constexpr std::uint8_t secondsPosition = 12u;
+
+
+		/**
+			\brief Get the time as a 20 bit stream
+			 (for use as bitstream, storage or transmit time).
+		*/
+		inline std::bitset<20> getTimeRaw() const noexcept
+		{
+			std::bitset<20> ret;
+			ret.reset();
+
+			ret |= static_cast<std::uint32_t>(_hours.get());
+			ret |= static_cast<std::uint32_t>(_minutes.get()) << 6;
+			ret |= static_cast<std::uint32_t>(_seconds.get()) << 12;
+			return ret;
+		}
+
+		/**
+			\brief Use 20 bit stream Time representation
+			( from enh::TimeStamp::getTimeRaw() ) to set Time.
+		*/
+		inline void setTimeRaw(
+			std::bitset<20> data /**< : <i>in</i> : The 20 bit time
+							   representation. */
+		) noexcept
+		{
+			_hours.set(		(data & hourMask)							.to_ulong());
+			_minutes.set((	(data & minuteMask)		>> minutePosition)	.to_ulong());
+			_seconds.set((	(data & secondsMask)	>> secondsPosition)	.to_ulong());
+		}
 
 		/**
 			\brief Sets the time to the time indicated by arguments.

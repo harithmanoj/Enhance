@@ -7,7 +7,7 @@
 
 	This file is part of project Enhance C++ Libraries.
 
-	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+	Copyright 2020-2021 Harith Manoj <harithpub@gmail.com>
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@
 #	include <ctime>
 #	include <exception>
 #	include <stdexcept>
+#	include <bitset>
 
 
 
@@ -255,6 +256,95 @@ namespace enh
 
 	public:
 
+		/*
+			
+			| dddd dmmm | myyy yyyy | yyyy wwwY | YYYY YYYY |
+		
+		*/
+
+		/**
+			\brief Mask for year day part of raw date.
+		*/
+		static constexpr std::bitset<32> yearDayMask    = 0x00'00'01'ffull;
+
+		/**
+			\brief Position of year day in raw date.
+		*/
+		static constexpr std::uint8_t yearDayPosition	= 0ull;
+
+		/**
+			\brief Mask for week day part of raw date.
+		*/
+		static constexpr std::bitset<32> weekDayMask	= 0x00'00'0e'00ull;
+
+		/**
+			\brief Position of week day in raw date.
+		*/
+		static constexpr std::uint8_t weekDayPosition	= 9ull;
+
+		/**
+			\brief Mask for year part of raw date.
+		*/
+		static constexpr std::bitset<32> yearMask		= 0x00'7f'f0'00ull;
+
+		/**
+			\brief Position of year in raw date.
+		*/
+		static constexpr std::uint8_t yearPosition		= 12ull;
+
+		/**
+			\brief Mask for month part of raw date.
+		*/
+		static constexpr std::bitset<32> monthMask		= 0x07'80'00'00ull;
+
+		/**
+			\brief Position of month in raw date.
+		*/
+		static constexpr std::uint8_t monthPosition	= 23ull;
+
+		/**
+			\brief Mask for month day part of raw date.
+		*/
+		static constexpr std::bitset<32> dayMask		= 0xf8'00'00'00ull;
+
+		/**
+			\brief Position of month day in raw date.
+		*/
+		static constexpr std::uint8_t dayPosition		= 27ull;
+		
+		/**
+			\brief Get the date as a 32 bit stream
+			 (for use as bitstream, storage or transmit date).
+		*/
+		inline std::bitset<32> getDateRaw() const noexcept
+		{
+			std::bitset<32> ret;
+			ret.reset();
+
+			ret |= static_cast<std::uint32_t>(_yearDay.get());
+			ret |= static_cast<std::uint32_t>(_weekDay.get()) << 9;
+			ret |= static_cast<std::uint32_t>(_year) << 12;
+			ret |= static_cast<std::uint32_t>(_month.get()) << 23;
+			ret |= static_cast<std::uint32_t>(_monthDay.get()) << 27;
+			return ret;
+		}
+
+		/**
+			\brief Use 32 bit stream Date representation 
+			( from enh::Date::getDateRaw() ) to set Date.
+		*/
+		inline void setDateRaw(
+			std::bitset<32> data /**< : <i>in</i> : The 32 bit date
+							   representation. */
+		) noexcept
+		{
+			_yearDay.set	((data	& yearDayMask)						.to_ulong());
+			_weekDay.set	(((data	& weekDayMask)	>> weekDayPosition)	.to_ulong());
+			_year =			(((data	& yearMask)		>> yearPosition)	.to_ulong());
+			_month.set		(((data	& monthMask)	>> monthPosition)	.to_ulong());
+			_monthDay.set	(((data	& dayMask)		>> dayPosition)		.to_ulong());
+		}
+
 		/**
 			\brief Sets the date to the date indicated by arguments.
 			
@@ -296,6 +386,13 @@ namespace enh
 			setDate(temp.tm_mday, temp.tm_mon, std::int64_t(temp.tm_year) 
 				+ 1900, temp.tm_wday, temp.tm_yday);
 		}
+
+
+		/**
+			\brief Sets date from integer date representation (number of days after epoch 1/1/1970 UTC).
+
+
+		*/
 
 		/**
 			\brief Sets the date to the date current date.
