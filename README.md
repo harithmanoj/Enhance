@@ -1,12 +1,13 @@
 ## Enhance C++ Libraries ##
 
-
-
-![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/harithmanoj/Enhance?include_prereleases&label=stable%20release)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/harithmanoj/Enhance?label=stable%20release)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/harithmanoj/Enhance?include_prereleases&label=develop%20release)
 ![GitHub](https://img.shields.io/github/license/harithmanoj/Enhance)
 ![GitHub Release Date](https://img.shields.io/github/release-date/harithmanoj/Enhance?label=Stable%20Release%20Date)
+![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/harithmanoj/Enhance?label=develop%20alpha%20release)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/harithmanoj/Enhance/Test)
 
+Release 1.3.1.7
 
 Enhance C++ Libraries is a collection of multiple `C++` libraries that cater 
 to many needs.
