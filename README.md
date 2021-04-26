@@ -32,10 +32,9 @@ Stable Releases can be found [here](https://github.com/harithmanoj/Enhance/relea
 
 Code Documentation is Hosted by GitHub Pages [here](https://harithmanoj.github.io/Enhance-cpp-libraries/nav/doc.html)
 
-The branch master of Enhance repository contains last stable release code. For latest features, 
-bugfixes etc, see develop branch.
-
-Documentation of pre-release bug fixes and features can also be found [here](https://harithmanoj.github.io/Enhance-cpp-libraries/nav/doc.html)
+The branch master of Enhance repository contains last stable release code. For latest features,
+bugfixes etc, see develop branch. Documentation for develop branch will not be built untill it 
+is released, but documentation will be present as comments in the code itself.
 
 <details>
 <summary> <h2> Concurrent </h2> </summary>

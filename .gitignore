@@ -12,6 +12,7 @@ Enhance.sln
 /bin
 /resources
 /SCRAPPED
+/build
 
 # Binaries
 *.exe
