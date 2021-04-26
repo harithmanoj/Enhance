@@ -7,7 +7,7 @@
 ![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/harithmanoj/Enhance?label=develop%20alpha%20release)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/harithmanoj/Enhance/Test)
 
-Develop Release v1.3.2.8.d1 alpha
+Release 1.3.1.7
 
 
 Enhance C++ Libraries is a collection of multiple `C++` libraries that cater 
