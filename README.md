@@ -33,9 +33,8 @@ Stable Releases can be found [here](https://github.com/harithmanoj/Enhance/relea
 Code Documentation is Hosted by GitHub Pages [here](https://harithmanoj.github.io/Enhance/index.html)
 
 The branch master of Enhance repository contains last stable release code. For latest features, 
-bugfixes etc, see develop branch or [enhance-develop](https://github.com/harithmanoj/enhance-develop).
-
-Documentation of Latest bug fixes and features can be found [here](https://harithmanoj.github.io/enhance-develop/index.html)
+bugfixes etc, see develop branch. Documentation for develop branch will not be built untill it 
+is released, but documentation will be present as comments in the code itself.
 
 _______________________________________________________________________________
 ## Framework
