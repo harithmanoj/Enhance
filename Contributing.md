@@ -30,7 +30,7 @@ Doxygen comment blocks must be in /** ... */
 
 	This file is part of project Enhance C++ Libraries.
 
-	Copyright 2020 Harith Manoj <harithpub@gmail.com>
+	Copyright [year] [Author] <email>
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -43,6 +43,9 @@ Doxygen comment blocks must be in /** ... */
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License.
+
+	Copyright year may be a range eg 2020-2021, if last update on the file was 
+	on 2021
 
 ### pre-processor definitions
 
